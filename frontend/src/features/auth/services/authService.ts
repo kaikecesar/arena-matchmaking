@@ -1,21 +1,34 @@
+// Services
+import { buildMockUser, createMockTokens } from '@/features/auth/services/mockTokens'
+
+// Utils
+import { mockDelay } from '@/features/auth/utils/delay'
+
+// Types
 import {
   AuthErrorCode,
   AuthServiceError,
+  RegisterRole,
   UserRole,
-  type AuthApiResponse,
-  type ForgotPasswordPayload,
-  type LoginPayload,
-  type RegisterPayload,
-  type ResetPasswordPayload,
 } from '@/features/auth/types'
-import { mockDelay } from '@/features/auth/utils/delay'
-import { buildMockUser, createMockTokens } from './mockTokens'
+import type {
+  ForgotPasswordPayload,
+  LoginPayload,
+  RegisterPayload,
+  ResetPasswordPayload,
+} from '@/features/auth/types'
+import type { AuthApiResponse, ForgotPasswordApiResponse, ResetPasswordApiResponse } from '@/types/api'
+import type { AuthService } from './authService.types'
 
 /**
  * Mock auth service — backend-ready contract.
  * Replace method bodies with real fetch calls when API is integrated.
  */
-export const authService = {
+
+const authService: AuthService = {
+  /* ***********************************************************************************************
+  ******************************************** REQUESTS ********************************************
+  *********************************************************************************************** */
   async login(payload: LoginPayload): Promise<AuthApiResponse> {
     await mockDelay(850)
 
@@ -59,11 +72,11 @@ export const authService = {
       })
     }
 
-    const roleMap = {
-      organizer: UserRole.organizer,
-      athlete: UserRole.athlete,
-      coach: UserRole.coach,
-    } as const
+    const roleMap: Record<RegisterRole, UserRole> = {
+      [RegisterRole.organizer]: UserRole.organizer,
+      [RegisterRole.athlete]: UserRole.athlete,
+      [RegisterRole.coach]: UserRole.coach,
+    }
 
     const user = buildMockUser(payload.email, payload.name, roleMap[payload.role])
     const tokens = createMockTokens(user)
@@ -71,7 +84,7 @@ export const authService = {
     return { ...tokens, user }
   },
 
-  async forgotPassword(_payload: ForgotPasswordPayload): Promise<{ message: string }> {
+  async forgotPassword(_payload: ForgotPasswordPayload): Promise<ForgotPasswordApiResponse> {
     await mockDelay(750)
 
     const id = _payload.identifier.toLowerCase()
@@ -85,7 +98,7 @@ export const authService = {
     return { message: 'Recovery instructions sent' }
   },
 
-  async resetPassword(payload: ResetPasswordPayload): Promise<{ message: string }> {
+  async resetPassword(payload: ResetPasswordPayload): Promise<ResetPasswordApiResponse> {
     await mockDelay(900)
 
     if (payload.token === 'invalid' || payload.token === 'expired') {
@@ -124,3 +137,5 @@ export const authService = {
     return { ...tokens, user }
   },
 }
+
+export { authService }

@@ -18,14 +18,14 @@ export enum ButtonType {
 
 export interface ButtonProps {
   label: string
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  type?: ButtonType
-  variant?: ButtonVariant
-  size?: ButtonSize
-  loading?: boolean
-  disabled?: boolean
-  fullWidth?: boolean
-  trailingIcon?: React.ReactNode
-  leadingIcon?: React.ReactNode
-  'aria-label'?: string
+  onClick?: ((e: React.MouseEvent<HTMLButtonElement>) => void) | undefined
+  type?: ButtonType | undefined
+  variant?: ButtonVariant | undefined
+  size?: ButtonSize | undefined
+  loading?: boolean | undefined
+  disabled?: boolean | undefined
+  fullWidth?: boolean | undefined
+  trailingIcon?: React.ReactNode | undefined
+  leadingIcon?: React.ReactNode | undefined
+  'aria-label'?: string | undefined
 }

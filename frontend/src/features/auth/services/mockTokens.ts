@@ -1,11 +1,14 @@
-import { UserRole, type AuthUser, type UserRole as UserRoleType } from '@/features/auth/types'
+// Types
+import { UserRole } from '@/features/auth/types'
+import type { AuthUser, UserRoleType } from '@/features/auth/types'
+import type { MockTokenPayload, MockTokens } from './mockTokens.types'
 
-const encodePayload = (payload: Record<string, unknown>): string => {
+const encodePayload = (payload: MockTokenPayload): string => {
   const json = JSON.stringify(payload)
   return `mock.${btoa(json)}.${Date.now()}`
 }
 
-export const createMockTokens = (user: AuthUser): { accessToken: string; refreshToken: string } => ({
+const createMockTokens = (user: AuthUser): MockTokens => ({
   accessToken: encodePayload({ sub: user.id, role: user.role, type: 'access' }),
   refreshToken: encodePayload({ sub: user.id, type: 'refresh' }),
 })
@@ -24,12 +27,14 @@ const inferRole = (identifier: string): UserRoleType => {
   return UserRole.organizer
 }
 
-export const buildMockUser = (
+const buildMockUser = (
   identifier: string,
-  name?: string,
-  role?: UserRoleType
+  name?: string | undefined,
+  role?: UserRoleType | undefined
 ): AuthUser => {
-  const email = identifier.includes('@') ? identifier : `${identifier}@arena.mock`
+  const email = identifier.includes('@')
+    ? identifier
+    : `${identifier}@arena.mock`
   const resolvedRole = role ?? inferRole(identifier)
 
   return {
@@ -39,3 +44,5 @@ export const buildMockUser = (
     role: resolvedRole,
   }
 }
+
+export { createMockTokens, buildMockUser }

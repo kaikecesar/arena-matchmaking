@@ -1,28 +1,28 @@
+// Core
 import type { ReactElement } from 'react'
+
+// Components
 import { Eyebrow } from '@/components/ui/Eyebrow'
+
+// Types
+import type { AuthHeroProps } from './AuthHero.types'
+
+// Styles
 import {
   HeroBlock,
   HeroEyebrowWrapper,
   HeroHeading,
   HeroHighlight,
   HeroSubtitle,
-} from '../AuthLayout/AuthLayout.styles'
+} from '@/features/auth/components/AuthLayout/AuthLayout.styles'
 
-type AuthHeroProps = {
-  eyebrow: string
-  line1: string
-  highlight: string
-  subtitle: string
-  eyebrowColor?: 'copper' | 'blood'
-}
-
-export function AuthHero({
+const AuthHero = ({
   eyebrow,
   line1,
   highlight,
   subtitle,
   eyebrowColor = 'copper',
-}: AuthHeroProps): ReactElement {
+}: AuthHeroProps): ReactElement => {
   return (
     <HeroBlock>
       <HeroEyebrowWrapper>
@@ -35,3 +35,5 @@ export function AuthHero({
     </HeroBlock>
   )
 }
+
+export { AuthHero }

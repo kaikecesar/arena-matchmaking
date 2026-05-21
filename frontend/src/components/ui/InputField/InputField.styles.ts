@@ -1,5 +1,9 @@
+// Libraries
 import styled, { css } from 'styled-components'
 
+/* *************************************************************************************************
+********************************************** LAYOUT **********************************************
+************************************************************************************************* */
 export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,6 +21,9 @@ export const FieldLabel = styled.label`
   display: block;
 `
 
+/* *************************************************************************************************
+********************************************** INPUT ***********************************************
+************************************************************************************************* */
 interface InputWrapperProps {
   $hasError: boolean
   $disabled: boolean
@@ -34,7 +41,10 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     ${({ theme }) => theme.colors.surf3};
   border-radius: ${({ theme }) => theme.radius.md};
   border: 1px solid
-    ${({ theme, $hasError }) => ($hasError ? theme.colors.blood : theme.colors.border1)};
+    ${({ theme, $hasError }) =>
+      $hasError
+        ? theme.colors.blood
+        : theme.colors.border1};
   box-shadow: ${({ theme, $hasError }) =>
     $hasError
       ? `inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 3px ${theme.colors.bloodTint}`
@@ -43,7 +53,10 @@ export const InputWrapper = styled.div<InputWrapperProps>`
     border-color ${({ theme }) => theme.transitions.normal},
     box-shadow ${({ theme }) => theme.transitions.normal},
     background ${({ theme }) => theme.transitions.normal};
-  opacity: ${({ $disabled }) => ($disabled ? 0.55 : 1)};
+  opacity: ${({ $disabled }) =>
+    $disabled
+      ? 0.55
+      : 1};
 
   &:hover:not(:focus-within) {
     ${({ $hasError, $disabled, theme }) =>
@@ -80,7 +93,10 @@ export const StyledInput = styled.input<StyledInputProps>`
   border: none;
   outline: none;
   padding: 13px 16px;
-  font-family: ${({ theme, $mono }) => ($mono ? theme.fonts.mono : theme.fonts.ui)};
+  font-family: ${({ theme, $mono }) =>
+    $mono
+      ? theme.fonts.mono
+      : theme.fonts.ui};
   font-size: 15px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.textHi};
@@ -99,6 +115,9 @@ export const StyledInput = styled.input<StyledInputProps>`
   }
 `
 
+/* *************************************************************************************************
+******************************************* ACCESSORIES ********************************************
+************************************************************************************************* */
 export const TrailingSlot = styled.button`
   display: flex;
   align-items: center;

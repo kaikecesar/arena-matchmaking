@@ -1,14 +1,22 @@
-import type { ReactElement, ReactNode } from 'react'
+// Core
+import type { ReactElement } from 'react'
+
+// Components
 import { BrandMark } from '@/components/ui/BrandMark'
-import { Card, GlowBlood, GlowCopper, LoginHeader, PageShell } from './AuthLayout.styles'
 
-type AuthLayoutProps = {
-  children: ReactNode
-  footer?: ReactNode
-  wide?: boolean
-}
+// Types
+import type { AuthLayoutProps } from './AuthLayout.types'
 
-export function AuthLayout({ children, footer, wide = false }: AuthLayoutProps): ReactElement {
+// Styles
+import {
+  Card,
+  GlowBlood,
+  GlowCopper,
+  LoginHeader,
+  PageShell,
+} from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+
+const AuthLayout = ({ children, footer, wide = false }: AuthLayoutProps): ReactElement => {
   return (
     <PageShell>
       <GlowBlood />
@@ -23,3 +31,5 @@ export function AuthLayout({ children, footer, wide = false }: AuthLayoutProps):
     </PageShell>
   )
 }
+
+export { AuthLayout }

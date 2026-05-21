@@ -1,8 +1,13 @@
+// Core
 import type { ReactElement } from 'react'
-import { authStrings } from '@/i18n/pt-BR/auth'
-import { DashboardPage } from './DashboardPage'
 
-export function OrganizerDashboard(): ReactElement {
+// Components
+import { DashboardPage } from '@/features/auth/Dashboard/DashboardPage'
+
+// Constants
+import { authStrings } from '@/i18n/pt-BR/auth'
+
+const OrganizerDashboard = (): ReactElement => {
   return (
     <DashboardPage
       title={authStrings.dashboard.organizer.title}
@@ -10,3 +15,5 @@ export function OrganizerDashboard(): ReactElement {
     />
   )
 }
+
+export { OrganizerDashboard }

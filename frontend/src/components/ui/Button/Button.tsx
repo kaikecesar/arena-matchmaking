@@ -1,7 +1,5 @@
-// Core
-import type { FC } from 'react'
-
 // Types
+import type { FC } from 'react'
 import type { ButtonProps } from './Button.types'
 import { ButtonType, ButtonVariant, ButtonSize } from './Button.types'
 
@@ -39,18 +37,24 @@ const Button: FC<ButtonProps> = ({
       $size={size}
       $fullWidth={fullWidth}
       $loading={loading}
-      aria-label={loading ? undefined : ariaLabel}
+      aria-label={
+        loading
+          ? undefined
+          : ariaLabel
+      }
       aria-busy={loading}
     >
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          {leadingIcon}
-          {label}
-          {trailingIcon}
-        </>
-      )}
+      {loading
+        ? (
+            <Spinner />
+          )
+        : (
+            <>
+              {leadingIcon}
+              {label}
+              {trailingIcon}
+            </>
+          )}
     </StyledButton>
   )
 }

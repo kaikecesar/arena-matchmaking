@@ -1,27 +1,20 @@
-import { AuthErrorCode, AuthServiceError } from '@/features/auth/types'
-import { authStrings } from '@/i18n/pt-BR/auth'
+// Utils
+import { isAuthApiError } from '@/utils/typeGuards'
 
-export const getAuthErrorMessage = (error: unknown): string => {
+// Types
+import { AuthServiceError } from '@/features/auth/types'
+
+const getAuthErrorMessage = (error: unknown): string => {
   if (error instanceof AuthServiceError) {
-    switch (error.code) {
-      case AuthErrorCode.invalidCredentials:
-        return authStrings.errorInvalidCredentials
-      case AuthErrorCode.rateLimited:
-        return authStrings.errorRateLimited
-      case AuthErrorCode.networkError:
-        return authStrings.errorNetwork
-      case AuthErrorCode.sessionExpired:
-        return authStrings.errorSessionExpired
-      case AuthErrorCode.emailInUse:
-        return authStrings.register.errorEmailInUse
-      case AuthErrorCode.invalidToken:
-        return authStrings.reset.errorInvalidToken
-      case AuthErrorCode.weakPassword:
-        return authStrings.reset.errorPasswordWeak
-      default:
-        return authStrings.errorGeneric
-    }
+    return error.message
   }
-
-  return authStrings.errorGeneric
+  if (error instanceof Error) {
+    return error.message
+  }
+  if (isAuthApiError(error)) {
+    return error.message
+  }
+  return 'Erro desconhecido'
 }
+
+export { getAuthErrorMessage }

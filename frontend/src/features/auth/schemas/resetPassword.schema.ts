@@ -1,6 +1,11 @@
+// Libraries
 import { z } from 'zod'
-import { authStrings } from '@/i18n/pt-BR/auth'
+
+// Utils
 import { isPasswordStrongEnough } from '@/features/auth/utils/passwordStrength'
+
+// Constants
+import { authStrings } from '@/i18n/pt-BR/auth'
 
 export const resetPasswordSchema = z
   .object({

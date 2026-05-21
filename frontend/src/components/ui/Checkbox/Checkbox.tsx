@@ -1,6 +1,16 @@
+// Core
 import React from 'react'
-import type { CheckboxProps } from './Checkbox.types'
-import { CheckboxWrapper, HiddenInput, VisualBox, CheckboxLabel } from './Checkbox.styles'
+
+// Types
+import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types'
+
+// Styles
+import {
+  CheckboxLabel,
+  CheckboxWrapper,
+  HiddenInput,
+  VisualBox,
+} from '@/components/ui/Checkbox/Checkbox.styles'
 
 const Checkbox = ({ checked, onChange, label, name, id }: CheckboxProps): React.ReactElement => {
   const inputId = id ?? name

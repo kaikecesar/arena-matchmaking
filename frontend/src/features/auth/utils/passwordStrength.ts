@@ -1,10 +1,6 @@
-export type PasswordStrength = 'weak' | 'fair' | 'good' | 'strong'
-
-export type PasswordStrengthResult = {
-  score: PasswordStrength
-  label: string
-  percent: number
-}
+// Types
+import { PasswordStrength } from './passwordStrength.types'
+import type { PasswordStrengthResult } from './passwordStrength.types'
 
 const checks = [
   { test: (v: string) => v.length >= 8, weight: 25 },
@@ -14,25 +10,35 @@ const checks = [
   { test: (v: string) => /[^A-Za-z0-9]/.test(v), weight: 15 },
 ] as const
 
-export const getPasswordStrength = (
+const getPasswordStrength = (
   password: string,
   labels: Record<PasswordStrength, string>
 ): PasswordStrengthResult => {
   if (!password) {
-    return { score: 'weak', label: labels.weak, percent: 0 }
+    return { score: PasswordStrength.weak, label: labels[PasswordStrength.weak], percent: 0 }
   }
 
-  const percent = checks.reduce((sum, { test, weight }) => (test(password) ? sum + weight : sum), 0)
+  const percent = checks.reduce(
+    (sum, { test, weight }) =>
+      test(password)
+        ? sum + weight
+        : sum,
+    0
+  )
 
-  let score: PasswordStrength = 'weak'
-  if (percent >= 85) score = 'strong'
-  else if (percent >= 65) score = 'good'
-  else if (percent >= 40) score = 'fair'
+  let score = PasswordStrength.weak
+  if (percent >= 85) {
+    score = PasswordStrength.strong
+  } else if (percent >= 65) {
+    score = PasswordStrength.good
+  } else if (percent >= 40) {
+    score = PasswordStrength.fair
+  }
 
   return { score, label: labels[score], percent }
 }
 
-export const isPasswordStrongEnough = (password: string): boolean => {
+const isPasswordStrongEnough = (password: string): boolean => {
   return (
     password.length >= 8 &&
     /[A-Z]/.test(password) &&
@@ -40,3 +46,6 @@ export const isPasswordStrongEnough = (password: string): boolean => {
     /\d/.test(password)
   )
 }
+
+export { PasswordStrength, getPasswordStrength, isPasswordStrongEnough }
+export type { PasswordStrengthResult }

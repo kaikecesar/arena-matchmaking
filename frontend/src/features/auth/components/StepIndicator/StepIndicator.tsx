@@ -1,12 +1,13 @@
+// Core
 import type { ReactElement } from 'react'
-import { StepIndicatorRow, StepItem, StepLabel } from '../AuthLayout/AuthLayout.styles'
 
-type StepIndicatorProps = {
-  steps: readonly string[]
-  currentStep: number
-}
+// Types
+import type { StepIndicatorProps } from './StepIndicator.types'
 
-export function StepIndicator({ steps, currentStep }: StepIndicatorProps): ReactElement {
+// Styles
+import { StepIndicatorRow, StepItem, StepLabel } from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+
+const StepIndicator = ({ steps, currentStep }: StepIndicatorProps): ReactElement => {
   return (
     <StepIndicatorRow aria-label="Progresso do cadastro">
       {steps.map((label, index) => (
@@ -14,7 +15,11 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps): React
           key={label}
           $active={index === currentStep}
           $done={index < currentStep}
-          aria-current={index === currentStep ? 'step' : undefined}
+          aria-current={
+            index === currentStep
+              ? 'step'
+              : undefined
+          }
         >
           <StepLabel $active={index === currentStep}>{label}</StepLabel>
         </StepItem>
@@ -22,3 +27,5 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps): React
     </StepIndicatorRow>
   )
 }
+
+export { StepIndicator }

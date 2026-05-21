@@ -1,14 +1,22 @@
+// Core
 import type { ReactElement } from 'react'
+
+// Libraries
 import { Navigate } from 'react-router-dom'
+
+// Components
+import { AuthBootstrap } from '@/features/auth/routes/AuthBootstrap'
+
+// Hooks
 import { useAuth } from '@/features/auth/hooks/useAuth'
+
+// Utils
 import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
-import { AuthBootstrap } from './AuthBootstrap'
 
-type GuestRouteProps = {
-  children: ReactElement
-}
+// Types
+import type { GuestRouteProps } from './GuestRoute.types'
 
-export function GuestRoute({ children }: GuestRouteProps): ReactElement {
+const GuestRoute = ({ children }: GuestRouteProps): ReactElement => {
   const { user, isBootstrapping } = useAuth()
 
   if (isBootstrapping) {
@@ -21,3 +29,5 @@ export function GuestRoute({ children }: GuestRouteProps): ReactElement {
 
   return children
 }
+
+export { GuestRoute }

@@ -1,11 +1,16 @@
+// Types
+import type { TokenStorage } from './tokenStorage.types'
+
 const ACCESS_TOKEN_KEY = 'arena_access_token'
 const REFRESH_TOKEN_KEY = 'arena_refresh_token'
 const REMEMBER_ME_KEY = 'arena_remember_me'
 
 const getStorage = (persistent: boolean): Storage =>
-  persistent ? localStorage : sessionStorage
+  persistent
+    ? localStorage
+    : sessionStorage
 
-export const tokenStorage = {
+const tokenStorage: TokenStorage = {
   getAccessToken(persistent: boolean): string | null {
     return getStorage(persistent).getItem(ACCESS_TOKEN_KEY)
   },
@@ -46,3 +51,5 @@ export const tokenStorage = {
     return localStorage.getItem(REMEMBER_ME_KEY) === 'true'
   },
 }
+
+export { tokenStorage }

@@ -1,30 +1,31 @@
-import { useState } from 'react'
+// Core
+import { useReducer } from 'react'
 import type { ChangeEvent, FormEvent } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import type { UseFormRegister, FieldErrors } from 'react-hook-form'
 
+// Libraries
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm, useWatch } from 'react-hook-form'
+
+// Hooks
 import { useAuth } from '@/features/auth/hooks/useAuth'
-import { loginSchema, type LoginFormValues } from '@/features/auth/schemas'
+
+// Utils
+import { loginReducer } from '@/features/auth/Login/login.reducer'
+import { loginInitialState } from '@/features/auth/Login/login.state'
+import { loginSchema } from '@/features/auth/schemas'
 import { formatCPF } from '@/utils/formatCPF'
 
-export interface UseLoginFormReturn {
-  register: UseFormRegister<LoginFormValues>
-  errors: FieldErrors<LoginFormValues>
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void
-  isLoading: boolean
-  generalError: string | null
-  isPasswordVisible: boolean
-  togglePasswordVisibility: () => void
-  keepSession: boolean
-  onKeepSessionChange: (checked: boolean) => void
-  identifierDisplayValue: string
-  onIdentifierChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  passwordValue: string
-}
+// Types
+import type { LoginFormValues } from '@/features/auth/schemas'
+import type { UseLoginFormReturn } from '@/features/auth/Login/Login.types'
 
-export function useLoginForm(): UseLoginFormReturn {
+const useLoginForm = (): UseLoginFormReturn => {
   const { login, isSubmitting } = useAuth()
+
+  /* ***********************************************************************************************
+  ********************************************* STATE **********************************************
+  *********************************************************************************************** */
+  const [state, dispatch] = useReducer(loginReducer, loginInitialState)
 
   const {
     register,
@@ -37,15 +38,17 @@ export function useLoginForm(): UseLoginFormReturn {
     defaultValues: { identifier: '', password: '', keepSession: true },
   })
 
-  const [generalError, setGeneralError] = useState<string | null>(null)
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
-  const [identifierDisplayValue, setIdentifierDisplayValue] = useState('')
-
+  /* ***********************************************************************************************
+  ***************************************** DERIVED VALUES *****************************************
+  *********************************************************************************************** */
   const keepSession = useWatch({ control, name: 'keepSession', defaultValue: true })
   const passwordValue = useWatch({ control, name: 'password', defaultValue: '' }) ?? ''
 
+  /* ***********************************************************************************************
+  ******************************************* CALLBACKS ********************************************
+  *********************************************************************************************** */
   const togglePasswordVisibility = (): void => {
-    setIsPasswordVisible((prev) => !prev)
+    dispatch({ type: 'TOGGLE_PASSWORD_VISIBILITY' })
   }
 
   const onKeepSessionChange = (checked: boolean): void => {
@@ -57,21 +60,27 @@ export function useLoginForm(): UseLoginFormReturn {
     const isEmail = raw.includes('@')
 
     if (isEmail) {
-      setIdentifierDisplayValue(raw)
+      dispatch({ type: 'SET_IDENTIFIER_DISPLAY', payload: raw })
       setValue('identifier', raw, { shouldValidate: false })
     } else {
       const digits = raw.replace(/\D/g, '')
-      setIdentifierDisplayValue(formatCPF(digits))
+      dispatch({ type: 'SET_IDENTIFIER_DISPLAY', payload: formatCPF(digits) })
       setValue('identifier', digits, { shouldValidate: false })
     }
   }
 
   const onValid = async (data: LoginFormValues): Promise<void> => {
-    setGeneralError(null)
+    dispatch({ type: 'CLEAR_ERRORS' })
     try {
       await login(data)
     } catch (error) {
-      setGeneralError(error instanceof Error ? error.message : 'Erro desconhecido')
+      dispatch({
+        type: 'SET_GENERAL_ERROR',
+        payload:
+          error instanceof Error
+            ? error.message
+            : 'Erro desconhecido',
+      })
     }
   }
 
@@ -80,17 +89,17 @@ export function useLoginForm(): UseLoginFormReturn {
   }
 
   return {
+    state,
     register,
     errors,
     handleSubmit,
     isLoading: isSubmitting,
-    generalError,
-    isPasswordVisible,
     togglePasswordVisibility,
     keepSession,
     onKeepSessionChange,
-    identifierDisplayValue,
     onIdentifierChange,
     passwordValue,
   }
 }
+
+export { useLoginForm }

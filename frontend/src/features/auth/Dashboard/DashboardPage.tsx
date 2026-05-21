@@ -1,24 +1,38 @@
+// Core
 import type { ReactElement } from 'react'
+
+// Components
 import { BrandMark } from '@/components/ui/BrandMark'
-import { Button, ButtonSize, ButtonType, ButtonVariant } from '@/components/ui/Button'
+import {
+  Button,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '@/components/ui/Button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+
+// Hooks
 import { useAuth } from '@/features/auth/hooks/useAuth'
+
+// Constants
 import { authStrings } from '@/i18n/pt-BR/auth'
+
+// Styles
 import {
   DashboardCard,
   DashboardHeader,
+  DashboardMeta,
   DashboardShell,
   DashboardSubtitle,
   DashboardTitle,
-  DashboardMeta,
-} from './Dashboard.styles'
+} from '@/features/auth/Dashboard/Dashboard.styles'
 
 type DashboardPageProps = {
   title: string
   subtitle: string
 }
 
-export function DashboardPage({ title, subtitle }: DashboardPageProps): ReactElement {
+const DashboardPage = ({ title, subtitle }: DashboardPageProps): ReactElement => {
   const { user, logout, isSubmitting } = useAuth()
 
   return (
@@ -48,3 +62,5 @@ export function DashboardPage({ title, subtitle }: DashboardPageProps): ReactEle
     </DashboardShell>
   )
 }
+
+export { DashboardPage }

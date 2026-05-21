@@ -1,9 +1,11 @@
 // Core
 import React from 'react'
 
-// Components
+// Types
 import type { StackProps } from './Stack.types.ts'
 import { StackAlign, StackDirection, StackGap, StackJustify } from './Stack.types.ts'
+
+// Styles
 import { StyledStack } from './Stack.styles.ts'
 
 const Stack: React.FC<StackProps> = ({
@@ -25,4 +27,4 @@ const Stack: React.FC<StackProps> = ({
   )
 }
 
-export { Stack };
+export { Stack }

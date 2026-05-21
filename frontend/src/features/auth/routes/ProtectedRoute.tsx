@@ -1,17 +1,25 @@
+// Core
 import type { ReactElement } from 'react'
+
+// Libraries
 import { Navigate, useLocation } from 'react-router-dom'
-import { ROUTES } from '@/constants/routes'
+
+// Components
+import { AuthBootstrap } from '@/features/auth/routes/AuthBootstrap'
+
+// Hooks
 import { useAuth } from '@/features/auth/hooks/useAuth'
-import type { UserRole } from '@/features/auth/types'
+
+// Utils
 import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
-import { AuthBootstrap } from './AuthBootstrap'
 
-type ProtectedRouteProps = {
-  children: ReactElement
-  allowedRoles?: UserRole[]
-}
+// Constants
+import { ROUTES } from '@/constants/routes'
 
-export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps): ReactElement {
+// Types
+import type { ProtectedRouteProps } from './ProtectedRoute.types'
+
+const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps): ReactElement => {
   const { user, isBootstrapping } = useAuth()
   const location = useLocation()
 
@@ -29,3 +37,5 @@ export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps):
 
   return children
 }
+
+export { ProtectedRoute }

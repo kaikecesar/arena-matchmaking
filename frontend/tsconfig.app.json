@@ -17,6 +17,10 @@
 
     /* Strict */
     "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
 
     /* Linting */
     "noUnusedLocals": true,

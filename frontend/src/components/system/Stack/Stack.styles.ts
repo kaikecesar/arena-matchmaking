@@ -1,11 +1,19 @@
 // Libraries
 import styled from 'styled-components'
 
+// Types
+import type {
+  StackAlign,
+  StackDirection,
+  StackGap,
+  StackJustify,
+} from '@/components/system/Stack/Stack.types'
+
 interface StyledStackProps {
-  $direction: 'row' | 'column'
-  $gap: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
-  $align: 'stretch' | 'flex-start' | 'center' | 'flex-end' | 'baseline'
-  $justify: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
+  $direction: StackDirection
+  $gap: StackGap
+  $align: StackAlign
+  $justify: StackJustify
 }
 
 export const StyledStack = styled.div<StyledStackProps>`

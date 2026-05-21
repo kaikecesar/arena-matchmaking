@@ -1,13 +1,16 @@
-import type { ReactElement, ReactNode } from 'react'
+// Core
+import type { ReactElement } from 'react'
+
+// Components
 import { WarningIcon } from '@/components/icons'
-import { GeneralErrorBox, GeneralErrorText } from '../AuthLayout/AuthLayout.styles'
 
-type AuthAlertProps = {
-  message: string
-  icon?: ReactNode
-}
+// Types
+import type { AuthAlertProps } from './AuthAlert.types'
 
-export function AuthAlert({ message, icon }: AuthAlertProps): ReactElement {
+// Styles
+import { GeneralErrorBox, GeneralErrorText } from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+
+const AuthAlert = ({ message, icon }: AuthAlertProps): ReactElement => {
   return (
     <GeneralErrorBox role="alert" aria-live="polite">
       {icon ?? <WarningIcon />}
@@ -15,3 +18,5 @@ export function AuthAlert({ message, icon }: AuthAlertProps): ReactElement {
     </GeneralErrorBox>
   )
 }
+
+export { AuthAlert }

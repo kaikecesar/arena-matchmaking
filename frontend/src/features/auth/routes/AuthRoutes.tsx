@@ -1,20 +1,32 @@
+// Core
 import type { ReactElement } from 'react'
+
+// Libraries
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { ROUTES } from '@/constants/routes'
-import { Login } from '@/features/auth/Login'
+
+// Components
 import { CreateAccount } from '@/features/auth/CreateAccount/CreateAccount'
-import { ForgotPassword } from '@/features/auth/ForgotPassword/ForgotPassword'
-import { ResetPassword } from '@/features/auth/ResetPassword/ResetPassword'
-import { OrganizerDashboard } from '@/features/auth/Dashboard/OrganizerDashboard'
 import { AthleteDashboard } from '@/features/auth/Dashboard/AthleteDashboard'
 import { CoachDashboard } from '@/features/auth/Dashboard/CoachDashboard'
-import { UserRole } from '@/features/auth/types'
-import { GuestRoute } from './GuestRoute'
-import { ProtectedRoute } from './ProtectedRoute'
+import { OrganizerDashboard } from '@/features/auth/Dashboard/OrganizerDashboard'
+import { ForgotPassword } from '@/features/auth/ForgotPassword/ForgotPassword'
+import { Login } from '@/features/auth/Login'
+import { ResetPassword } from '@/features/auth/ResetPassword/ResetPassword'
+import { GuestRoute } from '@/features/auth/routes/GuestRoute'
+import { ProtectedRoute } from '@/features/auth/routes/ProtectedRoute'
 
-export function AuthRoutes(): ReactElement {
+// Constants
+import { ROUTES } from '@/constants/routes'
+
+// Types
+import { UserRole } from '@/features/auth/types'
+
+const AuthRoutes = (): ReactElement => {
   return (
     <Routes>
+      {/* ******************************************************************************************
+        *************************************** GUEST ROUTES ***************************************
+        **************************************************************************************** */}
       <Route
         path={ROUTES.login}
         element={
@@ -48,6 +60,9 @@ export function AuthRoutes(): ReactElement {
         }
       />
 
+      {/* ******************************************************************************************
+        ************************************* PROTECTED ROUTES *************************************
+        **************************************************************************************** */}
       <Route
         path={ROUTES.dashboardEvents}
         element={
@@ -81,7 +96,12 @@ export function AuthRoutes(): ReactElement {
         }
       />
 
+      {/* ******************************************************************************************
+        ************************************* FALLBACK ROUTES **************************************
+        **************************************************************************************** */}
       <Route path="*" element={<Navigate to={ROUTES.login} replace />} />
     </Routes>
   )
 }
+
+export { AuthRoutes }

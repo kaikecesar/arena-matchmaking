@@ -1,23 +1,11 @@
+// Core
 import { createContext } from 'react'
-import type { AuthSession, AuthUser, LoginPayload, RegisterPayload } from '@/features/auth/types'
 
-export type AuthStatus = 'idle' | 'loading' | 'authenticated' | 'guest'
+// Types
+import type { AuthContextValue } from './AuthContext.types'
 
-export type AuthContextValue = {
-  status: AuthStatus
-  user: AuthUser | null
-  isBootstrapping: boolean
-  isSubmitting: boolean
-  successMessage: string | null
-  login: (payload: LoginPayload) => Promise<void>
-  register: (payload: RegisterPayload) => Promise<void>
-  logout: () => Promise<void>
-  clearSuccessMessage: () => void
-}
+export type { AuthStatus, AuthContextValue, AuthProviderProps } from './AuthContext.types'
 
-export const AuthContext = createContext<AuthContextValue | null>(null)
+const AuthContext = createContext<AuthContextValue | null>(null)
 
-export type AuthProviderProps = {
-  children: React.ReactNode
-  initialSession?: AuthSession | null
-}
+export { AuthContext }

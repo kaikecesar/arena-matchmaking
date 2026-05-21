@@ -1,13 +1,22 @@
-import type { AuthSession, AuthUser } from '@/features/auth/types'
-import { tokenStorage } from './tokenStorage'
+// Services
+import { tokenStorage } from '@/features/auth/storage/tokenStorage'
+
+// Utils
+import { buildAuthTokens } from '@/utils/sessionTokens'
+import { isAuthUser } from '@/utils/typeGuards'
+
+// Types
+import type { AuthSession } from '@/features/auth/types'
 
 const USER_KEY = 'arena_auth_user'
 
-export const authStorage = {
+const authStorage = {
   saveSession(session: AuthSession): void {
     const { tokens, rememberMe, user } = session
     tokenStorage.setTokens(tokens.accessToken, tokens.refreshToken, rememberMe)
-    const storage = rememberMe ? localStorage : sessionStorage
+    const storage = rememberMe
+      ? localStorage
+      : sessionStorage
     storage.setItem(USER_KEY, JSON.stringify(user))
     if (!rememberMe) {
       localStorage.removeItem(USER_KEY)
@@ -20,7 +29,9 @@ export const authStorage = {
     const rememberMe = tokenStorage.getRememberMe()
     const accessToken = tokenStorage.getAccessToken(rememberMe)
     const refreshToken = tokenStorage.getRefreshToken(rememberMe) ?? undefined
-    const storage = rememberMe ? localStorage : sessionStorage
+    const storage = rememberMe
+      ? localStorage
+      : sessionStorage
     const rawUser = storage.getItem(USER_KEY)
 
     if (!accessToken || !rawUser) {
@@ -28,10 +39,13 @@ export const authStorage = {
     }
 
     try {
-      const user = JSON.parse(rawUser) as AuthUser
+      const parsed: unknown = JSON.parse(rawUser)
+      if (!isAuthUser(parsed)) {
+        return null
+      }
       return {
-        user,
-        tokens: { accessToken, refreshToken },
+        user: parsed,
+        tokens: buildAuthTokens(accessToken, refreshToken),
         rememberMe,
       }
     } catch {
@@ -45,3 +59,5 @@ export const authStorage = {
     sessionStorage.removeItem(USER_KEY)
   },
 }
+
+export { authStorage }

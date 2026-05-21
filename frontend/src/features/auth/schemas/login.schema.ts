@@ -1,6 +1,11 @@
+// Libraries
 import { z } from 'zod'
-import { authStrings } from '@/i18n/pt-BR/auth'
+
+// Utils
 import { isValidCPF, isValidEmail } from '@/features/auth/utils/validators'
+
+// Constants
+import { authStrings } from '@/i18n/pt-BR/auth'
 
 export const loginSchema = z.object({
   identifier: z
@@ -9,7 +14,9 @@ export const loginSchema = z.object({
     .refine(
       (val) => {
         const looksLikeCPF = /^\d+$/.test(val.replace(/[.-]/g, ''))
-        return val.includes('@') ? isValidEmail(val) : isValidCPF(val) || looksLikeCPF
+        return val.includes('@')
+          ? isValidEmail(val)
+          : isValidCPF(val) || looksLikeCPF
       },
       { message: authStrings.errorInvalidIdentifier }
     ),

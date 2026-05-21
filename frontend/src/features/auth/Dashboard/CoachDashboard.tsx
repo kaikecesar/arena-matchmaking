@@ -1,8 +1,13 @@
+// Core
 import type { ReactElement } from 'react'
-import { authStrings } from '@/i18n/pt-BR/auth'
-import { DashboardPage } from './DashboardPage'
 
-export function CoachDashboard(): ReactElement {
+// Components
+import { DashboardPage } from '@/features/auth/Dashboard/DashboardPage'
+
+// Constants
+import { authStrings } from '@/i18n/pt-BR/auth'
+
+const CoachDashboard = (): ReactElement => {
   return (
     <DashboardPage
       title={authStrings.dashboard.coach.title}
@@ -10,3 +15,5 @@ export function CoachDashboard(): ReactElement {
     />
   )
 }
+
+export { CoachDashboard }

@@ -1,6 +1,17 @@
+// Core
 import React from 'react'
-import type { BrandMarkProps } from './BrandMark.types'
-import { BrandMarkWrapper, IconBox, Wordmark, WordmarkArena, WordmarkSub } from './BrandMark.styles'
+
+// Types
+import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types'
+
+// Styles
+import {
+  BrandMarkWrapper,
+  IconBox,
+  Wordmark,
+  WordmarkArena,
+  WordmarkSub,
+} from '@/components/ui/BrandMark/BrandMark.styles'
 
 const BrandMark = ({ size = 28 }: BrandMarkProps): React.ReactElement => {
   const iconSize = Math.round(size * 0.57) // ~16px at default 28

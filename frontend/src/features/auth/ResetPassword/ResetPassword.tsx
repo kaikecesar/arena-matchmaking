@@ -1,65 +1,64 @@
-import { useState } from 'react'
+// Core
 import type { ReactElement } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useNavigate, useSearchParams } from 'react-router-dom'
 
-import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
-import { AuthHero } from '@/features/auth/components/AuthHero/AuthHero'
-import { AuthAlert } from '@/features/auth/components/AuthAlert/AuthAlert'
-import { authService } from '@/features/auth/services'
-import { resetPasswordSchema, type ResetPasswordFormValues } from '@/features/auth/schemas'
-import { getAuthErrorMessage } from '@/features/auth/utils/authErrors'
-import { getPasswordStrength } from '@/features/auth/utils/passwordStrength'
+// Components
 import {
-  LoginForm,
-  SuccessPanel,
-  SuccessTitle,
-  SuccessSubtitle,
-  StrengthTrack,
-  StrengthFill,
-  StrengthLabel,
-} from '@/features/auth/Login/Login.styles'
+  Button,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '@/components/ui/Button'
 import { InputField, InputFieldType } from '@/components/ui/InputField'
-import { Button, ButtonSize, ButtonType, ButtonVariant } from '@/components/ui/Button'
-import { ROUTES } from '@/constants/routes'
+import { AuthAlert } from '@/features/auth/components/AuthAlert/AuthAlert'
+import { AuthHero } from '@/features/auth/components/AuthHero/AuthHero'
+import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
+
+// Hooks
+import { useResetPassword } from '@/features/auth/ResetPassword/useResetPassword'
+
+// Utils
+import { fieldErrorProp } from '@/utils/formProps'
+
+// Constants
 import { authStrings } from '@/i18n/pt-BR/auth'
 
-export function ResetPassword(): ReactElement {
-  const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
-  const token = searchParams.get('token') ?? 'mock-recovery'
+// Styles
+import {
+  LoginForm,
+  StrengthFill,
+  StrengthLabel,
+  StrengthTrack,
+  SuccessPanel,
+  SuccessSubtitle,
+  SuccessTitle,
+} from '@/features/auth/Login/Login.styles'
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [generalError, setGeneralError] = useState<string | null>(null)
-  const [isSuccess, setIsSuccess] = useState(false)
+const ResetPassword = (): ReactElement => {
+  /* ***********************************************************************************************
+  ***************************************** DERIVED STATE ******************************************
+  *********************************************************************************************** */
   const {
     register,
+    errors,
     handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<ResetPasswordFormValues>({
-    resolver: zodResolver(resetPasswordSchema),
-    defaultValues: { password: '', confirmPassword: '' },
-  })
+    state,
+    passwordValue,
+    confirmPasswordValue,
+    strength,
+    navigateToLogin,
+  } = useResetPassword()
 
-  const passwordValue = useWatch({ control, name: 'password', defaultValue: '' }) ?? ''
-  const strength = getPasswordStrength(passwordValue, authStrings.reset.strength)
+  const { ref: passwordRef, onChange: passwordChange, onBlur: passwordBlur } = register('password')
+  const {
+    ref: confirmRef,
+    onChange: confirmChange,
+    onBlur: confirmBlur,
+  } = register('confirmPassword')
 
-  const onSubmit = handleSubmit(async (data) => {
-    setIsLoading(true)
-    setGeneralError(null)
-    try {
-      await authService.resetPassword({ ...data, token })
-      setIsSuccess(true)
-    } catch (error) {
-      setGeneralError(getAuthErrorMessage(error))
-    } finally {
-      setIsLoading(false)
-    }
-  })
-
-  if (isSuccess) {
+  /* ***********************************************************************************************
+  *************************************** COMPONENT HANDLING ***************************************
+  *********************************************************************************************** */
+  if (state.ui.isSuccess) {
     return (
       <AuthLayout>
         <SuccessPanel>
@@ -72,19 +71,15 @@ export function ResetPassword(): ReactElement {
           size={ButtonSize.medium}
           fullWidth
           label={authStrings.reset.goToLogin}
-          onClick={() => void navigate(ROUTES.login)}
+          onClick={navigateToLogin}
         />
       </AuthLayout>
     )
   }
 
-  const { ref: passwordRef, onChange: passwordChange, onBlur: passwordBlur } = register('password')
-  const {
-    ref: confirmRef,
-    onChange: confirmChange,
-    onBlur: confirmBlur,
-  } = register('confirmPassword')
-
+  /* ***********************************************************************************************
+  ********************************************* RENDER *********************************************
+  *********************************************************************************************** */
   return (
     <AuthLayout>
       <AuthHero
@@ -94,7 +89,7 @@ export function ResetPassword(): ReactElement {
         subtitle={authStrings.reset.heroSubtitle}
       />
 
-      <LoginForm onSubmit={(e) => void onSubmit(e)} noValidate>
+      <LoginForm onSubmit={handleSubmit} noValidate>
         <div>
           <InputField
             ref={passwordRef}
@@ -104,8 +99,8 @@ export function ResetPassword(): ReactElement {
             value={passwordValue}
             onChange={passwordChange}
             onBlur={passwordBlur}
-            error={errors.password?.message}
-            disabled={isLoading}
+            {...fieldErrorProp(errors.password?.message)}
+            disabled={state.async.isLoading}
             mono
           />
           {passwordValue.length > 0 && (
@@ -113,9 +108,7 @@ export function ResetPassword(): ReactElement {
               <StrengthTrack>
                 <StrengthFill $percent={strength.percent} />
               </StrengthTrack>
-              <StrengthLabel>
-                Força da senha: {strength.label}
-              </StrengthLabel>
+              <StrengthLabel>Força da senha: {strength.label}</StrengthLabel>
             </>
           )}
         </div>
@@ -125,15 +118,15 @@ export function ResetPassword(): ReactElement {
           label={authStrings.reset.fieldConfirmPassword}
           name="confirmPassword"
           type={InputFieldType.password}
-          value={useWatch({ control, name: 'confirmPassword', defaultValue: '' }) ?? ''}
+          value={confirmPasswordValue}
           onChange={confirmChange}
           onBlur={confirmBlur}
-          error={errors.confirmPassword?.message}
-          disabled={isLoading}
+          {...fieldErrorProp(errors.confirmPassword?.message)}
+          disabled={state.async.isLoading}
           mono
         />
 
-        {generalError && <AuthAlert message={generalError} />}
+        {state.async.generalError && <AuthAlert message={state.async.generalError} />}
 
         <Button
           type={ButtonType.submit}
@@ -141,9 +134,11 @@ export function ResetPassword(): ReactElement {
           size={ButtonSize.medium}
           fullWidth
           label={authStrings.reset.submit}
-          loading={isLoading}
+          loading={state.async.isLoading}
         />
       </LoginForm>
     </AuthLayout>
   )
 }
+
+export { ResetPassword }

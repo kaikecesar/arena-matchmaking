@@ -1,8 +1,12 @@
+// Core
 import React from 'react'
 
-import type { TextProps } from './Text.types'
-import { TextVariant } from './Text.types'
-import { StyledText } from './Text.styles'
+// Types
+import type { TextProps } from '@/components/system/Text/Text.types'
+import { TextVariant } from '@/components/system/Text/Text.types'
+
+// Styles
+import { StyledText } from '@/components/system/Text/Text.styles'
 
 const Text: React.FC<TextProps> = ({ variant = TextVariant.body, children }) => {
   return (

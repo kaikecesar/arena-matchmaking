@@ -1,38 +1,59 @@
+// Core
 import type { ReactElement } from 'react'
+
+// Libraries
 import { useNavigate } from 'react-router-dom'
-import {
-  LoginForm,
-  FormFooterRow,
-  ForgotLink,
-  PageFooter,
-  FooterLeft,
-  FooterCreateLink,
-  SecurityBadge,
-} from './Login.styles'
-import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
-import { AuthHero } from '@/features/auth/components/AuthHero/AuthHero'
-import { AuthAlert } from '@/features/auth/components/AuthAlert/AuthAlert'
-import { Button, ButtonSize, ButtonType, ButtonVariant } from '@/components/ui/Button'
-import { InputField, InputFieldType } from '@/components/ui/InputField'
-import { Checkbox } from '@/components/ui/Checkbox'
+
+// Components
 import { ArrowRightIcon, EyeOffIcon, EyeOpenIcon } from '@/components/icons'
+import {
+  Button,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '@/components/ui/Button'
+import { Checkbox } from '@/components/ui/Checkbox'
+import { InputField, InputFieldType } from '@/components/ui/InputField'
+import { AuthAlert } from '@/features/auth/components/AuthAlert/AuthAlert'
+import { AuthHero } from '@/features/auth/components/AuthHero/AuthHero'
+import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
+
+// Hooks
+import { useLoginForm } from '@/features/auth/Login/useLoginForm'
+
+// Utils
+import { fieldErrorProp } from '@/utils/formProps'
+
+// Constants
 import { ROUTES } from '@/constants/routes'
 import { authStrings } from '@/i18n/pt-BR/auth'
-import { useLoginForm } from './useLoginForm'
+
+// Styles
+import {
+  FooterCreateLink,
+  FooterLeft,
+  ForgotLink,
+  FormFooterRow,
+  LoginForm,
+  PageFooter,
+  SecurityBadge,
+} from '@/features/auth/Login/Login.styles'
 
 const Login = (): ReactElement => {
   const navigate = useNavigate()
+
+  /* ***********************************************************************************************
+  ***************************************** DERIVED STATE ******************************************
+  *********************************************************************************************** */
   const {
+    state,
     register,
     errors,
     handleSubmit,
     isLoading,
-    generalError,
-    isPasswordVisible,
     togglePasswordVisibility,
     keepSession,
     onKeepSessionChange,
-    identifierDisplayValue,
     onIdentifierChange,
     passwordValue,
   } = useLoginForm()
@@ -44,6 +65,9 @@ const Login = (): ReactElement => {
     ref: passwordRef,
   } = register('password')
 
+  /* ***********************************************************************************************
+  ********************************************* RENDER *********************************************
+  *********************************************************************************************** */
   return (
     <AuthLayout
       footer={
@@ -71,10 +95,10 @@ const Login = (): ReactElement => {
           label={authStrings.fieldEmailLabel}
           name="identifier"
           type={InputFieldType.text}
-          value={identifierDisplayValue}
+          value={state.ui.identifierDisplayValue}
           onChange={onIdentifierChange}
           onBlur={identifierOnBlur}
-          error={errors.identifier?.message}
+          {...fieldErrorProp(errors.identifier?.message)}
           autoComplete="username"
           disabled={isLoading}
         />
@@ -83,15 +107,27 @@ const Login = (): ReactElement => {
           ref={passwordRef}
           label={authStrings.fieldPasswordLabel}
           name="password"
-          type={isPasswordVisible ? InputFieldType.text : InputFieldType.password}
+          type={
+            state.ui.isPasswordVisible
+              ? InputFieldType.text
+              : InputFieldType.password
+          }
           value={passwordValue}
           onChange={rhfPasswordChange}
           onBlur={passwordOnBlur}
-          error={errors.password?.message}
+          {...fieldErrorProp(errors.password?.message)}
           autoComplete="current-password"
           mono
           disabled={isLoading}
-          trailingIcon={isPasswordVisible ? <EyeOffIcon /> : <EyeOpenIcon />}
+          trailingIcon={
+            state.ui.isPasswordVisible
+              ? (
+                  <EyeOffIcon />
+                )
+              : (
+                  <EyeOpenIcon />
+                )
+          }
           onTrailingIconClick={togglePasswordVisibility}
         />
 
@@ -107,7 +143,7 @@ const Login = (): ReactElement => {
           </ForgotLink>
         </FormFooterRow>
 
-        {generalError && <AuthAlert message={generalError} />}
+        {state.async.generalError && <AuthAlert message={state.async.generalError} />}
 
         <Button
           type={ButtonType.submit}
@@ -116,8 +152,18 @@ const Login = (): ReactElement => {
           fullWidth
           label={authStrings.submitButton}
           loading={isLoading}
-          aria-label={isLoading ? authStrings.a11yLoading : undefined}
-          trailingIcon={!isLoading ? <ArrowRightIcon /> : undefined}
+          aria-label={
+            isLoading
+              ? authStrings.a11yLoading
+              : undefined
+          }
+          trailingIcon={
+            !isLoading
+              ? (
+                  <ArrowRightIcon />
+                )
+              : undefined
+          }
         />
       </LoginForm>
     </AuthLayout>

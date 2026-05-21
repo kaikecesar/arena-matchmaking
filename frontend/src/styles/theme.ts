@@ -1,13 +1,25 @@
-import { breakpoints } from './tokens/breakpoints'
-import { colors } from './tokens/colors'
-import { fontSizes, fontWeights, fonts, lineHeights } from './tokens/typography'
-import { radius } from './tokens/radius'
-import { shadows } from './tokens/shadows'
-import { spacing } from './tokens/spacing'
-import { transitions } from './tokens/transitions'
-import { zIndex } from './tokens/zIndex'
+// Styles
+import { breakpoints } from '@/styles/tokens/breakpoints'
+import { colors } from '@/styles/tokens/colors'
+import { radius } from '@/styles/tokens/radius'
+import { shadows } from '@/styles/tokens/shadows'
+import { spacing } from '@/styles/tokens/spacing'
+import { transitions } from '@/styles/tokens/transitions'
+import {
+  fonts,
+  fontSizes,
+  fontWeights,
+  lineHeights,
+} from '@/styles/tokens/typography'
+import { zIndex } from '@/styles/tokens/zIndex'
 
-const createMedia = <T extends Record<string, string>>(values: T) => ({
+type MediaQueries<T extends Record<string, string>> = {
+  up: Record<keyof T, string>
+  down: Record<keyof T, string>
+}
+
+const createMedia = <T extends Record<string, string>>(values: T): MediaQueries<T> => ({
+  // Required: Object.fromEntries erases keyof T; breakpoints keys are fixed at compile time.
   up: Object.fromEntries(
     Object.entries(values).map(([key, value]) => [key, `@media (min-width: ${value})`])
   ) as Record<keyof T, string>,

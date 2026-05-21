@@ -1,10 +1,17 @@
+// Constants
 import { ROUTES } from '@/constants/routes'
-import { UserRole, type UserRole as UserRoleType } from '@/features/auth/types'
+import type { RoutePath } from '@/constants/routes.types'
 
-export const ROLE_REDIRECT: Record<UserRoleType, string> = {
+// Types
+import { UserRole } from '@/features/auth/types'
+import type { UserRoleType } from '@/features/auth/types'
+
+const ROLE_REDIRECT: Record<UserRoleType, RoutePath> = {
   [UserRole.organizer]: ROUTES.dashboardEvents,
   [UserRole.athlete]: ROUTES.profile,
   [UserRole.coach]: ROUTES.dashboardAthletes,
 }
 
-export const getRedirectForRole = (role: UserRoleType): string => ROLE_REDIRECT[role]
+const getRedirectForRole = (role: UserRoleType): RoutePath => ROLE_REDIRECT[role]
+
+export { ROLE_REDIRECT, getRedirectForRole }

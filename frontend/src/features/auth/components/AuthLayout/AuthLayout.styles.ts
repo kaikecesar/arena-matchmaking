@@ -1,5 +1,17 @@
+// Libraries
 import styled, { css, keyframes } from 'styled-components'
 
+import type {
+  CardStyledProps,
+  RoleCardButtonStyledProps,
+  StepItemStyledProps,
+  StepLabelStyledProps,
+  StrengthFillStyledProps,
+} from './AuthLayout.styles.types'
+
+/* *************************************************************************************************
+******************************************** KEYFRAMES *********************************************
+************************************************************************************************* */
 const cardEnter = keyframes`
   from {
     opacity: 0;
@@ -31,6 +43,9 @@ const fadeIn = keyframes`
   }
 `
 
+/* *************************************************************************************************
+******************************************* LAYOUT SHELL *******************************************
+************************************************************************************************* */
 export const PageShell = styled.div`
   min-height: 100dvh;
   background: ${({ theme }) => theme.colors.bgApp};
@@ -73,7 +88,10 @@ export const GlowCopper = styled(AtmosphereGlow)`
   background: radial-gradient(circle, rgba(216, 161, 104, 0.08) 0%, transparent 68%);
 `
 
-export const Card = styled.div<{ $wide?: boolean }>`
+/* *************************************************************************************************
+****************************************** CARD & HEADER *******************************************
+************************************************************************************************* */
+export const Card = styled.div<CardStyledProps>`
   position: relative;
   z-index: 1;
   width: 100%;
@@ -83,7 +101,10 @@ export const Card = styled.div<{ $wide?: boolean }>`
   animation: ${cardEnter} 0.55s ${({ theme }) => theme.transitions.premium} both;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    width: ${({ $wide }) => ($wide ? '480px' : '440px')};
+    width: ${({ $wide }) =>
+      $wide
+        ? '480px'
+        : '440px'};
     padding: 40px 44px 36px;
     background: ${({ theme }) => theme.colors.surf1};
     border: 1px solid rgba(255, 255, 255, 0.04);
@@ -112,6 +133,9 @@ export const LoginHeader = styled.header`
   }
 `
 
+/* *************************************************************************************************
+*********************************************** HERO ***********************************************
+************************************************************************************************* */
 export const HeroBlock = styled.section`
   padding: ${({ theme }) => theme.spacing.xl} 0 ${({ theme }) => theme.spacing.lg};
 
@@ -160,6 +184,9 @@ export const HeroSubtitle = styled.p`
   max-width: 36ch;
 `
 
+/* *************************************************************************************************
+*********************************************** FORM ***********************************************
+************************************************************************************************* */
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -208,6 +235,9 @@ export const GeneralErrorText = styled.p`
   line-height: 1.45;
 `
 
+/* *************************************************************************************************
+********************************************** FOOTER **********************************************
+************************************************************************************************* */
 export const PageFooter = styled.footer`
   margin-top: ${({ theme }) => theme.spacing.lg};
   padding-top: ${({ theme }) => theme.spacing.md};
@@ -259,6 +289,9 @@ export const SecurityBadge = styled.span`
   white-space: nowrap;
 `
 
+/* *************************************************************************************************
+******************************************** ONBOARDING ********************************************
+************************************************************************************************* */
 export const StepIndicatorRow = styled.ol`
   display: flex;
   gap: ${({ theme }) => theme.spacing.sm};
@@ -267,7 +300,7 @@ export const StepIndicatorRow = styled.ol`
   padding: 0;
 `
 
-export const StepItem = styled.li<{ $active: boolean; $done: boolean }>`
+export const StepItem = styled.li<StepItemStyledProps>`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -279,27 +312,38 @@ export const StepItem = styled.li<{ $active: boolean; $done: boolean }>`
     height: 3px;
     border-radius: 999px;
     background: ${({ theme, $active, $done }) =>
-      $active || $done ? theme.colors.blood : theme.colors.border1};
-    opacity: ${({ $done, $active }) => ($done && !$active ? 0.55 : 1)};
+      $active || $done
+        ? theme.colors.blood
+        : theme.colors.border1};
+    opacity: ${({ $done, $active }) =>
+      $done && !$active
+        ? 0.55
+        : 1};
     transition: background ${({ theme }) => theme.transitions.normal};
   }
 `
 
-export const StepLabel = styled.span<{ $active: boolean }>`
+export const StepLabel = styled.span<StepLabelStyledProps>`
   font-family: ${({ theme }) => theme.fonts.mono};
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: ${({ theme, $active }) => ($active ? theme.colors.textMid : theme.colors.textLow)};
+  color: ${({ theme, $active }) =>
+    $active
+      ? theme.colors.textMid
+      : theme.colors.textLow};
 `
 
+/* *************************************************************************************************
+****************************************** ROLE SELECTION ******************************************
+************************************************************************************************* */
 export const RoleGrid = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.sm};
 `
 
-export const RoleCardButton = styled.button<{ $selected: boolean }>`
+export const RoleCardButton = styled.button<RoleCardButtonStyledProps>`
   text-align: left;
   padding: 14px 16px;
   border-radius: ${({ theme }) => theme.radius.md};
@@ -354,6 +398,9 @@ export const FormActions = styled.div`
   }
 `
 
+/* *************************************************************************************************
+********************************************* SUCCESS **********************************************
+************************************************************************************************* */
 export const SuccessPanel = styled.div`
   text-align: center;
   padding: ${({ theme }) => theme.spacing.xl} 0;
@@ -375,6 +422,9 @@ export const SuccessSubtitle = styled.p`
   color: ${({ theme }) => theme.colors.textMid};
 `
 
+/* *************************************************************************************************
+**************************************** REVIEW & STRENGTH *****************************************
+************************************************************************************************* */
 export const ReviewList = styled.dl`
   display: flex;
   flex-direction: column;
@@ -416,11 +466,15 @@ export const StrengthTrack = styled.div`
   margin-top: 8px;
 `
 
-export const StrengthFill = styled.div<{ $percent: number }>`
+export const StrengthFill = styled.div<StrengthFillStyledProps>`
   height: 100%;
   width: ${({ $percent }) => $percent}%;
   border-radius: inherit;
-  background: linear-gradient(90deg, ${({ theme }) => theme.colors.bloodSoft}, ${({ theme }) => theme.colors.blood});
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.bloodSoft},
+    ${({ theme }) => theme.colors.blood},
+  );
   transition: width ${({ theme }) => theme.transitions.premium};
 `
 
@@ -433,6 +487,9 @@ export const StrengthLabel = styled.span`
   color: ${({ theme }) => theme.colors.textLow};
 `
 
+/* *************************************************************************************************
+******************************************** BOOTSTRAP *********************************************
+************************************************************************************************* */
 export const AuthBootstrap = styled.div`
   min-height: 100dvh;
   display: grid;

@@ -1,4 +1,3 @@
-// Core
 import React from 'react'
 
 // Types

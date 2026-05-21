@@ -1,3 +1,4 @@
+// Libraries
 import styled from 'styled-components'
 
 export const FieldContainer = styled.div`
@@ -22,5 +23,8 @@ interface HelpTextProps {
 export const HelpText = styled.span<HelpTextProps>`
   font-family: ${({ theme }) => theme.fonts.ui};
   font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme, $error }) => ($error ? theme.colors.error : theme.colors.textLow)};
+  color: ${({ theme, $error }) =>
+    $error
+      ? theme.colors.error
+      : theme.colors.textLow};
 `

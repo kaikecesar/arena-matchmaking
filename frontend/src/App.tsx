@@ -1,12 +1,20 @@
+// Types
 import type { ReactElement } from 'react'
+
+// Libraries
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-import { GlobalStyles, theme } from '@/styles'
-import { AuthProvider } from '@/features/auth/context/AuthProvider'
+// Components
 import { AuthRoutes } from '@/features/auth/routes/AuthRoutes'
 
-export function App(): ReactElement {
+// Context
+import { AuthProvider } from '@/features/auth/context/AuthProvider'
+
+// Styles
+import { GlobalStyles, theme } from '@/styles'
+
+const App = (): ReactElement => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -18,3 +26,5 @@ export function App(): ReactElement {
     </ThemeProvider>
   )
 }
+
+export { App }

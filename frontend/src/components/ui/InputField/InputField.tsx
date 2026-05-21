@@ -1,15 +1,20 @@
+// Core
 import React from 'react'
-import type { InputFieldProps } from './InputField.types'
-import { InputFieldType } from './InputField.types'
+
+// Types
+import type { InputFieldProps } from '@/components/ui/InputField/InputField.types'
+import { InputFieldType } from '@/components/ui/InputField/InputField.types'
+
+// Styles
 import {
-  FieldWrapper,
+  ErrorMessage,
   FieldLabel,
+  FieldWrapper,
+  HintText,
   InputWrapper,
   StyledInput,
   TrailingSlot,
-  ErrorMessage,
-  HintText,
-} from './InputField.styles'
+} from '@/components/ui/InputField/InputField.styles'
 
 const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
   (
@@ -32,10 +37,16 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
     },
     ref
   ) => {
+    /* *********************************************************************************************
+    **************************************** DERIVED STATE *****************************************
+    ********************************************************************************************* */
     const inputId = id ?? name
     const errorId = `${inputId}-error`
     const hasError = Boolean(error)
 
+    /* *********************************************************************************************
+    ******************************************** RENDER ********************************************
+    ********************************************************************************************* */
     return (
       <FieldWrapper>
         <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
@@ -53,7 +64,11 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
             placeholder={placeholder}
             $mono={mono}
             aria-invalid={hasError}
-            aria-describedby={hasError ? errorId : undefined}
+            aria-describedby={
+              hasError
+                ? errorId
+                : undefined
+            }
           />
           {trailingIcon && (
             <TrailingSlot type="button" onClick={onTrailingIconClick} tabIndex={-1}>

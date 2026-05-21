@@ -1,10 +1,14 @@
-export const isValidEmail = (value: string): boolean =>
+const isValidEmail = (value: string): boolean =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 
-export const isValidCPF = (cpf: string): boolean => {
+const isValidCPF = (cpf: string): boolean => {
   const digits = cpf.replace(/\D/g, '')
-  if (digits.length !== 11) return false
-  if (/^(\d)\1+$/.test(digits)) return false
+  if (digits.length !== 11) {
+    return false
+  }
+  if (/^(\d)\1+$/.test(digits)) {
+    return false
+  }
 
   const calcVerifier = (slice: string, startFactor: number): number => {
     let sum = 0
@@ -14,11 +18,21 @@ export const isValidCPF = (cpf: string): boolean => {
       factor--
     }
     const rem = sum % 11
-    return rem < 2 ? 0 : 11 - rem
+    return rem < 2
+      ? 0
+      : 11 - rem
   }
 
   const v1 = calcVerifier(digits.slice(0, 9), 10)
   const v2 = calcVerifier(digits.slice(0, 10), 11)
 
-  return parseInt(digits[9]!, 10) === v1 && parseInt(digits[10]!, 10) === v2
+  const ninth = digits[9]
+  const tenth = digits[10]
+  if (ninth === undefined || tenth === undefined) {
+    return false
+  }
+
+  return parseInt(ninth, 10) === v1 && parseInt(tenth, 10) === v2
 }
+
+export { isValidEmail, isValidCPF }

@@ -1,16 +1,11 @@
-export {
-  UserRole,
-  AuthErrorCode,
-  AuthServiceError,
-} from './auth.types'
+export { UserRole, RegisterRole, AuthErrorCode, AuthServiceError } from './auth.types'
 export type {
-  UserRole as UserRoleType,
-  AuthErrorCode as AuthErrorCodeType,
+  UserRoleType,
+  AuthErrorCodeType,
   AuthUser,
   AuthTokens,
   AuthSession,
   LoginPayload,
-  RegisterRole,
   RegisterPayload,
   ForgotPasswordPayload,
   ResetPasswordPayload,

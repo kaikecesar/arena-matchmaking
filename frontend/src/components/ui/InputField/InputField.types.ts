@@ -7,17 +7,17 @@ export enum InputFieldType {
 export interface InputFieldProps {
   label: string
   name: string
-  type?: InputFieldType
+  type?: InputFieldType | undefined
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
-  error?: string
-  hint?: string
-  trailingIcon?: React.ReactNode
-  onTrailingIconClick?: () => void
-  mono?: boolean
-  disabled?: boolean
-  autoComplete?: string
-  placeholder?: string
-  id?: string
+  onBlur?: ((e: React.FocusEvent<HTMLInputElement>) => void) | undefined
+  error?: string | undefined
+  hint?: string | undefined
+  trailingIcon?: React.ReactNode | undefined
+  onTrailingIconClick?: (() => void) | undefined
+  mono?: boolean | undefined
+  disabled?: boolean | undefined
+  autoComplete?: string | undefined
+  placeholder?: string | undefined
+  id?: string | undefined
 }

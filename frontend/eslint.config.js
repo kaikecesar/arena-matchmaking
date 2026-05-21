@@ -44,7 +44,16 @@ export default defineConfig([
       },
     },
     rules: {
-      // No stylistic/formatting plugins — manual layout (multiline JSX, spacing) is intentional.
+      'max-len': [
+        'error',
+        {
+          code: 100,
+          comments: 100,
+          ignoreUrls: true,
+          ignorePattern: '^\\s*import\\s.+\\sfrom\\s.+$',
+        },
+      ],
+      'multiline-ternary': ['error', 'always'],
 
       'no-restricted-syntax': [
         'error',
@@ -52,11 +61,15 @@ export default defineConfig([
           selector: 'ExportDefaultDeclaration',
           message: 'Use named exports instead of default exports.',
         },
+        {
+          selector: 'FunctionDeclaration',
+          message: 'Use const arrow functions instead of function declarations.',
+        },
       ],
 
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
-        'warn',
+        'error',
         {
           vars: 'all',
           varsIgnorePattern: '^_',
@@ -65,7 +78,17 @@ export default defineConfig([
         },
       ],
       '@typescript-eslint/no-unused-vars': 'off',
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-non-null-assertion': 'error',
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        {
+          allowExpressions: true,
+          allowTypedFunctionExpressions: true,
+          allowHigherOrderFunctions: true,
+        },
+      ],
+      '@typescript-eslint/explicit-module-boundary-types': 'error',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
@@ -74,7 +97,7 @@ export default defineConfig([
         },
       ],
 
-      // import/order disabled until eslint-plugin-import supports ESLint 10 APIs
+      // import/order disabled — eslint-plugin-import is not compatible with ESLint 10 APIs yet
       'import/first': 'error',
       'import/newline-after-import': 'error',
       'import/no-duplicates': ['error', { 'prefer-inline': false }],
@@ -112,6 +135,18 @@ export default defineConfig([
     files: ['**/*.d.ts'],
     rules: {
       '@typescript-eslint/no-empty-object-type': 'off',
+    },
+  },
+
+  // Icon components: allow intact SVG path strings; max-len still applies everywhere else
+  {
+    files: [
+      'src/components/icons/**/*.{ts,tsx}',
+      'src/assets/icons/**/*.{ts,tsx}',
+      '**/*.icon.tsx',
+    ],
+    rules: {
+      'max-len': 'off',
     },
   },
 ])

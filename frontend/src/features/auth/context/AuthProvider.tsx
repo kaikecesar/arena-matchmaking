@@ -1,21 +1,53 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+// Core
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+} from 'react'
 import type { ReactElement } from 'react'
+
+// Libraries
 import { useNavigate } from 'react-router-dom'
 
+// Services
 import { authService } from '@/features/auth/services'
 import { authStorage } from '@/features/auth/storage'
-import type { LoginPayload, RegisterPayload } from '@/features/auth/types'
+
+// Context
+import { AuthContext } from '@/features/auth/context/AuthContext'
+
+// Utils
+import { authProviderReducer } from '@/features/auth/context/authProvider.reducer'
+import { createAuthProviderInitialState } from '@/features/auth/context/authProvider.state'
 import { getAuthErrorMessage } from '@/features/auth/utils/authErrors'
 import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
-import { AuthContext, type AuthContextValue, type AuthProviderProps } from './AuthContext'
+import { buildAuthTokens } from '@/utils/sessionTokens'
 
-export function AuthProvider({ children, initialSession }: AuthProviderProps): ReactElement {
+// Types
+import { AuthStatus } from '@/features/auth/context/AuthContext.types'
+import type { AuthContextValue, AuthProviderProps } from '@/features/auth/context/AuthContext.types'
+import type { LoginPayload, RegisterPayload } from '@/features/auth/types'
+import type { AuthApiResponse } from '@/types/api'
+
+const AuthProvider = ({
+  children,
+  initialSession,
+}: AuthProviderProps): ReactElement => {
   const navigate = useNavigate()
-  const [user, setUser] = useState(initialSession?.user ?? null)
-  const [isBootstrapping, setIsBootstrapping] = useState(initialSession === undefined)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
+  /* ***********************************************************************************************
+  ********************************************* STATE **********************************************
+  *********************************************************************************************** */
+  const [state, dispatch] = useReducer(
+    authProviderReducer,
+    initialSession,
+    createAuthProviderInitialState
+  )
+
+  /* ***********************************************************************************************
+  ******************************************** EFFECTS *********************************************
+  *********************************************************************************************** */
   useEffect(() => {
     if (initialSession !== undefined) {
       return
@@ -23,26 +55,26 @@ export function AuthProvider({ children, initialSession }: AuthProviderProps): R
 
     const session = authStorage.loadSession()
     if (session) {
-      setUser(session.user)
+      dispatch({ type: 'SET_USER', payload: session.user })
     }
-    setIsBootstrapping(false)
+    dispatch({ type: 'SET_BOOTSTRAPPING', payload: false })
   }, [initialSession])
 
+  /* ***********************************************************************************************
+  ******************************************** METHODS *********************************************
+  *********************************************************************************************** */
   const persistAndNavigate = useCallback(
     async (
-      response: Awaited<ReturnType<typeof authService.login>>,
+      response: AuthApiResponse,
       rememberMe: boolean,
-      redirectPath?: string
+      redirectPath?: string,
     ): Promise<void> => {
       authStorage.saveSession({
         user: response.user,
-        tokens: {
-          accessToken: response.accessToken,
-          refreshToken: response.refreshToken,
-        },
+        tokens: buildAuthTokens(response.accessToken, response.refreshToken),
         rememberMe,
       })
-      setUser(response.user)
+      dispatch({ type: 'SET_USER', payload: response.user })
 
       await new Promise((r) => setTimeout(r, 480))
 
@@ -53,15 +85,15 @@ export function AuthProvider({ children, initialSession }: AuthProviderProps): R
 
   const login = useCallback(
     async (payload: LoginPayload): Promise<void> => {
-      setIsSubmitting(true)
-      setSuccessMessage(null)
+      dispatch({ type: 'SET_SUBMITTING', payload: true })
+      dispatch({ type: 'CLEAR_SUCCESS_MESSAGE' })
       try {
         const response = await authService.login(payload)
         await persistAndNavigate(response, payload.keepSession)
       } catch (error) {
-        throw new Error(getAuthErrorMessage(error))
+        throw new Error(getAuthErrorMessage(error), { cause: error })
       } finally {
-        setIsSubmitting(false)
+        dispatch({ type: 'SET_SUBMITTING', payload: false })
       }
     },
     [persistAndNavigate]
@@ -69,41 +101,55 @@ export function AuthProvider({ children, initialSession }: AuthProviderProps): R
 
   const register = useCallback(
     async (payload: RegisterPayload): Promise<void> => {
-      setIsSubmitting(true)
-      setSuccessMessage(null)
+      dispatch({ type: 'SET_SUBMITTING', payload: true })
+      dispatch({ type: 'CLEAR_SUCCESS_MESSAGE' })
       try {
         const response = await authService.register(payload)
         await persistAndNavigate(response, true)
       } catch (error) {
-        throw new Error(getAuthErrorMessage(error))
+        throw new Error(getAuthErrorMessage(error), { cause: error })
       } finally {
-        setIsSubmitting(false)
+        dispatch({ type: 'SET_SUBMITTING', payload: false })
       }
     },
     [persistAndNavigate]
   )
 
   const logout = useCallback(async (): Promise<void> => {
-    setIsSubmitting(true)
+    dispatch({ type: 'SET_SUBMITTING', payload: true })
     try {
       await authService.logout()
     } finally {
       authStorage.clearSession()
-      setUser(null)
-      setIsSubmitting(false)
+      dispatch({ type: 'SET_USER', payload: null })
+      dispatch({ type: 'SET_SUBMITTING', payload: false })
       void navigate('/login', { replace: true })
     }
   }, [navigate])
 
   const clearSuccessMessage = useCallback((): void => {
-    setSuccessMessage(null)
+    dispatch({ type: 'CLEAR_SUCCESS_MESSAGE' })
   }, [])
 
-  const status = isBootstrapping ? 'loading' : user ? 'authenticated' : 'guest'
+  /* ***********************************************************************************************
+  ***************************************** DERIVED STATE ******************************************
+  *********************************************************************************************** */
+  const { user } = state.session
+  const { isBootstrapping, isSubmitting } = state.async
+  const { successMessage } = state.ui
+
+  const status = isBootstrapping
+    ? AuthStatus.loading
+    : user
+      ? AuthStatus.authenticated
+      : AuthStatus.guest
 
   const value = useMemo<AuthContextValue>(
     () => ({
-      status: status === 'loading' ? 'idle' : status,
+      status:
+        status === AuthStatus.loading
+          ? AuthStatus.idle
+          : status,
       user,
       isBootstrapping,
       isSubmitting,
@@ -126,5 +172,10 @@ export function AuthProvider({ children, initialSession }: AuthProviderProps): R
     ]
   )
 
+  /* ***********************************************************************************************
+  ********************************************* RENDER *********************************************
+  *********************************************************************************************** */
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
+
+export { AuthProvider }

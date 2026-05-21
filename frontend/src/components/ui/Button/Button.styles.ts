@@ -1,12 +1,19 @@
 // Libraries
 import styled, { keyframes, css } from 'styled-components'
 
-import type { ButtonVariant, ButtonSize } from './Button.types'
+// Types
+import type { ButtonSize, ButtonVariant } from '@/components/ui/Button/Button.types'
 
+/* *************************************************************************************************
+******************************************** KEYFRAMES *********************************************
+************************************************************************************************* */
 const spin = keyframes`
   to { transform: rotate(360deg); }
 `
 
+/* *************************************************************************************************
+******************************************** CONSTANTS *********************************************
+************************************************************************************************* */
 const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
   sm: css`
     height: 36px;
@@ -35,6 +42,9 @@ interface StyledButtonProps {
   $loading: boolean
 }
 
+/* *************************************************************************************************
+****************************************** STYLED BUTTON *******************************************
+************************************************************************************************* */
 export const StyledButton = styled.button<StyledButtonProps>`
   display: inline-flex;
   align-items: center;
@@ -51,8 +61,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
     box-shadow ${({ theme }) => theme.transitions.normal},
     filter ${({ theme }) => theme.transitions.normal},
     background ${({ theme }) => theme.transitions.normal};
-  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
-  pointer-events: ${({ $loading }) => ($loading ? 'none' : 'auto')};
+  width: ${({ $fullWidth }) =>
+    $fullWidth
+      ? '100%'
+      : 'auto'};
+  pointer-events: ${({ $loading }) =>
+    $loading
+      ? 'none'
+      : 'auto'};
 
   ${({ $size }) => sizeStyles[$size]}
 
@@ -128,6 +144,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
   }
 `
 
+/* *************************************************************************************************
+********************************************* LOADING **********************************************
+************************************************************************************************* */
 export const SpinnerSvg = styled.svg`
   animation: ${spin} 0.8s linear infinite;
   flex-shrink: 0;

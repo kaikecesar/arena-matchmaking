@@ -1,7 +1,15 @@
+// Libraries
 import { z } from 'zod'
-import { authStrings } from '@/i18n/pt-BR/auth'
-import { isValidCPF } from '@/features/auth/utils/validators'
+
+// Types
+import type { RegisterRole } from '@/features/auth/types'
+
+// Utils
 import { isPasswordStrongEnough } from '@/features/auth/utils/passwordStrength'
+import { isValidCPF } from '@/features/auth/utils/validators'
+
+// Constants
+import { authStrings } from '@/i18n/pt-BR/auth'
 
 export const registerProfileSchema = z.object({
   name: z.string().min(2, authStrings.register.errorName),
@@ -32,5 +40,5 @@ export type RegisterPasswordValues = z.infer<typeof registerPasswordSchema>
 
 export type RegisterFormState = RegisterProfileValues &
   RegisterPasswordValues & {
-    role: 'organizer' | 'athlete' | 'coach' | null
+    role: RegisterRole | null
   }

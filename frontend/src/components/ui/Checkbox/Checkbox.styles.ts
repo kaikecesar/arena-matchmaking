@@ -63,7 +63,10 @@ export const VisualBox = styled.div<VisualBoxProps>`
       `}
 
   ${CheckboxWrapper}:hover & {
-    border-color: ${({ theme, $checked }) => ($checked ? 'transparent' : theme.colors.border2)};
+    border-color: ${({ theme, $checked }) =>
+      $checked
+        ? 'transparent'
+        : theme.colors.border2};
     transform: scale(1.02);
   }
 

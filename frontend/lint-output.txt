@@ -1,0 +1,158 @@
+﻿
+> arena-matchmaking@0.0.0 lint
+> eslint .
+
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\components\icons\EyeOffIcon\EyeOffIcon.tsx
+  27:1  error  This line has a length of 203. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\components\icons\EyeOpenIcon\EyeOpenIcon.tsx
+  21:1  error  This line has a length of 105. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\components\ui\InputField\InputField.tsx
+  40:1  error  This line has a comment length of 104. Maximum allowed is 100  max-len
+  41:1  error  This line has a comment length of 104. Maximum allowed is 100  max-len
+  42:1  error  This line has a comment length of 104. Maximum allowed is 100  max-len
+  47:1  error  This line has a comment length of 104. Maximum allowed is 100  max-len
+  48:1  error  This line has a comment length of 104. Maximum allowed is 100  max-len
+  49:1  error  This line has a comment length of 104. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\CreateAccount\CreateAccount.tsx
+   70:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   71:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   72:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   92:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   93:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   94:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  118:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  119:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  120:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\CreateAccount\useCreateAccount.ts
+  42:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  43:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  44:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  57:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  58:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  59:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  64:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  65:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  66:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\ForgotPassword\ForgotPassword.tsx
+  35:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  36:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  37:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  50:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  51:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  52:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  72:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  73:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  74:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\ForgotPassword\useForgotPassword.ts
+  41:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  42:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  43:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  56:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  57:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  58:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\Login\Login.tsx
+  45:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  46:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  47:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  68:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  69:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  70:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\Login\useLoginForm.ts
+  25:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  26:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  27:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  41:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  42:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  43:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  47:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  48:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  49:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\ResetPassword\ResetPassword.tsx
+  37:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  38:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  39:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  58:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  59:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  60:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  80:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  81:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  82:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\ResetPassword\useResetPassword.ts
+  48:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  49:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  50:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  63:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  64:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  65:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  67:1  error  This line has a length of 101. Maximum allowed is 100          max-len
+  70:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  71:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  72:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\components\AuthLayout\AuthLayout.styles.ts
+  462:1  error  This line has a length of 117. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\context\AuthProvider.tsx
+   39:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   40:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   41:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   48:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   49:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   50:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   63:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   64:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   65:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   67:1  error  This line has a length of 101. Maximum allowed is 100          max-len
+  130:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  131:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  132:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  168:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  169:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  170:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\routes\AuthRoutes.tsx
+   27:1  error  This line has a length of 106. Maximum allowed is 100          max-len
+   28:1  error  This line has a comment length of 108. Maximum allowed is 100  max-len
+   29:1  error  This line has a length of 108. Maximum allowed is 100          max-len
+   63:1  error  This line has a length of 106. Maximum allowed is 100          max-len
+   64:1  error  This line has a comment length of 108. Maximum allowed is 100  max-len
+   65:1  error  This line has a length of 108. Maximum allowed is 100          max-len
+   99:1  error  This line has a length of 106. Maximum allowed is 100          max-len
+  100:1  error  This line has a comment length of 108. Maximum allowed is 100  max-len
+  101:1  error  This line has a length of 108. Maximum allowed is 100          max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\features\auth\services\authService.ts
+  29:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  30:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  31:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\i18n\pt-BR\auth.ts
+   40:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   41:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+   42:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  100:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  101:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  102:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  118:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  119:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  120:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  145:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  146:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+  147:1  error  This line has a comment length of 102. Maximum allowed is 100  max-len
+
+D:\ArenaMatchmaking\arena-matchmaking\frontend\src\styles\theme.ts
+  16:67  error  Missing return type on function  @typescript-eslint/explicit-function-return-type
+
+Ô£û 117 problems (117 errors, 0 warnings)
+
