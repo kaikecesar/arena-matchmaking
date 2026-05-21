@@ -7,10 +7,10 @@ import { StackAlign, StackDirection, StackGap, StackJustify } from './Stack.type
 import { StyledStack } from './Stack.styles.ts'
 
 const Stack: React.FC<StackProps> = ({
-  direction = StackDirection.Column,
-  gap = StackGap.MD,
-  align = StackAlign.Stretch,
-  justify = StackJustify.FlexStart,
+  direction = StackDirection.column,
+  gap = StackGap.md,
+  align = StackAlign.stretch,
+  justify = StackJustify.flexStart,
   children,
 }) => {
   return (

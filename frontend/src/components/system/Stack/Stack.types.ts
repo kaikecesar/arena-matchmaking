@@ -1,34 +1,34 @@
 export enum StackDirection {
-  Row = 'row',
-  Column = 'column',
+  row = 'row',
+  column = 'column',
 }
 
 export enum StackGap {
-  XXS = 'xxs',
-  XS = 'xs',
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  XL = 'xl',
-  XXL = 'xxl',
-  XXXL = 'xxxl',
+  xxs = 'xxs',
+  xs = 'xs',
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+  xl = 'xl',
+  xxl = 'xxl',
+  xxxl = 'xxxl',
 }
 
 export enum StackAlign {
-  Stretch = 'stretch',
-  FlexStart = 'flex-start',
-  Center = 'center',
-  FlexEnd = 'flex-end',
-  Baseline = 'baseline',
+  stretch = 'stretch',
+  flexStart = 'flex-start',
+  center = 'center',
+  flexEnd = 'flex-end',
+  baseline = 'baseline',
 }
 
 export enum StackJustify {
-  FlexStart = 'flex-start',
-  Center = 'center',
-  FlexEnd = 'flex-end',
-  SpaceBetween = 'space-between',
-  SpaceAround = 'space-around',
-  SpaceEvenly = 'space-evenly',
+  flexStart = 'flex-start',
+  center = 'center',
+  flexEnd = 'flex-end',
+  spaceBetween = 'space-between',
+  spaceAround = 'space-around',
+  spaceEvenly = 'space-evenly',
 }
 
 export interface StackProps {

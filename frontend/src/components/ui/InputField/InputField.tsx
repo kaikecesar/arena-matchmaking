@@ -16,7 +16,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
     {
       label,
       name,
-      type = InputFieldType.Text,
+      type = InputFieldType.text,
       value,
       onChange,
       onBlur,

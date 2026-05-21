@@ -1,9 +1,9 @@
 export enum TextVariant {
-  Body = 'body',
-  Label = 'label',
-  Eyebrow = 'eyebrow',
-  Heading = 'heading',
-  Subheading = 'subheading',
+  body = 'body',
+  label = 'label',
+  eyebrow = 'eyebrow',
+  heading = 'heading',
+  subheading = 'subheading',
 }
 
 export interface TextProps {

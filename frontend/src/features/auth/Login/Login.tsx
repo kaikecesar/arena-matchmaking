@@ -85,7 +85,7 @@ const Login = (): ReactElement => {
             ref={identifierRef}
             label={authStrings.fieldEmailLabel}
             name="identifier"
-            type={InputFieldType.Text}
+            type={InputFieldType.text}
             value={identifierDisplayValue}
             onChange={onIdentifierChange}
             onBlur={identifierOnBlur}
@@ -99,7 +99,7 @@ const Login = (): ReactElement => {
             ref={passwordRef}
             label={authStrings.fieldPasswordLabel}
             name="password"
-            type={isPasswordVisible ? InputFieldType.Text : InputFieldType.Password}
+            type={isPasswordVisible ? InputFieldType.text : InputFieldType.password}
             value={passwordValue}
             onChange={rhfPasswordChange}
             onBlur={passwordOnBlur}
@@ -119,7 +119,7 @@ const Login = (): ReactElement => {
               onChange={onKeepSessionChange}
               label={authStrings.keepSession}
             />
-            <ForgotLink type="button" onClick={() => void navigate(ROUTES.FORGOT_PASSWORD)}>
+            <ForgotLink type="button" onClick={() => void navigate(ROUTES.forgotPassword)}>
               {authStrings.forgotPassword}
             </ForgotLink>
           </FormFooterRow>
@@ -134,9 +134,9 @@ const Login = (): ReactElement => {
 
           {/* Submit */}
           <Button
-            type={ButtonType.Submit}
-            variant={ButtonVariant.Blood}
-            size={ButtonSize.Large}
+            type={ButtonType.submit}
+            variant={ButtonVariant.blood}
+            size={ButtonSize.large}
             fullWidth
             label={authStrings.submitButton}
             loading={isLoading}
@@ -149,7 +149,7 @@ const Login = (): ReactElement => {
         <PageFooter>
           <FooterLeft>
             {authStrings.noAccount}
-            <FooterCreateLink type="button" onClick={() => void navigate(ROUTES.REGISTER)}>
+            <FooterCreateLink type="button" onClick={() => void navigate(ROUTES.register)}>
               {authStrings.createAccount}
             </FooterCreateLink>
           </FooterLeft>

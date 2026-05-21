@@ -103,7 +103,7 @@ export function useLoginForm(): UseLoginFormReturn {
         if (typedError.status === 401) {
           const body = typedError.body as LoginApiError
           setGeneralError(
-            body.error === LoginErrorCode.INVALID_CREDENTIALS
+            body.error === LoginErrorCode.invalidCredentials
               ? authStrings.errorInvalidCredentials
               : authStrings.errorGeneric
           )

@@ -54,19 +54,18 @@ export type LoginFormValues = z.infer<typeof loginSchema>
 
 // ─── API contracts ─────────────────────────────────────────────────────────────
 
-// const objects used instead of enum — required by erasableSyntaxOnly: true
 export const UserRole = {
-  ORGANIZER: 'ORGANIZER',
-  ATHLETE: 'ATHLETE',
-  COACH: 'COACH',
+  organizer: 'ORGANIZER',
+  athlete: 'ATHLETE',
+  coach: 'COACH',
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 export const LoginErrorCode = {
-  INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
-  RATE_LIMITED: 'RATE_LIMITED',
-  SERVER_ERROR: 'SERVER_ERROR',
+  invalidCredentials: 'INVALID_CREDENTIALS',
+  rateLimited: 'RATE_LIMITED',
+  serverError: 'SERVER_ERROR',
 } as const
 
 export type LoginErrorCode = (typeof LoginErrorCode)[keyof typeof LoginErrorCode]
@@ -90,7 +89,7 @@ export type LoginApiError = {
 // ─── Role → redirect map ──────────────────────────────────────────────────────
 
 export const ROLE_REDIRECT: Record<UserRole, string> = {
-  ORGANIZER: '/dashboard/events',
-  ATHLETE: '/profile',
-  COACH: '/dashboard/athletes',
+  [UserRole.organizer]: '/dashboard/events',
+  [UserRole.athlete]: '/profile',
+  [UserRole.coach]: '/dashboard/athletes',
 }

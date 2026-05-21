@@ -1,19 +1,19 @@
 export enum ButtonVariant {
-  Blood = 'blood',
-  Bone = 'bone',
-  Ghost = 'ghost',
+  blood = 'blood',
+  bone = 'bone',
+  ghost = 'ghost',
 }
 
 export enum ButtonSize {
-  Small = 'sm',
-  Medium = 'md',
-  Large = 'lg',
+  small = 'sm',
+  medium = 'md',
+  large = 'lg',
 }
 
 export enum ButtonType {
-  Button = 'button',
-  Submit = 'submit',
-  Reset = 'reset',
+  button = 'button',
+  submit = 'submit',
+  reset = 'reset',
 }
 
 export interface ButtonProps {

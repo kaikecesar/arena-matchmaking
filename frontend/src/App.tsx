@@ -12,8 +12,8 @@ export function App(): ReactElement {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route path={ROUTES.LOGIN} element={<Login />} />
-          <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
+          <Route path={ROUTES.login} element={<Login />} />
+          <Route path="*" element={<Navigate to={ROUTES.login} replace />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

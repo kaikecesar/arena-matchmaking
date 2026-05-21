@@ -20,9 +20,9 @@ const Spinner: FC = () => {
 const Button: FC<ButtonProps> = ({
   label,
   onClick,
-  type = ButtonType.Button,
-  variant = ButtonVariant.Blood,
-  size = ButtonSize.Medium,
+  type = ButtonType.button,
+  variant = ButtonVariant.blood,
+  size = ButtonSize.medium,
   loading = false,
   disabled = false,
   fullWidth = false,
