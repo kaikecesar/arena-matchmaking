@@ -1,20 +1,9 @@
-import React from 'react';
-import type { CheckboxProps } from './Checkbox.types';
-import {
-  CheckboxWrapper,
-  HiddenInput,
-  VisualBox,
-  CheckboxLabel,
-} from './Checkbox.styles';
+import React from 'react'
+import type { CheckboxProps } from './Checkbox.types'
+import { CheckboxWrapper, HiddenInput, VisualBox, CheckboxLabel } from './Checkbox.styles'
 
-const Checkbox = ({
-  checked,
-  onChange,
-  label,
-  name,
-  id,
-}: CheckboxProps): React.ReactElement => {
-  const inputId = id ?? name;
+const Checkbox = ({ checked, onChange, label, name, id }: CheckboxProps): React.ReactElement => {
+  const inputId = id ?? name
 
   return (
     <CheckboxWrapper htmlFor={inputId}>
@@ -23,19 +12,11 @@ const Checkbox = ({
         id={inputId}
         name={name}
         checked={checked}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          onChange(e.target.checked)
-        }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked)}
       />
       <VisualBox $checked={checked} aria-hidden="true">
         {checked && (
-          <svg
-            width="10"
-            height="8"
-            viewBox="0 0 10 8"
-            fill="none"
-            aria-hidden="true"
-          >
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
             <path
               d="M1 4L3.5 6.5L9 1"
               stroke="white"
@@ -48,7 +29,7 @@ const Checkbox = ({
       </VisualBox>
       <CheckboxLabel>{label}</CheckboxLabel>
     </CheckboxWrapper>
-  );
-};
+  )
+}
 
-export { Checkbox };
+export { Checkbox }

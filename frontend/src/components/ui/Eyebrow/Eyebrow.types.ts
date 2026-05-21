@@ -1,7 +1,7 @@
-import type { DefaultTheme } from 'styled-components';
+import type { DefaultTheme } from 'styled-components'
 
 export interface EyebrowProps {
-  children: React.ReactNode;
-  $color?: keyof DefaultTheme['colors'];
-  as?: React.ElementType;
+  children: React.ReactNode
+  $color?: keyof DefaultTheme['colors']
+  as?: React.ElementType
 }

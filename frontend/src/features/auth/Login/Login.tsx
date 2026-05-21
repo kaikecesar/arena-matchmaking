@@ -1,5 +1,5 @@
-import type { ReactElement } from 'react';
-import { useNavigate } from 'react-router-dom';
+import type { ReactElement } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   PageShell,
   GlowBlood,
@@ -20,20 +20,20 @@ import {
   FooterLeft,
   FooterCreateLink,
   SecurityBadge,
-} from './Login.styles';
-import { BrandMark } from '@/components/ui/BrandMark';
-import { Eyebrow } from '@/components/ui/Eyebrow';
-import { InputField } from '@/components/ui/InputField';
-import { Button } from '@/components/ui/Button';
-import { Checkbox } from '@/components/ui/Checkbox';
-import { ArrowRightIcon, EyeOffIcon, EyeOpenIcon, WarningIcon } from '@/components/icons';
-import { ROUTES } from '@/constants/routes';
-import { authStrings } from '@/i18n/pt-BR/auth';
-import { useLoginForm } from './useLoginForm';
+} from './Login.styles'
+import { BrandMark } from '@/components/ui/BrandMark'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { InputField } from '@/components/ui/InputField'
+import { Button } from '@/components/ui/Button'
+import { Checkbox } from '@/components/ui/Checkbox'
+import { ArrowRightIcon, EyeOffIcon, EyeOpenIcon, WarningIcon } from '@/components/icons'
+import { ROUTES } from '@/constants/routes'
+import { authStrings } from '@/i18n/pt-BR/auth'
+import { useLoginForm } from './useLoginForm'
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 const Login = (): ReactElement => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const {
     register,
     errors,
@@ -47,11 +47,14 @@ const Login = (): ReactElement => {
     identifierDisplayValue,
     onIdentifierChange,
     passwordValue,
-  } = useLoginForm();
+  } = useLoginForm()
 
-  const { onBlur: identifierOnBlur, ref: identifierRef } = register('identifier');
-  const { onChange: rhfPasswordChange, onBlur: passwordOnBlur, ref: passwordRef } =
-    register('password');
+  const { onBlur: identifierOnBlur, ref: identifierRef } = register('identifier')
+  const {
+    onChange: rhfPasswordChange,
+    onBlur: passwordOnBlur,
+    ref: passwordRef,
+  } = register('password')
 
   return (
     <PageShell>
@@ -70,18 +73,13 @@ const Login = (): ReactElement => {
             <Eyebrow $color="copper">{authStrings.systemTagline}</Eyebrow>
           </HeroEyebrowWrapper>
           <HeroHeading>
-            {authStrings.heroLine1}{' '}
-            <HeroHighlight>{authStrings.heroHighlight}</HeroHighlight>.
+            {authStrings.heroLine1} <HeroHighlight>{authStrings.heroHighlight}</HeroHighlight>.
           </HeroHeading>
           <HeroSubtitle>{authStrings.heroSubtitle}</HeroSubtitle>
         </HeroBlock>
 
         {/* ── Form ── */}
-        <LoginForm
-          onSubmit={handleSubmit}
-          noValidate
-          aria-label="Formulário de login"
-        >
+        <LoginForm onSubmit={handleSubmit} noValidate aria-label="Formulário de login">
           {/* Identifier field — controlled with CPF formatting */}
           <InputField
             ref={identifierRef}
@@ -109,9 +107,7 @@ const Login = (): ReactElement => {
             autoComplete="current-password"
             mono
             disabled={isLoading}
-            trailingIcon={
-              isPasswordVisible ? <EyeOffIcon /> : <EyeOpenIcon />
-            }
+            trailingIcon={isPasswordVisible ? <EyeOffIcon /> : <EyeOpenIcon />}
             onTrailingIconClick={togglePasswordVisibility}
           />
 
@@ -123,10 +119,7 @@ const Login = (): ReactElement => {
               onChange={onKeepSessionChange}
               label={authStrings.keepSession}
             />
-            <ForgotLink
-              type="button"
-              onClick={() => void navigate(ROUTES.FORGOT_PASSWORD)}
-            >
+            <ForgotLink type="button" onClick={() => void navigate(ROUTES.FORGOT_PASSWORD)}>
               {authStrings.forgotPassword}
             </ForgotLink>
           </FormFooterRow>
@@ -156,10 +149,7 @@ const Login = (): ReactElement => {
         <PageFooter>
           <FooterLeft>
             {authStrings.noAccount}
-            <FooterCreateLink
-              type="button"
-              onClick={() => void navigate(ROUTES.REGISTER)}
-            >
+            <FooterCreateLink type="button" onClick={() => void navigate(ROUTES.REGISTER)}>
               {authStrings.createAccount}
             </FooterCreateLink>
           </FooterLeft>
@@ -167,7 +157,7 @@ const Login = (): ReactElement => {
         </PageFooter>
       </Card>
     </PageShell>
-  );
-};
+  )
+}
 
-export { Login };
+export { Login }

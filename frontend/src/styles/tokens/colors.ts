@@ -23,4 +23,4 @@ export const colors = {
   boneLight: '#f7f6f3',
   boneSoft: '#e5e2db',
   boneBorder: '#dcd8cf',
-} as const;
+} as const

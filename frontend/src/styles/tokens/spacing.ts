@@ -7,4 +7,4 @@ export const spacing = {
   xl: '20px',
   xxl: '24px',
   xxxl: '32px',
-} as const;
+} as const

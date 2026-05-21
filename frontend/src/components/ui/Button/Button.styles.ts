@@ -1,11 +1,11 @@
 // Libraries
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components'
 
-import type { ButtonVariant, ButtonSize } from './Button.types';
+import type { ButtonVariant, ButtonSize } from './Button.types'
 
 const spin = keyframes`
   to { transform: rotate(360deg); }
-`;
+`
 
 const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
   sm: css`
@@ -26,13 +26,13 @@ const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
     font-size: ${({ theme }) => theme.fontSizes.lg};
     gap: ${({ theme }) => theme.spacing.lg};
   `,
-};
+}
 
 interface StyledButtonProps {
-  $variant: ButtonVariant;
-  $size: ButtonSize;
-  $fullWidth: boolean;
-  $loading: boolean;
+  $variant: ButtonVariant
+  $size: ButtonSize
+  $fullWidth: boolean
+  $loading: boolean
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -70,7 +70,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
           &:active:not(:disabled) {
             transform: scale(0.98);
           }
-        `;
+        `
       case 'bone':
         return css`
           background: linear-gradient(
@@ -86,7 +86,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
           &:active:not(:disabled) {
             transform: scale(0.98);
           }
-        `;
+        `
       case 'ghost':
         return css`
           background: transparent;
@@ -100,9 +100,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
           &:active:not(:disabled) {
             transform: scale(0.98);
           }
-        `;
+        `
       default:
-        return null;
+        return null
     }
   }}
 
@@ -110,9 +110,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
     opacity: 0.5;
     cursor: not-allowed;
   }
-`;
+`
 
 export const SpinnerSvg = styled.svg`
   animation: ${spin} 0.8s linear infinite;
   flex-shrink: 0;
-`;
+`

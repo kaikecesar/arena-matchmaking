@@ -2,7 +2,7 @@ export const fonts = {
   display: "'Barlow Semi Condensed', sans-serif",
   ui: "'Manrope', system-ui, sans-serif",
   mono: "'JetBrains Mono', monospace",
-} as const;
+} as const
 
 export const fontWeights = {
   regular: 400,
@@ -11,7 +11,7 @@ export const fontWeights = {
   bold: 700,
   extrabold: 800,
   black: 900,
-} as const;
+} as const
 
 export const fontSizes = {
   xs: '10px',
@@ -22,9 +22,9 @@ export const fontSizes = {
   xxl: '24px',
   xxxl: '32px',
   display: '44px',
-} as const;
+} as const
 
 export const lineHeights = {
   body: 1.5,
   heading: 1.1,
-} as const;
+} as const

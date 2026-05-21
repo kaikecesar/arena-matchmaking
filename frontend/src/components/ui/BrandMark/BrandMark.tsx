@@ -1,27 +1,15 @@
-import React from 'react';
-import type { BrandMarkProps } from './BrandMark.types';
-import {
-  BrandMarkWrapper,
-  IconBox,
-  Wordmark,
-  WordmarkArena,
-  WordmarkSub,
-} from './BrandMark.styles';
+import React from 'react'
+import type { BrandMarkProps } from './BrandMark.types'
+import { BrandMarkWrapper, IconBox, Wordmark, WordmarkArena, WordmarkSub } from './BrandMark.styles'
 
 const BrandMark = ({ size = 28 }: BrandMarkProps): React.ReactElement => {
-  const iconSize = Math.round(size * 0.57); // ~16px at default 28
+  const iconSize = Math.round(size * 0.57) // ~16px at default 28
 
   return (
     <BrandMarkWrapper>
       <IconBox $size={size}>
         {/* Stylised "A" arrow mark — points up like a fighting stance */}
-        <svg
-          width={iconSize}
-          height={iconSize}
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg width={iconSize} height={iconSize} viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path
             d="M8 2L13 12H3L8 2Z"
             stroke="white"
@@ -29,12 +17,7 @@ const BrandMark = ({ size = 28 }: BrandMarkProps): React.ReactElement => {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <path
-            d="M5.5 8.5H10.5"
-            stroke="white"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
+          <path d="M5.5 8.5H10.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </IconBox>
       <Wordmark>
@@ -42,7 +25,7 @@ const BrandMark = ({ size = 28 }: BrandMarkProps): React.ReactElement => {
         <WordmarkSub>MATCHMAKING</WordmarkSub>
       </Wordmark>
     </BrandMarkWrapper>
-  );
-};
+  )
+}
 
-export { BrandMark };
+export { BrandMark }

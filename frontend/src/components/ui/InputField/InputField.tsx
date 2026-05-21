@@ -1,5 +1,5 @@
-import React from 'react';
-import type { InputFieldProps } from './InputField.types';
+import React from 'react'
+import type { InputFieldProps } from './InputField.types'
 import {
   FieldWrapper,
   FieldLabel,
@@ -8,7 +8,7 @@ import {
   TrailingSlot,
   ErrorMessage,
   HintText,
-} from './InputField.styles';
+} from './InputField.styles'
 
 const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
   (
@@ -29,11 +29,11 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
       placeholder,
       id,
     },
-    ref,
+    ref
   ) => {
-    const inputId = id ?? name;
-    const errorId = `${inputId}-error`;
-    const hasError = Boolean(error);
+    const inputId = id ?? name
+    const errorId = `${inputId}-error`
+    const hasError = Boolean(error)
 
     return (
       <FieldWrapper>
@@ -55,11 +55,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
             aria-describedby={hasError ? errorId : undefined}
           />
           {trailingIcon && (
-            <TrailingSlot
-              type="button"
-              onClick={onTrailingIconClick}
-              tabIndex={-1}
-            >
+            <TrailingSlot type="button" onClick={onTrailingIconClick} tabIndex={-1}>
               {trailingIcon}
             </TrailingSlot>
           )}
@@ -71,9 +67,9 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
         )}
         {!hasError && hint && <HintText>{hint}</HintText>}
       </FieldWrapper>
-    );
-  },
-);
+    )
+  }
+)
 
-InputField.displayName = 'InputField';
-export { InputField };
+InputField.displayName = 'InputField'
+export { InputField }

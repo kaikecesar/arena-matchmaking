@@ -1,11 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-import type { IconProps } from './WarningIcon.types';
-import { StyledIcon } from './WarningIcon.styles';
+import type { IconProps } from './WarningIcon.types'
+import { StyledIcon } from './WarningIcon.styles'
 
 const WarningIcon: React.FC<IconProps> = ({ size = 16, title = 'Warning' }) => {
   return (
-    <StyledIcon width={size} height={size} viewBox="0 0 16 16" aria-hidden={title ? undefined : 'true'} role={title ? 'img' : undefined}>
+    <StyledIcon
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      aria-hidden={title ? undefined : 'true'}
+      role={title ? 'img' : undefined}
+    >
       {title ? <title>{title}</title> : null}
       <path
         d="M8 1.5L14.5 13H1.5L8 1.5Z"
@@ -25,7 +31,7 @@ const WarningIcon: React.FC<IconProps> = ({ size = 16, title = 'Warning' }) => {
       />
       <circle cx="8" cy="11.5" r="0.75" fill="currentColor" />
     </StyledIcon>
-  );
-};
+  )
+}
 
-export { WarningIcon };
+export { WarningIcon }

@@ -1,14 +1,14 @@
 // Libraries
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const BrandMarkWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.sm};
-`;
+`
 
 interface IconBoxProps {
-  $size: number;
+  $size: number
 }
 
 export const IconBox = styled.div<IconBoxProps>`
@@ -27,13 +27,13 @@ export const IconBox = styled.div<IconBoxProps>`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-`;
+`
 
 export const Wordmark = styled.div`
   display: flex;
   flex-direction: column;
   line-height: 1;
-`;
+`
 
 export const WordmarkArena = styled.span`
   font-family: ${({ theme }) => theme.fonts.display};
@@ -41,7 +41,7 @@ export const WordmarkArena = styled.span`
   font-size: 16px;
   color: ${({ theme }) => theme.colors.textHi};
   letter-spacing: 0.01em;
-`;
+`
 
 export const WordmarkSub = styled.span`
   font-family: ${({ theme }) => theme.fonts.mono};
@@ -50,4 +50,4 @@ export const WordmarkSub = styled.span`
   color: ${({ theme }) => theme.colors.copper};
   text-transform: uppercase;
   margin-top: 1px;
-`;
+`

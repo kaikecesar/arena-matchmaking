@@ -1,11 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-import type { IconProps } from './EyeOffIcon.types';
-import { StyledIcon } from './EyeOffIcon.styles';
+import type { IconProps } from './EyeOffIcon.types'
+import { StyledIcon } from './EyeOffIcon.styles'
 
 const EyeOffIcon: React.FC<IconProps> = ({ size = 18, title = 'Hide password' }) => {
   return (
-    <StyledIcon width={size} height={size} viewBox="0 0 18 18" aria-hidden={title ? undefined : 'true'} role={title ? 'img' : undefined}>
+    <StyledIcon
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      aria-hidden={title ? undefined : 'true'}
+      role={title ? 'img' : undefined}
+    >
       {title ? <title>{title}</title> : null}
       <path
         d="M2.25 2.25L15.75 15.75"
@@ -21,7 +27,7 @@ const EyeOffIcon: React.FC<IconProps> = ({ size = 18, title = 'Hide password' })
         strokeLinejoin="round"
       />
     </StyledIcon>
-  );
-};
+  )
+}
 
-export { EyeOffIcon };
+export { EyeOffIcon }

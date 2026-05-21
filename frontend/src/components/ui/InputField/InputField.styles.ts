@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
+`
 
 export const FieldLabel = styled.label`
   font-family: ${({ theme }) => theme.fonts.mono};
@@ -15,11 +15,11 @@ export const FieldLabel = styled.label`
   color: ${({ theme }) => theme.colors.textLow};
   margin-bottom: 7px;
   display: block;
-`;
+`
 
 interface InputWrapperProps {
-  $hasError: boolean;
-  $disabled: boolean;
+  $hasError: boolean
+  $disabled: boolean
 }
 
 export const InputWrapper = styled.div<InputWrapperProps>`
@@ -29,8 +29,7 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   background: ${({ theme }) => theme.colors.surf3};
   border-radius: ${({ theme }) => theme.radius.md};
   border: 1px solid
-    ${({ theme, $hasError }) =>
-      $hasError ? theme.colors.blood : theme.colors.border1};
+    ${({ theme, $hasError }) => ($hasError ? theme.colors.blood : theme.colors.border1)};
   box-shadow: ${({ theme, $hasError }) =>
     $hasError ? `0 0 0 3px ${theme.colors.bloodTint}` : 'none'};
   transition:
@@ -46,10 +45,10 @@ export const InputWrapper = styled.div<InputWrapperProps>`
         box-shadow: 0 0 0 3px ${theme.colors.bloodTint};
       `}
   }
-`;
+`
 
 interface StyledInputProps {
-  $mono: boolean;
+  $mono: boolean
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
@@ -58,8 +57,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   border: none;
   outline: none;
   padding: 14px 16px;
-  font-family: ${({ theme, $mono }) =>
-    $mono ? theme.fonts.mono : theme.fonts.ui};
+  font-family: ${({ theme, $mono }) => ($mono ? theme.fonts.mono : theme.fonts.ui)};
   font-size: 15px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.textHi};
@@ -77,7 +75,7 @@ export const StyledInput = styled.input<StyledInputProps>`
     -webkit-text-fill-color: ${({ theme }) => theme.colors.textHi};
     transition: background-color 5000s ease-in-out 0s;
   }
-`;
+`
 
 export const TrailingSlot = styled.button`
   display: flex;
@@ -93,7 +91,7 @@ export const TrailingSlot = styled.button`
   &:hover {
     color: ${({ theme }) => theme.colors.textMid};
   }
-`;
+`
 
 export const ErrorMessage = styled.span`
   display: block;
@@ -113,7 +111,7 @@ export const ErrorMessage = styled.span`
       transform: translateY(0);
     }
   }
-`;
+`
 
 export const HintText = styled.span`
   display: block;
@@ -121,4 +119,4 @@ export const HintText = styled.span`
   font-family: ${({ theme }) => theme.fonts.ui};
   font-size: 12px;
   color: ${({ theme }) => theme.colors.textLow};
-`;
+`

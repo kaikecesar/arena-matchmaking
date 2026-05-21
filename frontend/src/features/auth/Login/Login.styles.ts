@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // ─── Page shell ───────────────────────────────────────────────────────────────
 
@@ -14,7 +14,7 @@ export const PageShell = styled.div`
     align-items: center;
     justify-content: center;
   }
-`;
+`
 
 // ─── Background atmosphere (decorative glows) ─────────────────────────────────
 
@@ -22,19 +22,15 @@ export const AtmosphereGlow = styled.div`
   position: absolute;
   pointer-events: none;
   border-radius: 50%;
-`;
+`
 
 export const GlowBlood = styled(AtmosphereGlow)`
   top: -100px;
   right: -120px;
   width: 460px;
   height: 460px;
-  background: radial-gradient(
-    circle,
-    ${({ theme }) => theme.colors.bloodGlow} 0%,
-    transparent 65%
-  );
-`;
+  background: radial-gradient(circle, ${({ theme }) => theme.colors.bloodGlow} 0%, transparent 65%);
+`
 
 export const GlowCopper = styled(AtmosphereGlow)`
   bottom: -120px;
@@ -46,7 +42,7 @@ export const GlowCopper = styled(AtmosphereGlow)`
     ${({ theme }) => theme.colors.copperTint} 0%,
     transparent 65%
   );
-`;
+`
 
 // ─── Card (desktop only) ──────────────────────────────────────────────────────
 
@@ -66,7 +62,7 @@ export const Card = styled.div`
     border-radius: ${({ theme }) => theme.radius.xl};
     box-shadow: ${({ theme }) => theme.shadows.pop};
   }
-`;
+`
 
 // ─── Header ───────────────────────────────────────────────────────────────────
 
@@ -84,22 +80,21 @@ export const LoginHeader = styled.header`
     height: auto;
     padding: 0 0 ${({ theme }) => theme.spacing.xxxl};
   }
-`;
+`
 
 // ─── Hero block ───────────────────────────────────────────────────────────────
 
 export const HeroBlock = styled.section`
-  padding: ${({ theme }) => theme.spacing.xxxl} 0
-    ${({ theme }) => theme.spacing.xxl};
+  padding: ${({ theme }) => theme.spacing.xxxl} 0 ${({ theme }) => theme.spacing.xxl};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     padding: 0 0 ${({ theme }) => theme.spacing.xxxl};
   }
-`;
+`
 
 export const HeroEyebrowWrapper = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.md};
-`;
+`
 
 export const HeroHeading = styled.h1`
   font-family: ${({ theme }) => theme.fonts.display};
@@ -113,11 +108,11 @@ export const HeroHeading = styled.h1`
   @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 44px;
   }
-`;
+`
 
 export const HeroHighlight = styled.span`
   color: ${({ theme }) => theme.colors.blood};
-`;
+`
 
 export const HeroSubtitle = styled.p`
   font-family: ${({ theme }) => theme.fonts.ui};
@@ -125,7 +120,7 @@ export const HeroSubtitle = styled.p`
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.textMid};
   max-width: 300px;
-`;
+`
 
 // ─── Form ─────────────────────────────────────────────────────────────────────
 
@@ -133,14 +128,14 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.lg};
-`;
+`
 
 export const FormFooterRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: ${({ theme }) => theme.spacing.xs};
-`;
+`
 
 export const ForgotLink = styled.button`
   background: transparent;
@@ -155,7 +150,7 @@ export const ForgotLink = styled.button`
   &:hover {
     text-decoration: underline;
   }
-`;
+`
 
 // ─── General error alert ──────────────────────────────────────────────────────
 
@@ -179,14 +174,14 @@ export const GeneralErrorBox = styled.div`
       transform: translateY(0);
     }
   }
-`;
+`
 
 export const GeneralErrorText = styled.p`
   font-family: ${({ theme }) => theme.fonts.ui};
   font-size: 13px;
   color: ${({ theme }) => theme.colors.blood};
   line-height: 1.4;
-`;
+`
 
 // ─── Page footer ──────────────────────────────────────────────────────────────
 
@@ -197,14 +192,14 @@ export const PageFooter = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 export const FooterLeft = styled.span`
   font-family: ${({ theme }) => theme.fonts.ui};
   font-size: 13px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.textMid};
-`;
+`
 
 export const FooterCreateLink = styled.button`
   background: transparent;
@@ -220,7 +215,7 @@ export const FooterCreateLink = styled.button`
   &:hover {
     text-decoration: underline;
   }
-`;
+`
 
 export const SecurityBadge = styled.span`
   font-family: ${({ theme }) => theme.fonts.mono};
@@ -228,4 +223,4 @@ export const SecurityBadge = styled.span`
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.textLow};
-`;
+`

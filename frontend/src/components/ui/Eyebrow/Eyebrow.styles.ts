@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import type { DefaultTheme } from 'styled-components';
+import styled from 'styled-components'
+import type { DefaultTheme } from 'styled-components'
 
 interface StyledEyebrowProps {
-  $color?: keyof DefaultTheme['colors'];
+  $color?: keyof DefaultTheme['colors']
 }
 
 export const StyledEyebrow = styled.span<StyledEyebrowProps>`
@@ -12,6 +12,5 @@ export const StyledEyebrow = styled.span<StyledEyebrowProps>`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: ${({ theme, $color }) =>
-    $color ? theme.colors[$color] : theme.colors.textLow};
-`;
+  color: ${({ theme, $color }) => ($color ? theme.colors[$color] : theme.colors.textLow)};
+`

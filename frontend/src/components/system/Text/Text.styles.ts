@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import type { TextVariant } from './Text.types';
+import styled, { css } from 'styled-components'
+import type { TextVariant } from './Text.types'
 
 const textVariants: Record<TextVariant, ReturnType<typeof css>> = {
   body: css`
@@ -32,12 +32,12 @@ const textVariants: Record<TextVariant, ReturnType<typeof css>> = {
     font-size: ${({ theme }) => theme.fontSizes.md};
     color: ${({ theme }) => theme.colors.textMid};
   `,
-};
+}
 
 interface StyledTextProps {
-  $variant: TextVariant;
+  $variant: TextVariant
 }
 
 export const StyledText = styled.span<StyledTextProps>`
   ${({ $variant }) => textVariants[$variant]};
-`;
+`

@@ -1,3 +1,3 @@
 export interface BrandMarkProps {
-  size?: number;
+  size?: number
 }

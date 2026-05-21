@@ -1,10 +1,10 @@
-import type { ReactElement } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import type { ReactElement } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
 
-import { GlobalStyles, theme } from '@/styles';
-import { Login } from '@/features/auth/Login';
-import { ROUTES } from '@/constants/routes';
+import { GlobalStyles, theme } from '@/styles'
+import { Login } from '@/features/auth/Login'
+import { ROUTES } from '@/constants/routes'
 
 export function App(): ReactElement {
   return (
@@ -17,5 +17,5 @@ export function App(): ReactElement {
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
-  );
+  )
 }

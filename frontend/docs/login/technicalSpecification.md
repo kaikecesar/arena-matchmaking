@@ -1,4 +1,5 @@
 # ESPECIFICAÇÃO TÉCNICA — TELA DE LOGIN
+
 ## Arena Matchmaking · Sistema de Gerenciamento de Lutas
 
 > **Versão:** 1.0  
@@ -17,11 +18,11 @@ A tela de Login é o **ponto de entrada único** do sistema para todas as person
 
 ### 1.2 Personas Atendidas
 
-| Persona | Destino pós-login | Prioridade |
-|---|---|---|
-| Organizador | Dashboard de eventos | Alta |
-| Atleta | Perfil / inscrições | Média |
-| Coach | Visão dos atletas vinculados | Média |
+| Persona     | Destino pós-login            | Prioridade |
+| ----------- | ---------------------------- | ---------- |
+| Organizador | Dashboard de eventos         | Alta       |
+| Atleta      | Perfil / inscrições          | Média      |
+| Coach       | Visão dos atletas vinculados | Média      |
 
 ### 1.3 Requisitos Rastreados
 
@@ -44,37 +45,37 @@ A tela de Login é o **ponto de entrada único** do sistema para todas as person
 // tokens/colors.ts
 export const colors = {
   // Superfícies
-  bgApp:    '#101114',   // fundo principal da tela
-  surf1:    '#16171b',   // card
-  surf2:    '#1c1e23',   // elevado
-  surf3:    '#232529',   // input background
+  bgApp: '#101114', // fundo principal da tela
+  surf1: '#16171b', // card
+  surf2: '#1c1e23', // elevado
+  surf3: '#232529', // input background
 
   // Bordas
-  border1:  '#25272d',   // sutil
-  border2:  '#2e3037',   // visível
+  border1: '#25272d', // sutil
+  border2: '#2e3037', // visível
 
   // Texto
-  textHi:   '#f3f3f5',   // primário
-  textMid:  '#b9bbc1',   // secundário
-  textLow:  '#6b6e76',   // terciário
-  textDim:  '#45474d',   // desabilitado
+  textHi: '#f3f3f5', // primário
+  textMid: '#b9bbc1', // secundário
+  textLow: '#6b6e76', // terciário
+  textDim: '#45474d', // desabilitado
 
   // Blood (acento principal)
-  blood:      '#d22638',
-  bloodSoft:  '#b41f30',
-  bloodDeep:  '#7c1422',
-  bloodGlow:  'rgba(210, 38, 56, 0.28)',
-  bloodTint:  'rgba(210, 38, 56, 0.10)',
+  blood: '#d22638',
+  bloodSoft: '#b41f30',
+  bloodDeep: '#7c1422',
+  bloodGlow: 'rgba(210, 38, 56, 0.28)',
+  bloodTint: 'rgba(210, 38, 56, 0.10)',
 
   // Copper (acento metálico)
-  copper:     '#d8a168',
+  copper: '#d8a168',
   copperDeep: '#a47545',
   copperTint: 'rgba(216, 161, 104, 0.10)',
 
   // Semânticas
   success: '#4ade80',
   warning: '#f59e0b',
-} as const;
+} as const
 ```
 
 ### 2.2 Tipografia
@@ -83,9 +84,9 @@ export const colors = {
 // tokens/typography.ts
 export const fonts = {
   display: "'Barlow Semi Condensed', sans-serif", // títulos, botões
-  ui:      "'Manrope', system-ui, sans-serif",    // corpo, labels, campos
-  mono:    "'JetBrains Mono', monospace",         // dados, eyebrows, status
-} as const;
+  ui: "'Manrope', system-ui, sans-serif", // corpo, labels, campos
+  mono: "'JetBrains Mono', monospace", // dados, eyebrows, status
+} as const
 
 // Google Fonts import (em index.html ou GlobalStyles):
 // Barlow Semi Condensed: 400, 500, 600, 700, 800, 900
@@ -102,7 +103,7 @@ export const radius = {
   md: '10px',
   lg: '14px',
   xl: '20px',
-} as const;
+} as const
 ```
 
 ### 2.4 Sombras e Elevação
@@ -111,10 +112,10 @@ export const radius = {
 // tokens/shadows.ts
 export const shadows = {
   card: '0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 24px rgba(0,0,0,0.35)',
-  pop:  '0 1px 0 rgba(255,255,255,0.05) inset, 0 12px 32px rgba(0,0,0,0.5)',
+  pop: '0 1px 0 rgba(255,255,255,0.05) inset, 0 12px 32px rgba(0,0,0,0.5)',
   ringBlood: '0 0 0 1px #d22638, 0 0 24px rgba(210,38,56,0.28)',
   buttonBlood: '0 1px 0 rgba(255,255,255,0.15) inset, 0 12px 28px rgba(210,38,56,0.28)',
-} as const;
+} as const
 ```
 
 ---
@@ -140,12 +141,12 @@ export const shadows = {
 
 Os primitivos abaixo são **compartilhados** com as telas de cadastro. Devem residir em `src/components/ui/`.
 
-| Componente | Arquivo | Descrição |
-|---|---|---|
-| `BrandMark` | `BrandMark.tsx` | Logo ARENA + wordmark |
-| `Eyebrow` | `Eyebrow.tsx` | Label mono caps (rótulos de campo) |
-| `InputField` | `InputField.tsx` | Campo de texto unificado |
-| `PrimaryButton` | `PrimaryButton.tsx` | Botão CTA blood/bone |
+| Componente      | Arquivo             | Descrição                          |
+| --------------- | ------------------- | ---------------------------------- |
+| `BrandMark`     | `BrandMark.tsx`     | Logo ARENA + wordmark              |
+| `Eyebrow`       | `Eyebrow.tsx`       | Label mono caps (rótulos de campo) |
+| `InputField`    | `InputField.tsx`    | Campo de texto unificado           |
+| `PrimaryButton` | `PrimaryButton.tsx` | Botão CTA blood/bone               |
 
 ---
 
@@ -262,6 +263,7 @@ content: "Acesse sua conta para gerenciar eventos, cartéis e o card da próxima
 O campo é o mesmo primitivo usado em todas as telas do sistema. Três estados visuais:
 
 #### Estado: Default
+
 ```ts
 background: surf3 (#232529)
 border: 1px solid border1 (#25272d)
@@ -272,6 +274,7 @@ fontSize: 15px | fontWeight: 500 | fontFamily: font-ui
 ```
 
 #### Estado: Focused / Active
+
 ```ts
 border: 1px solid blood (#d22638)
 boxShadow: 0 0 0 3px rgba(210,38,56,0.10)
@@ -279,6 +282,7 @@ boxShadow: 0 0 0 3px rgba(210,38,56,0.10)
 ```
 
 #### Estado: Error
+
 ```ts
 border: 1px solid #d22638
 boxShadow: 0 0 0 3px rgba(210,38,56,0.15)
@@ -287,6 +291,7 @@ boxShadow: 0 0 0 3px rgba(210,38,56,0.15)
 ```
 
 #### Label (Eyebrow acima do campo)
+
 ```ts
 fontFamily: font-mono
 fontSize: 10px | letterSpacing: 0.22em
@@ -295,6 +300,7 @@ marginBottom: 7px
 ```
 
 #### Campo SENHA — trailing icon
+
 ```ts
 // Ícone de olho (toggle visibilidade)
 // SVG 18×18 | stroke: textLow | strokeWidth: 1.6
@@ -403,11 +409,11 @@ Mobile-first. A tela foi desenhada para **390×844** (iPhone 14 base). O layout 
 ```ts
 // tokens/breakpoints.ts
 export const breakpoints = {
-  sm:  '480px',   // smartphone largo
-  md:  '768px',   // tablet portrait
-  lg: '1024px',   // tablet landscape / desktop pequeno
-  xl: '1280px',   // desktop
-} as const;
+  sm: '480px', // smartphone largo
+  md: '768px', // tablet portrait
+  lg: '1024px', // tablet landscape / desktop pequeno
+  xl: '1280px', // desktop
+} as const
 ```
 
 ### 5.3 Comportamento por Breakpoint
@@ -507,9 +513,9 @@ Feedback visual imediato.
   borderRadius: r-md,
   padding: '12px 14px',
   display: flex, gap: 10,
-  
+
   // Ícone de aviso: SVG triângulo/exclamação, 16×16, stroke blood
-  
+
   // Texto
   fontFamily: font-ui, fontSize: 13px, color: #f3a0a7
   content: "E-mail, CPF ou senha incorretos. Tente novamente."
@@ -530,7 +536,7 @@ A transição deve ser rápida (< 300ms) para sensação de responsividade.
 // Após N tentativas falhas (definido pelo backend)
 {
   // Mensagem de bloqueio temporário
-  content: "Acesso temporariamente bloqueado. Aguarde alguns minutos."
+  content: 'Acesso temporariamente bloqueado. Aguarde alguns minutos.'
   // Botão desabilitado com countdown opcional
 }
 ```
@@ -658,54 +664,54 @@ src/
 // types/auth.ts
 
 export interface LoginFormValues {
-  identifier: string;   // email ou CPF
-  password: string;
-  keepSession: boolean;
+  identifier: string // email ou CPF
+  password: string
+  keepSession: boolean
 }
 
 export interface LoginFormErrors {
-  identifier?: string;
-  password?: string;
-  general?: string;     // erro não vinculado a campo específico
+  identifier?: string
+  password?: string
+  general?: string // erro não vinculado a campo específico
 }
 
 export interface LoginResponse {
-  accessToken: string;
-  refreshToken?: string;
+  accessToken: string
+  refreshToken?: string
   user: {
-    id: string;
-    role: 'ORGANIZER' | 'ATHLETE' | 'COACH';
-    name: string;
-  };
+    id: string
+    role: 'ORGANIZER' | 'ATHLETE' | 'COACH'
+    name: string
+  }
 }
 
 // props dos componentes UI
 export interface InputFieldProps {
-  label: string;
-  name: string;
-  type?: 'text' | 'password' | 'email';
-  value: string;
-  onChange: (value: string) => void;
-  error?: string;
-  hint?: string;
-  trailingIcon?: React.ReactNode;
-  onTrailingClick?: () => void;
-  active?: boolean;
-  mono?: boolean;
-  placeholder?: string;
-  autoComplete?: string;
-  disabled?: boolean;
+  label: string
+  name: string
+  type?: 'text' | 'password' | 'email'
+  value: string
+  onChange: (value: string) => void
+  error?: string
+  hint?: string
+  trailingIcon?: React.ReactNode
+  onTrailingClick?: () => void
+  active?: boolean
+  mono?: boolean
+  placeholder?: string
+  autoComplete?: string
+  disabled?: boolean
 }
 
 export interface PrimaryButtonProps {
-  label: string;
-  onClick?: () => void;
-  type?: 'button' | 'submit';
-  loading?: boolean;
-  disabled?: boolean;
-  variant?: 'blood' | 'bone';
-  fullWidth?: boolean;
-  trailingIcon?: React.ReactNode;
+  label: string
+  onClick?: () => void
+  type?: 'button' | 'submit'
+  loading?: boolean
+  disabled?: boolean
+  variant?: 'blood' | 'bone'
+  fullWidth?: boolean
+  trailingIcon?: React.ReactNode
 }
 ```
 
@@ -756,16 +762,23 @@ Response 429 Too Many Requests:
 ```ts
 // Lógica de redirecionamento por role
 switch (user.role) {
-  case 'ORGANIZER': navigate('/dashboard/events');    break;
-  case 'ATHLETE':   navigate('/profile');             break;
-  case 'COACH':     navigate('/dashboard/athletes');  break;
-  default:          navigate('/');
+  case 'ORGANIZER':
+    navigate('/dashboard/events')
+    break
+  case 'ATHLETE':
+    navigate('/profile')
+    break
+  case 'COACH':
+    navigate('/dashboard/athletes')
+    break
+  default:
+    navigate('/')
 }
 
 // Se havia redirect pendente (ex: acesso direto a rota protegida)
 // Redirecionar para a rota original após login
-const from = location.state?.from || defaultByRole;
-navigate(from);
+const from = location.state?.from || defaultByRole
+navigate(from)
 ```
 
 ### 10.3 Armazenamento de Sessão
@@ -780,6 +793,7 @@ navigate(from);
 ### 10.4 Logging de Autenticação (RNF-OBS)
 
 O backend deve registrar no audit log:
+
 - Tentativa de login (sucesso/falha) com timestamp
 - User-agent e IP (anonimizados conforme LGPD)
 - Sem registrar senha em nenhum log
@@ -827,7 +841,7 @@ export const authStrings = {
   a11yToggleShowPassword: 'Mostrar senha',
   a11yToggleHidePassword: 'Ocultar senha',
   a11yLoadingButton: 'Entrando...',
-} as const;
+} as const
 ```
 
 ---
@@ -843,10 +857,10 @@ export const authStrings = {
 <span id="identifier-error" role="alert">{errorMessage}</span>
 
 <!-- Botão de toggle de senha -->
-<button type="button" aria-label="Mostrar senha" aria-pressed={isVisible} />
+<button type="button" aria-label="Mostrar senha" aria-pressed="{isVisible}" />
 
 <!-- Botão de submit durante loading -->
-<button aria-busy={isLoading} aria-label="Entrando..." disabled />
+<button aria-busy="{isLoading}" aria-label="Entrando..." disabled />
 
 <!-- Erro geral -->
 <div role="alert" aria-live="polite">{generalError}</div>
@@ -932,5 +946,5 @@ animation: rotate 0.8s linear infinite
 
 ---
 
-*Especificação gerada com base em `Arena_Matchmaking.html`, `unified.jsx`, `styles.css` e `REQUIREMENTS v0.8`.*  
-*Próxima etapa: implementação + testes unitários dos componentes primitivos.*
+_Especificação gerada com base em `Arena_Matchmaking.html`, `unified.jsx`, `styles.css` e `REQUIREMENTS v0.8`._  
+_Próxima etapa: implementação + testes unitários dos componentes primitivos._
