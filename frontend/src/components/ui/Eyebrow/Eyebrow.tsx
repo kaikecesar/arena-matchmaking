@@ -2,9 +2,9 @@ import React from 'react'
 import type { EyebrowProps } from './Eyebrow.types'
 import { StyledEyebrow } from './Eyebrow.styles'
 
-const Eyebrow = ({ children, $color, as }: EyebrowProps): React.ReactElement => {
+const Eyebrow = ({ children, $color }: EyebrowProps): React.ReactElement => {
   return (
-    <StyledEyebrow as={as} $color={$color}>
+    <StyledEyebrow $color={$color}>
       {children}
     </StyledEyebrow>
   )

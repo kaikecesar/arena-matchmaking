@@ -2,8 +2,8 @@
 import React from 'react'
 
 // Components
-import type { StackProps } from './Stack.types'
-import { StyledStack } from './Stack.styles'
+import type { StackProps } from './Stack.types.ts'
+import { StyledStack } from './Stack.styles.ts'
 
 const Stack: React.FC<StackProps> = ({
   as = 'div',
@@ -14,10 +14,16 @@ const Stack: React.FC<StackProps> = ({
   children,
 }) => {
   return (
-    <StyledStack as={as} $direction={direction} $gap={gap} $align={align} $justify={justify}>
+    <StyledStack 
+        as={as} 
+        $direction={direction} 
+        $gap={gap} 
+        $align={align} 
+        $justify={justify}
+    >
       {children}
     </StyledStack>
   )
 }
 
-export { Stack }
+export { Stack };

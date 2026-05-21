@@ -1,10 +1,25 @@
-export type ButtonVariant = 'blood' | 'bone' | 'ghost'
-export type ButtonSize = 'sm' | 'md' | 'lg'
+export enum ButtonVariant {
+  Blood = 'blood',
+  Bone = 'bone',
+  Ghost = 'ghost',
+}
+
+export enum ButtonSize {
+  Small = 'sm',
+  Medium = 'md',
+  Large = 'lg',
+}
+
+export enum ButtonType {
+  Button = 'button',
+  Submit = 'submit',
+  Reset = 'reset',
+}
 
 export interface ButtonProps {
   label: string
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  type?: 'button' | 'submit' | 'reset'
+  type?: ButtonType
   variant?: ButtonVariant
   size?: ButtonSize
   loading?: boolean

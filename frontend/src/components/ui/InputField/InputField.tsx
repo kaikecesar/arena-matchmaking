@@ -1,5 +1,6 @@
 import React from 'react'
 import type { InputFieldProps } from './InputField.types'
+import { InputFieldType } from './InputField.types'
 import {
   FieldWrapper,
   FieldLabel,
@@ -15,7 +16,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
     {
       label,
       name,
-      type = 'text',
+      type = InputFieldType.Text,
       value,
       onChange,
       onBlur,

@@ -1,7 +1,13 @@
+export enum InputFieldType {
+  Text = 'text',
+  Password = 'password',
+  Email = 'email',
+}
+
 export interface InputFieldProps {
   label: string
   name: string
-  type?: 'text' | 'password' | 'email'
+  type?: InputFieldType
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void

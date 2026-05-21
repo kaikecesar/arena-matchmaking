@@ -3,6 +3,7 @@ import type { FC } from 'react'
 
 // Types
 import type { ButtonProps } from './Button.types'
+import { ButtonType, ButtonVariant, ButtonSize } from './Button.types'
 
 // Components
 import { StyledButton, SpinnerSvg } from './Button.styles'
@@ -19,9 +20,9 @@ const Spinner: FC = () => {
 const Button: FC<ButtonProps> = ({
   label,
   onClick,
-  type = 'button',
-  variant = 'blood',
-  size = 'md',
+  type = ButtonType.Button,
+  variant = ButtonVariant.Blood,
+  size = ButtonSize.Medium,
   loading = false,
   disabled = false,
   fullWidth = false,

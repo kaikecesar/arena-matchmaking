@@ -1,7 +1,12 @@
-export type TextVariant = 'body' | 'label' | 'eyebrow' | 'heading' | 'subheading'
+export enum TextVariant {
+  Body = 'body',
+  Label = 'label',
+  Eyebrow = 'eyebrow',
+  Heading = 'heading',
+  Subheading = 'subheading',
+}
 
 export interface TextProps {
   children: React.ReactNode
-  as?: React.ElementType
   variant?: TextVariant
 }
