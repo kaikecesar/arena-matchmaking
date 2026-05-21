@@ -2,5 +2,6 @@ import 'styled-components'
 import type { Theme } from './theme'
 
 declare module 'styled-components' {
-  export type DefaultTheme = Theme
+  // interface required for module augmentation (type alias does not merge)
+  export interface DefaultTheme extends Theme {}
 }

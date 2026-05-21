@@ -23,8 +23,8 @@ import {
 } from './Login.styles'
 import { BrandMark } from '@/components/ui/BrandMark'
 import { Eyebrow } from '@/components/ui/Eyebrow'
-import { InputField } from '@/components/ui/InputField'
-import { Button } from '@/components/ui/Button'
+import { Button, ButtonSize, ButtonType, ButtonVariant } from '@/components/ui/Button'
+import { InputField, InputFieldType } from '@/components/ui/InputField'
 import { Checkbox } from '@/components/ui/Checkbox'
 import { ArrowRightIcon, EyeOffIcon, EyeOpenIcon, WarningIcon } from '@/components/icons'
 import { ROUTES } from '@/constants/routes'
@@ -85,7 +85,7 @@ const Login = (): ReactElement => {
             ref={identifierRef}
             label={authStrings.fieldEmailLabel}
             name="identifier"
-            type="text"
+            type={InputFieldType.Text}
             value={identifierDisplayValue}
             onChange={onIdentifierChange}
             onBlur={identifierOnBlur}
@@ -99,7 +99,7 @@ const Login = (): ReactElement => {
             ref={passwordRef}
             label={authStrings.fieldPasswordLabel}
             name="password"
-            type={isPasswordVisible ? 'text' : 'password'}
+            type={isPasswordVisible ? InputFieldType.Text : InputFieldType.Password}
             value={passwordValue}
             onChange={rhfPasswordChange}
             onBlur={passwordOnBlur}
@@ -134,9 +134,9 @@ const Login = (): ReactElement => {
 
           {/* Submit */}
           <Button
-            type="submit"
-            variant="blood"
-            size="lg"
+            type={ButtonType.Submit}
+            variant={ButtonVariant.Blood}
+            size={ButtonSize.Large}
             fullWidth
             label={authStrings.submitButton}
             loading={isLoading}
