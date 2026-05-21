@@ -1,5 +1,8 @@
 # Depenencies
 node_modules/
 
+# Build
+build/
+
 # Variables
 .env
