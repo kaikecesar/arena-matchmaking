@@ -10,7 +10,7 @@ export const StyledEyebrow = styled.span<StyledEyebrowProps>`
   font-family: ${({ theme }) => theme.fonts.mono};
   font-size: 10px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: ${({ theme, $color }) => ($color ? theme.colors[$color] : theme.colors.textLow)};
 `

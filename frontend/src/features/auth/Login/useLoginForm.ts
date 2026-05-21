@@ -3,15 +3,10 @@ import type { ChangeEvent, FormEvent } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { UseFormRegister, FieldErrors } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
-import { authService } from '@/services/authService'
+import { useAuth } from '@/features/auth/hooks/useAuth'
+import { loginSchema, type LoginFormValues } from '@/features/auth/schemas'
 import { formatCPF } from '@/utils/formatCPF'
-import { authStrings } from '@/i18n/pt-BR/auth'
-import { loginSchema, LoginErrorCode, ROLE_REDIRECT } from './Login.types'
-import type { LoginFormValues, LoginApiError } from './Login.types'
-
-// ─── Return type (fully typed — no any) ──────────────────────────────────────
 
 export interface UseLoginFormReturn {
   register: UseFormRegister<LoginFormValues>
@@ -28,10 +23,8 @@ export interface UseLoginFormReturn {
   passwordValue: string
 }
 
-// ─── Hook ─────────────────────────────────────────────────────────────────────
-
 export function useLoginForm(): UseLoginFormReturn {
-  const navigate = useNavigate()
+  const { login, isSubmitting } = useAuth()
 
   const {
     register,
@@ -44,7 +37,6 @@ export function useLoginForm(): UseLoginFormReturn {
     defaultValues: { identifier: '', password: '', keepSession: true },
   })
 
-  const [isLoading, setIsLoading] = useState(false)
   const [generalError, setGeneralError] = useState<string | null>(null)
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [identifierDisplayValue, setIdentifierDisplayValue] = useState('')
@@ -70,50 +62,16 @@ export function useLoginForm(): UseLoginFormReturn {
     } else {
       const digits = raw.replace(/\D/g, '')
       setIdentifierDisplayValue(formatCPF(digits))
-      // Store raw digits — backend expects no formatting
       setValue('identifier', digits, { shouldValidate: false })
     }
   }
 
   const onValid = async (data: LoginFormValues): Promise<void> => {
-    setIsLoading(true)
     setGeneralError(null)
-
     try {
-      const body = await authService.login(data)
-      void navigate(ROLE_REDIRECT[body.user.role])
-      return
+      await login(data)
     } catch (error) {
-      if (
-        typeof error === 'object' &&
-        error !== null &&
-        'status' in error &&
-        typeof (error as { status: unknown }).status === 'number'
-      ) {
-        const typedError = error as {
-          status: number
-          body: unknown
-        }
-
-        if (typedError.status === 429) {
-          setGeneralError(authStrings.errorRateLimited)
-          return
-        }
-
-        if (typedError.status === 401) {
-          const body = typedError.body as LoginApiError
-          setGeneralError(
-            body.error === LoginErrorCode.invalidCredentials
-              ? authStrings.errorInvalidCredentials
-              : authStrings.errorGeneric
-          )
-          return
-        }
-      }
-
-      setGeneralError(authStrings.errorGeneric)
-    } finally {
-      setIsLoading(false)
+      setGeneralError(error instanceof Error ? error.message : 'Erro desconhecido')
     }
   }
 
@@ -125,7 +83,7 @@ export function useLoginForm(): UseLoginFormReturn {
     register,
     errors,
     handleSubmit,
-    isLoading,
+    isLoading: isSubmitting,
     generalError,
     isPasswordVisible,
     togglePasswordVisibility,

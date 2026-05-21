@@ -15,16 +15,16 @@ const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
     gap: ${({ theme }) => theme.spacing.sm};
   `,
   md: css`
-    height: 44px;
-    padding: 0 20px;
+    height: 48px;
+    padding: 0 22px;
     font-size: ${({ theme }) => theme.fontSizes.md};
-    gap: ${({ theme }) => theme.spacing.md};
+    gap: ${({ theme }) => theme.spacing.sm};
   `,
   lg: css`
-    height: 56px;
+    height: 52px;
     padding: 0 24px;
     font-size: ${({ theme }) => theme.fontSizes.lg};
-    gap: ${({ theme }) => theme.spacing.lg};
+    gap: ${({ theme }) => theme.spacing.md};
   `,
 }
 
@@ -43,10 +43,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border-radius: ${({ theme }) => theme.radius.md};
   font-family: ${({ theme }) => theme.fonts.display};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: ${({ theme }) => theme.transitions.normal};
+  transition:
+    transform ${({ theme }) => theme.transitions.fast},
+    box-shadow ${({ theme }) => theme.transitions.normal},
+    filter ${({ theme }) => theme.transitions.normal},
+    background ${({ theme }) => theme.transitions.normal};
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
   pointer-events: ${({ $loading }) => ($loading ? 'none' : 'auto')};
 
@@ -65,10 +69,19 @@ export const StyledButton = styled.button<StyledButtonProps>`
           box-shadow: ${theme.shadows.buttonBlood};
 
           &:hover:not(:disabled) {
-            filter: brightness(1.08);
+            filter: brightness(1.06);
+            box-shadow:
+              0 1px 0 rgba(255, 255, 255, 0.16) inset,
+              0 10px 24px rgba(210, 38, 56, 0.28);
+            transform: translateY(-1px);
           }
+
           &:active:not(:disabled) {
-            transform: scale(0.98);
+            transform: translateY(0) scale(0.99);
+            filter: brightness(0.98);
+            box-shadow:
+              0 1px 0 rgba(255, 255, 255, 0.1) inset,
+              0 4px 12px rgba(210, 38, 56, 0.2);
           }
         `
       case 'bone':
@@ -82,9 +95,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
           &:hover:not(:disabled) {
             filter: brightness(1.04);
+            transform: translateY(-1px);
           }
+
           &:active:not(:disabled) {
-            transform: scale(0.98);
+            transform: translateY(0) scale(0.99);
           }
         `
       case 'ghost':
@@ -97,8 +112,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
             border-color: ${theme.colors.border2};
             background: ${theme.colors.surf2};
           }
+
           &:active:not(:disabled) {
-            transform: scale(0.98);
+            transform: scale(0.99);
           }
         `
       default:

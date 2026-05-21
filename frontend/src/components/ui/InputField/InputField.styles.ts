@@ -8,12 +8,12 @@ export const FieldWrapper = styled.div`
 
 export const FieldLabel = styled.label`
   font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: 10px;
+  font-size: 11px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  letter-spacing: 0.22em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.textLow};
-  margin-bottom: 7px;
+  margin-bottom: 8px;
   display: block;
 `
 
@@ -26,23 +26,46 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   position: relative;
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.colors.surf3};
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0) 38%
+  ),
+    ${({ theme }) => theme.colors.surf3};
   border-radius: ${({ theme }) => theme.radius.md};
   border: 1px solid
     ${({ theme, $hasError }) => ($hasError ? theme.colors.blood : theme.colors.border1)};
   box-shadow: ${({ theme, $hasError }) =>
-    $hasError ? `0 0 0 3px ${theme.colors.bloodTint}` : 'none'};
+    $hasError
+      ? `inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 3px ${theme.colors.bloodTint}`
+      : 'inset 0 1px 0 rgba(255,255,255,0.05), 0 1px 2px rgba(0,0,0,0.18)'};
   transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
-  opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
+    border-color ${({ theme }) => theme.transitions.normal},
+    box-shadow ${({ theme }) => theme.transitions.normal},
+    background ${({ theme }) => theme.transitions.normal};
+  opacity: ${({ $disabled }) => ($disabled ? 0.55 : 1)};
+
+  &:hover:not(:focus-within) {
+    ${({ $hasError, $disabled, theme }) =>
+      !$hasError &&
+      !$disabled &&
+      css`
+        border-color: ${theme.colors.border2};
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.06),
+          0 2px 6px rgba(0, 0, 0, 0.2);
+      `}
+  }
 
   &:focus-within {
     ${({ $hasError, theme }) =>
       !$hasError &&
       css`
-        border-color: ${theme.colors.blood};
-        box-shadow: 0 0 0 3px ${theme.colors.bloodTint};
+        border-color: rgba(210, 38, 56, 0.65);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.06),
+          0 0 0 3px ${theme.colors.bloodTint},
+          0 4px 14px rgba(210, 38, 56, 0.12);
       `}
   }
 `
@@ -56,7 +79,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   background: transparent;
   border: none;
   outline: none;
-  padding: 14px 16px;
+  padding: 13px 16px;
   font-family: ${({ theme, $mono }) => ($mono ? theme.fonts.mono : theme.fonts.ui)};
   font-size: 15px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
@@ -67,7 +90,6 @@ export const StyledInput = styled.input<StyledInputProps>`
     color: ${({ theme }) => theme.colors.textDim};
   }
 
-  /* Remove browser autofill background */
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
@@ -87,9 +109,10 @@ export const TrailingSlot = styled.button`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.textLow};
   flex-shrink: 0;
+  transition: color ${({ theme }) => theme.transitions.normal};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textMid};
+    color: ${({ theme }) => theme.colors.textHi};
   }
 `
 
@@ -99,7 +122,7 @@ export const ErrorMessage = styled.span`
   font-family: ${({ theme }) => theme.fonts.ui};
   font-size: 12px;
   color: ${({ theme }) => theme.colors.blood};
-  animation: fadeInDown 0.2s ease;
+  animation: fadeInDown 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 
   @keyframes fadeInDown {
     from {
