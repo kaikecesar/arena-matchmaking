@@ -9,6 +9,9 @@ lerna-debug.log*
 
 node_modules
 dist
+
+# Playwright MCP artifacts (runtime inspection only)
+../../.cursor/playwright-output
 dist-ssr
 *.local
 

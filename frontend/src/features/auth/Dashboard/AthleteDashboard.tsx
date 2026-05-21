@@ -12,6 +12,7 @@ const AthleteDashboard = (): ReactElement => {
     <DashboardPage
       title={authStrings.dashboard.athlete.title}
       subtitle={authStrings.dashboard.athlete.subtitle}
+      modules={authStrings.dashboard.athlete.modules}
     />
   )
 }

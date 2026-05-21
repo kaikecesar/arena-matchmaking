@@ -12,6 +12,7 @@ const CoachDashboard = (): ReactElement => {
     <DashboardPage
       title={authStrings.dashboard.coach.title}
       subtitle={authStrings.dashboard.coach.subtitle}
+      modules={authStrings.dashboard.coach.modules}
     />
   )
 }

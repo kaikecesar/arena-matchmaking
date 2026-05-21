@@ -1,5 +1,7 @@
 // Libraries
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes, type Keyframes } from 'styled-components'
+
+import type { Theme } from '@/styles/theme'
 
 /* *************************************************************************************************
 ********************************************** LAYOUT **********************************************
@@ -12,12 +14,12 @@ export const FieldWrapper = styled.div`
 
 export const FieldLabel = styled.label`
   font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: 11px;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  letter-spacing: 0.1em;
+  letter-spacing: ${({ theme }) => theme.letterSpacing.caps};
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.textLow};
-  margin-bottom: 8px;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
   display: block;
 `
 
@@ -33,30 +35,26 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   position: relative;
   display: flex;
   align-items: center;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.035) 0%,
-    rgba(255, 255, 255, 0) 38%
-  ),
+  background: ${({ theme }) => theme.gradients.inputSurface},
     ${({ theme }) => theme.colors.surf3};
   border-radius: ${({ theme }) => theme.radius.md};
-  border: 1px solid
+  border: ${({ theme }) => theme.borders.hairline} solid
     ${({ theme, $hasError }) =>
       $hasError
-        ? theme.colors.blood
+        ? theme.colors.bloodGlow
         : theme.colors.border1};
   box-shadow: ${({ theme, $hasError }) =>
     $hasError
-      ? `inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 3px ${theme.colors.bloodTint}`
-      : 'inset 0 1px 0 rgba(255,255,255,0.05), 0 1px 2px rgba(0,0,0,0.18)'};
+      ? theme.shadows.inputErrorFocus
+      : theme.shadows.inputDefault};
   transition:
     border-color ${({ theme }) => theme.transitions.normal},
     box-shadow ${({ theme }) => theme.transitions.normal},
     background ${({ theme }) => theme.transitions.normal};
-  opacity: ${({ $disabled }) =>
+  opacity: ${({ theme, $disabled }) =>
     $disabled
-      ? 0.55
-      : 1};
+      ? theme.opacity.disabledField
+      : theme.opacity.full};
 
   &:hover:not(:focus-within) {
     ${({ $hasError, $disabled, theme }) =>
@@ -64,22 +62,21 @@ export const InputWrapper = styled.div<InputWrapperProps>`
       !$disabled &&
       css`
         border-color: ${theme.colors.border2};
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.06),
-          0 2px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: ${theme.shadows.inputHover};
       `}
   }
 
   &:focus-within {
     ${({ $hasError, theme }) =>
-      !$hasError &&
-      css`
-        border-color: rgba(210, 38, 56, 0.65);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.06),
-          0 0 0 3px ${theme.colors.bloodTint},
-          0 4px 14px rgba(210, 38, 56, 0.12);
-      `}
+      $hasError
+        ? css`
+            border-color: ${theme.colors.bloodBorderFocusStrong};
+            box-shadow: ${theme.shadows.inputErrorFocus};
+          `
+        : css`
+            border-color: ${theme.colors.bloodBorderFocus};
+            box-shadow: ${theme.shadows.inputFocus};
+          `}
   }
 `
 
@@ -92,15 +89,22 @@ export const StyledInput = styled.input<StyledInputProps>`
   background: transparent;
   border: none;
   outline: none;
-  padding: 13px 16px;
+  padding: ${({ theme }) => theme.spacing.md}
+    ${({ theme }) => theme.spacing.lg};
   font-family: ${({ theme, $mono }) =>
     $mono
       ? theme.fonts.mono
       : theme.fonts.ui};
-  font-size: 15px;
+  font-size: ${({ theme }) => theme.fontSizes.input};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.textHi};
   width: 100%;
+  min-height: ${({ theme }) => theme.layout.touchTarget};
+
+  ${({ theme }) => theme.media.up.lg} {
+    font-size: ${({ theme }) => theme.fontSizes.inputDesktop};
+    min-height: auto;
+  }
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.textDim};
@@ -109,9 +113,11 @@ export const StyledInput = styled.input<StyledInputProps>`
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px ${({ theme }) => theme.colors.surf3} inset;
+    -webkit-box-shadow: 0 0 0 ${({ theme }) => theme.sizes.autofillInset}
+      ${({ theme }) => theme.colors.surf3} inset;
     -webkit-text-fill-color: ${({ theme }) => theme.colors.textHi};
-    transition: background-color 5000s ease-in-out 0s;
+    transition: background-color ${({ theme }) => theme.motion.durations.autofill}
+      ease-in-out 0s;
   }
 `
 
@@ -122,43 +128,60 @@ export const TrailingSlot = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 14px 0 0;
+  min-width: ${({ theme }) => theme.layout.touchTarget};
+  min-height: ${({ theme }) => theme.layout.touchTarget};
+  padding: 0 ${({ theme }) => theme.spacing.ten} 0 0;
   background: transparent;
   border: none;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.textLow};
   flex-shrink: 0;
-  transition: color ${({ theme }) => theme.transitions.normal};
+  border-radius: ${({ theme }) => theme.radius.sm};
+  transition:
+    color ${({ theme }) => theme.transitions.normal},
+    background ${({ theme }) => theme.transitions.fast};
 
   &:hover {
     color: ${({ theme }) => theme.colors.textHi};
+    background: ${({ theme }) => theme.colors.overlayMuted};
+  }
+
+  &:focus-visible {
+    outline: ${({ theme }) => theme.shadows.focusOutline};
+    outline-offset: ${({ theme }) => theme.spacing.hairline};
+  }
+`
+
+const createFieldErrorIn = (theme: Theme): Keyframes => keyframes`
+  from {
+    opacity: ${theme.opacity.none};
+    transform: translateY(-${theme.motion.offset.xs});
+  }
+  to {
+    opacity: ${theme.opacity.full};
+    transform: translateY(0);
   }
 `
 
 export const ErrorMessage = styled.span`
   display: block;
-  margin-top: ${({ theme }) => theme.spacing.xs};
+  margin-top: ${({ theme }) => theme.spacing.six};
+  padding-left: ${({ theme }) => theme.spacing.xxs};
   font-family: ${({ theme }) => theme.fonts.ui};
-  font-size: 12px;
-  color: ${({ theme }) => theme.colors.blood};
-  animation: fadeInDown 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-  @keyframes fadeInDown {
-    from {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  font-size: ${({ theme }) => theme.fontSizes.error};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  line-height: ${({ theme }) => theme.lineHeights.ui};
+  letter-spacing: ${({ theme }) => theme.letterSpacing.micro};
+  color: ${({ theme }) => theme.colors.errorSoft};
+  animation: ${({ theme }) => createFieldErrorIn(theme)}
+    ${({ theme }) => theme.motion.durations.fieldError}
+    ${({ theme }) => theme.transitions.premium} both;
 `
 
 export const HintText = styled.span`
   display: block;
   margin-top: ${({ theme }) => theme.spacing.xs};
   font-family: ${({ theme }) => theme.fonts.ui};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   color: ${({ theme }) => theme.colors.textLow};
 `

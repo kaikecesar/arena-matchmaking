@@ -17,48 +17,106 @@ import { useAuth } from '@/features/auth/hooks/useAuth'
 // Constants
 import { authStrings } from '@/i18n/pt-BR/auth'
 
+// Types
+import type { DashboardModule } from '@/features/auth/Dashboard/DashboardPage.types'
+import { UserRole } from '@/features/auth/types'
+
 // Styles
 import {
   DashboardCard,
+  DashboardGlow,
   DashboardHeader,
-  DashboardMeta,
+  DashboardHeaderStart,
+  DashboardMain,
+  DashboardOperator,
+  DashboardOperatorName,
+  DashboardOperatorRole,
   DashboardShell,
   DashboardSubtitle,
+  DashboardViewport,
   DashboardTitle,
+  ModuleGrid,
+  ModuleHint,
+  ModuleLabel,
+  ModulesHeading,
+  ModuleTile,
+  ModuleValue,
+  StatusMeta,
+  StatusPill,
+  StatusStrip,
 } from '@/features/auth/Dashboard/Dashboard.styles'
 
 type DashboardPageProps = {
   title: string
   subtitle: string
+  modules: readonly DashboardModule[]
 }
 
-const DashboardPage = ({ title, subtitle }: DashboardPageProps): ReactElement => {
+const DASHBOARD_ROLE_LABEL: Record<UserRole, string> = {
+  [UserRole.organizer]: authStrings.dashboard.roleLabels.organizer,
+  [UserRole.athlete]: authStrings.dashboard.roleLabels.athlete,
+  [UserRole.coach]: authStrings.dashboard.roleLabels.coach,
+}
+
+const DashboardPage = ({
+  title,
+  subtitle,
+  modules,
+}: DashboardPageProps): ReactElement => {
   const { user, logout, isSubmitting } = useAuth()
 
   return (
     <DashboardShell>
-      <DashboardHeader>
-        <BrandMark size={32} />
-        <Button
-          type={ButtonType.button}
-          variant={ButtonVariant.ghost}
-          size={ButtonSize.small}
-          label={authStrings.dashboard.logout}
-          onClick={() => void logout()}
-          loading={isSubmitting}
-        />
-      </DashboardHeader>
+      <DashboardGlow aria-hidden />
+      <DashboardViewport>
+        <DashboardHeader>
+          <DashboardHeaderStart>
+            <BrandMark size={32} />
+            {user && (
+              <DashboardOperator>
+                <DashboardOperatorName>{user.name}</DashboardOperatorName>
+                <DashboardOperatorRole>
+                  {DASHBOARD_ROLE_LABEL[user.role]}
+                </DashboardOperatorRole>
+              </DashboardOperator>
+            )}
+          </DashboardHeaderStart>
+          <Button
+            type={ButtonType.button}
+            variant={ButtonVariant.ghost}
+            size={ButtonSize.small}
+            label={authStrings.dashboard.logout}
+            onClick={() => void logout()}
+            loading={isSubmitting}
+          />
+        </DashboardHeader>
 
-      <DashboardCard>
-        <Eyebrow $color="copper">{authStrings.dashboard.eyebrow}</Eyebrow>
-        <DashboardTitle>{title}</DashboardTitle>
-        <DashboardSubtitle>{subtitle}</DashboardSubtitle>
-        {user && (
-          <DashboardMeta>
-            Operador: {user.name} · {user.role}
-          </DashboardMeta>
-        )}
-      </DashboardCard>
+        <DashboardMain>
+          <StatusStrip>
+            <StatusPill>{authStrings.dashboard.sessionLive}</StatusPill>
+            <StatusMeta>
+              {authStrings.dashboard.lastSync}: {authStrings.dashboard.lastSyncValue}
+            </StatusMeta>
+          </StatusStrip>
+
+          <DashboardCard>
+            <Eyebrow $color="copper">{authStrings.dashboard.eyebrow}</Eyebrow>
+            <DashboardTitle>{title}</DashboardTitle>
+            <DashboardSubtitle>{subtitle}</DashboardSubtitle>
+          </DashboardCard>
+
+          <ModulesHeading>{authStrings.dashboard.modulesHeading}</ModulesHeading>
+          <ModuleGrid>
+            {modules.map((module) => (
+              <ModuleTile key={module.label}>
+                <ModuleLabel>{module.label}</ModuleLabel>
+                <ModuleValue>{module.value}</ModuleValue>
+                <ModuleHint>{module.hint}</ModuleHint>
+              </ModuleTile>
+            ))}
+          </ModuleGrid>
+        </DashboardMain>
+      </DashboardViewport>
     </DashboardShell>
   )
 }

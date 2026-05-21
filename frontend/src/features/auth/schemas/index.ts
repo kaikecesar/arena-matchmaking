@@ -1,3 +1,8 @@
+// Utils
+import { initAuthZodErrorMap } from '@/features/auth/schemas/zodErrorMap'
+
+initAuthZodErrorMap()
+
 export { loginSchema, type LoginFormValues } from './login.schema'
 export {
   registerProfileSchema,

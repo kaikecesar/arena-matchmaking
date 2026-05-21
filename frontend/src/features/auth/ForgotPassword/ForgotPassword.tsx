@@ -17,13 +17,14 @@ import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
 import { useForgotPassword } from '@/features/auth/ForgotPassword/useForgotPassword'
 
 // Utils
-import { fieldErrorProp } from '@/utils/formProps'
+import { authFieldErrorProp } from '@/utils/formProps'
 
 // Constants
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Styles
 import {
+  BackLinkRow,
   ForgotLink,
   LoginForm,
   SuccessPanel,
@@ -37,7 +38,7 @@ const ForgotPassword = (): ReactElement => {
   *********************************************************************************************** */
   const {
     register,
-    errors,
+    formState,
     handleSubmit,
     state,
     onIdentifierChange,
@@ -90,7 +91,11 @@ const ForgotPassword = (): ReactElement => {
           value={state.ui.displayValue}
           onChange={onIdentifierChange}
           onBlur={onBlur}
-          {...fieldErrorProp(errors.identifier?.message)}
+          {...authFieldErrorProp({
+            field: 'identifier',
+            formState,
+            fallback: authStrings.forgot.errorEmptyIdentifier,
+          })}
           autoComplete="username"
           disabled={state.async.isLoading}
         />
@@ -106,9 +111,11 @@ const ForgotPassword = (): ReactElement => {
           loading={state.async.isLoading}
         />
 
-        <ForgotLink type="button" onClick={navigateToLogin}>
-          {authStrings.forgot.backToLogin}
-        </ForgotLink>
+        <BackLinkRow>
+          <ForgotLink type="button" onClick={navigateToLogin}>
+            {authStrings.forgot.backToLogin}
+          </ForgotLink>
+        </BackLinkRow>
       </LoginForm>
     </AuthLayout>
   )

@@ -13,6 +13,8 @@ import { useAuth } from '@/features/auth/hooks/useAuth'
 import { loginReducer } from '@/features/auth/Login/login.reducer'
 import { loginInitialState } from '@/features/auth/Login/login.state'
 import { loginSchema } from '@/features/auth/schemas'
+import { AUTH_FORM_OPTIONS } from '@/features/auth/utils/authFormConfig'
+import { authStrings } from '@/i18n/pt-BR/auth'
 import { formatCPF } from '@/utils/formatCPF'
 
 // Types
@@ -30,13 +32,16 @@ const useLoginForm = (): UseLoginFormReturn => {
   const {
     register,
     handleSubmit: rhfHandleSubmit,
-    formState: { errors },
+    formState,
     setValue,
     control,
   } = useForm<LoginFormValues>({
+    ...AUTH_FORM_OPTIONS,
     resolver: zodResolver(loginSchema),
     defaultValues: { identifier: '', password: '', keepSession: true },
   })
+
+  const { errors } = formState
 
   /* ***********************************************************************************************
   ***************************************** DERIVED VALUES *****************************************
@@ -79,7 +84,7 @@ const useLoginForm = (): UseLoginFormReturn => {
         payload:
           error instanceof Error
             ? error.message
-            : 'Erro desconhecido',
+            : authStrings.errorGeneric,
       })
     }
   }
@@ -91,6 +96,7 @@ const useLoginForm = (): UseLoginFormReturn => {
   return {
     state,
     register,
+    formState,
     errors,
     handleSubmit,
     isLoading: isSubmitting,

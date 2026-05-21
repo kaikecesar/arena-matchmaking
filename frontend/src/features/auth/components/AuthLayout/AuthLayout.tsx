@@ -3,6 +3,7 @@ import type { ReactElement } from 'react'
 
 // Components
 import { BrandMark } from '@/components/ui/BrandMark'
+import { AuthContextPanel } from '@/features/auth/components/AuthContextPanel/AuthContextPanel'
 
 // Types
 import type { AuthLayoutProps } from './AuthLayout.types'
@@ -14,20 +15,24 @@ import {
   GlowCopper,
   LoginHeader,
   PageShell,
+  PrimaryColumn,
 } from '@/features/auth/components/AuthLayout/AuthLayout.styles'
 
 const AuthLayout = ({ children, footer, wide = false }: AuthLayoutProps): ReactElement => {
   return (
     <PageShell>
-      <GlowBlood />
-      <GlowCopper />
-      <Card $wide={wide}>
-        <LoginHeader>
-          <BrandMark size={28} />
-        </LoginHeader>
-        {children}
-        {footer}
-      </Card>
+      <PrimaryColumn>
+        <GlowBlood aria-hidden />
+        <GlowCopper aria-hidden />
+        <Card $wide={wide}>
+          <LoginHeader>
+            <BrandMark size={32} />
+          </LoginHeader>
+          {children}
+          {footer}
+        </Card>
+      </PrimaryColumn>
+      <AuthContextPanel />
     </PageShell>
   )
 }

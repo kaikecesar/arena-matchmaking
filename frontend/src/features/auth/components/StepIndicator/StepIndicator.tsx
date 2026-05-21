@@ -1,6 +1,9 @@
 // Core
 import type { ReactElement } from 'react'
 
+// Constants
+import { authStrings } from '@/i18n/pt-BR/auth'
+
 // Types
 import type { StepIndicatorProps } from './StepIndicator.types'
 
@@ -9,7 +12,7 @@ import { StepIndicatorRow, StepItem, StepLabel } from '@/features/auth/component
 
 const StepIndicator = ({ steps, currentStep }: StepIndicatorProps): ReactElement => {
   return (
-    <StepIndicatorRow aria-label="Progresso do cadastro">
+    <StepIndicatorRow aria-label={authStrings.a11yStepProgress}>
       {steps.map((label, index) => (
         <StepItem
           key={label}

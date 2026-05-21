@@ -22,7 +22,7 @@ import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
 import { useLoginForm } from '@/features/auth/Login/useLoginForm'
 
 // Utils
-import { fieldErrorProp } from '@/utils/formProps'
+import { authFieldErrorProp } from '@/utils/formProps'
 
 // Constants
 import { ROUTES } from '@/constants/routes'
@@ -48,7 +48,7 @@ const Login = (): ReactElement => {
   const {
     state,
     register,
-    errors,
+    formState,
     handleSubmit,
     isLoading,
     togglePasswordVisibility,
@@ -89,7 +89,7 @@ const Login = (): ReactElement => {
         subtitle={authStrings.heroSubtitle}
       />
 
-      <LoginForm onSubmit={handleSubmit} noValidate aria-label="Formulário de login">
+      <LoginForm onSubmit={handleSubmit} noValidate aria-label={authStrings.a11yLoginForm}>
         <InputField
           ref={identifierRef}
           label={authStrings.fieldEmailLabel}
@@ -98,7 +98,11 @@ const Login = (): ReactElement => {
           value={state.ui.identifierDisplayValue}
           onChange={onIdentifierChange}
           onBlur={identifierOnBlur}
-          {...fieldErrorProp(errors.identifier?.message)}
+          {...authFieldErrorProp({
+            field: 'identifier',
+            formState,
+            fallback: authStrings.errorEmptyIdentifier,
+          })}
           autoComplete="username"
           disabled={isLoading}
         />
@@ -115,7 +119,11 @@ const Login = (): ReactElement => {
           value={passwordValue}
           onChange={rhfPasswordChange}
           onBlur={passwordOnBlur}
-          {...fieldErrorProp(errors.password?.message)}
+          {...authFieldErrorProp({
+            field: 'password',
+            formState,
+            fallback: authStrings.errorEmptyPassword,
+          })}
           autoComplete="current-password"
           mono
           disabled={isLoading}
@@ -129,6 +137,11 @@ const Login = (): ReactElement => {
                 )
           }
           onTrailingIconClick={togglePasswordVisibility}
+          trailingIconAriaLabel={
+            state.ui.isPasswordVisible
+              ? authStrings.a11yHidePassword
+              : authStrings.a11yShowPassword
+          }
         />
 
         <FormFooterRow>

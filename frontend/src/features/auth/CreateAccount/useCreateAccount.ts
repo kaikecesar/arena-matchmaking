@@ -1,5 +1,6 @@
 // Core
 import { useReducer } from 'react'
+import type { ChangeEvent } from 'react'
 
 // Libraries
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -16,6 +17,7 @@ import {
   registerPasswordSchema,
   registerProfileSchema,
 } from '@/features/auth/schemas'
+import { AUTH_FORM_OPTIONS } from '@/features/auth/utils/authFormConfig'
 import { getPasswordStrength } from '@/features/auth/utils/passwordStrength'
 import { formatCPF } from '@/utils/formatCPF'
 
@@ -45,25 +47,85 @@ const useCreateAccount = (): UseCreateAccountReturn => {
   const [state, dispatch] = useReducer(createAccountReducer, createAccountInitialState)
 
   const profileForm = useForm<RegisterProfileValues>({
+    ...AUTH_FORM_OPTIONS,
     resolver: zodResolver(registerProfileSchema),
     defaultValues: { name: '', email: '', document: '' },
   })
 
   const passwordForm = useForm<RegisterPasswordValues>({
+    ...AUTH_FORM_OPTIONS,
     resolver: zodResolver(registerPasswordSchema),
     defaultValues: { password: '', confirmPassword: '' },
   })
 
+  const { control: profileControl } = profileForm
+  const { control: passwordControl } = passwordForm
+
   /* ***********************************************************************************************
   ***************************************** DERIVED VALUES *****************************************
   *********************************************************************************************** */
+  const nameValue =
+    useWatch({ control: profileControl, name: 'name', defaultValue: '' }) ?? ''
+  const emailValue =
+    useWatch({ control: profileControl, name: 'email', defaultValue: '' }) ?? ''
   const passwordValue =
-    useWatch({ control: passwordForm.control, name: 'password', defaultValue: '' }) ?? ''
+    useWatch({ control: passwordControl, name: 'password', defaultValue: '' }) ?? ''
+  const confirmPasswordValue =
+    useWatch({ control: passwordControl, name: 'confirmPassword', defaultValue: '' }) ?? ''
   const strength = getPasswordStrength(passwordValue, authStrings.register.strength)
 
   /* ***********************************************************************************************
   ******************************************* CALLBACKS ********************************************
   *********************************************************************************************** */
+  const onNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    void profileForm.setValue('name', e.target.value, { shouldValidate: false })
+  }
+
+  const onNameBlur = (): void => {
+    void profileForm.setValue('name', profileForm.getValues('name'), { shouldTouch: true })
+    void profileForm.trigger('name')
+  }
+
+  const onEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    void profileForm.setValue('email', e.target.value, { shouldValidate: false })
+  }
+
+  const onEmailBlur = (): void => {
+    void profileForm.setValue('email', profileForm.getValues('email'), { shouldTouch: true })
+    void profileForm.trigger('email')
+  }
+
+  const onDocumentBlur = (): void => {
+    void profileForm.setValue('document', profileForm.getValues('document'), {
+      shouldTouch: true,
+    })
+    void profileForm.trigger('document')
+  }
+
+  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    void passwordForm.setValue('password', e.target.value, { shouldValidate: false })
+  }
+
+  const onPasswordBlur = (): void => {
+    void passwordForm.setValue('password', passwordForm.getValues('password'), {
+      shouldTouch: true,
+    })
+    void passwordForm.trigger('password')
+  }
+
+  const onConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    void passwordForm.setValue('confirmPassword', e.target.value, { shouldValidate: false })
+  }
+
+  const onConfirmPasswordBlur = (): void => {
+    void passwordForm.setValue(
+      'confirmPassword',
+      passwordForm.getValues('confirmPassword'),
+      { shouldTouch: true }
+    )
+    void passwordForm.trigger('confirmPassword')
+  }
+
   const selectRole = (role: RegisterRole): void => {
     dispatch({ type: 'SET_ROLE', payload: role })
   }
@@ -116,7 +178,6 @@ const useCreateAccount = (): UseCreateAccountReturn => {
         document: profileData.document.replace(/\D/g, ''),
         password: passwordData.password,
       })
-      dispatch({ type: 'SET_SUCCESS' })
     } catch (error) {
       dispatch({
         type: 'SET_GENERAL_ERROR',
@@ -136,7 +197,19 @@ const useCreateAccount = (): UseCreateAccountReturn => {
     state,
     profileForm,
     passwordForm,
+    nameValue,
+    emailValue,
     passwordValue,
+    confirmPasswordValue,
+    onNameChange,
+    onNameBlur,
+    onEmailChange,
+    onEmailBlur,
+    onDocumentBlur,
+    onPasswordChange,
+    onPasswordBlur,
+    onConfirmPasswordChange,
+    onConfirmPasswordBlur,
     strength,
     roleKeys: CREATE_ACCOUNT_ROLE_KEYS,
     selectRole,

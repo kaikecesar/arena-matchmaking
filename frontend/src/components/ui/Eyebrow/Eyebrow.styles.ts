@@ -11,9 +11,9 @@ interface StyledEyebrowProps {
 export const StyledEyebrow = styled.span<StyledEyebrowProps>`
   display: block;
   font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: 10px;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  letter-spacing: 0.16em;
+  letter-spacing: ${({ theme }) => theme.letterSpacing.caps};
   text-transform: uppercase;
   color: ${({ theme, $color }) =>
     $color

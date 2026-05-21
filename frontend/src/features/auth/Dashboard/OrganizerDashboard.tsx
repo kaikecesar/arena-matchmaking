@@ -12,6 +12,7 @@ const OrganizerDashboard = (): ReactElement => {
     <DashboardPage
       title={authStrings.dashboard.organizer.title}
       subtitle={authStrings.dashboard.organizer.subtitle}
+      modules={authStrings.dashboard.organizer.modules}
     />
   )
 }

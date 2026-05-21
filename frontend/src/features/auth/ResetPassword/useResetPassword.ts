@@ -14,6 +14,7 @@ import { authService } from '@/features/auth/services'
 import { resetPasswordReducer } from '@/features/auth/ResetPassword/resetPassword.reducer'
 import { resetPasswordInitialState } from '@/features/auth/ResetPassword/resetPassword.state'
 import { resetPasswordSchema } from '@/features/auth/schemas'
+import { AUTH_FORM_OPTIONS } from '@/features/auth/utils/authFormConfig'
 import { getAuthErrorMessage } from '@/features/auth/utils/authErrors'
 import { getPasswordStrength } from '@/features/auth/utils/passwordStrength'
 
@@ -22,7 +23,12 @@ import { ROUTES } from '@/constants/routes'
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
-import type { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form'
+import type {
+  FieldErrors,
+  UseFormRegister,
+  UseFormReturn,
+  UseFormStateReturn,
+} from 'react-hook-form'
 import type { ResetPasswordFormValues } from '@/features/auth/schemas'
 import type { ResetPasswordState } from '@/features/auth/ResetPassword/resetPassword.state'
 import type { PasswordStrengthResult } from '@/features/auth/utils/passwordStrength'
@@ -32,6 +38,7 @@ export interface UseResetPasswordReturn {
   state: ResetPasswordState
   register: UseFormRegister<ResetPasswordFormValues>
   control: UseFormReturn<ResetPasswordFormValues>['control']
+  formState: UseFormStateReturn<ResetPasswordFormValues>
   errors: FieldErrors<ResetPasswordFormValues>
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void
   passwordValue: string
@@ -54,11 +61,14 @@ const useResetPassword = (): UseResetPasswordReturn => {
     register,
     handleSubmit: rhfHandleSubmit,
     control,
-    formState: { errors },
+    formState,
   } = useForm<ResetPasswordFormValues>({
+    ...AUTH_FORM_OPTIONS,
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: { password: '', confirmPassword: '' },
   })
+
+  const { errors } = formState
 
   /* ***********************************************************************************************
   ***************************************** DERIVED VALUES *****************************************
@@ -98,6 +108,7 @@ const useResetPassword = (): UseResetPasswordReturn => {
     state,
     register,
     control,
+    formState,
     errors,
     handleSubmit,
     passwordValue,

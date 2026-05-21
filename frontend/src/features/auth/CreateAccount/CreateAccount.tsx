@@ -16,7 +16,7 @@ import { useCreateAccount } from '@/features/auth/CreateAccount/useCreateAccount
 
 // Utils
 import { formatCPF } from '@/utils/formatCPF'
-import { fieldErrorProp } from '@/utils/formProps'
+import { authFieldErrorProp } from '@/utils/formProps'
 
 // Constants
 import { authStrings } from '@/i18n/pt-BR/auth'
@@ -30,8 +30,10 @@ import {
   FooterCreateLink,
   FooterLeft,
   FormActions,
-  HeroSubtitle,
+  FormStep,
   LoginForm,
+  SectionHint,
+  SectionLead,
   PageFooter,
   ReviewLabel,
   ReviewList,
@@ -74,7 +76,19 @@ const CreateAccount = (): ReactElement => {
     state,
     profileForm,
     passwordForm,
+    nameValue,
+    emailValue,
     passwordValue,
+    confirmPasswordValue,
+    onNameChange,
+    onNameBlur,
+    onEmailChange,
+    onEmailBlur,
+    onDocumentBlur,
+    onPasswordChange,
+    onPasswordBlur,
+    onConfirmPasswordChange,
+    onConfirmPasswordBlur,
     strength,
     roleKeys,
     selectRole,
@@ -130,15 +144,19 @@ const CreateAccount = (): ReactElement => {
       <StepIndicator steps={STEPS} currentStep={step} />
 
       {step === 0 && (
-        <LoginForm
-          onSubmit={(e) => {
-            e.preventDefault()
-            goNext()
-          }}
-          noValidate
-        >
-          <HeroSubtitle>{authStrings.register.roleTitle}</HeroSubtitle>
-          <RoleGrid>
+        <FormStep key="role">
+          <LoginForm
+            onSubmit={(e) => {
+              e.preventDefault()
+              goNext()
+            }}
+            noValidate
+          >
+            <div>
+              <SectionLead>{authStrings.register.roleTitle}</SectionLead>
+              <SectionHint>{authStrings.register.roleSubtitle}</SectionHint>
+            </div>
+            <RoleGrid>
             {roleKeys.map((key: RegisterRole) => (
               <RoleCardButton
                 key={key}
@@ -154,18 +172,20 @@ const CreateAccount = (): ReactElement => {
             ))}
           </RoleGrid>
           {state.async.roleError && <AuthAlert message={state.async.roleError} />}
-          <Button
-            type={ButtonType.submit}
-            variant={ButtonVariant.blood}
-            size={ButtonSize.medium}
-            fullWidth
-            label={authStrings.register.continue}
-          />
-        </LoginForm>
+            <Button
+              type={ButtonType.submit}
+              variant={ButtonVariant.blood}
+              size={ButtonSize.medium}
+              fullWidth
+              label={authStrings.register.continue}
+            />
+          </LoginForm>
+        </FormStep>
       )}
 
       {step === 1 && (
-        <LoginForm
+        <FormStep key="profile">
+          <LoginForm
           onSubmit={(e) => {
             e.preventDefault()
             goNext()
@@ -176,19 +196,27 @@ const CreateAccount = (): ReactElement => {
             label={authStrings.register.fieldName}
             name="name"
             type={InputFieldType.text}
-            value={profileForm.watch('name')}
-            onChange={profileForm.register('name').onChange}
-            onBlur={profileForm.register('name').onBlur}
-            {...fieldErrorProp(profileForm.formState.errors.name?.message)}
+            value={nameValue}
+            onChange={onNameChange}
+            onBlur={onNameBlur}
+            {...authFieldErrorProp({
+              field: 'name',
+              formState: profileForm.formState,
+              fallback: authStrings.register.errorName,
+            })}
           />
           <InputField
             label={authStrings.register.fieldEmail}
             name="email"
             type={InputFieldType.text}
-            value={profileForm.watch('email')}
-            onChange={profileForm.register('email').onChange}
-            onBlur={profileForm.register('email').onBlur}
-            {...fieldErrorProp(profileForm.formState.errors.email?.message)}
+            value={emailValue}
+            onChange={onEmailChange}
+            onBlur={onEmailBlur}
+            {...authFieldErrorProp({
+              field: 'email',
+              formState: profileForm.formState,
+              fallback: authStrings.register.errorEmailInvalid,
+            })}
           />
           <InputField
             label={authStrings.register.fieldDocument}
@@ -196,8 +224,12 @@ const CreateAccount = (): ReactElement => {
             type={InputFieldType.text}
             value={state.ui.documentDisplay}
             onChange={(e) => onDocumentChange(e.target.value)}
-            onBlur={profileForm.register('document').onBlur}
-            {...fieldErrorProp(profileForm.formState.errors.document?.message)}
+            onBlur={onDocumentBlur}
+            {...authFieldErrorProp({
+              field: 'document',
+              formState: profileForm.formState,
+              fallback: authStrings.register.errorDocument,
+            })}
           />
           <FormActions>
             <Button
@@ -214,11 +246,13 @@ const CreateAccount = (): ReactElement => {
               label={authStrings.register.continue}
             />
           </FormActions>
-        </LoginForm>
+          </LoginForm>
+        </FormStep>
       )}
 
       {step === 2 && (
-        <LoginForm
+        <FormStep key="security">
+          <LoginForm
           onSubmit={(e) => {
             e.preventDefault()
             goNext()
@@ -231,9 +265,13 @@ const CreateAccount = (): ReactElement => {
               name="password"
               type={InputFieldType.password}
               value={passwordValue}
-              onChange={passwordForm.register('password').onChange}
-              onBlur={passwordForm.register('password').onBlur}
-              {...fieldErrorProp(passwordForm.formState.errors.password?.message)}
+              onChange={onPasswordChange}
+              onBlur={onPasswordBlur}
+              {...authFieldErrorProp({
+                field: 'password',
+                formState: passwordForm.formState,
+                fallback: authStrings.register.errorPassword,
+              })}
               mono
             />
             {passwordValue.length > 0 && (
@@ -241,7 +279,9 @@ const CreateAccount = (): ReactElement => {
                 <StrengthTrack>
                   <StrengthFill $percent={strength.percent} />
                 </StrengthTrack>
-                <StrengthLabel>Força: {strength.label}</StrengthLabel>
+                <StrengthLabel>
+                  {authStrings.register.strengthLabel}: {strength.label}
+                </StrengthLabel>
               </>
             )}
           </div>
@@ -249,10 +289,14 @@ const CreateAccount = (): ReactElement => {
             label={authStrings.register.fieldConfirmPassword}
             name="confirmPassword"
             type={InputFieldType.password}
-            value={passwordForm.watch('confirmPassword') ?? ''}
-            onChange={passwordForm.register('confirmPassword').onChange}
-            onBlur={passwordForm.register('confirmPassword').onBlur}
-            {...fieldErrorProp(passwordForm.formState.errors.confirmPassword?.message)}
+            value={confirmPasswordValue}
+            onChange={onConfirmPasswordChange}
+            onBlur={onConfirmPasswordBlur}
+            {...authFieldErrorProp({
+              field: 'confirmPassword',
+              formState: passwordForm.formState,
+              fallback: authStrings.register.errorConfirmPassword,
+            })}
             mono
           />
           <FormActions>
@@ -270,11 +314,13 @@ const CreateAccount = (): ReactElement => {
               label={authStrings.register.continue}
             />
           </FormActions>
-        </LoginForm>
+          </LoginForm>
+        </FormStep>
       )}
 
       {step === 3 && profileData && passwordData && selectedRole && (
-        <LoginForm
+        <FormStep key="review">
+          <LoginForm
           onSubmit={(e) => {
             e.preventDefault()
             void onConfirm()
@@ -319,7 +365,8 @@ const CreateAccount = (): ReactElement => {
               loading={isSubmitting}
             />
           </FormActions>
-        </LoginForm>
+          </LoginForm>
+        </FormStep>
       )}
     </AuthLayout>
   )

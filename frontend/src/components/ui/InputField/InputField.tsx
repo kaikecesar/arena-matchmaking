@@ -29,6 +29,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
       hint,
       trailingIcon,
       onTrailingIconClick,
+      trailingIconAriaLabel,
       mono = false,
       disabled = false,
       autoComplete,
@@ -71,7 +72,11 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
             }
           />
           {trailingIcon && (
-            <TrailingSlot type="button" onClick={onTrailingIconClick} tabIndex={-1}>
+            <TrailingSlot
+              type="button"
+              onClick={onTrailingIconClick}
+              aria-label={trailingIconAriaLabel}
+            >
               {trailingIcon}
             </TrailingSlot>
           )}

@@ -15,6 +15,7 @@ export interface InputFieldProps {
   hint?: string | undefined
   trailingIcon?: React.ReactNode | undefined
   onTrailingIconClick?: (() => void) | undefined
+  trailingIconAriaLabel?: string | undefined
   mono?: boolean | undefined
   disabled?: boolean | undefined
   autoComplete?: string | undefined

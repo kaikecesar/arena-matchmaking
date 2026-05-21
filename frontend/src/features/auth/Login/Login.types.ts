@@ -1,5 +1,5 @@
 // Types
-import type { FieldErrors, UseFormRegister } from 'react-hook-form'
+import type { FieldErrors, UseFormRegister, UseFormStateReturn } from 'react-hook-form'
 import type { LoginFormValues } from '@/features/auth/schemas'
 import type { LoginState } from '@/features/auth/Login/login.state'
 import type { ChangeEvent, FormEvent } from 'react'
@@ -7,6 +7,7 @@ import type { ChangeEvent, FormEvent } from 'react'
 export interface UseLoginFormReturn {
   state: LoginState
   register: UseFormRegister<LoginFormValues>
+  formState: UseFormStateReturn<LoginFormValues>
   errors: FieldErrors<LoginFormValues>
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void
   isLoading: boolean

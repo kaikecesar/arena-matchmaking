@@ -1,21 +1,22 @@
 // Libraries
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CheckboxWrapper = styled.label`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: ${({ theme }) => theme.spacing.ten};
   cursor: pointer;
   user-select: none;
-  min-height: 22px;
+  min-height: ${({ theme }) => theme.layout.touchTarget};
+  padding: ${({ theme }) => theme.spacing.xs} 0;
 `
 
 export const HiddenInput = styled.input`
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: ${({ theme }) => theme.borders.hairline};
+  height: ${({ theme }) => theme.borders.hairline};
   padding: 0;
-  margin: -1px;
+  margin: -${({ theme }) => theme.borders.hairline};
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -27,8 +28,8 @@ interface VisualBoxProps {
 }
 
 export const VisualBox = styled.div<VisualBoxProps>`
-  width: 20px;
-  height: 20px;
+  width: ${({ theme }) => theme.sizes.checkbox};
+  height: ${({ theme }) => theme.sizes.checkbox};
   border-radius: ${({ theme }) => theme.radius.sm};
   flex-shrink: 0;
   display: flex;
@@ -42,43 +43,38 @@ export const VisualBox = styled.div<VisualBoxProps>`
 
   ${({ $checked, theme }) =>
     $checked
-      ? `
-        background: linear-gradient(
-          135deg,
-          ${theme.colors.blood} 0%,
-          ${theme.colors.bloodSoft} 100%
-        );
-        border: none;
-        box-shadow: 0 2px 8px rgba(210, 38, 56, 0.28);
-      `
-      : `
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.04) 0%,
-          transparent 100%
-        ),
-          ${theme.colors.surf3};
-        border: 1px solid ${theme.colors.border2};
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-      `}
+      ? css`
+          background: ${theme.gradients.checkboxChecked};
+          border: none;
+          box-shadow: ${theme.shadows.checkboxChecked};
+        `
+      : css`
+          background: ${theme.gradients.checkboxUnchecked}, ${theme.colors.surf3};
+          border: ${theme.borders.hairline} solid ${theme.colors.border2};
+          box-shadow: ${theme.shadows.checkboxUnchecked};
+        `}
 
   ${CheckboxWrapper}:hover & {
     border-color: ${({ theme, $checked }) =>
       $checked
-        ? 'transparent'
+        ? theme.colors.transparent
         : theme.colors.border2};
-    transform: scale(1.02);
+    transform: scale(${({ theme }) => theme.motion.scale.hoverUp});
   }
 
   ${CheckboxWrapper}:active & {
-    transform: scale(0.98);
+    transform: scale(${({ theme }) => theme.motion.scale.activeDown});
+  }
+
+  ${CheckboxWrapper}:focus-within & {
+    box-shadow: ${({ theme }) => theme.shadows.focus};
   }
 `
 
 export const CheckboxLabel = styled.span`
   font-family: ${({ theme }) => theme.fonts.ui};
-  font-size: 13px;
+  font-size: ${({ theme }) => theme.fontSizes.caption};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.textMid};
-  line-height: 1.3;
+  line-height: ${({ theme }) => theme.lineHeights.compact};
 `

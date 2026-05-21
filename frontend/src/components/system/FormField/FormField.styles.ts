@@ -11,7 +11,7 @@ export const FieldContainer = styled.div`
 export const Label = styled.label`
   font-family: ${({ theme }) => theme.fonts.mono};
   font-size: ${({ theme }) => theme.fontSizes.xs};
-  letter-spacing: 0.18em;
+  letter-spacing: ${({ theme }) => theme.letterSpacing.label};
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.textLow};
 `

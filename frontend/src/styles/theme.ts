@@ -1,14 +1,23 @@
 // Styles
 import { breakpoints } from '@/styles/tokens/breakpoints'
+import { borders } from '@/styles/tokens/borders'
 import { colors } from '@/styles/tokens/colors'
+import { effects } from '@/styles/tokens/effects'
+import { gradients } from '@/styles/tokens/gradients'
+import { layout } from '@/styles/tokens/layout'
+import { motion } from '@/styles/tokens/motion'
+import { opacity } from '@/styles/tokens/opacity'
 import { radius } from '@/styles/tokens/radius'
 import { shadows } from '@/styles/tokens/shadows'
+import { sizes } from '@/styles/tokens/sizes'
 import { spacing } from '@/styles/tokens/spacing'
 import { transitions } from '@/styles/tokens/transitions'
 import {
   fonts,
   fontSizes,
+  fontSizesFluid,
   fontWeights,
+  letterSpacing,
   lineHeights,
 } from '@/styles/tokens/typography'
 import { zIndex } from '@/styles/tokens/zIndex'
@@ -30,13 +39,22 @@ const createMedia = <T extends Record<string, string>>(values: T): MediaQueries<
 
 export const theme = {
   colors,
+  opacity,
   fonts,
   fontWeights,
   fontSizes,
+  fontSizesFluid,
+  letterSpacing,
   lineHeights,
   radius,
+  borders,
   shadows,
   spacing,
+  sizes,
+  layout,
+  gradients,
+  effects,
+  motion,
   transitions,
   breakpoints,
   zIndex,

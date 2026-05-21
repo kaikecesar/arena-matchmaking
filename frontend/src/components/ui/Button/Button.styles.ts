@@ -16,20 +16,22 @@ const spin = keyframes`
 ************************************************************************************************* */
 const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
   sm: css`
-    height: 36px;
-    padding: 0 16px;
+    min-height: ${({ theme }) => theme.layout.touchTarget};
+    height: auto;
+    padding: ${({ theme }) => theme.spacing.sm}
+      ${({ theme }) => theme.spacing.lg};
     font-size: ${({ theme }) => theme.fontSizes.sm};
     gap: ${({ theme }) => theme.spacing.sm};
   `,
   md: css`
-    height: 48px;
-    padding: 0 22px;
+    height: ${({ theme }) => theme.sizes.buttonMd};
+    padding: 0 ${({ theme }) => theme.spacing.twentyTwo};
     font-size: ${({ theme }) => theme.fontSizes.md};
     gap: ${({ theme }) => theme.spacing.sm};
   `,
   lg: css`
-    height: 52px;
-    padding: 0 24px;
+    height: ${({ theme }) => theme.sizes.buttonLg};
+    padding: 0 ${({ theme }) => theme.spacing.xxl};
     font-size: ${({ theme }) => theme.fontSizes.lg};
     gap: ${({ theme }) => theme.spacing.md};
   `,
@@ -52,8 +54,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border: none;
   border-radius: ${({ theme }) => theme.radius.md};
   font-family: ${({ theme }) => theme.fonts.display};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  letter-spacing: 0.06em;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
   text-transform: uppercase;
   cursor: pointer;
   transition:
@@ -76,53 +78,41 @@ export const StyledButton = styled.button<StyledButtonProps>`
     switch ($variant) {
       case 'blood':
         return css`
-          background: linear-gradient(
-            180deg,
-            ${theme.colors.blood} 0%,
-            ${theme.colors.bloodSoft} 100%
-          );
+          background: ${theme.gradients.buttonBlood};
           color: ${theme.colors.textHi};
           box-shadow: ${theme.shadows.buttonBlood};
 
           &:hover:not(:disabled) {
-            filter: brightness(1.06);
-            box-shadow:
-              0 1px 0 rgba(255, 255, 255, 0.16) inset,
-              0 10px 24px rgba(210, 38, 56, 0.28);
-            transform: translateY(-1px);
+            filter: brightness(1.04);
+            box-shadow: ${theme.shadows.buttonBloodHover};
+            transform: translateY(-${theme.motion.offset.hairline});
           }
 
           &:active:not(:disabled) {
-            transform: translateY(0) scale(0.99);
+            transform: translateY(0) scale(${theme.motion.scale.press});
             filter: brightness(0.98);
-            box-shadow:
-              0 1px 0 rgba(255, 255, 255, 0.1) inset,
-              0 4px 12px rgba(210, 38, 56, 0.2);
+            box-shadow: ${theme.shadows.buttonBloodActive};
           }
         `
       case 'bone':
         return css`
-          background: linear-gradient(
-            180deg,
-            ${theme.colors.boneLight} 0%,
-            ${theme.colors.boneSoft} 100%
-          );
+          background: ${theme.gradients.buttonBone};
           color: ${theme.colors.bgApp};
 
           &:hover:not(:disabled) {
             filter: brightness(1.04);
-            transform: translateY(-1px);
+            transform: translateY(-${theme.motion.offset.hairline});
           }
 
           &:active:not(:disabled) {
-            transform: translateY(0) scale(0.99);
+            transform: translateY(0) scale(${theme.motion.scale.press});
           }
         `
       case 'ghost':
         return css`
           background: transparent;
           color: ${theme.colors.textHi};
-          border: 1px solid ${theme.colors.border1};
+          border: ${theme.borders.hairline} solid ${theme.colors.border1};
 
           &:hover:not(:disabled) {
             border-color: ${theme.colors.border2};
@@ -130,7 +120,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
           }
 
           &:active:not(:disabled) {
-            transform: scale(0.99);
+            transform: scale(${theme.motion.scale.press});
           }
         `
       default:
@@ -138,9 +128,16 @@ export const StyledButton = styled.button<StyledButtonProps>`
     }
   }}
 
+  &:focus-visible {
+    outline: ${({ theme }) => theme.shadows.focusOutline};
+    outline-offset: ${({ theme }) => theme.spacing.xs};
+  }
+
   &:disabled {
-    opacity: 0.5;
+    opacity: ${({ theme }) => theme.opacity.disabled};
     cursor: not-allowed;
+    transform: none;
+    filter: none;
   }
 `
 
@@ -148,6 +145,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
 ********************************************* LOADING **********************************************
 ************************************************************************************************* */
 export const SpinnerSvg = styled.svg`
-  animation: ${spin} 0.8s linear infinite;
+  animation: ${spin} ${({ theme }) => theme.motion.durations.spin} linear infinite;
   flex-shrink: 0;
 `

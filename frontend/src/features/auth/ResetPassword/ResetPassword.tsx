@@ -17,7 +17,7 @@ import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
 import { useResetPassword } from '@/features/auth/ResetPassword/useResetPassword'
 
 // Utils
-import { fieldErrorProp } from '@/utils/formProps'
+import { authFieldErrorProp } from '@/utils/formProps'
 
 // Constants
 import { authStrings } from '@/i18n/pt-BR/auth'
@@ -39,7 +39,7 @@ const ResetPassword = (): ReactElement => {
   *********************************************************************************************** */
   const {
     register,
-    errors,
+    formState,
     handleSubmit,
     state,
     passwordValue,
@@ -99,7 +99,11 @@ const ResetPassword = (): ReactElement => {
             value={passwordValue}
             onChange={passwordChange}
             onBlur={passwordBlur}
-            {...fieldErrorProp(errors.password?.message)}
+            {...authFieldErrorProp({
+              field: 'password',
+              formState,
+              fallback: authStrings.reset.errorPassword,
+            })}
             disabled={state.async.isLoading}
             mono
           />
@@ -108,7 +112,9 @@ const ResetPassword = (): ReactElement => {
               <StrengthTrack>
                 <StrengthFill $percent={strength.percent} />
               </StrengthTrack>
-              <StrengthLabel>Força da senha: {strength.label}</StrengthLabel>
+              <StrengthLabel>
+                {authStrings.reset.strengthLabel}: {strength.label}
+              </StrengthLabel>
             </>
           )}
         </div>
@@ -121,7 +127,11 @@ const ResetPassword = (): ReactElement => {
           value={confirmPasswordValue}
           onChange={confirmChange}
           onBlur={confirmBlur}
-          {...fieldErrorProp(errors.confirmPassword?.message)}
+          {...authFieldErrorProp({
+            field: 'confirmPassword',
+            formState,
+            fallback: authStrings.reset.errorConfirmPassword,
+          })}
           disabled={state.async.isLoading}
           mono
         />

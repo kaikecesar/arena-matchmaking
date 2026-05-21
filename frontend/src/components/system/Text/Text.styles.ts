@@ -20,14 +20,14 @@ const textVariants: Record<TextVariant, ReturnType<typeof css>> = {
   eyebrow: css`
     font-family: ${({ theme }) => theme.fonts.mono};
     font-size: ${({ theme }) => theme.fontSizes.xs};
-    letter-spacing: 0.18em;
+    letter-spacing: ${({ theme }) => theme.letterSpacing.label};
     text-transform: uppercase;
     color: ${({ theme }) => theme.colors.textLow};
   `,
   heading: css`
     font-family: ${({ theme }) => theme.fonts.display};
-    font-size: clamp(40px, 6vw, 56px);
-    line-height: 1.05;
+    font-size: ${({ theme }) => theme.fontSizesFluid.display};
+    line-height: ${({ theme }) => theme.lineHeights.tight};
     color: ${({ theme }) => theme.colors.textHi};
   `,
   subheading: css`
