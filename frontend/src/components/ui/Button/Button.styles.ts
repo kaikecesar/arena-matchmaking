@@ -1,7 +1,6 @@
 // Libraries
 import styled, { keyframes, css } from 'styled-components';
 
-// Types
 import type { ButtonVariant, ButtonSize } from './Button.types';
 
 const spin = keyframes`
@@ -12,20 +11,20 @@ const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
   sm: css`
     height: 36px;
     padding: 0 16px;
-    font-size: 13px;
-    gap: 8px;
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+    gap: ${({ theme }) => theme.spacing.sm};
   `,
   md: css`
     height: 44px;
     padding: 0 20px;
-    font-size: 15px;
-    gap: 10px;
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    gap: ${({ theme }) => theme.spacing.md};
   `,
   lg: css`
     height: 56px;
     padding: 0 24px;
-    font-size: 17px;
-    gap: 12px;
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    gap: ${({ theme }) => theme.spacing.lg};
   `,
 };
 
@@ -47,10 +46,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  transition:
-    filter 0.15s ease,
-    transform 0.1s ease,
-    box-shadow 0.15s ease;
+  transition: ${({ theme }) => theme.transitions.normal};
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
   pointer-events: ${({ $loading }) => ($loading ? 'none' : 'auto')};
 
@@ -77,7 +73,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
         `;
       case 'bone':
         return css`
-          background: linear-gradient(180deg, #f7f6f3 0%, #e5e2db 100%);
+          background: linear-gradient(
+            180deg,
+            ${theme.colors.boneLight} 0%,
+            ${theme.colors.boneSoft} 100%
+          );
           color: ${theme.colors.bgApp};
 
           &:hover:not(:disabled) {
@@ -101,6 +101,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
             transform: scale(0.98);
           }
         `;
+      default:
+        return null;
     }
   }}
 

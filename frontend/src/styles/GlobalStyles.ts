@@ -16,8 +16,8 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.bgApp};
     color: ${({ theme }) => theme.colors.textHi};
     font-family: ${({ theme }) => theme.fonts.ui};
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: ${({ theme }) => theme.lineHeights.body};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -34,7 +34,8 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
-  input, textarea {
+  input,
+  textarea {
     font-family: inherit;
   }
 

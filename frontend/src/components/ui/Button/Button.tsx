@@ -1,9 +1,13 @@
+// Core
+import type { FC } from 'react';
+
+// Types
 import type { ButtonProps } from './Button.types';
+
+// Components
 import { StyledButton, SpinnerSvg } from './Button.styles';
 
-export type { ButtonProps };
-
-function Spinner(): React.ReactElement {
+const Spinner: FC = () => {
   return (
     <SpinnerSvg
       width="16"
@@ -28,9 +32,9 @@ function Spinner(): React.ReactElement {
       />
     </SpinnerSvg>
   );
-}
+};
 
-export function Button({
+const Button: FC<ButtonProps> = ({
   label,
   onClick,
   type = 'button',
@@ -42,7 +46,7 @@ export function Button({
   trailingIcon,
   leadingIcon,
   'aria-label': ariaLabel,
-}: ButtonProps): React.ReactElement {
+}) => {
   return (
     <StyledButton
       type={type}
@@ -67,3 +71,5 @@ export function Button({
     </StyledButton>
   );
 }
+
+export { Button };

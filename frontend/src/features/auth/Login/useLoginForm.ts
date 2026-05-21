@@ -1,32 +1,26 @@
 import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { UseFormRegister, FieldErrors } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+
+import { authService } from '@/services/authService';
+import { formatCPF } from '@/utils/formatCPF';
+import { authStrings } from '@/i18n/pt-BR/auth';
 import {
   loginSchema,
   LoginErrorCode,
   ROLE_REDIRECT,
 } from './Login.types';
-import type { LoginFormValues, LoginApiResponse, LoginApiError } from './Login.types';
-import { authStrings } from '@/i18n/pt-BR/auth';
-
-// ─── CPF display formatting ───────────────────────────────────────────────────
-
-function formatCPF(digits: string): string {
-  const d = digits.slice(0, 11);
-  if (d.length <= 3) return d;
-  if (d.length <= 6) return `${d.slice(0, 3)}.${d.slice(3)}`;
-  if (d.length <= 9) return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6)}`;
-  return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6, 9)}-${d.slice(9)}`;
-}
+import type { LoginFormValues, LoginApiError } from './Login.types';
 
 // ─── Return type (fully typed — no any) ──────────────────────────────────────
 
 export interface UseLoginFormReturn {
   register: UseFormRegister<LoginFormValues>;
   errors: FieldErrors<LoginFormValues>;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
   generalError: string | null;
   isPasswordVisible: boolean;
@@ -36,17 +30,6 @@ export interface UseLoginFormReturn {
   identifierDisplayValue: string;
   onIdentifierChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   passwordValue: string;
-}
-
-// ─── Type guard for API error shape ──────────────────────────────────────────
-
-function isLoginApiError(value: unknown): value is LoginApiError {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'error' in value &&
-    typeof (value as Record<string, unknown>).error === 'string'
-  );
 }
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
@@ -81,7 +64,7 @@ export function useLoginForm(): UseLoginFormReturn {
     setValue('keepSession', checked);
   };
 
-  const onIdentifierChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const onIdentifierChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const raw = e.target.value;
     const isEmail = raw.includes('@');
 
@@ -101,48 +84,44 @@ export function useLoginForm(): UseLoginFormReturn {
     setGeneralError(null);
 
     try {
-      const response = await fetch('/api/v1/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          identifier: data.identifier,
-          password: data.password,
-          keepSession: data.keepSession,
-        }),
-      });
+      const body = await authService.login(data);
+      void navigate(ROLE_REDIRECT[body.user.role]);
+      return;
+    } catch (error) {
+      if (
+        typeof error === 'object' &&
+        error !== null &&
+        'status' in error &&
+        typeof (error as { status: unknown }).status === 'number'
+      ) {
+        const typedError = error as {
+          status: number;
+          body: unknown;
+        };
 
-      if (response.ok) {
-        const body = (await response.json()) as LoginApiResponse;
-        void navigate(ROLE_REDIRECT[body.user.role]);
-        return;
+        if (typedError.status === 429) {
+          setGeneralError(authStrings.errorRateLimited);
+          return;
+        }
+
+        if (typedError.status === 401) {
+          const body = typedError.body as LoginApiError;
+          setGeneralError(
+            body.error === LoginErrorCode.INVALID_CREDENTIALS
+              ? authStrings.errorInvalidCredentials
+              : authStrings.errorGeneric,
+          );
+          return;
+        }
       }
 
-      const errorBody: unknown = await response.json();
-
-      if (response.status === 429) {
-        setGeneralError(authStrings.errorRateLimited);
-        return;
-      }
-
-      if (response.status === 401) {
-        setGeneralError(
-          isLoginApiError(errorBody) &&
-          errorBody.error === LoginErrorCode.INVALID_CREDENTIALS
-            ? authStrings.errorInvalidCredentials
-            : authStrings.errorGeneric,
-        );
-        return;
-      }
-
-      setGeneralError(authStrings.errorGeneric);
-    } catch {
       setGeneralError(authStrings.errorGeneric);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     void rhfHandleSubmit(onValid)(e);
   };
 

@@ -1,4 +1,5 @@
-// Components
+import React from 'react';
+import type { BrandMarkProps } from './BrandMark.types';
 import {
   BrandMarkWrapper,
   IconBox,
@@ -7,11 +8,7 @@ import {
   WordmarkSub,
 } from './BrandMark.styles';
 
-export interface BrandMarkProps {
-  size?: number;
-}
-
-export function BrandMark({ size = 28 }: BrandMarkProps): React.ReactElement {
+const BrandMark = ({ size = 28 }: BrandMarkProps): React.ReactElement => {
   const iconSize = Math.round(size * 0.57); // ~16px at default 28
 
   return (
@@ -46,4 +43,6 @@ export function BrandMark({ size = 28 }: BrandMarkProps): React.ReactElement {
       </Wordmark>
     </BrandMarkWrapper>
   );
-}
+};
+
+export { BrandMark };

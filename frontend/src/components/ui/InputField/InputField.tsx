@@ -10,9 +10,7 @@ import {
   HintText,
 } from './InputField.styles';
 
-export type { InputFieldProps };
-
-export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
+const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
   (
     {
       label,
@@ -78,3 +76,4 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
 );
 
 InputField.displayName = 'InputField';
+export { InputField };

@@ -184,7 +184,7 @@ export const GeneralErrorBox = styled.div`
 export const GeneralErrorText = styled.p`
   font-family: ${({ theme }) => theme.fonts.ui};
   font-size: 13px;
-  color: #f3a0a7;
+  color: ${({ theme }) => theme.colors.blood};
   line-height: 1.4;
 `;
 

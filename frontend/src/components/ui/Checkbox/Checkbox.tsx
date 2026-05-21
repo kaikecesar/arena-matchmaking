@@ -1,3 +1,5 @@
+import React from 'react';
+import type { CheckboxProps } from './Checkbox.types';
 import {
   CheckboxWrapper,
   HiddenInput,
@@ -5,21 +7,13 @@ import {
   CheckboxLabel,
 } from './Checkbox.styles';
 
-export interface CheckboxProps {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  label: string;
-  name: string;
-  id?: string;
-}
-
-export function Checkbox({
+const Checkbox = ({
   checked,
   onChange,
   label,
   name,
   id,
-}: CheckboxProps): React.ReactElement {
+}: CheckboxProps): React.ReactElement => {
   const inputId = id ?? name;
 
   return (
@@ -55,4 +49,6 @@ export function Checkbox({
       <CheckboxLabel>{label}</CheckboxLabel>
     </CheckboxWrapper>
   );
-}
+};
+
+export { Checkbox };
