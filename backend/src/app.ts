@@ -2,11 +2,11 @@
 import fastify from 'fastify';
 import fastifySwagger from '@fastify/swagger';
 import scalarPlugin from '@scalar/fastify-api-reference';
-import { ZodError } from 'zod';
 import {
   serializerCompiler,
   validatorCompiler,
   jsonSchemaTransform,
+  hasZodFastifySchemaValidationErrors,
 } from 'fastify-type-provider-zod';
 
 // Application
@@ -36,11 +36,9 @@ await app.register(scalarPlugin, {
 app.register(userRoutes);
 
 app.setErrorHandler((error, _request, reply) => {
-  if (error instanceof ZodError) {
-    return reply.status(400).send({
-      message: 'Validation error.',
-      issues: error.format(),
-    });
+  if (hasZodFastifySchemaValidationErrors(error)) {
+    const firstIssue = error.validation[0];
+    return reply.status(400).send({ message: firstIssue?.message });
   }
 
   if (env.NODE_ENV !== 'production') {

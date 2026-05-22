@@ -4,12 +4,21 @@ import z from 'zod';
 
 // Application
 import { factoryRegisterUser } from '../../services/factories.ts';
-import { UserAlreadyExistsError } from '../../services/errors.ts';
+import {
+  UserAlreadyExistsError,
+  InvalidNameError,
+  InvalidEmailError,
+  PasswordTooShortError,
+  PasswordTooLongError,
+} from '../../services/errors.ts';
 
 export const registerBodySchema = z.object({
-  name: z.string().min(2).trim(),
-  email: z.string().email().toLowerCase().trim(),
-  password: z.string().min(8).max(72),
+  name: z.string().min(2, new InvalidNameError().message).trim(),
+  email: z.string().email(new InvalidEmailError().message).toLowerCase().trim(),
+  password: z
+    .string()
+    .min(8, new PasswordTooShortError().message)
+    .max(72, new PasswordTooLongError().message),
   phone: z.number().nullable(),
 });
 
