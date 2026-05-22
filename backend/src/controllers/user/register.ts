@@ -8,10 +8,10 @@ import { UserAlreadyExistsError } from '../../services/errors.ts';
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    password: z.string().min(8),
-    phone: z.coerce.string(),
+    name: z.string().min(2).trim(),
+    email: z.string().email().toLowerCase().trim(),
+    password: z.string().min(8).max(72),
+    phone: z.number().nullable(),
   });
 
   const { name, email, password, phone } = registerBodySchema.parse(

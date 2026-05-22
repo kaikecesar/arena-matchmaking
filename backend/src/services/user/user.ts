@@ -15,7 +15,7 @@ interface RegisterUserRequest {
   name: string;
   email: string;
   password: string;
-  phone: string;
+  phone: string | null;
 }
 
 interface RegisterUserResponse {
