@@ -6,6 +6,7 @@ import { ZodError } from 'zod';
 import {
   serializerCompiler,
   validatorCompiler,
+  jsonSchemaTransform,
 } from 'fastify-type-provider-zod';
 
 // Application
@@ -25,6 +26,7 @@ await app.register(fastifySwagger, {
       version: '1.0.0',
     },
   },
+  transform: jsonSchemaTransform,
 });
 
 await app.register(scalarPlugin, {
