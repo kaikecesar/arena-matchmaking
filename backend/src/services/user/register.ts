@@ -15,7 +15,7 @@ interface RegisterUserRequest {
   name: string;
   email: string;
   password: string;
-  phone: string | null;
+  phone: number | null;
 }
 
 interface RegisterUserResponse {
@@ -48,7 +48,7 @@ export class RegisterUser {
       name,
       email,
       passwordHash,
-      phone,
+      phone: String(phone),
     });
 
     const { passwordHash: _, ...safeUser } = user;

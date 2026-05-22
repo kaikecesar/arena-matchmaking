@@ -1,12 +1,35 @@
 // Libraries
 import fastify from 'fastify';
+import fastifySwagger from '@fastify/swagger';
+import scalarPlugin from '@scalar/fastify-api-reference';
 import { ZodError } from 'zod';
+import {
+  serializerCompiler,
+  validatorCompiler,
+} from 'fastify-type-provider-zod';
 
 // Application
 import { env } from './env/index.ts';
 import { userRoutes } from './controllers/user/routes.ts';
 
 export const app = fastify();
+
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
+
+// Generate spec OpenAPI
+await app.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: 'Arena Matchmaking API',
+      version: '1.0.0',
+    },
+  },
+});
+
+await app.register(scalarPlugin, {
+  routePrefix: '/docs',
+});
 
 app.register(userRoutes);
 

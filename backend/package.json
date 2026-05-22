@@ -28,10 +28,13 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "@fastify/swagger": "9.7.0",
+    "@scalar/fastify-api-reference": "1.57.4",
     "bcryptjs": "3.0.3",
     "dotenv": "17.4.2",
     "drizzle-orm": "0.45.2",
     "fastify": "5.8.5",
+    "fastify-type-provider-zod": "6.1.0",
     "pg": "8.21.0",
     "zod": "4.4.3"
   }

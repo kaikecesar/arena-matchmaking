@@ -1,6 +1,6 @@
 // Application
 import { UserRepository } from '../repositories/user.ts';
-import { RegisterUser } from './user/user.ts';
+import { RegisterUser } from './user/register.ts';
 
 export function factoryRegisterUser() {
   const usersRepository = new UserRepository();

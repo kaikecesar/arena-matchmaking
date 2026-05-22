@@ -37,3 +37,9 @@ services:
         condition: service_completed_successfully
     env_file:
       - ./backend/.env
+    develop:
+      watch:
+        - action: rebuild
+          path: ./backend/package.json
+        - action: rebuild
+          path: ./backend/package-lock.json

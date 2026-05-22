@@ -6,17 +6,20 @@ import z from 'zod';
 import { factoryRegisterUser } from '../../services/factories.ts';
 import { UserAlreadyExistsError } from '../../services/errors.ts';
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
-  const registerBodySchema = z.object({
-    name: z.string().min(2).trim(),
-    email: z.string().email().toLowerCase().trim(),
-    password: z.string().min(8).max(72),
-    phone: z.number().nullable(),
-  });
+export const registerBodySchema = z.object({
+  name: z.string().min(2).trim(),
+  email: z.string().email().toLowerCase().trim(),
+  password: z.string().min(8).max(72),
+  phone: z.number().nullable(),
+});
 
-  const { name, email, password, phone } = registerBodySchema.parse(
-    request.body,
-  );
+type RegisterBody = z.infer<typeof registerBodySchema>;
+
+export async function register(
+  request: FastifyRequest<{ Body: RegisterBody }>,
+  reply: FastifyReply,
+) {
+  const { name, email, password, phone } = request.body;
 
   try {
     const registerUser = factoryRegisterUser();
@@ -26,7 +29,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       return reply.status(409).send({ message: error.message });
     }
 
-    throw error; // TODO: fix me
+    throw error;
   }
 
   return reply.status(201).send();
