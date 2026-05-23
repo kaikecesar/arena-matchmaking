@@ -1,0 +1,16 @@
+# Depenencies
+node_modules/
+
+# Build
+build/
+
+# Variables
+.env
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+*.tfvars
+crash.log
