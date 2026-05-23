@@ -3,19 +3,17 @@ import { hash } from 'bcryptjs';
 
 // Application
 import type { IUserRepository } from '../../repositories/types/user.ts';
-import { UserAlreadyExistsError } from '../errors.ts';
 import type { usersTable } from '../../database/schema/users.ts';
 import { env } from '../../env/index.ts';
 
 type User = typeof usersTable.$inferSelect;
 export type SafeUser = Omit<User, 'passwordHash'>;
 
-// Register
 interface RegisterUserRequest {
   name: string;
   email: string;
   password: string;
-  phone: number | null;
+  phone: string | null;
 }
 
 interface RegisterUserResponse {
@@ -31,14 +29,6 @@ export class RegisterUser {
     password,
     phone,
   }: RegisterUserRequest): Promise<RegisterUserResponse> {
-    // Validate
-    const userWithSameEmail = await this.userRepository.findByEmail(email);
-
-    if (userWithSameEmail) {
-      throw new UserAlreadyExistsError();
-    }
-
-    // Create password hash
     const passwordHash = await hash(
       password,
       env.NODE_ENV === 'production' ? 12 : 6,
@@ -48,7 +38,7 @@ export class RegisterUser {
       name,
       email,
       passwordHash,
-      phone: String(phone),
+      phone,
     });
 
     const { passwordHash: _, ...safeUser } = user;
