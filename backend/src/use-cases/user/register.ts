@@ -9,18 +9,18 @@ import { env } from '../../env/index.ts';
 type User = typeof usersTable.$inferSelect;
 export type SafeUser = Omit<User, 'passwordHash'>;
 
-interface RegisterUserRequest {
+interface RegisterUserUseCaseRequest {
   name: string;
   email: string;
   password: string;
   phone: string | null;
 }
 
-interface RegisterUserResponse {
+interface RegisterUserUseCaseResponse {
   user: SafeUser;
 }
 
-export class RegisterUser {
+export class RegisterUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
   async execute({
@@ -28,7 +28,7 @@ export class RegisterUser {
     email,
     password,
     phone,
-  }: RegisterUserRequest): Promise<RegisterUserResponse> {
+  }: RegisterUserUseCaseRequest): Promise<RegisterUserUseCaseResponse> {
     const passwordHash = await hash(
       password,
       env.NODE_ENV === 'production' ? 12 : 6,

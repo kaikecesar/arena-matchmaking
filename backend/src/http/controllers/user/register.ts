@@ -2,8 +2,8 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
 // Application
-import { factoryRegisterUser } from '../../../use-cases/factories.ts';
 import type { RegisterBody } from '../../schemas/user.ts';
+import { makeRegisterUserUseCaseUseCase } from '../../../use-cases/factories/index.ts';
 
 export async function register(
   request: FastifyRequest<{ Body: RegisterBody }>,
@@ -11,7 +11,7 @@ export async function register(
 ) {
   const { name, email, password, phone } = request.body;
 
-  const registerUser = factoryRegisterUser();
+  const registerUser = makeRegisterUserUseCaseUseCase();
   await registerUser.execute({ name, email, password, phone });
 
   return reply.status(201).send();
