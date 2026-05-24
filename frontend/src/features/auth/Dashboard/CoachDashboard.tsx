@@ -4,7 +4,7 @@ import type { ReactElement } from 'react'
 // Components
 import { DashboardPage } from '@/features/auth/Dashboard/DashboardPage'
 
-// Constants
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 const CoachDashboard = (): ReactElement => {

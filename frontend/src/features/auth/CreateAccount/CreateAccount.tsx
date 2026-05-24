@@ -18,7 +18,7 @@ import { useCreateAccount } from '@/features/auth/CreateAccount/useCreateAccount
 import { formatCPF } from '@/utils/formatCPF'
 import { authFieldErrorProp } from '@/utils/formProps'
 
-// Constants
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types

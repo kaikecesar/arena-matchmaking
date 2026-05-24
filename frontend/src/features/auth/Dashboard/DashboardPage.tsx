@@ -14,7 +14,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 // Hooks
 import { useAuth } from '@/features/auth/hooks/useAuth'
 
-// Constants
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types

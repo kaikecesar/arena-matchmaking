@@ -19,7 +19,7 @@ import { useForgotPassword } from '@/features/auth/ForgotPassword/useForgotPassw
 // Utils
 import { authFieldErrorProp } from '@/utils/formProps'
 
-// Constants
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Styles

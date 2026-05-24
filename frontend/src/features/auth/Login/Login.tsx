@@ -4,6 +4,18 @@ import type { ReactElement } from 'react'
 // Libraries
 import { useNavigate } from 'react-router-dom'
 
+// Constants
+import { ROUTES } from '@/constants/routes'
+
+// I18n
+import { authStrings } from '@/i18n/pt-BR/auth'
+
+// Utils
+import { authFieldErrorProp } from '@/utils/formProps'
+
+// Hooks
+import { useLoginForm } from '@/features/auth/Login/useLoginForm'
+
 // Components
 import { ArrowRightIcon, EyeOffIcon, EyeOpenIcon } from '@/components/icons'
 import {
@@ -17,16 +29,6 @@ import { InputField, InputFieldType } from '@/components/ui/InputField'
 import { AuthAlert } from '@/features/auth/components/AuthAlert/AuthAlert'
 import { AuthHero } from '@/features/auth/components/AuthHero/AuthHero'
 import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
-
-// Hooks
-import { useLoginForm } from '@/features/auth/Login/useLoginForm'
-
-// Utils
-import { authFieldErrorProp } from '@/utils/formProps'
-
-// Constants
-import { ROUTES } from '@/constants/routes'
-import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Styles
 import {

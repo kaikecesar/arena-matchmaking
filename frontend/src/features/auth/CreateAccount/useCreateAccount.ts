@@ -1,6 +1,5 @@
 // Core
-import { useReducer } from 'react'
-import type { ChangeEvent } from 'react'
+import { useReducer, type ChangeEvent } from 'react'
 
 // Libraries
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -23,6 +22,8 @@ import { formatCPF } from '@/utils/formatCPF'
 
 // Constants
 import { ROUTES } from '@/constants/routes'
+
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
