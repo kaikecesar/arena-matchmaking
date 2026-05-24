@@ -4,8 +4,8 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  type ReactElement,
 } from 'react'
-import type { ReactElement } from 'react'
 
 // Libraries
 import { useNavigate } from 'react-router-dom'
@@ -25,8 +25,7 @@ import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
 import { buildAuthTokens } from '@/utils/sessionTokens'
 
 // Types
-import { AuthStatus } from '@/features/auth/context/AuthContext.types'
-import type { AuthContextValue, AuthProviderProps } from '@/features/auth/context/AuthContext.types'
+import { AuthStatus, type AuthContextValue, type AuthProviderProps } from '@/features/auth/context/AuthContext.types'
 import type { LoginPayload, RegisterPayload } from '@/features/auth/types'
 import type { AuthApiResponse } from '@/types/api'
 

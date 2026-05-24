@@ -1,12 +1,14 @@
 // Libraries
 import { z } from 'zod'
 
-// Utils
-import { minLengthString, requiredString } from '@/features/auth/schemas/fields'
-import { isPasswordStrongEnough } from '@/features/auth/utils/passwordStrength'
-
-// Constants
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
+
+// Schemas
+import { minLengthString, requiredString } from '@/features/auth/schemas/fields'
+
+// Utils
+import { isPasswordStrongEnough } from '@/features/auth/utils/passwordStrength'
 
 export const resetPasswordSchema = z
   .object({

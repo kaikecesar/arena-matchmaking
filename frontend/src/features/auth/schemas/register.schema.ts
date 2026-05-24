@@ -4,17 +4,19 @@ import { z } from 'zod'
 // Types
 import type { RegisterRole } from '@/features/auth/types'
 
-// Utils
+// I18n
+import { authStrings } from '@/i18n/pt-BR/auth'
+
+// Schemas
 import {
   emailString,
   minLengthString,
   requiredString,
 } from '@/features/auth/schemas/fields'
+
+// Utils
 import { isPasswordStrongEnough } from '@/features/auth/utils/passwordStrength'
 import { isValidCPF } from '@/features/auth/utils/validators'
-
-// Constants
-import { authStrings } from '@/i18n/pt-BR/auth'
 
 export const registerProfileSchema = z.object({
   name: minLengthString(2, authStrings.register.errorName),

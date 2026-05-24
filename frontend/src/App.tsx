@@ -1,15 +1,15 @@
-// Types
+// React
 import type { ReactElement } from 'react'
 
-// Libraries
+// Libs
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-// Components
-import { AuthRoutes } from '@/features/auth/routes/AuthRoutes'
-
 // Context
 import { AuthProvider } from '@/features/auth/context/AuthProvider'
+
+// Features
+import { AuthRoutes } from '@/features/auth/routes/AuthRoutes'
 
 // Styles
 import { GlobalStyles, theme } from '@/styles'

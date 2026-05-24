@@ -1,10 +1,11 @@
-// Core
+// React
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-// Utils
-import './index.css'
+// Components
 import { App } from '@/App'
+
+import './index.css'
 
 const rootElement = document.getElementById('root')
 if (rootElement === null) {

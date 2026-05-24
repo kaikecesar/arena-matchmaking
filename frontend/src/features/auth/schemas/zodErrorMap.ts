@@ -1,7 +1,7 @@
 // Libraries
 import { z } from 'zod'
 
-// Constants
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 /* *************************************************************************************************

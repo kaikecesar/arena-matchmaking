@@ -1,7 +1,7 @@
 // Core
 import type { ReactElement } from 'react'
 
-// Constants
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Styles
