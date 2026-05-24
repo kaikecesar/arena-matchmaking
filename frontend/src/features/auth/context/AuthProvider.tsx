@@ -29,10 +29,10 @@ import { AuthStatus, type AuthContextValue, type AuthProviderProps } from '@/fea
 import type { LoginPayload, RegisterPayload } from '@/features/auth/types'
 import type { AuthApiResponse } from '@/types/api'
 
-const AuthProvider = ({
+function AuthProvider({
   children,
   initialSession,
-}: AuthProviderProps): ReactElement => {
+}: AuthProviderProps): ReactElement {
   const navigate = useNavigate()
 
   /* ***********************************************************************************************

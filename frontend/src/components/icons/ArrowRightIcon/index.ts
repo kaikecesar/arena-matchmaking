@@ -1,2 +1,2 @@
-export { ArrowRightIcon } from './ArrowRightIcon'
-export type { IconProps } from './ArrowRightIcon.types'
+export * from './ArrowRightIcon'
+export * from './ArrowRightIcon.types'

@@ -1,2 +1,2 @@
-export { WarningIcon } from './WarningIcon'
-export type { IconProps } from './WarningIcon.types'
+export * from './WarningIcon'
+export * from './WarningIcon.types'

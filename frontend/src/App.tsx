@@ -14,7 +14,7 @@ import { AuthRoutes } from '@/features/auth/routes/AuthRoutes'
 // Style
 import { GlobalStyles, theme } from '@/styles'
 
-const App = (): ReactElement => {
+function App(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

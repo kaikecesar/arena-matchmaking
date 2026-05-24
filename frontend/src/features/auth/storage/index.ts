@@ -1,2 +1,2 @@
-export { tokenStorage } from './tokenStorage'
-export { authStorage } from './authStorage'
+export * from './tokenStorage'
+export * from './authStorage'
