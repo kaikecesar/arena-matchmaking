@@ -8,7 +8,7 @@ import type { FieldErrors, UseFormRegister, UseFormReturn, UseFormStateReturn } 
 import type { ResetPasswordFormValues } from '@/plugins/schemas'
 
 // Features
-import type { ResetPasswordState } from '@/views/auth/ResetPassword/resetPassword.state'
+import type { ResetPasswordState } from '@/views/ResetPassword/resetPassword.state'
 import type { PasswordStrengthResult } from '@/plugins/utils/passwordStrength'
 
 export interface UseResetPasswordReturn {

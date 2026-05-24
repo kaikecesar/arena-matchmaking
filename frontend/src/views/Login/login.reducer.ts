@@ -1,43 +1,37 @@
 // Types
-import {
-  forgotPasswordInitialState,
-  type ForgotPasswordState,
-} from '@/views/auth/ForgotPassword/forgotPassword.state'
+import { loginInitialState, type LoginState } from '@/views/Login/login.state'
 
 /* *************************************************************************************************
 ******************************************* ACTION TYPES *******************************************
 ************************************************************************************************* */
-export type ForgotPasswordAction =
-  | { type: 'SET_DISPLAY_VALUE'; payload: string }
-  | { type: 'SET_LOADING'; payload: boolean }
+export type LoginAction =
+  | { type: 'SET_IDENTIFIER_DISPLAY'; payload: string }
+  | { type: 'TOGGLE_PASSWORD_VISIBILITY' }
   | { type: 'SET_GENERAL_ERROR'; payload: string | null }
-  | { type: 'SET_SUCCESS' }
   | { type: 'CLEAR_ERRORS' }
   | { type: 'RESET_STATE' }
 
 /* *************************************************************************************************
 ********************************************* REDUCER **********************************************
 ************************************************************************************************* */
-const forgotPasswordReducer = (
-  state: ForgotPasswordState,
-  action: ForgotPasswordAction
-): ForgotPasswordState => {
+const loginReducer = (state: LoginState, action: LoginAction): LoginState => {
   switch (action.type) {
-    case 'SET_DISPLAY_VALUE':
-      return { ...state, ui: { ...state.ui, displayValue: action.payload } }
-    case 'SET_LOADING':
-      return { ...state, async: { ...state.async, isLoading: action.payload } }
+    case 'SET_IDENTIFIER_DISPLAY':
+      return { ...state, ui: { ...state.ui, identifierDisplayValue: action.payload } }
+    case 'TOGGLE_PASSWORD_VISIBILITY':
+      return {
+        ...state,
+        ui: { ...state.ui, isPasswordVisible: !state.ui.isPasswordVisible },
+      }
     case 'SET_GENERAL_ERROR':
       return { ...state, async: { ...state.async, generalError: action.payload } }
-    case 'SET_SUCCESS':
-      return { ...state, ui: { ...state.ui, isSuccess: true } }
     case 'CLEAR_ERRORS':
-      return { ...state, async: { ...state.async, generalError: null } }
+      return { ...state, async: { generalError: null } }
     case 'RESET_STATE':
-      return { ...forgotPasswordInitialState }
+      return { ...loginInitialState }
     default:
       return state
   }
 }
 
-export { forgotPasswordReducer }
+export { loginReducer }

@@ -10,8 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 
 // Utils
-import { createAccountReducer } from '@/views/auth/CreateAccount/createAccount.reducer'
-import { createAccountInitialState } from '@/views/auth/CreateAccount/createAccount.state'
+import { createAccountReducer } from '@/views/CreateAccount/createAccount.reducer'
+import { createAccountInitialState } from '@/views/CreateAccount/createAccount.state'
 import {
   registerPasswordSchema,
   registerProfileSchema,

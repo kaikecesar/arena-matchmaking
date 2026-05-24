@@ -14,7 +14,7 @@ import { authStrings } from '@/i18n/pt-BR/auth'
 import { authFieldErrorProp } from '@/plugins/utils/formProps'
 
 // Hooks
-import { useLoginForm } from '@/views/auth/Login/useLoginForm'
+import { useLoginForm } from '@/views/Login/useLoginForm'
 
 // Components
 import { ArrowRightIcon, EyeOffIcon, EyeOpenIcon } from '@/components/icons'
@@ -39,7 +39,7 @@ import {
   LoginForm,
   PageFooter,
   SecurityBadge,
-} from '@/views/auth/Login/Login.style'
+} from '@/views/Login/Login.style'
 
 function Login(): JSX.Element {
   const navigate = useNavigate()

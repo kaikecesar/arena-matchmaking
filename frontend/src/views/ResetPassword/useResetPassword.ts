@@ -15,8 +15,8 @@ import type { ResetPasswordFormValues } from '@/plugins/schemas'
 import { authService } from '@/plugins/services'
 
 // Utils
-import { resetPasswordReducer } from '@/views/auth/ResetPassword/resetPassword.reducer'
-import { resetPasswordInitialState } from '@/views/auth/ResetPassword/resetPassword.state'
+import { resetPasswordReducer } from '@/views/ResetPassword/resetPassword.reducer'
+import { resetPasswordInitialState } from '@/views/ResetPassword/resetPassword.state'
 import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
 import { getAuthErrorMessage } from '@/plugins/utils/authErrors'
 import { getPasswordStrength } from '@/plugins/utils/passwordStrength'
@@ -28,7 +28,7 @@ import { ROUTES } from '@/routes/routes'
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
-import type { UseResetPasswordReturn } from '@/views/auth/ResetPassword/ResetPassword.types'
+import type { UseResetPasswordReturn } from '@/views/ResetPassword/ResetPassword.types'
 
 const useResetPassword = (): UseResetPasswordReturn => {
   const navigate = useNavigate()

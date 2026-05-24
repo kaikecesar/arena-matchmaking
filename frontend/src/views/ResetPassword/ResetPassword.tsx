@@ -14,7 +14,7 @@ import { AuthHero } from '@/components/auth/AuthHero/AuthHero'
 import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
 
 // Hooks
-import { useResetPassword } from '@/views/auth/ResetPassword/useResetPassword'
+import { useResetPassword } from '@/views/ResetPassword/useResetPassword'
 
 // Utils
 import { authFieldErrorProp } from '@/plugins/utils/formProps'
@@ -31,7 +31,7 @@ import {
   SuccessPanel,
   SuccessSubtitle,
   SuccessTitle,
-} from '@/views/auth/Login/Login.style'
+} from '@/views/Login/Login.style'
 
 function ResetPassword(): JSX.Element {
   /* ***********************************************************************************************

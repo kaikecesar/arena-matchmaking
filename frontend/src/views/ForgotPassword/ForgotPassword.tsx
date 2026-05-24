@@ -14,7 +14,7 @@ import { AuthHero } from '@/components/auth/AuthHero/AuthHero'
 import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
 
 // Hooks
-import { useForgotPassword } from '@/views/auth/ForgotPassword/useForgotPassword'
+import { useForgotPassword } from '@/views/ForgotPassword/useForgotPassword'
 
 // Utils
 import { authFieldErrorProp } from '@/plugins/utils/formProps'
@@ -30,7 +30,7 @@ import {
   SuccessPanel,
   SuccessSubtitle,
   SuccessTitle,
-} from '@/views/auth/Login/Login.style'
+} from '@/views/Login/Login.style'
 
 function ForgotPassword(): JSX.Element {
   /* ***********************************************************************************************

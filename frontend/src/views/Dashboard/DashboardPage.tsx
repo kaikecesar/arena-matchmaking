@@ -18,7 +18,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
-import type { DashboardModule } from '@/views/auth/Dashboard/DashboardPage.types'
+import type { DashboardModule } from '@/views/Dashboard/DashboardPage.types'
 import { UserRole } from '@/types/auth'
 
 // Style
@@ -44,7 +44,7 @@ import {
   StatusMeta,
   StatusPill,
   StatusStrip,
-} from '@/views/auth/Dashboard/Dashboard.style'
+} from '@/views/Dashboard/Dashboard.style'
 
 type DashboardPageProps = {
   title: string

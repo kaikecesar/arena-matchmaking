@@ -2,7 +2,7 @@
 import type { JSX } from 'react'
 
 // Components
-import { DashboardPage } from '@/views/auth/Dashboard/DashboardPage'
+import { DashboardPage } from '@/views/Dashboard/DashboardPage'
 
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'

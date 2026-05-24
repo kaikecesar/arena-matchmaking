@@ -15,8 +15,8 @@ import type { ForgotPasswordFormValues } from '@/plugins/schemas'
 import { authService } from '@/plugins/services'
 
 // Utils
-import { forgotPasswordReducer } from '@/views/auth/ForgotPassword/forgotPassword.reducer'
-import { forgotPasswordInitialState } from '@/views/auth/ForgotPassword/forgotPassword.state'
+import { forgotPasswordReducer } from '@/views/ForgotPassword/forgotPassword.reducer'
+import { forgotPasswordInitialState } from '@/views/ForgotPassword/forgotPassword.state'
 import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
 import { getAuthErrorMessage } from '@/plugins/utils/authErrors'
 import { formatCPF } from '@/plugins/utils/formatCPF'
@@ -25,7 +25,7 @@ import { formatCPF } from '@/plugins/utils/formatCPF'
 import { ROUTES } from '@/routes/routes'
 
 // Types
-import type { UseForgotPasswordReturn } from '@/views/auth/ForgotPassword/ForgotPassword.types'
+import type { UseForgotPasswordReturn } from '@/views/ForgotPassword/ForgotPassword.types'
 
 const useForgotPassword = (): UseForgotPasswordReturn => {
   const navigate = useNavigate()

@@ -10,8 +10,8 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useAuth } from '@/hooks/useAuth'
 
 // Utils
-import { loginReducer } from '@/views/auth/Login/login.reducer'
-import { loginInitialState } from '@/views/auth/Login/login.state'
+import { loginReducer } from '@/views/Login/login.reducer'
+import { loginInitialState } from '@/views/Login/login.state'
 import { loginSchema } from '@/plugins/schemas'
 import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
 import { authStrings } from '@/i18n/pt-BR/auth'
@@ -19,7 +19,7 @@ import { formatCPF } from '@/plugins/utils/formatCPF'
 
 // Types
 import type { LoginFormValues } from '@/plugins/schemas'
-import type { UseLoginFormReturn } from '@/views/auth/Login/Login.types'
+import type { UseLoginFormReturn } from '@/views/Login/Login.types'
 
 const useLoginForm = (): UseLoginFormReturn => {
   const { login, isSubmitting } = useAuth()

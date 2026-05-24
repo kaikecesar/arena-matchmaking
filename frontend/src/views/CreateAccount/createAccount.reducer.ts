@@ -1,5 +1,5 @@
 // Types
-import type { CreateAccountState } from '@/views/auth/CreateAccount/createAccount.state'
+import type { CreateAccountState } from '@/views/CreateAccount/createAccount.state'
 import type {
   RegisterPasswordValues,
   RegisterProfileValues,

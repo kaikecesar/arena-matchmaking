@@ -12,7 +12,7 @@ import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
 import { StepIndicator } from '@/layout/StepIndicator/StepIndicator'
 
 // Hooks
-import { useCreateAccount } from '@/views/auth/CreateAccount/useCreateAccount'
+import { useCreateAccount } from '@/views/CreateAccount/useCreateAccount'
 
 // Utils
 import { formatCPF } from '@/plugins/utils/formatCPF'
@@ -50,7 +50,7 @@ import {
   SuccessPanel,
   SuccessSubtitle,
   SuccessTitle,
-} from '@/views/auth/Login/Login.style'
+} from '@/views/Login/Login.style'
 
 /* *************************************************************************************************
 ******************************************** CONSTANTS *********************************************

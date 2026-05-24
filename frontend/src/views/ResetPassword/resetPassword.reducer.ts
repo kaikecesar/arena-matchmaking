@@ -2,7 +2,7 @@
 import {
   resetPasswordInitialState,
   type ResetPasswordState,
-} from '@/views/auth/ResetPassword/resetPassword.state'
+} from '@/views/ResetPassword/resetPassword.state'
 
 /* *************************************************************************************************
 ******************************************* ACTION TYPES *******************************************

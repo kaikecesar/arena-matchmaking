@@ -8,7 +8,7 @@ import type { FieldErrors, UseFormRegister, UseFormStateReturn } from 'react-hoo
 import type { ForgotPasswordFormValues } from '@/plugins/schemas'
 
 // Features
-import type { ForgotPasswordState } from '@/views/auth/ForgotPassword/forgotPassword.state'
+import type { ForgotPasswordState } from '@/views/ForgotPassword/forgotPassword.state'
 
 export interface UseForgotPasswordReturn {
   state: ForgotPasswordState;
