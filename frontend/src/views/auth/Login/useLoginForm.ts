@@ -7,18 +7,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, useWatch } from 'react-hook-form'
 
 // Hooks
-import { useAuth } from '@/views/auth/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // Utils
 import { loginReducer } from '@/views/auth/Login/login.reducer'
 import { loginInitialState } from '@/views/auth/Login/login.state'
-import { loginSchema } from '@/views/auth/schemas'
-import { AUTH_FORM_OPTIONS } from '@/views/auth/utils/authFormConfig'
+import { loginSchema } from '@/plugins/schemas'
+import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
 import { authStrings } from '@/i18n/pt-BR/auth'
-import { formatCPF } from '@/utils/formatCPF'
+import { formatCPF } from '@/plugins/utils/formatCPF'
 
 // Types
-import type { LoginFormValues } from '@/views/auth/schemas'
+import type { LoginFormValues } from '@/plugins/schemas'
 import type { UseLoginFormReturn } from '@/views/auth/Login/Login.types'
 
 const useLoginForm = (): UseLoginFormReturn => {

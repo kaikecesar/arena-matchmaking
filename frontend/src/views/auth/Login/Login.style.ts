@@ -1,1 +1,1 @@
-export * from '../components/AuthLayout/AuthLayout.style'
+export * from '@/layout/AuthLayout/AuthLayout.style'

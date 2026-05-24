@@ -5,7 +5,7 @@ import type { ChangeEvent, FormEvent } from 'react'
 import type { FieldErrors, UseFormRegister, UseFormStateReturn } from 'react-hook-form'
 
 // Schemas
-import type { ForgotPasswordFormValues } from '@/views/auth/schemas'
+import type { ForgotPasswordFormValues } from '@/plugins/schemas'
 
 // Features
 import type { ForgotPasswordState } from '@/views/auth/ForgotPassword/forgotPassword.state'

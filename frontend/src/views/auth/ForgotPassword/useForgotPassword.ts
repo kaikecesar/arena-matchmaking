@@ -8,18 +8,18 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 // Schemas
-import { forgotPasswordSchema } from '@/views/auth/schemas'
-import type { ForgotPasswordFormValues } from '@/views/auth/schemas'
+import { forgotPasswordSchema } from '@/plugins/schemas'
+import type { ForgotPasswordFormValues } from '@/plugins/schemas'
 
 // Services
-import { authService } from '@/views/auth/services'
+import { authService } from '@/plugins/services'
 
 // Utils
 import { forgotPasswordReducer } from '@/views/auth/ForgotPassword/forgotPassword.reducer'
 import { forgotPasswordInitialState } from '@/views/auth/ForgotPassword/forgotPassword.state'
-import { AUTH_FORM_OPTIONS } from '@/views/auth/utils/authFormConfig'
-import { getAuthErrorMessage } from '@/views/auth/utils/authErrors'
-import { formatCPF } from '@/utils/formatCPF'
+import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
+import { getAuthErrorMessage } from '@/plugins/utils/authErrors'
+import { formatCPF } from '@/plugins/utils/formatCPF'
 
 // Constants
 import { ROUTES } from '@/routes/routes'

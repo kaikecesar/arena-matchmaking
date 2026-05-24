@@ -12,14 +12,14 @@ import {
 import { Eyebrow } from '@/components/ui/Eyebrow'
 
 // Hooks
-import { useAuth } from '@/views/auth/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
 import type { DashboardModule } from '@/views/auth/Dashboard/DashboardPage.types'
-import { UserRole } from '@/views/auth/types'
+import { UserRole } from '@/types/auth'
 
 // Style
 import {

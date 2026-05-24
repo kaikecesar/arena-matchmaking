@@ -5,11 +5,11 @@ import type { FormEvent } from 'react'
 import type { FieldErrors, UseFormRegister, UseFormReturn, UseFormStateReturn } from 'react-hook-form'
 
 // Schemas
-import type { ResetPasswordFormValues } from '@/views/auth/schemas'
+import type { ResetPasswordFormValues } from '@/plugins/schemas'
 
 // Features
 import type { ResetPasswordState } from '@/views/auth/ResetPassword/resetPassword.state'
-import type { PasswordStrengthResult } from '@/views/auth/utils/passwordStrength'
+import type { PasswordStrengthResult } from '@/plugins/utils/passwordStrength'
 
 export interface UseResetPasswordReturn {
   token: string;

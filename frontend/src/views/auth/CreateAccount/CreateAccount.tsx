@@ -6,24 +6,24 @@ import {
   ButtonVariant,
 } from '@/components/ui/Button'
 import { InputField, InputFieldType } from '@/components/ui/InputField'
-import { AuthAlert } from '@/views/auth/components/AuthAlert/AuthAlert'
-import { AuthHero } from '@/views/auth/components/AuthHero/AuthHero'
-import { AuthLayout } from '@/views/auth/components/AuthLayout/AuthLayout'
-import { StepIndicator } from '@/views/auth/components/StepIndicator/StepIndicator'
+import { AuthAlert } from '@/components/auth/AuthAlert/AuthAlert'
+import { AuthHero } from '@/components/auth/AuthHero/AuthHero'
+import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
+import { StepIndicator } from '@/layout/StepIndicator/StepIndicator'
 
 // Hooks
 import { useCreateAccount } from '@/views/auth/CreateAccount/useCreateAccount'
 
 // Utils
-import { formatCPF } from '@/utils/formatCPF'
-import { authFieldErrorProp } from '@/utils/formProps'
+import { formatCPF } from '@/plugins/utils/formatCPF'
+import { authFieldErrorProp } from '@/plugins/utils/formProps'
 
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
 import type { JSX } from 'react'
-import type { RegisterRole } from '@/views/auth/types'
+import type { RegisterRole } from '@/types/auth'
 
 // Style
 import {

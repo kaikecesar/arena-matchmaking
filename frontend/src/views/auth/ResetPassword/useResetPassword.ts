@@ -8,18 +8,18 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // Schemas
-import { resetPasswordSchema } from '@/views/auth/schemas'
-import type { ResetPasswordFormValues } from '@/views/auth/schemas'
+import { resetPasswordSchema } from '@/plugins/schemas'
+import type { ResetPasswordFormValues } from '@/plugins/schemas'
 
 // Services
-import { authService } from '@/views/auth/services'
+import { authService } from '@/plugins/services'
 
 // Utils
 import { resetPasswordReducer } from '@/views/auth/ResetPassword/resetPassword.reducer'
 import { resetPasswordInitialState } from '@/views/auth/ResetPassword/resetPassword.state'
-import { AUTH_FORM_OPTIONS } from '@/views/auth/utils/authFormConfig'
-import { getAuthErrorMessage } from '@/views/auth/utils/authErrors'
-import { getPasswordStrength } from '@/views/auth/utils/passwordStrength'
+import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
+import { getAuthErrorMessage } from '@/plugins/utils/authErrors'
+import { getPasswordStrength } from '@/plugins/utils/passwordStrength'
 
 // Constants
 import { ROUTES } from '@/routes/routes'

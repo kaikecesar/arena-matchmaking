@@ -11,7 +11,7 @@ import { ROUTES } from '@/routes/routes'
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Utils
-import { authFieldErrorProp } from '@/utils/formProps'
+import { authFieldErrorProp } from '@/plugins/utils/formProps'
 
 // Hooks
 import { useLoginForm } from '@/views/auth/Login/useLoginForm'
@@ -26,9 +26,9 @@ import {
 } from '@/components/ui/Button'
 import { Checkbox } from '@/components/ui/Checkbox'
 import { InputField, InputFieldType } from '@/components/ui/InputField'
-import { AuthAlert } from '@/views/auth/components/AuthAlert/AuthAlert'
-import { AuthHero } from '@/views/auth/components/AuthHero/AuthHero'
-import { AuthLayout } from '@/views/auth/components/AuthLayout/AuthLayout'
+import { AuthAlert } from '@/components/auth/AuthAlert/AuthAlert'
+import { AuthHero } from '@/components/auth/AuthHero/AuthHero'
+import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
 
 // Style
 import {

@@ -7,7 +7,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 // Hooks
-import { useAuth } from '@/views/auth/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
 
 // Utils
 import { createAccountReducer } from '@/views/auth/CreateAccount/createAccount.reducer'
@@ -15,10 +15,10 @@ import { createAccountInitialState } from '@/views/auth/CreateAccount/createAcco
 import {
   registerPasswordSchema,
   registerProfileSchema,
-} from '@/views/auth/schemas'
-import { AUTH_FORM_OPTIONS } from '@/views/auth/utils/authFormConfig'
-import { getPasswordStrength } from '@/views/auth/utils/passwordStrength'
-import { formatCPF } from '@/utils/formatCPF'
+} from '@/plugins/schemas'
+import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
+import { getPasswordStrength } from '@/plugins/utils/passwordStrength'
+import { formatCPF } from '@/plugins/utils/formatCPF'
 
 // Constants
 import { ROUTES } from '@/routes/routes'
@@ -30,8 +30,8 @@ import { authStrings } from '@/i18n/pt-BR/auth'
 import type {
   RegisterPasswordValues,
   RegisterProfileValues,
-} from '@/views/auth/schemas'
-import type { RegisterRole } from '@/views/auth/types'
+} from '@/plugins/schemas'
+import type { RegisterRole } from '@/types/auth'
 
 import {
   CREATE_ACCOUNT_ROLE_KEYS,

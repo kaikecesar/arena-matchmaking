@@ -2,8 +2,8 @@
 import type {
   RegisterPasswordValues,
   RegisterProfileValues,
-} from '@/views/auth/schemas'
-import type { RegisterRole } from '@/views/auth/types'
+} from '@/plugins/schemas'
+import type { RegisterRole } from '@/types/auth'
 
 export interface CreateAccountUiState {
   step: number

@@ -9,15 +9,15 @@ import {
   ButtonVariant,
 } from '@/components/ui/Button'
 import { InputField, InputFieldType } from '@/components/ui/InputField'
-import { AuthAlert } from '@/views/auth/components/AuthAlert/AuthAlert'
-import { AuthHero } from '@/views/auth/components/AuthHero/AuthHero'
-import { AuthLayout } from '@/views/auth/components/AuthLayout/AuthLayout'
+import { AuthAlert } from '@/components/auth/AuthAlert/AuthAlert'
+import { AuthHero } from '@/components/auth/AuthHero/AuthHero'
+import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
 
 // Hooks
 import { useForgotPassword } from '@/views/auth/ForgotPassword/useForgotPassword'
 
 // Utils
-import { authFieldErrorProp } from '@/utils/formProps'
+import { authFieldErrorProp } from '@/plugins/utils/formProps'
 
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'

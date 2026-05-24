@@ -1,6 +1,6 @@
 // Types
 import type { FieldErrors, UseFormRegister, UseFormStateReturn } from 'react-hook-form'
-import type { LoginFormValues } from '@/views/auth/schemas'
+import type { LoginFormValues } from '@/plugins/schemas'
 import type { LoginState } from '@/views/auth/Login/login.state'
 import type { ChangeEvent, FormEvent } from 'react'
 

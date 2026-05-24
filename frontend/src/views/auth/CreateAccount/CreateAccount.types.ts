@@ -4,9 +4,9 @@ import type { UseFormReturn } from 'react-hook-form'
 import type {
   RegisterPasswordValues,
   RegisterProfileValues,
-} from '@/views/auth/schemas'
-import { RegisterRole } from '@/views/auth/types'
-import type { PasswordStrengthResult } from '@/views/auth/utils/passwordStrength'
+} from '@/plugins/schemas'
+import { RegisterRole } from '@/types/auth'
+import type { PasswordStrengthResult } from '@/plugins/utils/passwordStrength'
 
 import type { CreateAccountState } from './createAccount.state'
 

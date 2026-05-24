@@ -1,6 +1,6 @@
 // Types
-import type { AuthErrorCode } from '@/views/auth/types/errors.types'
-import type { AuthUser } from '@/views/auth/types/user.types'
+import type { AuthErrorCode } from '@/types/auth/errors.types'
+import type { AuthUser } from '@/types/auth/user.types'
 
 /** Successful auth endpoints (login, register, refresh). */
 export interface AuthApiResponse {
