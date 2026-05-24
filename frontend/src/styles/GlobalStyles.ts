@@ -11,7 +11,8 @@ export const GlobalStyles = createGlobalStyle`
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow: hidden;
+    height: 100%;
   }
 
   body {
@@ -22,9 +23,8 @@ export const GlobalStyles = createGlobalStyle`
     line-height: ${({ theme }) => theme.lineHeights.body};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    min-height: 100dvh;
-    min-height: 100svh;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
   }
 
   body::before {
@@ -45,7 +45,8 @@ export const GlobalStyles = createGlobalStyle`
   #root {
     position: relative;
     z-index: ${({ theme }) => theme.zIndex.base};
-    min-height: 100dvh;
+    height: 100%;
+    overflow: hidden;
   }
 
   ::selection {
