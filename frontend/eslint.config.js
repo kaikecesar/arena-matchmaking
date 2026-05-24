@@ -61,10 +61,6 @@ export default defineConfig([
           selector: 'ExportDefaultDeclaration',
           message: 'Use named exports instead of default exports.',
         },
-        {
-          selector: 'FunctionDeclaration',
-          message: 'Use const arrow functions instead of function declarations.',
-        },
       ],
 
       'unused-imports/no-unused-imports': 'error',

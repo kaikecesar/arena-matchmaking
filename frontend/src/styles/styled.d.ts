@@ -1,4 +1,4 @@
-// Styles
+// Style
 import 'styled-components'
 import type { Theme } from '@/styles/theme'
 

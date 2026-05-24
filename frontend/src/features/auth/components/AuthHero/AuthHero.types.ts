@@ -5,11 +5,11 @@ import type { ThemeColorKey } from '@/components/ui/Eyebrow/Eyebrow.types'
 export type AuthHeroEyebrowColor = Extract<ThemeColorKey, 'copper' | 'blood'>
 
 export interface AuthHeroProps {
-  eyebrow: string
-  line1: string
-  highlight: string
-  subtitle: string
-  eyebrowColor?: AuthHeroEyebrowColor | undefined
+  eyebrow: string;
+  line1: string;
+  highlight: string;
+  subtitle: string;
+  eyebrowColor?: AuthHeroEyebrowColor | undefined;
 }
 
 export type AuthHeroEyebrowProps = Pick<AuthHeroProps, 'eyebrow' | 'eyebrowColor'>

@@ -1,7 +1,7 @@
 export interface IconBoxStyledProps {
-  $size: number
+  $size: number;
 }
 
 export interface BrandMarkProps {
-  size?: number
+  size?: number;
 }

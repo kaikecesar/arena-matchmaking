@@ -32,9 +32,9 @@ export enum StackJustify {
 }
 
 export interface StackProps {
-  children: React.ReactNode
-  direction?: StackDirection
-  gap?: StackGap
-  align?: StackAlign
-  justify?: StackJustify
+  children: React.ReactNode;
+  direction?: StackDirection;
+  gap?: StackGap;
+  align?: StackAlign;
+  justify?: StackJustify;
 }

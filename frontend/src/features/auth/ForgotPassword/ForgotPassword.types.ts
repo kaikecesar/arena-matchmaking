@@ -11,12 +11,12 @@ import type { ForgotPasswordFormValues } from '@/features/auth/schemas'
 import type { ForgotPasswordState } from '@/features/auth/ForgotPassword/forgotPassword.state'
 
 export interface UseForgotPasswordReturn {
-  state: ForgotPasswordState
-  register: UseFormRegister<ForgotPasswordFormValues>
-  formState: UseFormStateReturn<ForgotPasswordFormValues>
-  errors: FieldErrors<ForgotPasswordFormValues>
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void
-  onIdentifierChange: (e: ChangeEvent<HTMLInputElement>) => void
-  navigateToLogin: () => void
-  navigateToReset: () => void
+  state: ForgotPasswordState;
+  register: UseFormRegister<ForgotPasswordFormValues>;
+  formState: UseFormStateReturn<ForgotPasswordFormValues>;
+  errors: FieldErrors<ForgotPasswordFormValues>;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onIdentifierChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  navigateToLogin: () => void;
+  navigateToReset: () => void;
 }

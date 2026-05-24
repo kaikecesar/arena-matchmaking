@@ -5,7 +5,7 @@ export type DashboardModule = {
 }
 
 export interface DashboardPageProps {
-  title: string
-  subtitle: string
-  modules: readonly DashboardModule[]
+  title: string;
+  subtitle: string;
+  modules: readonly DashboardModule[];
 }

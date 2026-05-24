@@ -1,4 +1,4 @@
-// Styles
+// Style
 import { breakpoints } from '@/styles/tokens/breakpoints'
 import { borders } from '@/styles/tokens/borders'
 import { colors } from '@/styles/tokens/colors'

@@ -11,7 +11,7 @@ import { AuthProvider } from '@/features/auth/context/AuthProvider'
 // Features
 import { AuthRoutes } from '@/features/auth/routes/AuthRoutes'
 
-// Styles
+// Style
 import { GlobalStyles, theme } from '@/styles'
 
 const App = (): ReactElement => {

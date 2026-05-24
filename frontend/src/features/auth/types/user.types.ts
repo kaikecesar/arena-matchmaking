@@ -7,8 +7,8 @@ export enum UserRole {
 export type UserRoleType = UserRole
 
 export interface AuthUser {
-  id: string
-  name: string
-  email: string
-  role: UserRole
+  id: string;
+  name: string;
+  email: string;
+  role: UserRole;
 }

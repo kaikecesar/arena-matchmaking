@@ -10,18 +10,18 @@ export enum AuthStatus {
 }
 
 export interface AuthContextValue {
-  status: AuthStatus
-  user: AuthUser | null
-  isBootstrapping: boolean
-  isSubmitting: boolean
-  successMessage: string | null
-  login: (payload: LoginPayload) => Promise<void>
-  register: (payload: RegisterPayload) => Promise<void>
-  logout: () => Promise<void>
-  clearSuccessMessage: () => void
+  status: AuthStatus;
+  user: AuthUser | null;
+  isBootstrapping: boolean;
+  isSubmitting: boolean;
+  successMessage: string | null;
+  login: (payload: LoginPayload) => Promise<void>;
+  register: (payload: RegisterPayload) => Promise<void>;
+  logout: () => Promise<void>;
+  clearSuccessMessage: () => void;
 }
 
 export interface AuthProviderProps {
-  children: ReactNode
-  initialSession?: AuthSession | null | undefined
+  children: ReactNode;
+  initialSession?: AuthSession | null | undefined;
 }

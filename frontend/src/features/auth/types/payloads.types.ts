@@ -5,25 +5,25 @@ export enum RegisterRole {
 }
 
 export interface LoginPayload {
-  identifier: string
-  password: string
-  keepSession: boolean
+  identifier: string;
+  password: string;
+  keepSession: boolean;
 }
 
 export interface RegisterPayload {
-  role: RegisterRole
-  name: string
-  email: string
-  document: string
-  password: string
+  role: RegisterRole;
+  name: string;
+  email: string;
+  document: string;
+  password: string;
 }
 
 export interface ForgotPasswordPayload {
-  identifier: string
+  identifier: string;
 }
 
 export interface ResetPasswordPayload {
-  token: string
-  password: string
-  confirmPassword: string
+  token: string;
+  password: string;
+  confirmPassword: string;
 }

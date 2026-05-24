@@ -10,6 +10,6 @@ export enum TextVariant {
 }
 
 export interface TextProps {
-  children: ReactNode
-  variant?: TextVariant
+  children: ReactNode;
+  variant?: TextVariant;
 }
