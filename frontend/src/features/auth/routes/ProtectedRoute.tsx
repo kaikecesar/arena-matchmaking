@@ -10,11 +10,11 @@ import { AuthBootstrap } from '@/features/auth/routes/AuthBootstrap'
 // Hooks
 import { useAuth } from '@/features/auth/hooks/useAuth'
 
-// Utils
-import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
-
 // Constants
 import { ROUTES } from '@/constants/routes'
+
+// Utils
+import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
 
 // Types
 import type { ProtectedRouteProps } from './ProtectedRoute.types'
@@ -23,19 +23,20 @@ const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps): ReactE
   const { user, isBootstrapping } = useAuth()
   const location = useLocation()
 
-  if (isBootstrapping) {
-    return <AuthBootstrap />
-  }
+  const content: ReactElement = (() => {
+    if (isBootstrapping) {
+      return <AuthBootstrap />
+    }
+    if (!user) {
+      return <Navigate to={ROUTES.login} state={{ from: location.pathname }} replace />
+    }
+    if (allowedRoles && !allowedRoles.includes(user.role)) {
+      return <Navigate to={getRedirectForRole(user.role)} replace />
+    }
+    return children
+  })()
 
-  if (!user) {
-    return <Navigate to={ROUTES.login} state={{ from: location.pathname }} replace />
-  }
-
-  if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to={getRedirectForRole(user.role)} replace />
-  }
-
-  return children
+  return content
 }
 
 export { ProtectedRoute }

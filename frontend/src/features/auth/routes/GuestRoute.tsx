@@ -19,15 +19,17 @@ import type { GuestRouteProps } from './GuestRoute.types'
 const GuestRoute = ({ children }: GuestRouteProps): ReactElement => {
   const { user, isBootstrapping } = useAuth()
 
-  if (isBootstrapping) {
-    return <AuthBootstrap />
-  }
+  const content: ReactElement = (() => {
+    if (isBootstrapping) {
+      return <AuthBootstrap />
+    }
+    if (user) {
+      return <Navigate to={getRedirectForRole(user.role)} replace />
+    }
+    return children
+  })()
 
-  if (user) {
-    return <Navigate to={getRedirectForRole(user.role)} replace />
-  }
-
-  return children
+  return content
 }
 
 export { GuestRoute }
