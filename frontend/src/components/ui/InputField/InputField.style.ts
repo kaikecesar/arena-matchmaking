@@ -67,11 +67,11 @@ export const InputWrapper = styled.div<InputWrapperStyledProps>`
     ${({ $hasError, theme }) =>
       $hasError
         ? css`
-            border-color: ${theme.colors.bloodBorderFocusStrong};
+            border-color: ${theme.colors.bloodBorderSelected};
             box-shadow: ${theme.shadows.inputErrorFocus};
           `
         : css`
-            border-color: ${theme.colors.bloodBorderFocus};
+            border-color: ${theme.colors.bloodBorderMedium};
             box-shadow: ${theme.shadows.inputFocus};
           `}
   }

@@ -39,7 +39,7 @@ import {
   LoginForm,
   PageFooter,
   SecurityBadge,
-} from '@/features/auth/Login/Login.styles'
+} from '@/features/auth/Login/Login.style'
 
 const Login = (): ReactElement => {
   const navigate = useNavigate()

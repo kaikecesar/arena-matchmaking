@@ -5,7 +5,7 @@ import type { ReactElement } from 'react'
 import type { EyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types'
 
 // Styles
-import { StyledEyebrow } from '@/components/ui/Eyebrow/Eyebrow.styles'
+import { StyledEyebrow } from '@/components/ui/Eyebrow/Eyebrow.style'
 
 const Eyebrow = ({ children, $color }: EyebrowProps): ReactElement => (
   <StyledEyebrow

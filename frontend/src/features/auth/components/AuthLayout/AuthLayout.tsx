@@ -16,7 +16,7 @@ import {
   LoginHeader,
   PageShell,
   PrimaryColumn,
-} from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+} from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
 const AuthLayout = ({ children, footer, wide = false }: AuthLayoutProps): ReactElement => {
   return (

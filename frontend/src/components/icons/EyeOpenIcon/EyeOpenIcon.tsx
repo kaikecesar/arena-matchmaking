@@ -5,7 +5,7 @@ import React from 'react'
 import type { IconProps } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.types'
 
 // Styles
-import { StyledIcon } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.styles'
+import { StyledIcon } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.style'
 
 const EyeOpenIcon: React.FC<IconProps> = ({ size = 18, title = 'Show password' }) => {
   return (

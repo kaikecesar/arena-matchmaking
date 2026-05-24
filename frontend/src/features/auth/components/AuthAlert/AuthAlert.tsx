@@ -8,7 +8,7 @@ import { WarningIcon } from '@/components/icons'
 import type { AuthAlertProps } from './AuthAlert.types'
 
 // Styles
-import { GeneralErrorBox, GeneralErrorText } from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+import { GeneralErrorBox, GeneralErrorText } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
 const AuthAlert = ({ message, icon }: AuthAlertProps): ReactElement => {
   return (

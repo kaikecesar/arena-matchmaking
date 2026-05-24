@@ -5,7 +5,7 @@ import React from 'react'
 import type { IconProps } from '@/components/icons/ArrowRightIcon/ArrowRightIcon.types'
 
 // Styles
-import { StyledIcon } from '@/components/icons/ArrowRightIcon/ArrowRightIcon.styles'
+import { StyledIcon } from '@/components/icons/ArrowRightIcon/ArrowRightIcon.style'
 
 const ArrowRightIcon: React.FC<IconProps> = ({ size = 18, title = 'Proceed' }) => {
   return (

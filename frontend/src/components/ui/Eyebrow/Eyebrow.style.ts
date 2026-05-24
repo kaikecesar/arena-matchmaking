@@ -2,11 +2,7 @@
 import styled from 'styled-components'
 
 // Types
-import type { ThemeColorKey } from '@/components/ui/Eyebrow/Eyebrow.types'
-
-interface StyledEyebrowProps {
-  $color?: ThemeColorKey | undefined
-}
+import type { StyledEyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types'
 
 export const StyledEyebrow = styled.span<StyledEyebrowProps>`
   display: block;

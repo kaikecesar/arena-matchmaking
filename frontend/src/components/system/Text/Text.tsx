@@ -5,7 +5,7 @@ import type { FC, ReactElement } from 'react'
 import { TextVariant, type TextProps } from '@/components/system/Text/Text.types'
 
 // Styles
-import { StyledText } from '@/components/system/Text/Text.styles'
+import { StyledText } from '@/components/system/Text/Text.style'
 
 const Text: FC<TextProps> = ({ variant = TextVariant.body, children }): ReactElement => {
   return (

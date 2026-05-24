@@ -2,7 +2,7 @@
 import type { FC, ReactElement } from 'react'
 
 // Styles
-import { SpinnerSvg, StyledButton } from './Button.styles'
+import { SpinnerSvg, StyledButton } from './Button.style'
 
 // Types
 import { ButtonSize, ButtonType, ButtonVariant, type ButtonProps } from './Button.types'

@@ -4,7 +4,7 @@ import React from 'react'
 import type { FieldErrorProps } from './FieldError.types'
 
 // Styles
-import { ErrorText } from './FieldError.styles'
+import { ErrorText } from './FieldError.style'
 
 const FieldError = ({ 
   message = null,

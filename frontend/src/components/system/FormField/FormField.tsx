@@ -5,7 +5,7 @@ import type { FC, ReactNode } from 'react'
 import type { FormFieldProps } from '@/components/system/FormField/FormField.types'
 
 // Styles
-import { FieldContainer, HelpText, Label } from '@/components/system/FormField/FormField.styles'
+import { FieldContainer, HelpText, Label } from '@/components/system/FormField/FormField.style'
 
 const renderHelpText = (error?: string, hint?: string): ReactNode => {
   if (error) {

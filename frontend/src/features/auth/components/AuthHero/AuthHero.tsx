@@ -14,7 +14,7 @@ import {
   HeroHeading,
   HeroHighlight,
   HeroSubtitle,
-} from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+} from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
 const AuthHero = ({
   eyebrow,

@@ -11,7 +11,7 @@ import {
   Wordmark,
   WordmarkArena,
   WordmarkSub,
-} from '@/components/ui/BrandMark/BrandMark.styles'
+} from '@/components/ui/BrandMark/BrandMark.style'
 
 const BrandMark = ({ size = 28 }: BrandMarkProps): ReactElement => {
   const iconSize = Math.round(size * 0.57) // ~16px at default 28

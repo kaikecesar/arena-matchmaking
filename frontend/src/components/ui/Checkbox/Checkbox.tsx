@@ -7,7 +7,7 @@ import {
   CheckboxWrapper,
   HiddenInput,
   VisualBox,
-} from '@/components/ui/Checkbox/Checkbox.styles'
+} from '@/components/ui/Checkbox/Checkbox.style'
 
 // Types
 import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types'

@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 
 // Styles
-import { StyledStack } from './Stack.styles'
+import { StyledStack } from './Stack.style'
 
 // Types
 import { StackAlign, StackDirection, StackGap, StackJustify, type StackProps } from './Stack.types'

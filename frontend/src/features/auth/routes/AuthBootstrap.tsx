@@ -5,7 +5,7 @@ import type { ReactElement } from 'react'
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Styles
-import { AuthBootstrap as AuthBootstrapShell } from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+import { AuthBootstrap as AuthBootstrapShell } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
 const AuthBootstrap = (): ReactElement => {
   return (

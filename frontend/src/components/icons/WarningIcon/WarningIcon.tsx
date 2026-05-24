@@ -5,7 +5,7 @@ import React from 'react'
 import type { IconProps } from '@/components/icons/WarningIcon/WarningIcon.types'
 
 // Styles
-import { StyledIcon } from '@/components/icons/WarningIcon/WarningIcon.styles'
+import { StyledIcon } from '@/components/icons/WarningIcon/WarningIcon.style'
 
 const WarningIcon: React.FC<IconProps> = ({ size = 16, title = 'Warning' }) => {
   return (

@@ -29,7 +29,7 @@ import {
   ContextTelemetry,
   ContextTelemetryItem,
   ContextTitle,
-} from './AuthContextPanel.styles'
+} from './AuthContextPanel.style'
 
 const AuthContextPanel = (): ReactElement => {
   const { contextPanel } = authStrings

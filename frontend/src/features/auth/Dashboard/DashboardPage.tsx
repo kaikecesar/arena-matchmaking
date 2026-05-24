@@ -44,7 +44,7 @@ import {
   StatusMeta,
   StatusPill,
   StatusStrip,
-} from '@/features/auth/Dashboard/Dashboard.styles'
+} from '@/features/auth/Dashboard/Dashboard.style'
 
 type DashboardPageProps = {
   title: string

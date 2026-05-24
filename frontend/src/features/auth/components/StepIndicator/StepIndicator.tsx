@@ -8,7 +8,7 @@ import { authStrings } from '@/i18n/pt-BR/auth'
 import type { StepIndicatorProps } from './StepIndicator.types'
 
 // Styles
-import { StepIndicatorRow, StepItem, StepLabel } from '@/features/auth/components/AuthLayout/AuthLayout.styles'
+import { StepIndicatorRow, StepItem, StepLabel } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
 const StepIndicator = ({ steps, currentStep }: StepIndicatorProps): ReactElement => {
   return (

@@ -31,7 +31,7 @@ import {
   SuccessPanel,
   SuccessSubtitle,
   SuccessTitle,
-} from '@/features/auth/Login/Login.styles'
+} from '@/features/auth/Login/Login.style'
 
 const ResetPassword = (): ReactElement => {
   /* ***********************************************************************************************
