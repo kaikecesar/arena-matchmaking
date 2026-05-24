@@ -71,15 +71,13 @@ const createBootPulse = (theme: Theme): Keyframes => keyframes`
 ******************************************* LAYOUT SHELL *******************************************
 ************************************************************************************************* */
 export const PageShell = styled.div`
-  min-height: 100dvh;
-  min-height: 100svh;
+  height: 100dvh;
+  height: 100svh;
   background: ${({ theme }) => theme.colors.bgApp};
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
 
   ${({ theme }) => theme.media.up.md} {
     align-items: center;
@@ -123,8 +121,8 @@ export const PrimaryColumn = styled.div`
 
   ${({ theme }) => theme.media.up.xl} {
     flex: none;
-    min-height: 100dvh;
-    min-height: 100svh;
+    height: 100dvh;
+    height: 100svh;
     align-items: center;
     justify-content: center;
     padding:
@@ -133,8 +131,7 @@ export const PrimaryColumn = styled.div`
       calc(${({ theme }) => theme.layout.safeBottom} + ${({ theme }) => theme.spacing.lg})
       ${({ theme }) => theme.layout.authPrimaryPaddingXl};
     background: ${({ theme }) => theme.colors.bgApp};
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
   }
 `
 

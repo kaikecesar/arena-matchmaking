@@ -1,14 +1,13 @@
 // Core
-import React from 'react'
+import type { FC, ReactElement } from 'react'
 
 // Types
-import type { TextProps } from '@/components/system/Text/Text.types'
-import { TextVariant } from '@/components/system/Text/Text.types'
+import { TextVariant, type TextProps } from '@/components/system/Text/Text.types'
 
 // Styles
 import { StyledText } from '@/components/system/Text/Text.styles'
 
-const Text: React.FC<TextProps> = ({ variant = TextVariant.body, children }) => {
+const Text: FC<TextProps> = ({ variant = TextVariant.body, children }): ReactElement => {
   return (
     <StyledText $variant={variant}>
       {children}

@@ -1,9 +1,5 @@
 // Core
-import React from 'react'
-
-// Types
-import type { InputFieldProps } from '@/components/ui/InputField/InputField.types'
-import { InputFieldType } from '@/components/ui/InputField/InputField.types'
+import { forwardRef, type ReactElement } from 'react'
 
 // Styles
 import {
@@ -16,7 +12,10 @@ import {
   TrailingSlot,
 } from '@/components/ui/InputField/InputField.styles'
 
-const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
+// Types
+import { InputFieldType, type InputFieldProps } from '@/components/ui/InputField/InputField.types'
+
+const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   (
     {
       label,
@@ -37,7 +36,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
       id,
     },
     ref
-  ) => {
+  ): ReactElement => {
     /* *********************************************************************************************
     **************************************** DERIVED STATE *****************************************
     ********************************************************************************************* */
@@ -94,3 +93,4 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
 
 InputField.displayName = 'InputField'
 export { InputField }
+export { InputFieldType }

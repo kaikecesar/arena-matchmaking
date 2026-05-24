@@ -1,8 +1,5 @@
 // Core
-import React from 'react'
-
-// Types
-import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types'
+import type { ChangeEvent, ReactElement } from 'react'
 
 // Styles
 import {
@@ -12,8 +9,15 @@ import {
   VisualBox,
 } from '@/components/ui/Checkbox/Checkbox.styles'
 
-const Checkbox = ({ checked, onChange, label, name, id }: CheckboxProps): React.ReactElement => {
+// Types
+import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types'
+
+const Checkbox = ({ checked, onChange, label, name, id }: CheckboxProps): ReactElement => {
   const inputId = id ?? name
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    onChange(e.target.checked)
+  }
 
   return (
     <CheckboxWrapper htmlFor={inputId}>
@@ -22,7 +26,7 @@ const Checkbox = ({ checked, onChange, label, name, id }: CheckboxProps): React.
         id={inputId}
         name={name}
         checked={checked}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked)}
+        onChange={handleChange}
       />
       <VisualBox $checked={checked} aria-hidden="true">
         {checked && (

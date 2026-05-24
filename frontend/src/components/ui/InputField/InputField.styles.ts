@@ -1,6 +1,8 @@
 // Libraries
 import styled, { css, keyframes, type Keyframes } from 'styled-components'
 
+// Types
+import type { InputWrapperStyledProps, StyledInputStyledProps } from '@/components/ui/InputField/InputField.types'
 import type { Theme } from '@/styles/theme'
 
 /* *************************************************************************************************
@@ -26,12 +28,7 @@ export const FieldLabel = styled.label`
 /* *************************************************************************************************
 ********************************************** INPUT ***********************************************
 ************************************************************************************************* */
-interface InputWrapperProps {
-  $hasError: boolean
-  $disabled: boolean
-}
-
-export const InputWrapper = styled.div<InputWrapperProps>`
+export const InputWrapper = styled.div<InputWrapperStyledProps>`
   position: relative;
   display: flex;
   align-items: center;
@@ -80,11 +77,7 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   }
 `
 
-interface StyledInputProps {
-  $mono: boolean
-}
-
-export const StyledInput = styled.input<StyledInputProps>`
+export const StyledInput = styled.input<StyledInputStyledProps>`
   flex: 1;
   background: transparent;
   border: none;

@@ -1,3 +1,6 @@
+// Core
+import type { ReactNode } from 'react'
+
 export enum TextVariant {
   body = 'body',
   label = 'label',
@@ -7,6 +10,6 @@ export enum TextVariant {
 }
 
 export interface TextProps {
-  children: React.ReactNode
+  children: ReactNode
   variant?: TextVariant
 }

@@ -1,14 +1,13 @@
 // Core
-import React from 'react'
-
-// Types
-import type { StackProps } from './Stack.types.ts'
-import { StackAlign, StackDirection, StackGap, StackJustify } from './Stack.types.ts'
+import type { FC } from 'react'
 
 // Styles
-import { StyledStack } from './Stack.styles.ts'
+import { StyledStack } from './Stack.styles'
 
-const Stack: React.FC<StackProps> = ({
+// Types
+import { StackAlign, StackDirection, StackGap, StackJustify, type StackProps } from './Stack.types'
+
+const Stack: FC<StackProps> = ({
   direction = StackDirection.column,
   gap = StackGap.md,
   align = StackAlign.stretch,

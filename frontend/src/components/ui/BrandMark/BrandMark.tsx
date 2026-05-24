@@ -1,5 +1,5 @@
 // Core
-import React from 'react'
+import type { ReactElement } from 'react'
 
 // Types
 import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types'
@@ -13,7 +13,7 @@ import {
   WordmarkSub,
 } from '@/components/ui/BrandMark/BrandMark.styles'
 
-const BrandMark = ({ size = 28 }: BrandMarkProps): React.ReactElement => {
+const BrandMark = ({ size = 28 }: BrandMarkProps): ReactElement => {
   const iconSize = Math.round(size * 0.57) // ~16px at default 28
 
   return (

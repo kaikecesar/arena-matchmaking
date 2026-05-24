@@ -1,8 +1,8 @@
 // Libraries
-import styled, { keyframes, css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 // Types
-import type { ButtonSize, ButtonVariant } from '@/components/ui/Button/Button.types'
+import type { ButtonSize, StyledButtonProps } from '@/components/ui/Button/Button.types'
 
 /* *************************************************************************************************
 ******************************************** KEYFRAMES *********************************************
@@ -35,13 +35,6 @@ const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
     font-size: ${({ theme }) => theme.fontSizes.lg};
     gap: ${({ theme }) => theme.spacing.md};
   `,
-}
-
-interface StyledButtonProps {
-  $variant: ButtonVariant
-  $size: ButtonSize
-  $fullWidth: boolean
-  $loading: boolean
 }
 
 /* *************************************************************************************************

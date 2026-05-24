@@ -1,6 +1,9 @@
 // Libraries
 import styled, { css } from 'styled-components'
 
+// Types
+import type { VisualBoxStyledProps } from '@/components/ui/Checkbox/Checkbox.types'
+
 export const CheckboxWrapper = styled.label`
   display: flex;
   align-items: center;
@@ -23,11 +26,7 @@ export const HiddenInput = styled.input`
   border: 0;
 `
 
-interface VisualBoxProps {
-  $checked: boolean
-}
-
-export const VisualBox = styled.div<VisualBoxProps>`
+export const VisualBox = styled.div<VisualBoxStyledProps>`
   width: ${({ theme }) => theme.sizes.checkbox};
   height: ${({ theme }) => theme.sizes.checkbox};
   border-radius: ${({ theme }) => theme.radius.sm};
