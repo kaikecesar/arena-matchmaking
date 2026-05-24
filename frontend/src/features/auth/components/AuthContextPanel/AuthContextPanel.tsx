@@ -1,10 +1,10 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
-// Styles
+// Style
 import {
   ContextBackdrop,
   ContextEventCard,
@@ -31,7 +31,7 @@ import {
   ContextTitle,
 } from './AuthContextPanel.style'
 
-const AuthContextPanel = (): ReactElement => {
+function AuthContextPanel(): JSX.Element {
   const { contextPanel } = authStrings
 
   return (

@@ -1,7 +1,7 @@
 // Core
-import { forwardRef, type ReactElement } from 'react'
+import { forwardRef, type JSX } from 'react'
 
-// Styles
+// Style
 import {
   ErrorMessage,
   FieldLabel,
@@ -36,7 +36,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       id,
     },
     ref
-  ): ReactElement => {
+  ): JSX.Element => {
     /* *********************************************************************************************
     **************************************** DERIVED STATE *****************************************
     ********************************************************************************************* */

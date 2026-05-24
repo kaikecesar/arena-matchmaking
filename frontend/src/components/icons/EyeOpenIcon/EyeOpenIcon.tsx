@@ -1,13 +1,13 @@
 // Core
-import React from 'react'
+import type { JSX } from 'react'
 
 // Types
 import type { IconProps } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.types'
 
-// Styles
+// Style
 import { StyledIcon } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.style'
 
-const EyeOpenIcon: React.FC<IconProps> = ({ size = 18, title = 'Show password' }) => {
+function EyeOpenIcon({ size = 18, title = 'Show password' }: IconProps): JSX.Element {
   return (
     <StyledIcon
       width={size}

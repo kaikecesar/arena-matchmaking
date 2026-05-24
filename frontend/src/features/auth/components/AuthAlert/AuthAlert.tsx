@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Components
 import { WarningIcon } from '@/components/icons'
@@ -7,10 +7,10 @@ import { WarningIcon } from '@/components/icons'
 // Types
 import type { AuthAlertProps } from './AuthAlert.types'
 
-// Styles
+// Style
 import { GeneralErrorBox, GeneralErrorText } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
-const AuthAlert = ({ message, icon }: AuthAlertProps): ReactElement => {
+function AuthAlert({ message, icon }: AuthAlertProps): JSX.Element {
   return (
     <GeneralErrorBox role="alert" aria-live="polite">
       {icon ?? <WarningIcon />}

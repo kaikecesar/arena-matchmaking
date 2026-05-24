@@ -1,20 +1,22 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Types
 import type { EyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types'
 
-// Styles
+// Style
 import { StyledEyebrow } from '@/components/ui/Eyebrow/Eyebrow.style'
 
-const Eyebrow = ({ children, $color }: EyebrowProps): ReactElement => (
-  <StyledEyebrow
-    {...($color !== undefined
-      ? { $color }
-      : {})}
-  >
-    {children}
-  </StyledEyebrow>
-)
+function Eyebrow({ children, $color }: EyebrowProps): JSX.Element {
+  return (
+    <StyledEyebrow
+      {...($color !== undefined
+        ? { $color }
+        : {})}
+    >
+      {children}
+    </StyledEyebrow>
+  )
+}
 
 export { Eyebrow }

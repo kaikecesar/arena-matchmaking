@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Components
 import { DashboardPage } from '@/features/auth/Dashboard/DashboardPage'
@@ -7,7 +7,7 @@ import { DashboardPage } from '@/features/auth/Dashboard/DashboardPage'
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
-const CoachDashboard = (): ReactElement => {
+function CoachDashboard(): JSX.Element {
   return (
     <DashboardPage
       title={authStrings.dashboard.coach.title}

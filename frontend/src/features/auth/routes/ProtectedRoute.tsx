@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Libraries
 import { Navigate, useLocation } from 'react-router-dom'
@@ -19,11 +19,11 @@ import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
 // Types
 import type { ProtectedRouteProps } from './ProtectedRoute.types'
 
-const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps): ReactElement => {
+function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps): JSX.Element {
   const { user, isBootstrapping } = useAuth()
   const location = useLocation()
 
-  const content: ReactElement = (() => {
+  const content: JSX.Element = (() => {
     if (isBootstrapping) {
       return <AuthBootstrap />
     }

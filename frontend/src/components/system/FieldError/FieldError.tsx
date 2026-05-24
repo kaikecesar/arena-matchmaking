@@ -1,14 +1,13 @@
-import React from 'react'
+// Core
+import type { JSX } from 'react'
 
 // Types
 import type { FieldErrorProps } from './FieldError.types'
 
-// Styles
+// Style
 import { ErrorText } from './FieldError.style'
 
-const FieldError = ({ 
-  message = null,
-}: FieldErrorProps): React.ReactNode => {
+function FieldError({ message = null }: FieldErrorProps): JSX.Element | null {
   if (!message) {
     return null
   }

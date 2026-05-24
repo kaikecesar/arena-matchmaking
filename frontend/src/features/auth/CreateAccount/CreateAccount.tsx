@@ -22,10 +22,10 @@ import { authFieldErrorProp } from '@/utils/formProps'
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 import type { RegisterRole } from '@/features/auth/types'
 
-// Styles
+// Style
 import {
   FooterCreateLink,
   FooterLeft,
@@ -68,7 +68,7 @@ const ROLE_LABELS = {
   coach: authStrings.register.roles.coach.title,
 } as const
 
-const CreateAccount = (): ReactElement => {
+function CreateAccount(): JSX.Element {
   /* ***********************************************************************************************
   ***************************************** DERIVED STATE ******************************************
   *********************************************************************************************** */

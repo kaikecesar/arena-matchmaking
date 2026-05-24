@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Components
 import { BrandMark } from '@/components/ui/BrandMark'
@@ -21,7 +21,7 @@ import { authStrings } from '@/i18n/pt-BR/auth'
 import type { DashboardModule } from '@/features/auth/Dashboard/DashboardPage.types'
 import { UserRole } from '@/features/auth/types'
 
-// Styles
+// Style
 import {
   DashboardCard,
   DashboardGlow,
@@ -58,11 +58,11 @@ const DASHBOARD_ROLE_LABEL: Record<UserRole, string> = {
   [UserRole.coach]: authStrings.dashboard.roleLabels.coach,
 }
 
-const DashboardPage = ({
+function DashboardPage({
   title,
   subtitle,
   modules,
-}: DashboardPageProps): ReactElement => {
+}: DashboardPageProps): JSX.Element {
   const { user, logout, isSubmitting } = useAuth()
 
   return (

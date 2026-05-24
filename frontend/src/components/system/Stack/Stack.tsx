@@ -1,19 +1,19 @@
 // Core
-import type { FC } from 'react'
+import type { JSX } from 'react'
 
-// Styles
+// Style
 import { StyledStack } from './Stack.style'
 
 // Types
 import { StackAlign, StackDirection, StackGap, StackJustify, type StackProps } from './Stack.types'
 
-const Stack: FC<StackProps> = ({
+function Stack({
   direction = StackDirection.column,
   gap = StackGap.md,
   align = StackAlign.stretch,
   justify = StackJustify.flexStart,
   children,
-}) => {
+}: StackProps): JSX.Element {
   return (
     <StyledStack
         $direction={direction}

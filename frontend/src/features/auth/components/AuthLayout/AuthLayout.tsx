@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Components
 import { BrandMark } from '@/components/ui/BrandMark'
@@ -8,7 +8,7 @@ import { AuthContextPanel } from '@/features/auth/components/AuthContextPanel/Au
 // Types
 import type { AuthLayoutProps } from './AuthLayout.types'
 
-// Styles
+// Style
 import {
   Card,
   GlowBlood,
@@ -18,7 +18,7 @@ import {
   PrimaryColumn,
 } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
-const AuthLayout = ({ children, footer, wide = false }: AuthLayoutProps): ReactElement => {
+function AuthLayout({ children, footer, wide = false }: AuthLayoutProps): JSX.Element {
   return (
     <PageShell>
       <PrimaryColumn>

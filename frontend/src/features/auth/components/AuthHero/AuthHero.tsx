@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Components
 import { Eyebrow } from '@/components/ui/Eyebrow'
@@ -7,7 +7,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 // Types
 import type { AuthHeroProps } from './AuthHero.types'
 
-// Styles
+// Style
 import {
   HeroBlock,
   HeroEyebrowWrapper,
@@ -16,13 +16,13 @@ import {
   HeroSubtitle,
 } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
-const AuthHero = ({
+function AuthHero({
   eyebrow,
   line1,
   highlight,
   subtitle,
   eyebrowColor = 'copper',
-}: AuthHeroProps): ReactElement => {
+}: AuthHeroProps): JSX.Element {
   return (
     <HeroBlock>
       <HeroEyebrowWrapper>

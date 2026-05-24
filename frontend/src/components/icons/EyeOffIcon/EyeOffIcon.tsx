@@ -1,13 +1,13 @@
 // Core
-import React from 'react'
+import type { JSX } from 'react'
 
 // Types
 import type { IconProps } from '@/components/icons/EyeOffIcon/EyeOffIcon.types'
 
-// Styles
+// Style
 import { StyledIcon } from '@/components/icons/EyeOffIcon/EyeOffIcon.style'
 
-const EyeOffIcon: React.FC<IconProps> = ({ size = 18, title = 'Hide password' }) => {
+function EyeOffIcon({ size = 18, title = 'Hide password' }: IconProps): JSX.Element {
   return (
     <StyledIcon
       width={size}

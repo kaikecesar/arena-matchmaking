@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Libraries
 import { Navigate } from 'react-router-dom'
@@ -16,10 +16,10 @@ import { getRedirectForRole } from '@/features/auth/utils/roleRedirects'
 // Types
 import type { GuestRouteProps } from './GuestRoute.types'
 
-const GuestRoute = ({ children }: GuestRouteProps): ReactElement => {
+function GuestRoute({ children }: GuestRouteProps): JSX.Element {
   const { user, isBootstrapping } = useAuth()
 
-  const content: ReactElement = (() => {
+  const content: JSX.Element = (() => {
     if (isBootstrapping) {
       return <AuthBootstrap />
     }

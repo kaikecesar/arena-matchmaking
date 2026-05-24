@@ -1,10 +1,10 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Types
 import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types'
 
-// Styles
+// Style
 import {
   BrandMarkWrapper,
   IconBox,
@@ -13,7 +13,7 @@ import {
   WordmarkSub,
 } from '@/components/ui/BrandMark/BrandMark.style'
 
-const BrandMark = ({ size = 28 }: BrandMarkProps): ReactElement => {
+function BrandMark({ size = 28 }: BrandMarkProps): JSX.Element {
   const iconSize = Math.round(size * 0.57) // ~16px at default 28
 
   return (
@@ -40,3 +40,4 @@ const BrandMark = ({ size = 28 }: BrandMarkProps): ReactElement => {
 }
 
 export { BrandMark }
+

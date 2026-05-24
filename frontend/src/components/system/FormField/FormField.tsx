@@ -1,13 +1,13 @@
 // Core
-import type { FC, ReactNode } from 'react'
+import type { JSX, ReactNode } from 'react'
 
 // Types
 import type { FormFieldProps } from '@/components/system/FormField/FormField.types'
 
-// Styles
+// Style
 import { FieldContainer, HelpText, Label } from '@/components/system/FormField/FormField.style'
 
-const renderHelpText = (error?: string, hint?: string): ReactNode => {
+function renderHelpText(error?: string, hint?: string): ReactNode {
   if (error) {
     return <HelpText $error>{error}</HelpText>
   }
@@ -19,7 +19,7 @@ const renderHelpText = (error?: string, hint?: string): ReactNode => {
   return null
 }
 
-const FormField: FC<FormFieldProps> = ({ label, htmlFor, error, hint, children }) => {
+function FormField({ label, htmlFor, error, hint, children }: FormFieldProps): JSX.Element {
   return (
     <FieldContainer>
       <Label htmlFor={htmlFor}>{label}</Label>

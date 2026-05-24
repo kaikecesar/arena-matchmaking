@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
@@ -7,10 +7,10 @@ import { authStrings } from '@/i18n/pt-BR/auth'
 // Types
 import type { StepIndicatorProps } from './StepIndicator.types'
 
-// Styles
+// Style
 import { StepIndicatorRow, StepItem, StepLabel } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
-const StepIndicator = ({ steps, currentStep }: StepIndicatorProps): ReactElement => {
+function StepIndicator({ steps, currentStep }: StepIndicatorProps): JSX.Element {
   return (
     <StepIndicatorRow aria-label={authStrings.a11yStepProgress}>
       {steps.map((label, index) => (

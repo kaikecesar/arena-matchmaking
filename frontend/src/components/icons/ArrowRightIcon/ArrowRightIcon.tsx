@@ -1,13 +1,13 @@
 // Core
-import React from 'react'
+import type { JSX } from 'react'
 
 // Types
 import type { IconProps } from '@/components/icons/ArrowRightIcon/ArrowRightIcon.types'
 
-// Styles
+// Style
 import { StyledIcon } from '@/components/icons/ArrowRightIcon/ArrowRightIcon.style'
 
-const ArrowRightIcon: React.FC<IconProps> = ({ size = 18, title = 'Proceed' }) => {
+function ArrowRightIcon({ size = 18, title = 'Proceed' }: IconProps): JSX.Element {
   return (
     <StyledIcon
       width={size}
@@ -41,3 +41,4 @@ const ArrowRightIcon: React.FC<IconProps> = ({ size = 18, title = 'Proceed' }) =
 }
 
 export { ArrowRightIcon }
+

@@ -1,7 +1,7 @@
 // Core
-import type { ChangeEvent, ReactElement } from 'react'
+import type { ChangeEvent, JSX } from 'react'
 
-// Styles
+// Style
 import {
   CheckboxLabel,
   CheckboxWrapper,
@@ -12,7 +12,7 @@ import {
 // Types
 import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types'
 
-const Checkbox = ({ checked, onChange, label, name, id }: CheckboxProps): ReactElement => {
+function Checkbox({ checked, onChange, label, name, id }: CheckboxProps): JSX.Element {
   const inputId = id ?? name
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -47,3 +47,4 @@ const Checkbox = ({ checked, onChange, label, name, id }: CheckboxProps): ReactE
 }
 
 export { Checkbox }
+

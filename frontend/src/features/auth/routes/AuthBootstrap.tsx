@@ -1,13 +1,13 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
-// Styles
+// Style
 import { AuthBootstrap as AuthBootstrapShell } from '@/features/auth/components/AuthLayout/AuthLayout.style'
 
-const AuthBootstrap = (): ReactElement => {
+function AuthBootstrap(): JSX.Element {
   return (
     <AuthBootstrapShell aria-busy="true">
       {authStrings.bootstrapLoading}

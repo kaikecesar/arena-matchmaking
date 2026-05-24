@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Libraries
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -21,7 +21,7 @@ import { ROUTES } from '@/constants/routes'
 // Types
 import { UserRole } from '@/features/auth/types'
 
-const AuthRoutes = (): ReactElement => {
+function AuthRoutes(): JSX.Element {
   return (
     <Routes>
       {/* ******************************************************************************************

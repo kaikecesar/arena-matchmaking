@@ -1,13 +1,13 @@
 // Core
-import React from 'react'
+import type { JSX } from 'react'
 
 // Types
 import type { IconProps } from '@/components/icons/WarningIcon/WarningIcon.types'
 
-// Styles
+// Style
 import { StyledIcon } from '@/components/icons/WarningIcon/WarningIcon.style'
 
-const WarningIcon: React.FC<IconProps> = ({ size = 16, title = 'Warning' }) => {
+function WarningIcon({ size = 16, title = 'Warning' }: IconProps): JSX.Element {
   return (
     <StyledIcon
       width={size}

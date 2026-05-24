@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Components
 import {
@@ -22,7 +22,7 @@ import { authFieldErrorProp } from '@/utils/formProps'
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
-// Styles
+// Style
 import {
   BackLinkRow,
   ForgotLink,
@@ -32,7 +32,7 @@ import {
   SuccessTitle,
 } from '@/features/auth/Login/Login.style'
 
-const ForgotPassword = (): ReactElement => {
+function ForgotPassword(): JSX.Element {
   /* ***********************************************************************************************
   ***************************************** DERIVED STATE ******************************************
   *********************************************************************************************** */

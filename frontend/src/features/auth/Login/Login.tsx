@@ -1,5 +1,5 @@
 // Core
-import type { ReactElement } from 'react'
+import type { JSX } from 'react'
 
 // Libraries
 import { useNavigate } from 'react-router-dom'
@@ -30,7 +30,7 @@ import { AuthAlert } from '@/features/auth/components/AuthAlert/AuthAlert'
 import { AuthHero } from '@/features/auth/components/AuthHero/AuthHero'
 import { AuthLayout } from '@/features/auth/components/AuthLayout/AuthLayout'
 
-// Styles
+// Style
 import {
   FooterCreateLink,
   FooterLeft,
@@ -41,7 +41,7 @@ import {
   SecurityBadge,
 } from '@/features/auth/Login/Login.style'
 
-const Login = (): ReactElement => {
+function Login(): JSX.Element {
   const navigate = useNavigate()
 
   /* ***********************************************************************************************
