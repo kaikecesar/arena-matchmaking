@@ -6,10 +6,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 // Context
-import { AuthProvider } from '@/features/auth/context/AuthProvider'
+import { AuthProvider } from '@/views/auth/context/AuthProvider'
 
 // Features
-import { AuthRoutes } from '@/features/auth/routes/AuthRoutes'
+import { AuthRoutes } from '@/views/auth/routes/AuthRoutes'
 
 // Style
 import { GlobalStyles, theme } from '@/styles'

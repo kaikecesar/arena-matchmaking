@@ -1,6 +1,6 @@
 // Types
-import { AuthErrorCode, UserRole } from '@/features/auth/types'
-import type { AuthUser } from '@/features/auth/types'
+import { AuthErrorCode, UserRole } from '@/views/auth/types'
+import type { AuthUser } from '@/views/auth/types'
 import type { AuthApiError } from '@/types/api'
 
 const USER_ROLES: ReadonlySet<string> = new Set(Object.values(UserRole))

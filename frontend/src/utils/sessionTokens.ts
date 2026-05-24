@@ -1,5 +1,5 @@
 // Types
-import type { AuthTokens } from '@/features/auth/types'
+import type { AuthTokens } from '@/views/auth/types'
 
 const buildAuthTokens = (accessToken: string, refreshToken?: string): AuthTokens =>
   refreshToken !== undefined

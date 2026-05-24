@@ -103,13 +103,13 @@ export default defineConfig([
           zones: [
             {
               target: './src/components/ui',
-              from: './src/features',
-              message: 'UI components must not import from features.',
+              from: './src/views',
+              message: 'UI components must not import from views.',
             },
             {
               target: './src/components/system',
-              from: './src/features',
-              message: 'System components must not import from features.',
+              from: './src/views',
+              message: 'System components must not import from views.',
             },
           ],
         },
