@@ -7,13 +7,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
+// Schemas
+import { forgotPasswordSchema } from '@/features/auth/schemas'
+import type { ForgotPasswordFormValues } from '@/features/auth/schemas'
+
 // Services
 import { authService } from '@/features/auth/services'
 
 // Utils
 import { forgotPasswordReducer } from '@/features/auth/ForgotPassword/forgotPassword.reducer'
 import { forgotPasswordInitialState } from '@/features/auth/ForgotPassword/forgotPassword.state'
-import { forgotPasswordSchema } from '@/features/auth/schemas'
 import { AUTH_FORM_OPTIONS } from '@/features/auth/utils/authFormConfig'
 import { getAuthErrorMessage } from '@/features/auth/utils/authErrors'
 import { formatCPF } from '@/utils/formatCPF'
@@ -22,24 +25,7 @@ import { formatCPF } from '@/utils/formatCPF'
 import { ROUTES } from '@/constants/routes'
 
 // Types
-import type { ForgotPasswordFormValues } from '@/features/auth/schemas'
-import type { ForgotPasswordState } from '@/features/auth/ForgotPassword/forgotPassword.state'
-import type {
-  FieldErrors,
-  UseFormRegister,
-  UseFormStateReturn,
-} from 'react-hook-form'
-
-export interface UseForgotPasswordReturn {
-  state: ForgotPasswordState
-  register: UseFormRegister<ForgotPasswordFormValues>
-  formState: UseFormStateReturn<ForgotPasswordFormValues>
-  errors: FieldErrors<ForgotPasswordFormValues>
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void
-  onIdentifierChange: (e: ChangeEvent<HTMLInputElement>) => void
-  navigateToLogin: () => void
-  navigateToReset: () => void
-}
+import type { UseForgotPasswordReturn } from '@/features/auth/ForgotPassword/ForgotPassword.types'
 
 const useForgotPassword = (): UseForgotPasswordReturn => {
   const navigate = useNavigate()

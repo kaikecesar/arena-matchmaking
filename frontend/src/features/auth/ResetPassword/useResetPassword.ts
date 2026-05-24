@@ -7,45 +7,28 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
+// Schemas
+import { resetPasswordSchema } from '@/features/auth/schemas'
+import type { ResetPasswordFormValues } from '@/features/auth/schemas'
+
 // Services
 import { authService } from '@/features/auth/services'
 
 // Utils
 import { resetPasswordReducer } from '@/features/auth/ResetPassword/resetPassword.reducer'
 import { resetPasswordInitialState } from '@/features/auth/ResetPassword/resetPassword.state'
-import { resetPasswordSchema } from '@/features/auth/schemas'
 import { AUTH_FORM_OPTIONS } from '@/features/auth/utils/authFormConfig'
 import { getAuthErrorMessage } from '@/features/auth/utils/authErrors'
 import { getPasswordStrength } from '@/features/auth/utils/passwordStrength'
 
 // Constants
 import { ROUTES } from '@/constants/routes'
+
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
 // Types
-import type {
-  FieldErrors,
-  UseFormRegister,
-  UseFormReturn,
-  UseFormStateReturn,
-} from 'react-hook-form'
-import type { ResetPasswordFormValues } from '@/features/auth/schemas'
-import type { ResetPasswordState } from '@/features/auth/ResetPassword/resetPassword.state'
-import type { PasswordStrengthResult } from '@/features/auth/utils/passwordStrength'
-
-export interface UseResetPasswordReturn {
-  token: string
-  state: ResetPasswordState
-  register: UseFormRegister<ResetPasswordFormValues>
-  control: UseFormReturn<ResetPasswordFormValues>['control']
-  formState: UseFormStateReturn<ResetPasswordFormValues>
-  errors: FieldErrors<ResetPasswordFormValues>
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void
-  passwordValue: string
-  confirmPasswordValue: string
-  strength: PasswordStrengthResult
-  navigateToLogin: () => void
-}
+import type { UseResetPasswordReturn } from '@/features/auth/ResetPassword/ResetPassword.types'
 
 const useResetPassword = (): UseResetPasswordReturn => {
   const navigate = useNavigate()

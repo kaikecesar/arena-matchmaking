@@ -3,3 +3,9 @@ export type DashboardModule = {
   value: string
   hint: string
 }
+
+export interface DashboardPageProps {
+  title: string
+  subtitle: string
+  modules: readonly DashboardModule[]
+}
