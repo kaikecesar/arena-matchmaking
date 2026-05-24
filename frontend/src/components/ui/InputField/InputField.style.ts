@@ -5,9 +5,7 @@ import styled, { css, keyframes, type Keyframes } from 'styled-components'
 import type { InputWrapperStyledProps, StyledInputStyledProps } from '@/components/ui/InputField/InputField.types'
 import type { Theme } from '@/styles/theme'
 
-/* *************************************************************************************************
-********************************************** LAYOUT **********************************************
-************************************************************************************************* */
+/* ************** LAYOUT ******************* */
 export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,9 +23,7 @@ export const FieldLabel = styled.label`
   display: block;
 `
 
-/* *************************************************************************************************
-********************************************** INPUT ***********************************************
-************************************************************************************************* */
+/* ************** INPUT ******************* */
 export const InputWrapper = styled.div<InputWrapperStyledProps>`
   position: relative;
   display: flex;
@@ -114,9 +110,7 @@ export const StyledInput = styled.input<StyledInputStyledProps>`
   }
 `
 
-/* *************************************************************************************************
-******************************************* ACCESSORIES ********************************************
-************************************************************************************************* */
+/* ************** ACCESSORIES ******************* */
 export const TrailingSlot = styled.button`
   display: flex;
   align-items: center;

@@ -7,7 +7,11 @@ import type { IconProps } from '@/components/icons/ArrowRightIcon/ArrowRightIcon
 // Style
 import { StyledIcon } from '@/components/icons/ArrowRightIcon/ArrowRightIcon.style'
 
-function ArrowRightIcon({ size = 18, title = 'Proceed' }: IconProps): JSX.Element {
+function ArrowRightIcon({ 
+  size = 18, 
+  title = 'Proceed' 
+}: IconProps
+): JSX.Element {
   return (
     <StyledIcon
       width={size}
