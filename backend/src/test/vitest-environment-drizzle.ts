@@ -44,7 +44,9 @@ export default <Environment>{
 
     return {
       async teardown() {
-        const teardownClient = new Client({ connectionString: baseDatabaseUrl });
+        const teardownClient = new Client({
+          connectionString: baseDatabaseUrl,
+        });
         await teardownClient.connect();
         await teardownClient.query(
           `DROP DATABASE IF EXISTS "${databaseName}" WITH (FORCE)`,
