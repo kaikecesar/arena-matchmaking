@@ -10,13 +10,18 @@ jobs:
       run:
         working-directory: ./backend
 
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+      JWT_SECRET: ci-only-not-a-real-secret
+      NODE_ENV: test
+
     services:
       postgres:
-        image: bitnami/postgresql
+        image: postgres:16-alpine
         env:
-          POSTGRES_USER: test_user
-          POSTGRES_PASSWORD: test_password
-          POSTGRES_DB: my_test_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
         ports:
           - 5432:5432
         options: >-
@@ -44,14 +49,6 @@ jobs:
 
       - name: Unit tests
         run: npm test
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
-          JWT_SECRET: ci-only-not-a-real-secret
-          NODE_ENV: test
 
       - name: E2E tests
         run: npm run test:e2e
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
-          JWT_SECRET: ci-only-not-a-real-secret
-          NODE_ENV: test
