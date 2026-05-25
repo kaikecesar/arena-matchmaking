@@ -42,8 +42,12 @@ jobs:
       - name: Lint validation
         run: npm run lint
 
-      - name: Test validation
+      - name: Unit tests
         run: npm test
+
+      - name: E2E tests
+        run: npm run test:e2e
         env:
-          DATABASE_URL: postgres://test_user:test_password@localhost:5432/my_test_db
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+          JWT_SECRET: ci-only-not-a-real-secret
           NODE_ENV: test
