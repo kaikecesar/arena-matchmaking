@@ -9,11 +9,14 @@ import {
   jsonSchemaTransform,
   hasZodFastifySchemaValidationErrors,
 } from 'fastify-type-provider-zod';
+import fastifyCookie from '@fastify/cookie';
 
 // Application
 import { env } from './env/index.ts';
+import { pool } from './database/index.ts';
 import { AppError } from './shared/errors/app-error.ts';
 import { userRoutes } from './http/controllers/user/routes.ts';
+import { authRoutes } from './http/controllers/auth/routes.ts';
 
 const isProd = env.NODE_ENV === 'production';
 
@@ -31,6 +34,12 @@ export const app = fastify({
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
+
+app.register(fastifyCookie);
+
+app.addHook('onClose', async () => {
+  await pool.end();
+});
 
 await app.register(fastifyRateLimit, {
   max: 100,
@@ -52,6 +61,7 @@ await app.register(scalarPlugin, {
 });
 
 app.register(userRoutes, { prefix: '/api/v1' });
+app.register(authRoutes, { prefix: '/api/v1' });
 
 app.setErrorHandler((error, request, reply) => {
   if (hasZodFastifySchemaValidationErrors(error)) {
