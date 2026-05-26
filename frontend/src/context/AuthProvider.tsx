@@ -22,7 +22,6 @@ import { authProviderReducer } from '@/context/authProvider.reducer'
 import { createAuthProviderInitialState } from '@/context/authProvider.state'
 import { getAuthErrorMessage } from '@/plugins/utils/authErrors'
 import { getRedirectForRole } from '@/plugins/utils/roleRedirects'
-import { buildAuthTokens } from '@/plugins/utils/sessionTokens'
 
 // Types
 import { AuthStatus, type AuthContextValue, type AuthProviderProps } from '@/context/AuthContext.types'
@@ -70,7 +69,6 @@ function AuthProvider({
     ): Promise<void> => {
       authStorage.saveSession({
         user: response.user,
-        tokens: buildAuthTokens(response.accessToken, response.refreshToken),
         rememberMe,
       })
       dispatch({ type: 'SET_USER', payload: response.user })
@@ -174,7 +172,11 @@ function AuthProvider({
   /* ***********************************************************************************************
   ********************************************* RENDER *********************************************
   *********************************************************************************************** */
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export { AuthProvider }

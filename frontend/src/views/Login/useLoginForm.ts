@@ -15,7 +15,6 @@ import { loginInitialState } from '@/views/Login/login.state'
 import { loginSchema } from '@/plugins/schemas'
 import { AUTH_FORM_OPTIONS } from '@/plugins/utils/authFormConfig'
 import { authStrings } from '@/i18n/pt-BR/auth'
-import { formatCPF } from '@/plugins/utils/formatCPF'
 
 // Types
 import type { LoginFormValues } from '@/plugins/schemas'
@@ -62,16 +61,8 @@ const useLoginForm = (): UseLoginFormReturn => {
 
   const onIdentifierChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const raw = e.target.value
-    const isEmail = raw.includes('@')
-
-    if (isEmail) {
-      dispatch({ type: 'SET_IDENTIFIER_DISPLAY', payload: raw })
-      setValue('identifier', raw, { shouldValidate: false })
-    } else {
-      const digits = raw.replace(/\D/g, '')
-      dispatch({ type: 'SET_IDENTIFIER_DISPLAY', payload: formatCPF(digits) })
-      setValue('identifier', digits, { shouldValidate: false })
-    }
+    dispatch({ type: 'SET_IDENTIFIER_DISPLAY', payload: raw })
+    setValue('identifier', raw, { shouldValidate: false })
   }
 
   const onValid = async (data: LoginFormValues): Promise<void> => {

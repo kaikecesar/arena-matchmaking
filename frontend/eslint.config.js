@@ -54,6 +54,15 @@ export default defineConfig([
         },
       ],
       'multiline-ternary': ['error', 'always'],
+      'object-curly-newline': [
+        'error',
+        {
+          ObjectExpression: { multiline: true, consistent: true },
+          ObjectPattern: { multiline: true, consistent: true },
+          ImportDeclaration: { multiline: true, consistent: true },
+          ExportDeclaration: { multiline: true, consistent: true },
+        },
+      ],
 
       'no-restricted-syntax': [
         'error',

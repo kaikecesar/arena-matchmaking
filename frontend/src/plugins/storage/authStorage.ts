@@ -1,23 +1,66 @@
-// Services
-import { tokenStorage } from '@/plugins/storage/tokenStorage'
-
 // Utils
-import { buildAuthTokens } from '@/plugins/utils/sessionTokens'
 import { isAuthUser } from '@/plugins/utils/typeGuards'
 
 // Types
-import type { AuthSession } from '@/types/auth'
+import type { AuthSession, AuthUser } from '@/types/auth'
 
 const USER_KEY = 'arena_auth_user'
+const REMEMBER_ME_KEY = 'arena_remember_me'
+const KNOWN_USERS_KEY = 'arena_known_users'
+
+const getStorage = (rememberMe: boolean): Storage =>
+  rememberMe
+    ? localStorage
+    : sessionStorage
+
+const normalizeEmail = (email: string): string => email.trim().toLowerCase()
+
+const parseKnownUsers = (): Record<string, AuthUser> => {
+  const raw = localStorage.getItem(KNOWN_USERS_KEY)
+
+  if (!raw) {
+    return {}
+  }
+
+  try {
+    const parsed: unknown = JSON.parse(raw)
+    if (typeof parsed !== 'object' || parsed === null) {
+      return {}
+    }
+
+    return Object.entries(parsed).reduce<Record<string, AuthUser>>((acc, [key, value]) => {
+      if (isAuthUser(value)) {
+        acc[key] = value
+      }
+
+      return acc
+    }, {})
+  } catch {
+    return {}
+  }
+}
 
 const authStorage = {
+  saveKnownUser(user: AuthUser): void {
+    const knownUsers = parseKnownUsers()
+    knownUsers[normalizeEmail(user.email)] = user
+    localStorage.setItem(KNOWN_USERS_KEY, JSON.stringify(knownUsers))
+  },
+
+  findKnownUserByEmail(email: string): AuthUser | null {
+    const knownUsers = parseKnownUsers()
+
+    return knownUsers[normalizeEmail(email)] ?? null
+  },
+
   saveSession(session: AuthSession): void {
-    const { tokens, rememberMe, user } = session
-    tokenStorage.setTokens(tokens.accessToken, tokens.refreshToken, rememberMe)
-    const storage = rememberMe
-      ? localStorage
-      : sessionStorage
+    const { rememberMe, user } = session
+    const storage = getStorage(rememberMe)
+
+    this.saveKnownUser(user)
+    localStorage.setItem(REMEMBER_ME_KEY, String(rememberMe))
     storage.setItem(USER_KEY, JSON.stringify(user))
+
     if (!rememberMe) {
       localStorage.removeItem(USER_KEY)
     } else {
@@ -26,15 +69,11 @@ const authStorage = {
   },
 
   loadSession(): AuthSession | null {
-    const rememberMe = tokenStorage.getRememberMe()
-    const accessToken = tokenStorage.getAccessToken(rememberMe)
-    const refreshToken = tokenStorage.getRefreshToken(rememberMe) ?? undefined
-    const storage = rememberMe
-      ? localStorage
-      : sessionStorage
+    const rememberMe = localStorage.getItem(REMEMBER_ME_KEY) === 'true'
+    const storage = getStorage(rememberMe)
     const rawUser = storage.getItem(USER_KEY)
 
-    if (!accessToken || !rawUser) {
+    if (!rawUser) {
       return null
     }
 
@@ -45,7 +84,6 @@ const authStorage = {
       }
       return {
         user: parsed,
-        tokens: buildAuthTokens(accessToken, refreshToken),
         rememberMe,
       }
     } catch {
@@ -54,9 +92,9 @@ const authStorage = {
   },
 
   clearSession(): void {
-    tokenStorage.clearTokens()
     localStorage.removeItem(USER_KEY)
     sessionStorage.removeItem(USER_KEY)
+    localStorage.removeItem(REMEMBER_ME_KEY)
   },
 }
 

@@ -9,7 +9,7 @@ export const authStrings = {
   heroSubtitle:
     'Atletas, confrontos e publicação de cards em tempo real.',
 
-  fieldEmailLabel: 'E-mail ou CPF',
+  fieldEmailLabel: 'E-mail',
   fieldPasswordLabel: 'Senha',
 
   keepSession: 'Manter conectado',
@@ -22,10 +22,10 @@ export const authStrings = {
   signIn: 'Entrar',
   securityBadge: 'Conexão protegida · LGPD',
 
-  errorEmptyIdentifier: 'Informe seu e-mail ou CPF',
-  errorInvalidIdentifier: 'Informe um e-mail ou CPF válido',
+  errorEmptyIdentifier: 'Informe seu e-mail',
+  errorInvalidIdentifier: 'Informe um e-mail valido',
   errorEmptyPassword: 'Informe sua senha',
-  errorInvalidCredentials: 'E-mail, CPF ou senha incorretos. Tente novamente.',
+  errorInvalidCredentials: 'E-mail ou senha incorretos. Tente novamente.',
   errorRateLimited: 'Acesso temporariamente bloqueado. Aguarde alguns minutos.',
   errorNetwork: 'Não foi possível conectar. Verifique sua rede e tente novamente.',
   errorSessionExpired: 'Sua sessão expirou. Faça login novamente.',

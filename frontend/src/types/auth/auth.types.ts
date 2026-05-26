@@ -1,7 +1,7 @@
 export { UserRole } from './user.types'
 export type { UserRole as UserRoleType, AuthUser } from './user.types'
 
-export type { AuthTokens, AuthSession } from './session.types'
+export type { AuthSession } from './session.types'
 
 export { RegisterRole } from './payloads.types'
 export type {

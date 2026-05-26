@@ -4,8 +4,6 @@ import type { AuthUser } from '@/types/auth/user.types'
 
 /** Successful auth endpoints (login, register, refresh). */
 export interface AuthApiResponse {
-  accessToken: string
-  refreshToken?: string | undefined
   user: AuthUser
 }
 

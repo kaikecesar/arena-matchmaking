@@ -1,8 +1,5 @@
-// Services
-import { buildMockUser, createMockTokens } from '@/plugins/services/mockTokens'
-
-// Utils
-import { mockDelay } from '@/plugins/utils/delay'
+// Storage
+import { authStorage } from '@/plugins/storage'
 
 // Types
 import {
@@ -12,6 +9,7 @@ import {
   UserRole,
 } from '@/types/auth'
 import type {
+  AuthUser,
   ForgotPasswordPayload,
   LoginPayload,
   RegisterPayload,
@@ -20,73 +18,123 @@ import type {
 import type { AuthApiResponse, ForgotPasswordApiResponse, ResetPasswordApiResponse } from '@/types/api'
 import type { AuthService } from './authService.types'
 
-/**
- * Mock auth service — backend-ready contract.
- * Replace method bodies with real fetch calls when API is integrated.
- */
+interface BackendErrorResponse {
+  code?: string
+  message?: string
+}
+
+const API_BASE_PATH = '/api/v1'
+
+const roleMap: Record<RegisterRole, UserRole> = {
+  [RegisterRole.organizer]: UserRole.organizer,
+  [RegisterRole.athlete]: UserRole.athlete,
+  [RegisterRole.coach]: UserRole.coach,
+}
+
+const normalizeEmail = (value: string): string => value.trim().toLowerCase()
+
+const createFallbackUser = (email: string): AuthUser => ({
+  id: email,
+  name: email.split('@')[0] ?? email,
+  email,
+  role: UserRole.organizer,
+})
+
+const readErrorResponse = async (response: Response): Promise<BackendErrorResponse> => {
+  try {
+    return await response.json() as BackendErrorResponse
+  } catch {
+    return {}
+  }
+}
+
+const mapErrorResponse = (
+  status: number,
+  body: BackendErrorResponse
+): AuthServiceError => {
+  if (status === 429) {
+    return new AuthServiceError(status, {
+      error: AuthErrorCode.rateLimited,
+      message: body.message ?? 'Too many attempts',
+    })
+  }
+
+  if (status === 401) {
+    return new AuthServiceError(status, {
+      error: AuthErrorCode.invalidCredentials,
+      message: body.message ?? 'Invalid credentials',
+    })
+  }
+
+  if (status === 409 || body.code === 'USER_ALREADY_EXISTS') {
+    return new AuthServiceError(status, {
+      error: AuthErrorCode.emailInUse,
+      message: body.message ?? 'Email already registered',
+    })
+  }
+
+  return new AuthServiceError(status, {
+    error: AuthErrorCode.serverError,
+    message: body.message ?? 'Unexpected server error',
+  })
+}
+
+const request = async (path: string, init?: RequestInit): Promise<Response> => {
+  try {
+    return await fetch(`${API_BASE_PATH}${path}`, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        ...init?.headers,
+      },
+      ...init,
+    })
+  } catch {
+    throw new AuthServiceError(0, {
+      error: AuthErrorCode.networkError,
+      message: 'Network unavailable',
+    })
+  }
+}
 
 const authService: AuthService = {
   /* ***********************************************************************************************
   ******************************************** REQUESTS ********************************************
   *********************************************************************************************** */
   async login(payload: LoginPayload): Promise<AuthApiResponse> {
-    await mockDelay(850)
+    const email = normalizeEmail(payload.identifier)
+    const response = await request('/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password: payload.password,
+      }),
+    })
 
-    const id = payload.identifier.toLowerCase()
-
-    if (id.includes('offline') || id === 'network') {
-      throw new AuthServiceError(0, {
-        error: AuthErrorCode.networkError,
-        message: 'Network unavailable',
-      })
+    if (!response.ok) {
+      throw mapErrorResponse(response.status, await readErrorResponse(response))
     }
 
-    if (id.includes('rate')) {
-      throw new AuthServiceError(429, {
-        error: AuthErrorCode.rateLimited,
-        message: 'Too many attempts',
-        retryAfter: 120,
-      })
-    }
+    const user = authStorage.findKnownUserByEmail(email) ?? createFallbackUser(email)
 
-    if (payload.password === 'erro' || payload.password === 'wrong') {
-      throw new AuthServiceError(401, {
-        error: AuthErrorCode.invalidCredentials,
-        message: 'Invalid credentials',
-      })
-    }
-
-    const user = buildMockUser(payload.identifier)
-    const tokens = createMockTokens(user)
-
-    return { ...tokens, user }
+    return { user }
   },
 
   async register(payload: RegisterPayload): Promise<AuthApiResponse> {
-    await mockDelay(1100)
-
-    if (payload.email.toLowerCase().includes('exists')) {
-      throw new AuthServiceError(409, {
-        error: AuthErrorCode.emailInUse,
-        message: 'Email already registered',
-      })
+    const email = normalizeEmail(payload.email)
+    const user: AuthUser = {
+      id: email,
+      name: payload.name.trim(),
+      email,
+      role: roleMap[payload.role],
     }
 
-    const roleMap: Record<RegisterRole, UserRole> = {
-      [RegisterRole.organizer]: UserRole.organizer,
-      [RegisterRole.athlete]: UserRole.athlete,
-      [RegisterRole.coach]: UserRole.coach,
-    }
+    authStorage.saveKnownUser(user)
 
-    const user = buildMockUser(payload.email, payload.name, roleMap[payload.role])
-    const tokens = createMockTokens(user)
-
-    return { ...tokens, user }
+    return { user }
   },
 
   async forgotPassword(_payload: ForgotPasswordPayload): Promise<ForgotPasswordApiResponse> {
-    await mockDelay(750)
-
     const id = _payload.identifier.toLowerCase()
     if (id.includes('offline')) {
       throw new AuthServiceError(0, {
@@ -99,8 +147,6 @@ const authService: AuthService = {
   },
 
   async resetPassword(payload: ResetPasswordPayload): Promise<ResetPasswordApiResponse> {
-    await mockDelay(900)
-
     if (payload.token === 'invalid' || payload.token === 'expired') {
       throw new AuthServiceError(400, {
         error: AuthErrorCode.invalidToken,
@@ -119,22 +165,26 @@ const authService: AuthService = {
   },
 
   async logout(): Promise<void> {
-    await mockDelay(300)
+    const response = await request('/logout', {
+      method: 'POST',
+    })
+
+    if (!response.ok && response.status !== 401) {
+      throw mapErrorResponse(response.status, await readErrorResponse(response))
+    }
   },
 
-  async refreshSession(refreshToken: string): Promise<AuthApiResponse> {
-    await mockDelay(500)
+  async refreshSession(_refreshToken: string): Promise<AuthApiResponse> {
+    const session = authStorage.loadSession()
 
-    if (refreshToken.includes('expired')) {
+    if (!session) {
       throw new AuthServiceError(401, {
         error: AuthErrorCode.sessionExpired,
         message: 'Session expired',
       })
     }
 
-    const user = buildMockUser('session@arena.mock')
-    const tokens = createMockTokens(user)
-    return { ...tokens, user }
+    return { user: session.user }
   },
 }
 
