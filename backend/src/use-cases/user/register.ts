@@ -41,7 +41,7 @@ export class RegisterUserUseCase {
       phone,
     });
 
-    const { passwordHash: _, ...safeUser } = user;
+    const { passwordHash: _unUsedPasswordHash, ...safeUser } = user;
 
     return { user: safeUser };
   }
