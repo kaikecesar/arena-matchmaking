@@ -1,6 +1,5 @@
 // Libraries
 import type { FastifyReply, FastifyRequest } from 'fastify';
-import jwt from 'jsonwebtoken';
 
 // Application
 import type { AuthBody } from '../../schemas/auth.ts';
@@ -15,7 +14,8 @@ export async function login(
 
   const auth = makeAuthUseCase();
   const { user } = await auth.execute({ email, password });
-  const token = jwt.sign({ userId: user.id }, env.JWT_SECRET);
+
+  const token = await reply.jwtSign({ user: { sub: user.id } });
 
   reply.setCookie('token', token, {
     httpOnly: true,

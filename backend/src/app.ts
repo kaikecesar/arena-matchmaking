@@ -10,6 +10,7 @@ import {
   hasZodFastifySchemaValidationErrors,
 } from 'fastify-type-provider-zod';
 import fastifyCookie from '@fastify/cookie';
+import fastifyJwt from '@fastify/jwt';
 
 // Application
 import { env } from './env/index.ts';
@@ -36,6 +37,14 @@ app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
 app.register(fastifyCookie);
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: 'token',
+    signed: false,
+  },
+});
 
 app.addHook('onClose', async () => {
   await pool.end();

@@ -24,7 +24,6 @@
   "devDependencies": {
     "@faker-js/faker": "10.4.0",
     "@rocketseat/eslint-config": "2.2.2",
-    "@types/jsonwebtoken": "9.0.10",
     "@types/node": "^25.9.1",
     "@types/pg": "8.20.0",
     "@types/supertest": "7.2.0",
@@ -42,6 +41,7 @@
   },
   "dependencies": {
     "@fastify/cookie": "11.0.2",
+    "@fastify/jwt": "10.1.0",
     "@fastify/rate-limit": "10.3.0",
     "@fastify/swagger": "9.7.0",
     "@scalar/fastify-api-reference": "1.57.4",
@@ -50,7 +50,6 @@
     "drizzle-orm": "0.45.2",
     "fastify": "5.8.5",
     "fastify-type-provider-zod": "6.1.0",
-    "jsonwebtoken": "9.0.3",
     "pg": "8.21.0",
     "zod": "4.4.3"
   }

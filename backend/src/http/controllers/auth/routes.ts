@@ -7,6 +7,7 @@ import { login } from './login.ts';
 import { logout } from './logout.ts';
 import { loginBodySchema } from '../../schemas/auth.ts';
 import { errorResponseSchema } from '../../schemas/errors.ts';
+import { authenticate } from '../../../middlewares/auth.ts';
 
 export async function authRoutes(app: FastifyInstance) {
   app.post(
@@ -33,11 +34,13 @@ export async function authRoutes(app: FastifyInstance) {
   app.post(
     '/logout',
     {
+      preHandler: authenticate,
       schema: {
         tags: ['Logout'],
         summary: 'Revoke access to application resources',
         response: {
-          200: z.null(),
+          204: z.null(),
+          401: errorResponseSchema.describe('Authentication required'),
           500: errorResponseSchema.describe('Internal server error'),
         },
       },

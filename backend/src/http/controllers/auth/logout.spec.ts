@@ -13,23 +13,29 @@ describe('Logout (e2e)', () => {
   it('should be able to logout', async () => {
     const fakeUserEmail = faker.internet.email();
     const fakeUserPassword = faker.internet.password();
+    const agent = request.agent(app.server);
 
-    await request(app.server)
-      .post('/api/v1/users')
-      .send({
-        name: faker.internet.username(),
-        email: fakeUserEmail,
-        password: fakeUserPassword,
-        phone: faker.phone.number({ style: 'international' }),
-      });
+    await agent.post('/api/v1/users').send({
+      name: faker.internet.username(),
+      email: fakeUserEmail,
+      password: fakeUserPassword,
+      phone: faker.phone.number({ style: 'international' }),
+    });
 
-    await request(app.server).post('/api/v1/login').send({
+    await agent.post('/api/v1/login').send({
       email: fakeUserEmail,
       password: fakeUserPassword,
     });
 
-    const response = await request(app.server).post('/api/v1/logout').send();
+    const response = await agent.post('/api/v1/logout').send();
 
     expect(response.statusCode).toEqual(204);
+  });
+
+  it('should not be able to logout without a token', async () => {
+    const response = await request(app.server).post('/api/v1/logout').send();
+
+    expect(response.statusCode).toEqual(401);
+    expect(response.body.code).toEqual('AUTH_UNAUTHORIZED');
   });
 });
