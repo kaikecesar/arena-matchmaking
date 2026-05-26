@@ -6,7 +6,7 @@ import { Pool } from 'pg';
 import { env } from '../env/index.ts';
 import * as schema from './schema/index.ts';
 
-const pool = new Pool({
+export const pool = new Pool({
   connectionString: env.DATABASE_URL,
   // ssl: true  // turn on when up to RDS on AWS
 });

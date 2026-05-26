@@ -1,0 +1,29 @@
+// Libraries
+import type { FastifyReply, FastifyRequest } from 'fastify';
+
+// Application
+import type { AuthBody } from '../../schemas/auth.ts';
+import { makeAuthUseCase } from '../../../use-cases/factories/index.ts';
+import { env } from '../../../env/index.ts';
+
+export async function login(
+  request: FastifyRequest<{ Body: AuthBody }>,
+  reply: FastifyReply,
+) {
+  const { email, password } = request.body;
+
+  const auth = makeAuthUseCase();
+  const { user } = await auth.execute({ email, password });
+
+  const token = await reply.jwtSign({ user: { sub: user.id } });
+
+  reply.setCookie('token', token, {
+    httpOnly: true,
+    secure: env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7, // 7 days
+  });
+
+  return reply.status(204).send();
+}
