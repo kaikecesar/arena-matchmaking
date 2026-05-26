@@ -1,9 +1,9 @@
-/* ################ TESTING ################ */
+// Testing
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
 import { afterEach, beforeEach, vi } from 'vitest'
 
-/* ################ GLOBAL MOCKS ################ */
+/* *************** GLOBAL MOCKS *************** */
 const createMatchMedia = (query: string): MediaQueryList => ({
   matches: false,
   media: query,
@@ -57,7 +57,7 @@ Object.defineProperty(globalThis, 'IntersectionObserver', {
   value: IntersectionObserverMock,
 })
 
-/* ################ TEST LIFECYCLE ################ */
+/* *************** TEST LIFECYCLE *************** */
 beforeEach((): void => {
   vi.clearAllMocks()
   window.localStorage.clear()

@@ -1,7 +1,7 @@
-/* ################ CORE ################ */
+// Core
 import { createRef, type JSX } from 'react'
 
-/* ################ TESTING ################ */
+// Testing
 import {
   fireEvent,
   render,
@@ -10,17 +10,19 @@ import {
 } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-/* ################ LIBRARIES ################ */
+// Libraries
 import { ThemeProvider } from 'styled-components'
 
-/* ################ COMPONENTS ################ */
+// Components
 import { InputField, InputFieldType } from '@/components/ui/InputField'
+
+// Config
 import { theme } from '@/styles'
 
-/* ################ TYPES ################ */
+// Types
 import type { InputFieldProps } from '@/components/ui/InputField'
 
-/* ################ FIXTURES ################ */
+/* *************** TEST SUPPORT VARS *************** */
 const defaultProps: InputFieldProps = {
   label: 'E-mail',
   name: 'identifier',
@@ -53,7 +55,7 @@ const renderInputField = (
   return render(element)
 }
 
-/* ################ TESTS ################ */
+/* *************** TEST EXECUTION *************** */
 describe('InputField', (): void => {
   beforeEach((): void => {
     vi.clearAllMocks()

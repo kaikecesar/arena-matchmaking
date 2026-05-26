@@ -130,13 +130,6 @@ export default defineConfig([
   },
 
   {
-    files: ['eslint.config.js', 'vite.config.ts'],
-    rules: {
-      'no-restricted-syntax': 'off',
-    },
-  },
-
-  {
     files: ['**/*.d.ts'],
     rules: {
       '@typescript-eslint/no-empty-object-type': 'off',

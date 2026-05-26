@@ -1,11 +1,13 @@
-/* ################ TESTING ################ */
+// Testing
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-/* ################ COMPONENTS ################ */
+// I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
+
+// Schemas
 import { loginSchema, type LoginFormValues } from '@/plugins/schemas'
 
-/* ################ FIXTURES ################ */
+/* *************** TEST SUPPORT VARS *************** */
 const validPayload: LoginFormValues = {
   identifier: 'coach@example.com',
   password: 'Secret123',
@@ -24,7 +26,7 @@ const getFieldErrors = (
   return result.error.flatten().fieldErrors
 }
 
-/* ################ TESTS ################ */
+/* *************** TEST EXECUTION *************** */
 describe('loginSchema', (): void => {
   beforeEach((): void => {
     vi.clearAllMocks()
