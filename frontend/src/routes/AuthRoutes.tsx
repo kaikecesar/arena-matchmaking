@@ -5,13 +5,10 @@ import type { JSX } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 // Components
-import { CreateAccount } from '@/views/CreateAccount/CreateAccount'
 import { AthleteDashboard } from '@/views/Dashboard/AthleteDashboard'
 import { CoachDashboard } from '@/views/Dashboard/CoachDashboard'
 import { OrganizerDashboard } from '@/views/Dashboard/OrganizerDashboard'
-import { ForgotPassword } from '@/views/ForgotPassword/ForgotPassword'
 import { Login } from '@/views/Login'
-import { ResetPassword } from '@/views/ResetPassword/ResetPassword'
 import { GuestRoute } from '@/routes/GuestRoute'
 import { ProtectedRoute } from '@/routes/ProtectedRoute'
 
@@ -32,30 +29,6 @@ function AuthRoutes(): JSX.Element {
         element={
           <GuestRoute>
             <Login />
-          </GuestRoute>
-        }
-      />
-      <Route
-        path={ROUTES.register}
-        element={
-          <GuestRoute>
-            <CreateAccount />
-          </GuestRoute>
-        }
-      />
-      <Route
-        path={ROUTES.forgotPassword}
-        element={
-          <GuestRoute>
-            <ForgotPassword />
-          </GuestRoute>
-        }
-      />
-      <Route
-        path={ROUTES.resetPassword}
-        element={
-          <GuestRoute>
-            <ResetPassword />
           </GuestRoute>
         }
       />

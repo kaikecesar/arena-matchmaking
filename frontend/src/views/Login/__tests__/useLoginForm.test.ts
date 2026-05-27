@@ -1,7 +1,7 @@
 // Core
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { ChangeEvent, FormEvent } from 'react';
+import type { ChangeEvent, SubmitEvent } from 'react';
 
 // Context
 import { AuthStatus } from '@/context/AuthContext.types';
@@ -38,7 +38,6 @@ const createAuthContextValue = (
   isSubmitting: false,
   successMessage: null,
   login: mockLogin,
-  register: vi.fn(),
   logout: vi.fn(),
   clearSuccessMessage: vi.fn(),
   ...overrides,
@@ -58,12 +57,12 @@ const createRegisteredChangeEvent = (
   },
 } as ChangeEvent<HTMLInputElement>);
 
-const createSubmitEvent = (): FormEvent<HTMLFormElement> => ({
+const createSubmitEvent = (): SubmitEvent<HTMLFormElement> => ({
   preventDefault: vi.fn(),
   stopPropagation: vi.fn(),
   currentTarget: document.createElement('form'),
   target: document.createElement('form'),
-} as unknown as FormEvent<HTMLFormElement>);
+} as unknown as SubmitEvent<HTMLFormElement>);
 
 const populateValidForm = async (
   result: { current: ReturnType<typeof useLoginForm> }

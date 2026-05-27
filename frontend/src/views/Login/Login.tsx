@@ -1,12 +1,6 @@
 // Core
 import type { JSX } from 'react'
 
-// Libraries
-import { useNavigate } from 'react-router-dom'
-
-// Constants
-import { ROUTES } from '@/routes/routes'
-
 // I18n
 import { authStrings } from '@/i18n/pt-BR/auth'
 
@@ -32,9 +26,6 @@ import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
 
 // Style
 import {
-  FooterCreateLink,
-  FooterLeft,
-  ForgotLink,
   FormFooterRow,
   LoginForm,
   PageFooter,
@@ -42,8 +33,6 @@ import {
 } from '@/views/Login/Login.style'
 
 function Login(): JSX.Element {
-  const navigate = useNavigate()
-
   /* ***********************************************************************************************
   ***************************************** DERIVED STATE ******************************************
   *********************************************************************************************** */
@@ -74,12 +63,6 @@ function Login(): JSX.Element {
     <AuthLayout
       footer={
         <PageFooter>
-          <FooterLeft>
-            {authStrings.noAccount}
-            <FooterCreateLink type="button" onClick={() => void navigate(ROUTES.register)}>
-              {authStrings.createAccount}
-            </FooterCreateLink>
-          </FooterLeft>
           <SecurityBadge>{authStrings.securityBadge}</SecurityBadge>
         </PageFooter>
       }
@@ -153,9 +136,6 @@ function Login(): JSX.Element {
             onChange={onKeepSessionChange}
             label={authStrings.keepSession}
           />
-          <ForgotLink type="button" onClick={() => void navigate(ROUTES.forgotPassword)}>
-            {authStrings.forgotPassword}
-          </ForgotLink>
         </FormFooterRow>
 
         {state.async.generalError && <AuthAlert message={state.async.generalError} />}

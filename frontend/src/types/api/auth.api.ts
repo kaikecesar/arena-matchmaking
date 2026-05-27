@@ -2,7 +2,7 @@
 import type { AuthErrorCode } from '@/types/auth/errors.types'
 import type { AuthUser } from '@/types/auth/user.types'
 
-/** Successful auth endpoints (login, register, refresh). */
+/** Successful auth endpoints (login, refresh). */
 export interface AuthApiResponse {
   user: AuthUser
 }
@@ -14,16 +14,6 @@ export interface AuthApiError {
   retryAfter?: number | undefined
 }
 
-export interface MessageApiResponse {
-  message: string
-}
-
 export type LoginApiResponse = AuthApiResponse
-
-export type RegisterApiResponse = AuthApiResponse
-
-export type ForgotPasswordApiResponse = MessageApiResponse
-
-export type ResetPasswordApiResponse = MessageApiResponse
 
 export type RefreshSessionApiResponse = AuthApiResponse

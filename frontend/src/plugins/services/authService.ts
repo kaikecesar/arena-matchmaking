@@ -5,17 +5,10 @@ import { authStorage } from '@/plugins/storage'
 import {
   AuthErrorCode,
   AuthServiceError,
-  RegisterRole,
   UserRole,
 } from '@/types/auth'
-import type {
-  AuthUser,
-  ForgotPasswordPayload,
-  LoginPayload,
-  RegisterPayload,
-  ResetPasswordPayload,
-} from '@/types/auth'
-import type { AuthApiResponse, ForgotPasswordApiResponse, ResetPasswordApiResponse } from '@/types/api'
+import type { AuthUser, LoginPayload } from '@/types/auth'
+import type { AuthApiResponse } from '@/types/api'
 import type { AuthService } from './authService.types'
 
 interface BackendErrorResponse {
@@ -24,12 +17,6 @@ interface BackendErrorResponse {
 }
 
 const API_BASE_PATH = '/api/v1'
-
-const roleMap: Record<RegisterRole, UserRole> = {
-  [RegisterRole.organizer]: UserRole.organizer,
-  [RegisterRole.athlete]: UserRole.athlete,
-  [RegisterRole.coach]: UserRole.coach,
-}
 
 const normalizeEmail = (value: string): string => value.trim().toLowerCase()
 
@@ -118,50 +105,6 @@ const authService: AuthService = {
     const user = authStorage.findKnownUserByEmail(email) ?? createFallbackUser(email)
 
     return { user }
-  },
-
-  async register(payload: RegisterPayload): Promise<AuthApiResponse> {
-    const email = normalizeEmail(payload.email)
-    const user: AuthUser = {
-      id: email,
-      name: payload.name.trim(),
-      email,
-      role: roleMap[payload.role],
-    }
-
-    authStorage.saveKnownUser(user)
-
-    return { user }
-  },
-
-  async forgotPassword(_payload: ForgotPasswordPayload): Promise<ForgotPasswordApiResponse> {
-    const id = _payload.identifier.toLowerCase()
-    if (id.includes('offline')) {
-      throw new AuthServiceError(0, {
-        error: AuthErrorCode.networkError,
-        message: 'Network unavailable',
-      })
-    }
-
-    return { message: 'Recovery instructions sent' }
-  },
-
-  async resetPassword(payload: ResetPasswordPayload): Promise<ResetPasswordApiResponse> {
-    if (payload.token === 'invalid' || payload.token === 'expired') {
-      throw new AuthServiceError(400, {
-        error: AuthErrorCode.invalidToken,
-        message: 'Invalid or expired token',
-      })
-    }
-
-    if (payload.password === 'weak') {
-      throw new AuthServiceError(400, {
-        error: AuthErrorCode.weakPassword,
-        message: 'Password too weak',
-      })
-    }
-
-    return { message: 'Password updated' }
   },
 
   async logout(): Promise<void> {

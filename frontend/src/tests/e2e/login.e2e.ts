@@ -14,8 +14,6 @@ const EMAIL_LABEL = 'E-mail';
 const PASSWORD_LABEL = 'Senha';
 const KEEP_SESSION_LABEL = 'Manter conectado';
 const SUBMIT_LABEL = 'Acessar painel';
-const FORGOT_PASSWORD_LABEL = 'Esqueci a senha';
-const CREATE_ACCOUNT_LABEL = 'Criar agora';
 
 type SeededUserRole = 'ORGANIZER' | 'ATHLETE' | 'COACH';
 
@@ -107,17 +105,11 @@ test.describe('login flow e2e', (): void => {
   // ELEMENTS *******************************
 
   test(
-    'should render the main login controls and navigation links',
+    'should render the main login controls',
     async ({ page }): Promise<void> => {
     await goToLogin(page);
 
     await expect(page.getByRole('button', { name: SUBMIT_LABEL })).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: FORGOT_PASSWORD_LABEL })
-    ).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: CREATE_ACCOUNT_LABEL })
-    ).toBeVisible();
     await expect(page.getByText(KEEP_SESSION_LABEL)).toBeVisible();
     await expect(page.locator('input[name="keepSession"]')).toBeChecked();
   });
@@ -167,28 +159,6 @@ test.describe('login flow e2e', (): void => {
       'type',
       'password'
     );
-  });
-
-  // NAVIGATION *******************************
-
-  test(
-    'should navigate to forgot-password from the login footer row',
-    async ({ page }): Promise<void> => {
-    await goToLogin(page);
-
-    await page.getByRole('button', { name: FORGOT_PASSWORD_LABEL }).click();
-
-    await page.waitForURL(`${APP_URL}/forgot-password`);
-  });
-
-  test(
-    'should navigate to create-account from the login footer',
-    async ({ page }): Promise<void> => {
-    await goToLogin(page);
-
-    await page.getByRole('button', { name: CREATE_ACCOUNT_LABEL }).click();
-
-    await page.waitForURL(`${APP_URL}/create-account`);
   });
 
   // SESSION: REMEMBER ME *******************************

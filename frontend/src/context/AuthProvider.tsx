@@ -25,7 +25,7 @@ import { getRedirectForRole } from '@/plugins/utils/roleRedirects'
 
 // Types
 import { AuthStatus, type AuthContextValue, type AuthProviderProps } from '@/context/AuthContext.types'
-import type { LoginPayload, RegisterPayload } from '@/types/auth'
+import type { LoginPayload } from '@/types/auth'
 import type { AuthApiResponse } from '@/types/api'
 
 function AuthProvider({
@@ -96,22 +96,6 @@ function AuthProvider({
     [persistAndNavigate]
   )
 
-  const register = useCallback(
-    async (payload: RegisterPayload): Promise<void> => {
-      dispatch({ type: 'SET_SUBMITTING', payload: true })
-      dispatch({ type: 'CLEAR_SUCCESS_MESSAGE' })
-      try {
-        const response = await authService.register(payload)
-        await persistAndNavigate(response, true)
-      } catch (error) {
-        throw new Error(getAuthErrorMessage(error), { cause: error })
-      } finally {
-        dispatch({ type: 'SET_SUBMITTING', payload: false })
-      }
-    },
-    [persistAndNavigate]
-  )
-
   const logout = useCallback(async (): Promise<void> => {
     dispatch({ type: 'SET_SUBMITTING', payload: true })
     try {
@@ -152,7 +136,6 @@ function AuthProvider({
       isSubmitting,
       successMessage,
       login,
-      register,
       logout,
       clearSuccessMessage,
     }),
@@ -163,7 +146,6 @@ function AuthProvider({
       isSubmitting,
       successMessage,
       login,
-      register,
       logout,
       clearSuccessMessage,
     ]

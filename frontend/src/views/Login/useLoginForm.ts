@@ -1,6 +1,6 @@
 // Core
 import { useReducer } from 'react'
-import type { ChangeEvent, FormEvent } from 'react'
+import type { ChangeEvent, SubmitEvent } from 'react'
 
 // Libraries
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -80,7 +80,7 @@ const useLoginForm = (): UseLoginFormReturn => {
     }
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>): void => {
     void rhfHandleSubmit(onValid)(e)
   }
 

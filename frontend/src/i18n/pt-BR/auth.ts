@@ -13,13 +13,8 @@ export const authStrings = {
   fieldPasswordLabel: 'Senha',
 
   keepSession: 'Manter conectado',
-  forgotPassword: 'Esqueci a senha',
   submitButton: 'Acessar painel',
 
-  noAccount: 'Sem conta?',
-  createAccount: 'Criar agora',
-  hasAccount: 'Já tem conta?',
-  signIn: 'Entrar',
   securityBadge: 'Conexão protegida · LGPD',
 
   errorEmptyIdentifier: 'Informe seu e-mail',
@@ -63,119 +58,6 @@ export const authStrings = {
   a11yHidePassword: 'Ocultar senha',
   a11yLoading: 'Acessando painel…',
   a11yLoginForm: 'Formulário de acesso ao painel',
-  a11yStepProgress: 'Etapas do cadastro',
-
-  /* ***********************************************************************************************
-  **************************************** REGISTER STRINGS ****************************************
-  *********************************************************************************************** */
-  register: {
-    eyebrow: 'CADASTRO · OPERAÇÃO',
-    heroLine1: 'Configure sua',
-    heroHighlight: 'operação',
-    heroSubtitle:
-      'Perfil, dados e credencial de acesso ao painel de matchmaking.',
-    stepRole: 'Perfil',
-    stepProfile: 'Dados',
-    stepSecurity: 'Segurança',
-    stepReview: 'Revisão',
-    roleTitle: 'Função na operação',
-    roleSubtitle:
-      'Define o painel, permissões e o fluxo de trabalho no evento.',
-    roles: {
-      organizer: {
-        title: 'Organizador',
-        description: 'Cria eventos, monta cards e publica confrontos.',
-      },
-      athlete: {
-        title: 'Atleta',
-        description: 'Acompanha convocações, pesagem e status no card.',
-      },
-      coach: {
-        title: 'Treinador',
-        description: 'Coordena atletas, elenco e disponibilidade para lutas.',
-      },
-    },
-    fieldName: 'Nome completo',
-    fieldEmail: 'E-mail',
-    fieldDocument: 'CPF',
-    fieldPassword: 'Senha de acesso',
-    fieldConfirmPassword: 'Confirmar senha',
-    continue: 'Continuar',
-    back: 'Voltar',
-    submit: 'Concluir cadastro',
-    reviewTitle: 'Revisão do cadastro',
-    reviewRole: 'Função',
-    reviewName: 'Nome',
-    reviewEmail: 'E-mail',
-    reviewDocument: 'CPF',
-    successTitle: 'Cadastro concluído',
-    successSubtitle: 'Redirecionando para o painel da sua função…',
-    errorName: 'Informe seu nome completo',
-    errorEmail: 'Informe seu e-mail',
-    errorEmailInvalid: 'Digite um e-mail válido',
-    errorDocument: 'Informe um CPF válido',
-    errorPassword: 'Use no mínimo 8 caracteres',
-    errorPasswordWeak: 'Inclua maiúsculas, minúsculas e números',
-    errorConfirmPassword: 'Confirme sua senha',
-    errorPasswordMismatch: 'As senhas não coincidem',
-    errorEmailInUse: 'Este e-mail já está cadastrado',
-    errorSelectRole: 'Selecione uma função para continuar',
-    strengthLabel: 'Força da senha',
-    strength: {
-      weak: 'Fraca',
-      fair: 'Regular',
-      good: 'Adequada',
-      strong: 'Forte',
-    },
-  },
-
-  /* ***********************************************************************************************
-  ***************************************** FORGOT STRINGS *****************************************
-  *********************************************************************************************** */
-  forgot: {
-    eyebrow: 'RECUPERAÇÃO DE ACESSO',
-    heroLine1: 'Recuperar',
-    heroHighlight: 'acesso',
-    heroSubtitle:
-      'Informe o e-mail ou CPF cadastrado. Enviaremos o link de redefinição.',
-    fieldIdentifier: 'E-mail ou CPF',
-    submit: 'Enviar instruções',
-    backToLogin: 'Voltar ao login',
-    successTitle: 'Instruções enviadas',
-    successSubtitle:
-      'Se o cadastro existir, você receberá um link para redefinir a senha em instantes.',
-    errorEmptyIdentifier: 'Informe seu e-mail ou CPF',
-    errorInvalidIdentifier: 'Informe um e-mail ou CPF válido',
-  },
-
-  /* ***********************************************************************************************
-  ***************************************** RESET STRINGS ******************************************
-  *********************************************************************************************** */
-  reset: {
-    eyebrow: 'NOVA SENHA',
-    heroLine1: 'Redefinir',
-    heroHighlight: 'senha',
-    heroSubtitle:
-      'Crie uma senha forte para proteger o acesso ao painel operacional.',
-    fieldPassword: 'Nova senha',
-    fieldConfirmPassword: 'Confirmar senha',
-    submit: 'Salvar senha',
-    successTitle: 'Senha atualizada',
-    successSubtitle: 'Sua nova senha foi salva. Você já pode acessar o painel.',
-    goToLogin: 'Acessar painel',
-    errorPassword: 'Use no mínimo 8 caracteres',
-    errorPasswordWeak: 'Inclua maiúsculas, minúsculas e números',
-    errorConfirmPassword: 'Confirme sua senha',
-    errorPasswordMismatch: 'As senhas não coincidem',
-    errorInvalidToken: 'Link inválido ou expirado. Solicite uma nova recuperação',
-    strengthLabel: 'Força da senha',
-    strength: {
-      weak: 'Fraca',
-      fair: 'Regular',
-      good: 'Adequada',
-      strong: 'Forte',
-    },
-  },
 
   /* ***********************************************************************************************
   *************************************** DASHBOARD STRINGS ****************************************

@@ -1,20 +1,8 @@
-import type {
-  ForgotPasswordPayload,
-  LoginPayload,
-  RegisterPayload,
-  ResetPasswordPayload,
-} from '@/types/auth'
-import type {
-  AuthApiResponse,
-  ForgotPasswordApiResponse,
-  ResetPasswordApiResponse,
-} from '@/types/api'
+import type { LoginPayload } from '@/types/auth'
+import type { AuthApiResponse } from '@/types/api'
 
 export interface AuthService {
   login(payload: LoginPayload): Promise<AuthApiResponse>;
-  register(payload: RegisterPayload): Promise<AuthApiResponse>;
-  forgotPassword(payload: ForgotPasswordPayload): Promise<ForgotPasswordApiResponse>;
-  resetPassword(payload: ResetPasswordPayload): Promise<ResetPasswordApiResponse>;
   logout(): Promise<void>;
   refreshSession(refreshToken: string): Promise<AuthApiResponse>;
 }

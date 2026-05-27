@@ -16,9 +16,9 @@ const authErrorMessages: Record<AuthErrorCode, string> = {
   [AuthErrorCode.serverError]: authStrings.errorGeneric,
   [AuthErrorCode.networkError]: authStrings.errorNetwork,
   [AuthErrorCode.sessionExpired]: authStrings.errorSessionExpired,
-  [AuthErrorCode.emailInUse]: authStrings.register.errorEmailInUse,
-  [AuthErrorCode.invalidToken]: authStrings.reset.errorInvalidToken,
-  [AuthErrorCode.weakPassword]: authStrings.register.errorPasswordWeak,
+  [AuthErrorCode.emailInUse]: authStrings.errorGeneric,
+  [AuthErrorCode.invalidToken]: authStrings.errorGeneric,
+  [AuthErrorCode.weakPassword]: authStrings.errorGeneric,
 }
 
 const getAuthErrorMessage = (error: unknown): string => {

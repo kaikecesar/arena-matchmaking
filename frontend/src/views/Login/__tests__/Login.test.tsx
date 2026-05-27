@@ -11,9 +11,6 @@ import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form';
 // Views
 import { Login } from '@/views/Login/Login';
 
-// Routes
-import { ROUTES } from '@/routes/routes';
-
 // Config
 import { theme } from '@/styles';
 
@@ -33,10 +30,7 @@ const { mockNavigate, mockUseLoginForm, mockedAuthStrings } = vi.hoisted(() => (
     fieldEmailLabel: 'E-mail',
     fieldPasswordLabel: 'Senha',
     keepSession: 'Manter conectado',
-    forgotPassword: 'Esqueci a senha',
     submitButton: 'Acessar painel',
-    noAccount: 'Sem conta?',
-    createAccount: 'Criar agora',
     securityBadge: 'Conexao protegida',
     errorEmptyIdentifier: 'Informe seu e-mail',
     errorEmptyPassword: 'Informe sua senha',
@@ -217,7 +211,7 @@ describe('Login View', (): void => {
 
     expect(screen.getByTestId('auth-hero')).toBeInTheDocument();
     expect(screen.getByText(mockedAuthStrings.systemTagline)).toBeInTheDocument();
-    expect(screen.getByText(mockedAuthStrings.noAccount)).toBeInTheDocument();
+    expect(screen.getByText(mockedAuthStrings.securityBadge)).toBeInTheDocument();
     expect(
       screen.getByRole('form', { name: mockedAuthStrings.a11yLoginForm })
     ).toBeInTheDocument();
@@ -367,28 +361,6 @@ describe('Login View', (): void => {
     fireEvent.click(checkbox);
 
     expect(fixture.hookReturn.onKeepSessionChange).toHaveBeenCalledWith(false);
-  });
-
-  // NAVIGATION *******************************
-
-  it('should navigate to forgot password when the link button is clicked', (): void => {
-    renderLogin();
-
-    fireEvent.click(
-      screen.getByRole('button', { name: mockedAuthStrings.forgotPassword })
-    );
-
-    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.forgotPassword);
-  });
-
-  it('should navigate to create account when the footer button is clicked', (): void => {
-    renderLogin();
-
-    fireEvent.click(
-      screen.getByRole('button', { name: mockedAuthStrings.createAccount })
-    );
-
-    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.register);
   });
 
   // ASYNC ERROR *******************************
