@@ -18,13 +18,11 @@ export const shadows = {
   inputHover: `inset 0 1px 0 ${colors.overlayHover}, 0 2px 6px ${colors.shadowMid}`,
   inputErrorFocus: [
     `inset 0 1px 0 ${colors.overlayMuted},`,
-    `0 0 0 1px ${colors.bloodBorderMedium},`,
-    `0 0 14px ${colors.bloodGlowAmbient}`,
+    `0 0 12px ${colors.errorGlowAmbient}`,
   ].join(' '),
   inputFocus: [
     `inset 0 1px 0 ${colors.overlayInset},`,
-    `0 0 0 1px ${colors.bloodBorderSubtle},`,
-    `0 0 14px ${colors.bloodGlowAmbient}`,
+    `0 0 12px ${colors.bloodGlowAmbient}`,
   ].join(' '),
   brandMark: `0 0 0 1px ${colors.overlayRing} inset, 0 2px 6px ${colors.bloodShadowBrand}`,
   checkboxChecked: `0 1px 4px ${colors.bloodShadowActive}`,

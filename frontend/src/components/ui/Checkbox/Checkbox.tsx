@@ -33,7 +33,7 @@ function Checkbox({ checked, onChange, label, name, id }: CheckboxProps): JSX.El
           <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
             <path
               d="M1 4L3.5 6.5L9 1"
-              stroke="white"
+              stroke="#d22638"
               strokeWidth="1.6"
               strokeLinecap="round"
               strokeLinejoin="round"

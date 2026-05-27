@@ -28,13 +28,17 @@ export const InputWrapper = styled.div<InputWrapperStyledProps>`
   position: relative;
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.gradients.inputSurface},
-    ${({ theme }) => theme.colors.surf3};
+  overflow: hidden;
+  isolation: isolate;
+  background-color: ${({ theme }) => theme.colors.surf3};
+  background-image: ${({ theme }) => theme.gradients.inputSurface};
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   border-radius: ${({ theme }) => theme.radius.md};
-  border: ${({ theme }) => theme.borders.hairline} solid
+  border: 1px solid
     ${({ theme, $hasError }) =>
       $hasError
-        ? theme.colors.bloodGlow
+        ? theme.colors.errorBorder
         : theme.colors.border1};
   box-shadow: ${({ theme, $hasError }) =>
     $hasError
@@ -42,8 +46,7 @@ export const InputWrapper = styled.div<InputWrapperStyledProps>`
       : theme.shadows.inputDefault};
   transition:
     border-color ${({ theme }) => theme.transitions.normal},
-    box-shadow ${({ theme }) => theme.transitions.normal},
-    background ${({ theme }) => theme.transitions.normal};
+    box-shadow ${({ theme }) => theme.transitions.normal};
   opacity: ${({ theme, $disabled }) =>
     $disabled
       ? theme.opacity.disabledField
@@ -63,11 +66,11 @@ export const InputWrapper = styled.div<InputWrapperStyledProps>`
     ${({ $hasError, theme }) =>
       $hasError
         ? css`
-            border-color: ${theme.colors.bloodBorderSelected};
+            border-color: ${theme.colors.errorFocusBorder};
             box-shadow: ${theme.shadows.inputErrorFocus};
           `
         : css`
-            border-color: ${theme.colors.bloodBorderMedium};
+            border-color: ${theme.colors.bloodBorderFocus};
             box-shadow: ${theme.shadows.inputFocus};
           `}
   }
@@ -101,10 +104,12 @@ export const StyledInput = styled.input<StyledInputStyledProps>`
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-text-fill-color: ${({ theme }) => theme.colors.textHi};
+    caret-color: ${({ theme }) => theme.colors.textHi};
     -webkit-box-shadow: 0 0 0 ${({ theme }) => theme.sizes.autofillInset}
       ${({ theme }) => theme.colors.surf3} inset;
-    -webkit-text-fill-color: ${({ theme }) => theme.colors.textHi};
     transition: background-color ${({ theme }) => theme.motion.durations.autofill}
       ease-in-out 0s;
   }

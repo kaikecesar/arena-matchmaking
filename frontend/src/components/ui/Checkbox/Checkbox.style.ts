@@ -43,9 +43,9 @@ export const VisualBox = styled.div<VisualBoxStyledProps>`
   ${({ $checked, theme }) =>
     $checked
       ? css`
-          background: ${theme.gradients.checkboxChecked};
-          border: none;
-          box-shadow: ${theme.shadows.checkboxChecked};
+          background: ${theme.colors.surf3};
+          border: ${theme.borders.hairline} solid ${theme.colors.blood};
+          box-shadow: none;
         `
       : css`
           background: ${theme.gradients.checkboxUnchecked}, ${theme.colors.surf3};
@@ -56,7 +56,7 @@ export const VisualBox = styled.div<VisualBoxStyledProps>`
   ${CheckboxWrapper}:hover & {
     border-color: ${({ theme, $checked }) =>
       $checked
-        ? theme.colors.transparent
+        ? theme.colors.blood
         : theme.colors.border2};
     transform: scale(${({ theme }) => theme.motion.scale.hoverUp});
   }

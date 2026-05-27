@@ -7,27 +7,15 @@ import { authStrings } from '@/i18n/pt-BR/auth'
 // Style
 import {
   ContextBackdrop,
-  ContextEventCard,
-  ContextEventLabel,
-  ContextEventName,
   ContextEyebrow,
   ContextGlow,
   ContextGrid,
   ContextInner,
   ContextIntro,
-  ContextModuleGrid,
-  ContextModuleHint,
-  ContextModuleLabel,
-  ContextModulesHeading,
-  ContextModuleTile,
-  ContextModuleValue,
   ContextShell,
-  ContextStatusMeta,
   ContextStatusPill,
   ContextStatusStrip,
   ContextSubtitle,
-  ContextTelemetry,
-  ContextTelemetryItem,
   ContextTitle,
 } from './AuthContextPanel.style'
 
@@ -42,14 +30,6 @@ function AuthContextPanel(): JSX.Element {
       <ContextInner>
         <ContextStatusStrip>
           <ContextStatusPill>{contextPanel.sessionLive}</ContextStatusPill>
-          <ContextStatusMeta>
-            {contextPanel.syncLabel}: {contextPanel.syncValue}
-          </ContextStatusMeta>
-          <ContextTelemetry>
-            {contextPanel.telemetry.map((item) => (
-              <ContextTelemetryItem key={item}>{item}</ContextTelemetryItem>
-            ))}
-          </ContextTelemetry>
         </ContextStatusStrip>
 
         <ContextIntro>
@@ -57,24 +37,6 @@ function AuthContextPanel(): JSX.Element {
           <ContextTitle>{contextPanel.title}</ContextTitle>
           <ContextSubtitle>{contextPanel.subtitle}</ContextSubtitle>
         </ContextIntro>
-
-        <ContextEventCard>
-          <ContextEventLabel>{contextPanel.eventLabel}</ContextEventLabel>
-          <ContextEventName>{contextPanel.eventName}</ContextEventName>
-        </ContextEventCard>
-
-        <section>
-          <ContextModulesHeading>{contextPanel.modulesHeading}</ContextModulesHeading>
-          <ContextModuleGrid>
-            {contextPanel.modules.map((module) => (
-              <ContextModuleTile key={module.label}>
-                <ContextModuleLabel>{module.label}</ContextModuleLabel>
-                <ContextModuleValue>{module.value}</ContextModuleValue>
-                <ContextModuleHint>{module.hint}</ContextModuleHint>
-              </ContextModuleTile>
-            ))}
-          </ContextModuleGrid>
-        </section>
       </ContextInner>
     </ContextShell>
   )

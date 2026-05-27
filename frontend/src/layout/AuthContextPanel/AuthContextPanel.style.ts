@@ -29,7 +29,7 @@ export const ContextShell = styled.aside`
     justify-content: center;
     padding: ${({ theme }) => theme.layout.authContextPadding};
     border-left: ${({ theme }) => theme.borders.hairline} solid
-      ${({ theme }) => theme.colors.border1};
+      ${({ theme }) => theme.colors.border2};
     animation: ${({ theme }) => createContextEnter(theme)}
       ${({ theme }) => theme.motion.durations.panel}
       ${({ theme }) => theme.transitions.premium} both;
@@ -75,7 +75,7 @@ export const ContextInner = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.xl};
+  gap: ${({ theme }) => theme.spacing.xxxl};
 
   ${({ theme }) => theme.media.up.xxl} {
     max-width: min(${({ theme }) => theme.layout.authContextInnerMax}, 80%);
@@ -116,42 +116,6 @@ export const ContextStatusPill = styled.span`
   }
 `
 
-export const ContextStatusMeta = styled.span`
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
-  color: ${({ theme }) => theme.colors.textLow};
-`
-
-export const ContextTelemetry = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.sm};
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-left: auto;
-
-  ${({ theme }) => theme.media.down.xxl} {
-    margin-left: 0;
-    width: 100%;
-  }
-`
-
-export const ContextTelemetryItem = styled.li`
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: ${({ theme }) => theme.fontSizes.xxs};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.caps};
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.textLow};
-  padding: ${({ theme }) => theme.spacing.five}
-    ${({ theme }) => theme.spacing.nine};
-  border-radius: ${({ theme }) => theme.radius.sm};
-  background: ${({ theme }) => theme.colors.overlaySurface};
-  border: ${({ theme }) => theme.borders.hairline} solid
-    ${({ theme }) => theme.colors.border1};
-`
-
 /* ************** INTRO ******************* */
 export const ContextIntro = styled.section`
   padding-bottom: ${({ theme }) => theme.spacing.md};
@@ -172,14 +136,14 @@ export const ContextEyebrow = styled.span`
 
 export const ContextTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.display};
-  font-size: ${({ theme }) => theme.fontSizesFluid.dashboardTitle};
+  font-size: clamp(32px, 4.5vw, 48px);
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   line-height: ${({ theme }) => theme.lineHeights.heading};
   letter-spacing: ${({ theme }) => theme.letterSpacing.tight};
   color: ${({ theme }) => theme.colors.textHi};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
   text-wrap: balance;
-  max-width: 18ch;
+  max-width: 22ch;
 `
 
 export const ContextSubtitle = styled.p`
@@ -190,89 +154,3 @@ export const ContextSubtitle = styled.p`
   max-width: 42ch;
 `
 
-/* ************** EVENT ******************* */
-export const ContextEventCard = styled.article`
-  padding: ${({ theme }) => theme.spacing.lg};
-  border-radius: ${({ theme }) => theme.radius.lg};
-  background: ${({ theme }) => theme.gradients.moduleFeatured},
-    ${({ theme }) => theme.colors.surf1};
-  border: ${({ theme }) => theme.borders.hairline} solid
-    ${({ theme }) => theme.colors.bloodBorderSubtle};
-  box-shadow: ${({ theme }) => theme.shadows.card};
-`
-
-export const ContextEventLabel = styled.span`
-  display: block;
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.textLow};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-`
-
-export const ContextEventName = styled.span`
-  display: block;
-  font-family: ${({ theme }) => theme.fonts.display};
-  font-size: ${({ theme }) => theme.fontSizes.xxl};
-  font-weight: ${({ theme }) => theme.fontWeights.semibold};
-  color: ${({ theme }) => theme.colors.textHi};
-  line-height: ${({ theme }) => theme.lineHeights.tight};
-`
-
-/* ************** MODULES ******************* */
-export const ContextModulesHeading = styled.h3`
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.caps};
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.textLow};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-`
-
-export const ContextModuleGrid = styled.div`
-  display: grid;
-  gap: ${({ theme }) => theme.spacing.md};
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  ${({ theme }) => theme.media.down.xxl} {
-    grid-template-columns: 1fr;
-  }
-`
-
-export const ContextModuleTile = styled.article`
-  padding: ${({ theme }) => theme.spacing.lg};
-  border-radius: ${({ theme }) => theme.radius.md};
-  background: ${({ theme }) => theme.colors.surf1};
-  border: ${({ theme }) => theme.borders.hairline} solid
-    ${({ theme }) => theme.colors.border1};
-`
-
-export const ContextModuleLabel = styled.span`
-  display: block;
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.textLow};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-`
-
-export const ContextModuleValue = styled.span`
-  display: block;
-  font-family: ${({ theme }) => theme.fonts.display};
-  font-size: ${({ theme }) => theme.fontSizesFluid.moduleValue};
-  font-weight: ${({ theme }) => theme.fontWeights.semibold};
-  color: ${({ theme }) => theme.colors.textHi};
-  line-height: ${({ theme }) => theme.lineHeights.tight};
-  margin-bottom: ${({ theme }) => theme.spacing.six};
-  font-variant-numeric: tabular-nums;
-`
-
-export const ContextModuleHint = styled.span`
-  display: block;
-  font-family: ${({ theme }) => theme.fonts.ui};
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.textLow};
-  line-height: ${({ theme }) => theme.lineHeights.ui};
-`

@@ -13,6 +13,7 @@ export const authStrings = {
   fieldPasswordLabel: 'Senha',
 
   keepSession: 'Manter conectado',
+  forgotPassword: 'Esqueceu a senha?',
   submitButton: 'Acessar painel',
 
   securityBadge: 'Conexão protegida · LGPD',
@@ -34,22 +35,11 @@ export const authStrings = {
   bootstrapLoading: 'Carregando painel…',
 
   contextPanel: {
-    eyebrow: 'INFRAESTRUTURA · MATCHMAKING',
-    title: 'Operação em tempo real',
+    eyebrow: 'MATCHMAKING · OPERAÇÃO DE EVENTOS',
+    title: 'Controle total do próximo card.',
     subtitle:
-      'Montagem de cards, confrontos e publicação para o evento ativo.',
-    eventLabel: 'Evento em preparação',
-    eventName: 'Arena Regional — Card Q2',
-    modulesHeading: 'Indicadores operacionais',
-    modules: [
-      { label: 'Card ativo', value: '—', hint: 'Aguardando publicação' },
-      { label: 'Inscrições', value: '24', hint: 'Pré-cadastro aberto' },
-      { label: 'Confrontos', value: '8', hint: 'Em montagem' },
-    ],
-    telemetry: ['TLS 1.3', 'LAT 12ms', 'NODE-SP-02'],
-    syncLabel: 'Última sincronização',
-    syncValue: '2 min atrás',
-    sessionLive: 'Operação ativa',
+      'Gerencie atletas, confrontos e publicação em tempo real.',
+    sessionLive: 'Conexão segura',
   },
 
   loginSuccess: 'Acesso confirmado. Redirecionando…',

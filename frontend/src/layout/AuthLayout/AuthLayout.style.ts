@@ -97,7 +97,7 @@ export const PageShell = styled.div`
 
   ${({ theme }) => theme.media.up.xl} {
     display: grid;
-    grid-template-columns: ${({ theme }) => theme.layout.authSplitPrimaryMin}
+    grid-template-columns: min(44vw, 580px)
       ${({ theme }) => theme.layout.authSplitContextMin};
     column-gap: ${({ theme }) => theme.layout.authSplitGap};
     align-items: stretch;
@@ -213,7 +213,7 @@ export const Card = styled.div<CardStyledProps>`
       ${({ theme }) => theme.layout.pageInsetX},
       ${({ theme }) => theme.layout.safeRight}
     );
-    height: ${({ theme }) => theme.borders.hairline};
+    height: 1.5px;
     background: ${({ theme }) => theme.gradients.cardTopLine};
     opacity: ${({ theme }) => theme.opacity.none};
   }
@@ -262,7 +262,7 @@ export const Card = styled.div<CardStyledProps>`
         ? theme.layout.authCardWideMaxXl
         : theme.layout.authCardMaxXl};
     margin: 0 auto;
-    padding: ${({ theme }) => theme.layout.authCardPaddingXl};
+    padding: 44px 48px 40px;
     padding-bottom: calc(
       ${({ theme }) => theme.spacing.xxxl} + ${({ theme }) => theme.layout.safeBottom}
     );

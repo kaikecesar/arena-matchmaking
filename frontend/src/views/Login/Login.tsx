@@ -27,6 +27,7 @@ import { AuthLayout } from '@/layout/AuthLayout/AuthLayout'
 // Style
 import {
   FormFooterRow,
+  ForgotLink,
   LoginForm,
   PageFooter,
   SecurityBadge,
@@ -136,6 +137,10 @@ function Login(): JSX.Element {
             onChange={onKeepSessionChange}
             label={authStrings.keepSession}
           />
+          {/* TODO: link to /forgot-password when backend reset flow is implemented */}
+          <ForgotLink type="button" onClick={() => {}}>
+            {authStrings.forgotPassword}
+          </ForgotLink>
         </FormFooterRow>
 
         {state.async.generalError && <AuthAlert message={state.async.generalError} />}
