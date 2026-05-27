@@ -1,5 +1,5 @@
 // Core
-import { createRef, type JSX } from 'react'
+import { createRef, type JSX } from 'react';
 
 // Testing
 import {
@@ -7,7 +7,7 @@ import {
   render,
   screen,
   type RenderResult,
-} from '@testing-library/react'
+} from '@testing-library/react';
 import {
   afterEach,
   beforeEach,
@@ -15,19 +15,19 @@ import {
   expect,
   it,
   vi,
-} from 'vitest'
+} from 'vitest';
 
 // Libraries
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components';
 
 // Components
-import { InputField, InputFieldType } from '@/components/ui/InputField'
+import { InputField, InputFieldType } from '@/components/ui/InputField';
 
 // Config
-import { theme } from '@/styles'
+import { theme } from '@/styles';
 
 // Types
-import type { InputFieldProps } from '@/components/ui/InputField'
+import type { InputFieldProps } from '@/components/ui/InputField';
 
 /* *************** TEST SUPPORT VARS *************** */
 const defaultProps: InputFieldProps = {
@@ -39,11 +39,11 @@ const defaultProps: InputFieldProps = {
   onBlur: vi.fn(),
   placeholder: 'Digite seu e-mail',
   autoComplete: 'username',
-}
+};
 
 const TrailingIcon = (): JSX.Element => (
   <svg data-testid="trailing-icon" aria-hidden="true" />
-)
+);
 
 const renderInputField = (
   overrides: Partial<InputFieldProps> = {},
@@ -51,230 +51,230 @@ const renderInputField = (
   const props: InputFieldProps = {
     ...defaultProps,
     ...overrides,
-  }
+  };
 
   const element: JSX.Element = (
     <ThemeProvider theme={theme}>
       <InputField {...props} />
     </ThemeProvider>
-  )
+  );
 
-  return render(element)
-}
+  return render(element);
+};
 
 /* *************** TEST EXECUTION *************** */
 describe('InputField', (): void => {
   beforeEach((): void => {
-    vi.clearAllMocks()
-  })
+    vi.clearAllMocks();
+  });
 
   afterEach((): void => {
-    vi.resetAllMocks()
-  })
+    vi.resetAllMocks();
+  });
 
   it('renders the field label', (): void => {
-    renderInputField()
+    renderInputField();
 
-    expect(screen.getByText(defaultProps.label)).toBeInTheDocument()
-  })
+    expect(screen.getByText(defaultProps.label)).toBeInTheDocument();
+  });
 
   it('associates the label with the input id derived from name', (): void => {
-    renderInputField()
+    renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.id).toBe(defaultProps.name)
-  })
+    expect(input.id).toBe(defaultProps.name);
+  });
 
   it('uses a custom id when one is provided', (): void => {
-    renderInputField({ id: 'custom-identifier' })
+    renderInputField({ id: 'custom-identifier' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.id).toBe('custom-identifier')
-  })
+    expect(input.id).toBe('custom-identifier');
+  });
 
   it('defaults the input type to text', (): void => {
-    renderInputField({ type: undefined })
+    renderInputField({ type: undefined });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.type).toBe('text')
-  })
+    expect(input.type).toBe('text');
+  });
 
   it('respects an explicit password type', (): void => {
-    renderInputField({ type: InputFieldType.password })
+    renderInputField({ type: InputFieldType.password });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.type).toBe('password')
-  })
+    expect(input.type).toBe('password');
+  });
 
   it('respects an explicit email type', (): void => {
-    renderInputField({ type: InputFieldType.email })
+    renderInputField({ type: InputFieldType.email });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.type).toBe('email')
-  })
+    expect(input.type).toBe('email');
+  });
 
   it('propagates the input name attribute', (): void => {
-    renderInputField({ name: 'loginIdentifier' })
+    renderInputField({ name: 'loginIdentifier' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.name).toBe('loginIdentifier')
-  })
+    expect(input.name).toBe('loginIdentifier');
+  });
 
   it('renders the controlled value', (): void => {
-    renderInputField({ value: 'coach@example.com' })
+    renderInputField({ value: 'coach@example.com' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.value).toBe('coach@example.com')
-  })
+    expect(input.value).toBe('coach@example.com');
+  });
 
   it('renders the provided placeholder', (): void => {
-    renderInputField({ placeholder: 'Informe seu e-mail' })
+    renderInputField({ placeholder: 'Informe seu e-mail' });
 
     const input = screen.getByPlaceholderText(
       'Informe seu e-mail'
-    ) as HTMLInputElement
+    ) as HTMLInputElement;
 
-    expect(input).toBeInTheDocument()
-  })
+    expect(input).toBeInTheDocument();
+  });
 
   it('renders the provided autocomplete attribute', (): void => {
-    renderInputField({ autoComplete: 'current-password' })
+    renderInputField({ autoComplete: 'current-password' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.autocomplete).toBe('current-password')
-  })
+    expect(input.autocomplete).toBe('current-password');
+  });
 
   it('keeps the input enabled by default', (): void => {
-    renderInputField()
+    renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.disabled).toBe(false)
-  })
+    expect(input.disabled).toBe(false);
+  });
 
   it('applies the disabled attribute when requested', (): void => {
-    renderInputField({ disabled: true })
+    renderInputField({ disabled: true });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.disabled).toBe(true)
-  })
+    expect(input.disabled).toBe(true);
+  });
 
   it('sets aria-invalid to false when there is no error', (): void => {
-    renderInputField()
+    renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input).toHaveAttribute('aria-invalid', 'false')
-  })
+    expect(input).toHaveAttribute('aria-invalid', 'false');
+  });
 
   it('sets aria-invalid to true when there is an error', (): void => {
-    renderInputField({ error: 'Campo obrigatorio' })
+    renderInputField({ error: 'Campo obrigatorio' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input).toHaveAttribute('aria-invalid', 'true')
-  })
+    expect(input).toHaveAttribute('aria-invalid', 'true');
+  });
 
   it('omits aria-describedby when there is no error', (): void => {
-    renderInputField()
+    renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input).not.toHaveAttribute('aria-describedby')
-  })
+    expect(input).not.toHaveAttribute('aria-describedby');
+  });
 
   it('links aria-describedby to the default error id when an error exists', (): void => {
-    renderInputField({ error: 'Campo obrigatorio' })
+    renderInputField({ error: 'Campo obrigatorio' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input).toHaveAttribute('aria-describedby', 'identifier-error')
-  })
+    expect(input).toHaveAttribute('aria-describedby', 'identifier-error');
+  });
 
   it('links aria-describedby to the custom error id when a custom id exists', (): void => {
     renderInputField({
       id: 'email-field',
       error: 'Campo obrigatorio',
-    })
+    });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input).toHaveAttribute('aria-describedby', 'email-field-error')
-  })
+    expect(input).toHaveAttribute('aria-describedby', 'email-field-error');
+  });
 
   it('renders the error message as an alert', (): void => {
-    renderInputField({ error: 'Campo obrigatorio' })
+    renderInputField({ error: 'Campo obrigatorio' });
 
-    expect(screen.getByRole('alert')).toHaveTextContent('Campo obrigatorio')
-  })
+    expect(screen.getByRole('alert')).toHaveTextContent('Campo obrigatorio');
+  });
 
   it('hides the hint when an error is present', (): void => {
     renderInputField({
       error: 'Campo obrigatorio',
       hint: 'Esse hint nao deve aparecer',
-    })
+    });
 
-    expect(screen.queryByText('Esse hint nao deve aparecer')).not.toBeInTheDocument()
-  })
+    expect(screen.queryByText('Esse hint nao deve aparecer')).not.toBeInTheDocument();
+  });
 
   it('renders the hint when there is no error', (): void => {
-    renderInputField({ hint: 'Use o e-mail cadastrado no evento' })
+    renderInputField({ hint: 'Use o e-mail cadastrado no evento' });
 
-    expect(screen.getByText('Use o e-mail cadastrado no evento')).toBeInTheDocument()
-  })
+    expect(screen.getByText('Use o e-mail cadastrado no evento')).toBeInTheDocument();
+  });
 
   it('does not render hint text when hint is not provided', (): void => {
-    renderInputField()
+    renderInputField();
 
-    expect(screen.queryByText('Use o e-mail cadastrado no evento')).not.toBeInTheDocument()
-  })
+    expect(screen.queryByText('Use o e-mail cadastrado no evento')).not.toBeInTheDocument();
+  });
 
   it('does not render a trailing icon button when trailingIcon is absent', (): void => {
-    renderInputField()
+    renderInputField();
 
-    expect(screen.queryByRole('button')).not.toBeInTheDocument()
-  })
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
 
   it('renders a trailing icon button when trailingIcon is provided', (): void => {
     renderInputField({
       trailingIcon: <TrailingIcon />,
       trailingIconAriaLabel: 'Mostrar senha',
-    })
+    });
 
-    expect(screen.getByRole('button', { name: 'Mostrar senha' })).toBeInTheDocument()
-  })
+    expect(screen.getByRole('button', { name: 'Mostrar senha' })).toBeInTheDocument();
+  });
 
   it('applies the provided aria-label to the trailing icon button', (): void => {
     renderInputField({
       trailingIcon: <TrailingIcon />,
       trailingIconAriaLabel: 'Ocultar senha',
-    })
+    });
 
-    expect(screen.getByRole('button', { name: 'Ocultar senha' })).toBeInTheDocument()
-  })
+    expect(screen.getByRole('button', { name: 'Ocultar senha' })).toBeInTheDocument();
+  });
 
   it('calls onTrailingIconClick when the trailing icon button is clicked', (): void => {
-    const onTrailingIconClick = vi.fn()
+    const onTrailingIconClick = vi.fn();
 
     renderInputField({
       trailingIcon: <TrailingIcon />,
       trailingIconAriaLabel: 'Mostrar senha',
       onTrailingIconClick,
-    })
+    });
 
-    fireEvent.click(screen.getByRole('button', { name: 'Mostrar senha' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Mostrar senha' }));
 
-    expect(onTrailingIconClick).toHaveBeenCalledTimes(1)
-  })
+    expect(onTrailingIconClick).toHaveBeenCalledTimes(1);
+  });
 
   it(
     'does not throw when the trailing icon button is clicked without a click handler',
@@ -282,76 +282,76 @@ describe('InputField', (): void => {
     renderInputField({
       trailingIcon: <TrailingIcon />,
       trailingIconAriaLabel: 'Mostrar senha',
-    })
+    });
 
     expect((): void => {
-      fireEvent.click(screen.getByRole('button', { name: 'Mostrar senha' }))
-    }).not.toThrow()
+      fireEvent.click(screen.getByRole('button', { name: 'Mostrar senha' }));
+    }).not.toThrow();
     }
-  )
+  );
 
   it('forwards the ref to the underlying input element', (): void => {
-    const ref = createRef<HTMLInputElement>()
+    const ref = createRef<HTMLInputElement>();
 
     const element: JSX.Element = (
       <ThemeProvider theme={theme}>
         <InputField {...defaultProps} ref={ref} />
       </ThemeProvider>
-    )
+    );
 
-    render(element)
+    render(element);
 
-    expect(ref.current).toBeInstanceOf(HTMLInputElement)
-    expect(ref.current?.name).toBe(defaultProps.name)
-  })
+    expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    expect(ref.current?.name).toBe(defaultProps.name);
+  });
 
   it('calls onChange when the input value changes', (): void => {
-    const onChange = vi.fn()
+    const onChange = vi.fn();
 
-    renderInputField({ onChange })
+    renderInputField({ onChange });
 
     fireEvent.change(screen.getByLabelText(defaultProps.label), {
       target: { value: 'updated@example.com' },
-    })
+    });
 
-    expect(onChange).toHaveBeenCalledTimes(1)
-  })
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
 
   it('calls onBlur when the input loses focus', (): void => {
-    const onBlur = vi.fn()
+    const onBlur = vi.fn();
 
-    renderInputField({ onBlur })
+    renderInputField({ onBlur });
 
-    fireEvent.blur(screen.getByLabelText(defaultProps.label))
+    fireEvent.blur(screen.getByLabelText(defaultProps.label));
 
-    expect(onBlur).toHaveBeenCalledTimes(1)
-  })
+    expect(onBlur).toHaveBeenCalledTimes(1);
+  });
 
   it('renders the trailing icon accessory as a button element', (): void => {
     renderInputField({
       trailingIcon: <TrailingIcon />,
       trailingIconAriaLabel: 'Mostrar senha',
-    })
+    });
 
     expect(screen.getByRole('button', { name: 'Mostrar senha' })).toHaveAttribute(
       'type',
       'button'
-    )
-  })
+    );
+  });
 
   it('updates the rendered value when the controlled prop changes', (): void => {
-    const { rerender } = renderInputField({ value: 'first@example.com' })
+    const { rerender } = renderInputField({ value: 'first@example.com' });
 
     const rerenderedElement: JSX.Element = (
       <ThemeProvider theme={theme}>
         <InputField {...defaultProps} value="second@example.com" />
       </ThemeProvider>
-    )
+    );
 
-    rerender(rerenderedElement)
+    rerender(rerenderedElement);
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement
+    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
 
-    expect(input.value).toBe('second@example.com')
-  })
-})
+    expect(input.value).toBe('second@example.com');
+  });
+});

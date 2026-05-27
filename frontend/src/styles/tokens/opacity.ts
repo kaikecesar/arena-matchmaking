@@ -8,4 +8,4 @@ export const opacity = {
   eyebrow: 0.92,
   wordmarkSub: 0.9,
   full: 1,
-} as const
+} as const;

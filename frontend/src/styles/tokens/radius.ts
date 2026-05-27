@@ -8,4 +8,4 @@ export const radius = {
   pill: '999px',
   round: '50%',
   roleAccent: '0 2px 2px 0',
-} as const
+} as const;

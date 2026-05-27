@@ -1,8 +1,8 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Style
-import { StyledStack } from './Stack.style'
+import { StyledStack } from './Stack.style';
 
 // Types
 import {
@@ -11,7 +11,7 @@ import {
   StackGap,
   StackJustify,
   type StackProps,
-} from './Stack.types'
+} from './Stack.types';
 
 function Stack({
   direction = StackDirection.column,
@@ -29,7 +29,7 @@ function Stack({
     >
       {children}
     </StyledStack>
-  )
+  );
 }
 
-export { Stack }
+export { Stack };

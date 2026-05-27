@@ -1,5 +1,5 @@
 // Core
-import type { MouseEvent, ReactNode } from 'react'
+import type { MouseEvent, ReactNode } from 'react';
 
 export enum ButtonVariant {
   blood = 'blood',

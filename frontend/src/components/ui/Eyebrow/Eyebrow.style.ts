@@ -1,8 +1,8 @@
 // Libraries
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 // Types
-import type { StyledEyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types'
+import type { StyledEyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types';
 
 export const StyledEyebrow = styled.span<StyledEyebrowProps>`
   display: block;
@@ -15,4 +15,4 @@ export const StyledEyebrow = styled.span<StyledEyebrowProps>`
     $color
       ? theme.colors[$color]
       : theme.colors.textLow};
-`
+`;

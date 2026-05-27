@@ -1,4 +1,4 @@
-import { colors } from '@/styles/tokens/colors'
+import { colors } from '@/styles/tokens/colors';
 
 export const gradients = {
   inputSurface: `linear-gradient(180deg, ${colors.overlaySubtle} 0%, transparent 38%)`,
@@ -40,4 +40,4 @@ export const gradients = {
   gridMask: 'radial-gradient(ellipse 75% 65% at 42% 0%, black 18%, transparent 70%)',
   gridLineH: `linear-gradient(${colors.gridLine} 1px, transparent 1px)`,
   gridLineV: `linear-gradient(90deg, ${colors.gridLine} 1px, transparent 1px)`,
-} as const
+} as const;

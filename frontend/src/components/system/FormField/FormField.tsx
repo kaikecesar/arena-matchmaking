@@ -1,25 +1,25 @@
 // Core
-import type { JSX, ReactNode } from 'react'
+import type { JSX, ReactNode } from 'react';
 
 // Types
-import type { FormFieldProps } from '@/components/system/FormField/FormField.types'
+import type { FormFieldProps } from '@/components/system/FormField/FormField.types';
 
 // Style
-import { FieldContainer, HelpText, Label } from '@/components/system/FormField/FormField.style'
+import { FieldContainer, HelpText, Label } from '@/components/system/FormField/FormField.style';
 
 function renderHelpText(
   error?: string,
   hint?: string,
 ): ReactNode {
   if (error) {
-    return <HelpText $error>{error}</HelpText>
+    return <HelpText $error>{error}</HelpText>;
   }
 
   if (hint) {
-    return <HelpText>{hint}</HelpText>
+    return <HelpText>{hint}</HelpText>;
   }
 
-  return null
+  return null;
 }
 
 function FormField({
@@ -35,7 +35,7 @@ function FormField({
       {children}
       {renderHelpText(error, hint)}
     </FieldContainer>
-  )
+  );
 }
 
-export { FormField }
+export { FormField };

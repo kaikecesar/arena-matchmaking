@@ -41,4 +41,4 @@ export const layout = {
   atmosphereCopperLeftLg: '8%',
   atmosphereBloodRightXl: '18%',
   atmosphereCopperLeftXl: '6%',
-} as const
+} as const;

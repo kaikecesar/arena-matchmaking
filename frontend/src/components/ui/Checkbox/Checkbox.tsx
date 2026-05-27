@@ -1,5 +1,5 @@
 // Core
-import type { ChangeEvent, JSX } from 'react'
+import type { ChangeEvent, JSX } from 'react';
 
 // Style
 import {
@@ -7,10 +7,10 @@ import {
   CheckboxWrapper,
   HiddenInput,
   VisualBox,
-} from '@/components/ui/Checkbox/Checkbox.style'
+} from '@/components/ui/Checkbox/Checkbox.style';
 
 // Types
-import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types'
+import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types';
 
 function Checkbox({
   checked,
@@ -19,11 +19,11 @@ function Checkbox({
   name,
   id,
 }: CheckboxProps): JSX.Element {
-  const inputId = id ?? name
+  const inputId = id ?? name;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    onChange(e.target.checked)
-  }
+    onChange(e.target.checked);
+  };
 
   return (
     <CheckboxWrapper htmlFor={inputId}>
@@ -49,8 +49,8 @@ function Checkbox({
       </VisualBox>
       <CheckboxLabel>{label}</CheckboxLabel>
     </CheckboxWrapper>
-  )
+  );
 }
 
-export { Checkbox }
+export { Checkbox };
 

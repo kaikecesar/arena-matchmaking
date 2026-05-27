@@ -9,4 +9,4 @@ export const createAsyncState = <T>(data: T | null = null): AsyncState<T> => ({
   data,
   isLoading: false,
   error: null,
-})
+});

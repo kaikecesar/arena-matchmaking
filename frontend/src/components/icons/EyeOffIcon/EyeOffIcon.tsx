@@ -1,11 +1,11 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Types
-import type { IconProps } from '@/components/icons/EyeOffIcon/EyeOffIcon.types'
+import type { IconProps } from '@/components/icons/EyeOffIcon/EyeOffIcon.types';
 
 // Style
-import { StyledIcon } from '@/components/icons/EyeOffIcon/EyeOffIcon.style'
+import { StyledIcon } from '@/components/icons/EyeOffIcon/EyeOffIcon.style';
 
 function EyeOffIcon({
   size = 18,
@@ -51,7 +51,7 @@ function EyeOffIcon({
         strokeLinejoin="round"
       />
     </StyledIcon>
-  )
+  );
 }
 
-export { EyeOffIcon }
+export { EyeOffIcon };

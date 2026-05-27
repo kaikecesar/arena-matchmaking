@@ -1,11 +1,11 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Types
-import type { IconProps } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.types'
+import type { IconProps } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.types';
 
 // Style
-import { StyledIcon } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.style'
+import { StyledIcon } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.style';
 
 function EyeOpenIcon({
   size = 18,
@@ -44,7 +44,7 @@ function EyeOpenIcon({
       />
       <circle cx="9" cy="9" r="2.25" stroke="currentColor" strokeWidth="1.6" />
     </StyledIcon>
-  )
+  );
 }
 
-export { EyeOpenIcon }
+export { EyeOpenIcon };

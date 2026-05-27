@@ -1,13 +1,13 @@
 // Libraries
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components';
 
 // Types
-import type { ButtonSize, StyledButtonProps } from '@/components/ui/Button/Button.types'
+import type { ButtonSize, StyledButtonProps } from '@/components/ui/Button/Button.types';
 
 /* ************** KEYFRAMES ******************* */
 const spin = keyframes`
   to { transform: rotate(360deg); }
-`
+`;
 
 /* ************** CONSTANTS ******************* */
 const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
@@ -31,7 +31,7 @@ const sizeStyles: Record<ButtonSize, ReturnType<typeof css>> = {
     font-size: ${({ theme }) => theme.fontSizes.lg};
     gap: ${({ theme }) => theme.spacing.md};
   `,
-}
+};
 
 /* ************** STYLED BUTTON ******************* */
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -80,7 +80,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
             filter: brightness(0.98);
             box-shadow: ${theme.shadows.buttonBloodActive};
           }
-        `
+        `;
       case 'bone':
         return css`
           background: ${theme.gradients.buttonBone};
@@ -94,7 +94,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
           &:active:not(:disabled) {
             transform: translateY(0) scale(${theme.motion.scale.press});
           }
-        `
+        `;
       case 'ghost':
         return css`
           background: transparent;
@@ -109,9 +109,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
           &:active:not(:disabled) {
             transform: scale(${theme.motion.scale.press});
           }
-        `
+        `;
       default:
-        return null
+        return null;
     }
   }}
 
@@ -126,10 +126,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
     transform: none;
     filter: none;
   }
-`
+`;
 
 /* ************** LOADING ******************* */
 export const SpinnerSvg = styled.svg`
   animation: ${spin} ${({ theme }) => theme.motion.durations.spin} linear infinite;
   flex-shrink: 0;
-`
+`;

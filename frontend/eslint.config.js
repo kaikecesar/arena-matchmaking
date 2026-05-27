@@ -101,6 +101,7 @@ export default defineConfig([
           fixStyle: 'separate-type-imports',
         },
       ],
+      'semi': ['error', 'always'],
 
       // import/order disabled — eslint-plugin-import is not compatible with ESLint 10 APIs yet
       'import/first': 'error',

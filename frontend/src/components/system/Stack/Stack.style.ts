@@ -1,5 +1,5 @@
 // Libraries
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 // Types
 import type {
@@ -7,7 +7,7 @@ import type {
   StackDirection,
   StackGap,
   StackJustify,
-} from '@/components/system/Stack/Stack.types'
+} from '@/components/system/Stack/Stack.types';
 
 interface StyledStackProps {
   $direction: StackDirection
@@ -22,4 +22,4 @@ export const StyledStack = styled.div<StyledStackProps>`
   gap: ${({ theme, $gap }) => theme.spacing[$gap]};
   align-items: ${({ $align }) => $align};
   justify-content: ${({ $justify }) => $justify};
-`
+`;

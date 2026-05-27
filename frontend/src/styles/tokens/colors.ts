@@ -67,4 +67,4 @@ export const colors = {
   shadowPop: 'rgba(0, 0, 0, 0.38)',
   transparent: 'transparent',
   white: '#ffffff',
-} as const
+} as const;

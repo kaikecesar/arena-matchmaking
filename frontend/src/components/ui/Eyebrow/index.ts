@@ -1,2 +1,2 @@
-export * from './Eyebrow'
-export * from './Eyebrow.types'
+export * from './Eyebrow';
+export * from './Eyebrow.types';

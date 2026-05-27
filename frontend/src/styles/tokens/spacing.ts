@@ -23,4 +23,4 @@ export const spacing = {
   xxxxl: '40px',
   xxxxxl: '48px',
   fiftyTwo: '52px',
-} as const
+} as const;

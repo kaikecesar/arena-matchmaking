@@ -1,11 +1,11 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Types
-import type { EyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types'
+import type { EyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types';
 
 // Style
-import { StyledEyebrow } from '@/components/ui/Eyebrow/Eyebrow.style'
+import { StyledEyebrow } from '@/components/ui/Eyebrow/Eyebrow.style';
 
 function Eyebrow({
   children,
@@ -19,7 +19,7 @@ function Eyebrow({
     >
       {children}
     </StyledEyebrow>
-  )
+  );
 }
 
-export { Eyebrow }
+export { Eyebrow };

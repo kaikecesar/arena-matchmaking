@@ -1,5 +1,5 @@
 // Types
-import type { FieldErrors, FieldValues, Path } from 'react-hook-form'
+import type { FieldErrors, FieldValues, Path } from 'react-hook-form';
 
 /* *************************************************************************************************
 *************************************** MESSAGE SANITIZATION ***************************************
@@ -13,25 +13,25 @@ const TECHNICAL_MESSAGE_PATTERNS = [
   /unrecognized key/i,
   /too small/i,
   /too big/i,
-] as const
+] as const;
 
 const isTechnicalValidationMessage = (message: string): boolean =>
-  TECHNICAL_MESSAGE_PATTERNS.some((pattern) => pattern.test(message.trim()))
+  TECHNICAL_MESSAGE_PATTERNS.some((pattern) => pattern.test(message.trim()));
 
 const sanitizeValidationMessage = (
   message: string | undefined,
   fallback: string
 ): string | undefined => {
   if (message === undefined || message.length === 0) {
-    return undefined
+    return undefined;
   }
 
   if (isTechnicalValidationMessage(message)) {
-    return fallback
+    return fallback;
   }
 
-  return message
-}
+  return message;
+};
 
 /* *************************************************************************************************
 ****************************************** FIELD VISIBILITY ****************************************
@@ -46,34 +46,34 @@ const shouldShowFieldError = (
   field: string,
   { errors, touchedFields, isSubmitted }: FieldVisibilityInput
 ): boolean => {
-  const hasError = errors[field] !== undefined
-  const wasTouched = touchedFields[field] === true
-  return hasError && (wasTouched || isSubmitted)
-}
+  const hasError = errors[field] !== undefined;
+  const wasTouched = touchedFields[field] === true;
+  return hasError && (wasTouched || isSubmitted);
+};
 
 const getVisibleFieldError = <TFieldValues extends FieldValues>(
   field: Path<TFieldValues>,
   formState: FieldVisibilityInput,
   fallback: string
 ): string | undefined => {
-  const fieldKey = field as string
+  const fieldKey = field as string;
 
   if (!shouldShowFieldError(fieldKey, formState)) {
-    return undefined
+    return undefined;
   }
 
-  const rawMessage = formState.errors[fieldKey]?.message
+  const rawMessage = formState.errors[fieldKey]?.message;
   const message =
     typeof rawMessage === 'string'
       ? rawMessage
-      : undefined
+      : undefined;
 
-  return sanitizeValidationMessage(message, fallback)
-}
+  return sanitizeValidationMessage(message, fallback);
+};
 
 export {
   getVisibleFieldError,
   isTechnicalValidationMessage,
   sanitizeValidationMessage,
   shouldShowFieldError,
-}
+};

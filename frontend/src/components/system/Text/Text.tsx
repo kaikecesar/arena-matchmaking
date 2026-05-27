@@ -1,11 +1,11 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Types
-import { TextVariant, type TextProps } from '@/components/system/Text/Text.types'
+import { TextVariant, type TextProps } from '@/components/system/Text/Text.types';
 
 // Style
-import { StyledText } from '@/components/system/Text/Text.style'
+import { StyledText } from '@/components/system/Text/Text.style';
 
 function Text({
   variant = TextVariant.body,
@@ -15,7 +15,7 @@ function Text({
     <StyledText $variant={variant}>
       {children}
     </StyledText>
-  )
+  );
 }
 
-export { Text }
+export { Text };

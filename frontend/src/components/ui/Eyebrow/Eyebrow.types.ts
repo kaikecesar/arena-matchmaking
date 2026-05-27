@@ -1,8 +1,8 @@
 // Core
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 // Types
-import type { DefaultTheme } from 'styled-components'
+import type { DefaultTheme } from 'styled-components';
 
 export interface StyledEyebrowProps {
   $color?: ThemeColorKey | undefined;

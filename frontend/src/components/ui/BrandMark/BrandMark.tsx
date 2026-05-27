@@ -1,8 +1,8 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Types
-import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types'
+import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types';
 
 // Style
 import {
@@ -11,12 +11,12 @@ import {
   Wordmark,
   WordmarkArena,
   WordmarkSub,
-} from '@/components/ui/BrandMark/BrandMark.style'
+} from '@/components/ui/BrandMark/BrandMark.style';
 
 function BrandMark({
   size = 28,
 }: BrandMarkProps): JSX.Element {
-  const iconSize = Math.round(size * 0.57) // ~16px at default 28
+  const iconSize = Math.round(size * 0.57); // ~16px at default 28
 
   return (
     <BrandMarkWrapper>
@@ -38,8 +38,8 @@ function BrandMark({
         <WordmarkSub>MATCHMAKING</WordmarkSub>
       </Wordmark>
     </BrandMarkWrapper>
-  )
+  );
 }
 
-export { BrandMark }
+export { BrandMark };
 

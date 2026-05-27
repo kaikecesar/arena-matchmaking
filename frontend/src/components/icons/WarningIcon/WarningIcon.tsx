@@ -1,11 +1,11 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Types
-import type { IconProps } from '@/components/icons/WarningIcon/WarningIcon.types'
+import type { IconProps } from '@/components/icons/WarningIcon/WarningIcon.types';
 
 // Style
-import { StyledIcon } from '@/components/icons/WarningIcon/WarningIcon.style'
+import { StyledIcon } from '@/components/icons/WarningIcon/WarningIcon.style';
 
 function WarningIcon({
   size = 16,
@@ -50,7 +50,7 @@ function WarningIcon({
       />
       <circle cx="8" cy="11.5" r="0.75" fill="currentColor" />
     </StyledIcon>
-  )
+  );
 }
 
-export { WarningIcon }
+export { WarningIcon };

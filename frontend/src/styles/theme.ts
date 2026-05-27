@@ -1,17 +1,17 @@
 // Style
-import { breakpoints } from '@/styles/tokens/breakpoints'
-import { borders } from '@/styles/tokens/borders'
-import { colors } from '@/styles/tokens/colors'
-import { effects } from '@/styles/tokens/effects'
-import { gradients } from '@/styles/tokens/gradients'
-import { layout } from '@/styles/tokens/layout'
-import { motion } from '@/styles/tokens/motion'
-import { opacity } from '@/styles/tokens/opacity'
-import { radius } from '@/styles/tokens/radius'
-import { shadows } from '@/styles/tokens/shadows'
-import { sizes } from '@/styles/tokens/sizes'
-import { spacing } from '@/styles/tokens/spacing'
-import { transitions } from '@/styles/tokens/transitions'
+import { breakpoints } from '@/styles/tokens/breakpoints';
+import { borders } from '@/styles/tokens/borders';
+import { colors } from '@/styles/tokens/colors';
+import { effects } from '@/styles/tokens/effects';
+import { gradients } from '@/styles/tokens/gradients';
+import { layout } from '@/styles/tokens/layout';
+import { motion } from '@/styles/tokens/motion';
+import { opacity } from '@/styles/tokens/opacity';
+import { radius } from '@/styles/tokens/radius';
+import { shadows } from '@/styles/tokens/shadows';
+import { sizes } from '@/styles/tokens/sizes';
+import { spacing } from '@/styles/tokens/spacing';
+import { transitions } from '@/styles/tokens/transitions';
 import {
   fonts,
   fontSizes,
@@ -19,8 +19,8 @@ import {
   fontWeights,
   letterSpacing,
   lineHeights,
-} from '@/styles/tokens/typography'
-import { zIndex } from '@/styles/tokens/zIndex'
+} from '@/styles/tokens/typography';
+import { zIndex } from '@/styles/tokens/zIndex';
 
 type MediaQueries<T extends Record<string, string>> = {
   up: Record<keyof T, string>
@@ -35,7 +35,7 @@ const createMedia = <T extends Record<string, string>>(values: T): MediaQueries<
   down: Object.fromEntries(
     Object.entries(values).map(([key, value]) => [key, `@media (max-width: ${value})`])
   ) as Record<keyof T, string>,
-})
+});
 
 export const theme = {
   colors,
@@ -59,6 +59,6 @@ export const theme = {
   breakpoints,
   zIndex,
   media: createMedia(breakpoints),
-} as const
+} as const;
 
 export type Theme = typeof theme

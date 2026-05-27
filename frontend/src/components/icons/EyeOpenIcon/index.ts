@@ -1,2 +1,2 @@
-export * from './EyeOpenIcon'
-export * from './EyeOpenIcon.types'
+export * from './EyeOpenIcon';
+export * from './EyeOpenIcon.types';

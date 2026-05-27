@@ -1,5 +1,5 @@
 // Core
-import type { ChangeEvent, FocusEvent, ReactNode } from 'react'
+import type { ChangeEvent, FocusEvent, ReactNode } from 'react';
 
 export enum InputFieldType {
   text = 'text',

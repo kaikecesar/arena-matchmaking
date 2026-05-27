@@ -1,5 +1,5 @@
 // Libraries
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ErrorText = styled.span`
   display: block;
@@ -11,4 +11,4 @@ export const ErrorText = styled.span`
   line-height: ${({ theme }) => theme.lineHeights.ui};
   letter-spacing: ${({ theme }) => theme.letterSpacing.micro};
   color: ${({ theme }) => theme.colors.errorSoft};
-`
+`;

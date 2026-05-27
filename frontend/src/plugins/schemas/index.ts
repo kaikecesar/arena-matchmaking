@@ -1,6 +1,6 @@
 // Utils
-import { initAuthZodErrorMap } from '@/plugins/schemas/zodErrorMap'
+import { initAuthZodErrorMap } from '@/plugins/schemas/zodErrorMap';
 
-initAuthZodErrorMap()
+initAuthZodErrorMap();
 
-export * from './fields'
+export * from './fields';

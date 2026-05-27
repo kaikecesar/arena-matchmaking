@@ -1,2 +1,2 @@
-export * from './ArrowRightIcon'
-export * from './ArrowRightIcon.types'
+export * from './ArrowRightIcon';
+export * from './ArrowRightIcon.types';

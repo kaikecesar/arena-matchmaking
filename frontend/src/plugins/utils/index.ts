@@ -1,3 +1,3 @@
-export * from './delay'
-export * from './formValidation'
-export * from './validators'
+export * from './delay';
+export * from './formValidation';
+export * from './validators';

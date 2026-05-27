@@ -5,4 +5,4 @@ export const zIndex = {
   overlay: 100,
   modal: 200,
   toast: 300,
-} as const
+} as const;

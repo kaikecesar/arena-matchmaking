@@ -1,8 +1,8 @@
 // Core
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 // Style
-import { SpinnerSvg, StyledButton } from './Button.style'
+import { SpinnerSvg, StyledButton } from './Button.style';
 
 // Types
 import {
@@ -10,7 +10,7 @@ import {
   ButtonType,
   ButtonVariant,
   type ButtonProps,
-} from './Button.types'
+} from './Button.types';
 
 function Spinner(): JSX.Element {
   return (
@@ -18,7 +18,7 @@ function Spinner(): JSX.Element {
       <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="2" strokeOpacity="0.3" />
       <path d="M8 2a6 6 0 0 1 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </SpinnerSvg>
-  )
+  );
 }
 
 function Button({
@@ -62,8 +62,8 @@ function Button({
             </>
           )}
     </StyledButton>
-  )
+  );
 }
 
-export { Button }
-export { ButtonSize, ButtonType, ButtonVariant }
+export { Button };
+export { ButtonSize, ButtonType, ButtonVariant };

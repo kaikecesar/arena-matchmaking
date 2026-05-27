@@ -2,7 +2,7 @@ export const fonts = {
   display: "'Barlow Semi Condensed', sans-serif",
   ui: "'Manrope', system-ui, sans-serif",
   mono: "'JetBrains Mono', monospace",
-} as const
+} as const;
 
 export const fontWeights = {
   regular: 400,
@@ -11,7 +11,7 @@ export const fontWeights = {
   bold: 700,
   extrabold: 800,
   black: 900,
-} as const
+} as const;
 
 export const fontSizes = {
   xxs: '9px',
@@ -28,7 +28,7 @@ export const fontSizes = {
   error: '11px',
   caption: '13px',
   heroLg: '31px',
-} as const
+} as const;
 
 export const fontSizesFluid = {
   display: 'clamp(40px, 6vw, 56px)',
@@ -36,7 +36,7 @@ export const fontSizesFluid = {
   moduleValue: 'clamp(20px, 3vw, 22px)',
   authHero: 'clamp(26px, 7.5vw, 34px)',
   authHeroMd: 'clamp(28px, 5vw, 32px)',
-} as const
+} as const;
 
 export const letterSpacing = {
   micro: '0.01em',
@@ -50,7 +50,7 @@ export const letterSpacing = {
   wordmarkSub: '0.14em',
   security: '0.08em',
   review: '0.1em',
-} as const
+} as const;
 
 export const lineHeights = {
   body: 1.55,
@@ -60,4 +60,4 @@ export const lineHeights = {
   compact: 1.3,
   meta: 1.4,
   success: 1.5,
-} as const
+} as const;

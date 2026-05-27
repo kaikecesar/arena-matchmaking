@@ -1,16 +1,16 @@
 // Libraries
-import styled, { css, keyframes, type Keyframes } from 'styled-components'
+import styled, { css, keyframes, type Keyframes } from 'styled-components';
 
 // Types
-import type { InputWrapperStyledProps, StyledInputStyledProps } from '@/components/ui/InputField/InputField.types'
-import type { Theme } from '@/styles/theme'
+import type { InputWrapperStyledProps, StyledInputStyledProps } from '@/components/ui/InputField/InputField.types';
+import type { Theme } from '@/styles/theme';
 
 /* ************** LAYOUT ******************* */
 export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`
+`;
 
 export const FieldLabel = styled.label`
   font-family: ${({ theme }) => theme.fonts.mono};
@@ -21,7 +21,7 @@ export const FieldLabel = styled.label`
   color: ${({ theme }) => theme.colors.textLow};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
   display: block;
-`
+`;
 
 /* ************** INPUT ******************* */
 export const InputWrapper = styled.div<InputWrapperStyledProps>`
@@ -74,7 +74,7 @@ export const InputWrapper = styled.div<InputWrapperStyledProps>`
             box-shadow: ${theme.shadows.inputFocus};
           `}
   }
-`
+`;
 
 export const StyledInput = styled.input<StyledInputStyledProps>`
   flex: 1;
@@ -113,7 +113,7 @@ export const StyledInput = styled.input<StyledInputStyledProps>`
     transition: background-color ${({ theme }) => theme.motion.durations.autofill}
       ease-in-out 0s;
   }
-`
+`;
 
 /* ************** ACCESSORIES ******************* */
 export const TrailingSlot = styled.button`
@@ -142,7 +142,7 @@ export const TrailingSlot = styled.button`
     outline: ${({ theme }) => theme.shadows.focusOutline};
     outline-offset: ${({ theme }) => theme.spacing.hairline};
   }
-`
+`;
 
 const createFieldErrorIn = (theme: Theme): Keyframes => keyframes`
   from {
@@ -153,7 +153,7 @@ const createFieldErrorIn = (theme: Theme): Keyframes => keyframes`
     opacity: ${theme.opacity.full};
     transform: translateY(0);
   }
-`
+`;
 
 export const ErrorMessage = styled.span`
   display: block;
@@ -168,7 +168,7 @@ export const ErrorMessage = styled.span`
   animation: ${({ theme }) => createFieldErrorIn(theme)}
     ${({ theme }) => theme.motion.durations.fieldError}
     ${({ theme }) => theme.transitions.premium} both;
-`
+`;
 
 export const HintText = styled.span`
   display: block;
@@ -176,4 +176,4 @@ export const HintText = styled.span`
   font-family: ${({ theme }) => theme.fonts.ui};
   font-size: ${({ theme }) => theme.fontSizes.sm};
   color: ${({ theme }) => theme.colors.textLow};
-`
+`;

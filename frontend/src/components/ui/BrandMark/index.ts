@@ -1,2 +1,2 @@
-export * from './BrandMark'
-export * from './BrandMark.types'
+export * from './BrandMark';
+export * from './BrandMark.types';

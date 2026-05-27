@@ -1,5 +1,5 @@
 // Core
-import { forwardRef, type JSX } from 'react'
+import { forwardRef, type JSX } from 'react';
 
 // Style
 import {
@@ -10,10 +10,10 @@ import {
   InputWrapper,
   StyledInput,
   TrailingSlot,
-} from '@/components/ui/InputField/InputField.style'
+} from '@/components/ui/InputField/InputField.style';
 
 // Types
-import { InputFieldType, type InputFieldProps } from '@/components/ui/InputField/InputField.types'
+import { InputFieldType, type InputFieldProps } from '@/components/ui/InputField/InputField.types';
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   (
@@ -40,9 +40,9 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     /* *********************************************************************************************
     **************************************** DERIVED STATE *****************************************
     ********************************************************************************************* */
-    const inputId = id ?? name
-    const errorId = `${inputId}-error`
-    const hasError = Boolean(error)
+    const inputId = id ?? name;
+    const errorId = `${inputId}-error`;
+    const hasError = Boolean(error);
 
     /* *********************************************************************************************
     ******************************************** RENDER ********************************************
@@ -87,10 +87,10 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         )}
         {!hasError && hint && <HintText>{hint}</HintText>}
       </FieldWrapper>
-    )
+    );
   }
-)
+);
 
-InputField.displayName = 'InputField'
-export { InputField }
-export { InputFieldType }
+InputField.displayName = 'InputField';
+export { InputField };
+export { InputFieldType };

@@ -1,4 +1,4 @@
-import { colors } from '@/styles/tokens/colors'
+import { colors } from '@/styles/tokens/colors';
 
 export const shadows = {
   card: `0 1px 0 ${colors.overlaySubtle} inset, 0 4px 14px ${colors.shadowCard}`,
@@ -32,4 +32,4 @@ export const shadows = {
   glow: {
     successDot: `0 0 4px ${colors.successGlow}`,
   },
-} as const
+} as const;

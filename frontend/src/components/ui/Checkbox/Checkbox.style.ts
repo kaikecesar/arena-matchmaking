@@ -1,8 +1,8 @@
 // Libraries
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 // Types
-import type { VisualBoxStyledProps } from '@/components/ui/Checkbox/Checkbox.types'
+import type { VisualBoxStyledProps } from '@/components/ui/Checkbox/Checkbox.types';
 
 export const CheckboxWrapper = styled.label`
   display: flex;
@@ -12,7 +12,7 @@ export const CheckboxWrapper = styled.label`
   user-select: none;
   min-height: ${({ theme }) => theme.layout.touchTarget};
   padding: ${({ theme }) => theme.spacing.xs} 0;
-`
+`;
 
 export const HiddenInput = styled.input`
   position: absolute;
@@ -24,7 +24,7 @@ export const HiddenInput = styled.input`
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
-`
+`;
 
 export const VisualBox = styled.div<VisualBoxStyledProps>`
   width: ${({ theme }) => theme.sizes.checkbox};
@@ -68,7 +68,7 @@ export const VisualBox = styled.div<VisualBoxStyledProps>`
   ${CheckboxWrapper}:focus-within & {
     box-shadow: ${({ theme }) => theme.shadows.focus};
   }
-`
+`;
 
 export const CheckboxLabel = styled.span`
   font-family: ${({ theme }) => theme.fonts.ui};
@@ -76,4 +76,4 @@ export const CheckboxLabel = styled.span`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   color: ${({ theme }) => theme.colors.textMid};
   line-height: ${({ theme }) => theme.lineHeights.compact};
-`
+`;

@@ -14,4 +14,4 @@ export const sizes = {
   buttonMd: '48px',
   buttonLg: '52px',
   autofillInset: '1000px',
-} as const
+} as const;

@@ -24,4 +24,4 @@ export const motion = {
     press: '0.99',
     bootMin: '0.92',
   },
-} as const
+} as const;

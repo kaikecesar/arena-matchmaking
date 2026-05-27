@@ -3,4 +3,4 @@ export const borders = {
   focus: '2px',
   accentBar: '2px',
   step: '3px',
-} as const
+} as const;
