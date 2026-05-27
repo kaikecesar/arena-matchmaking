@@ -2,15 +2,13 @@
 import type { ReactNode } from 'react';
 
 // Types
-import type { DefaultTheme } from 'styled-components';
+import type { ThemeAccentColorKey } from '@/types/theme';
 
 export interface StyledEyebrowProps {
-  $color?: ThemeColorKey | undefined;
+  $color?: ThemeAccentColorKey | undefined;
 }
-
-export type ThemeColorKey = keyof DefaultTheme['colors']
 
 export interface EyebrowProps {
   children: ReactNode;
-  $color?: ThemeColorKey | undefined;
+  $color?: ThemeAccentColorKey | undefined;
 }

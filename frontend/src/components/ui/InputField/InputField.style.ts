@@ -1,7 +1,11 @@
+// Config
+import { defaultFonts } from '@/config/theme';
+
 // Libraries
 import type { InputWrapperStyledProps, StyledInputStyledProps } from '@/components/ui/InputField/InputField.types';
-import type { Theme } from '@/styles/theme';
-import styled, { css, keyframes, type Keyframes } from 'styled-components';
+import { media } from '@/utils/media';
+import styled, { css, keyframes } from 'styled-components';
+
 /* ************** LAYOUT ******************* */
 export const FieldWrapper = styled.div`
   display: flex;
@@ -10,13 +14,13 @@ export const FieldWrapper = styled.div`
 `;
 
 export const FieldLabel = styled.label`
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.caps};
+  font-family: ${defaultFonts.family.mono};
+  font-size: 0.625rem;
+  font-weight: ${({ theme }) => theme.font.medium};
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.textLow};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  color: ${({ theme }) => theme.color.input.label};
+  margin-bottom: 0.5rem;
   display: block;
 `;
 
@@ -27,35 +31,43 @@ export const InputWrapper = styled.div<InputWrapperStyledProps>`
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  background-color: ${({ theme }) => theme.colors.surf3};
-  background-image: ${({ theme }) => theme.gradients.inputSurface};
+  background-color: ${({ theme }) => theme.color.input.background};
+  background-image: linear-gradient(
+    180deg,
+    ${({ theme }) => theme.color.surface.overlaySubtle} 0%,
+    transparent 38%
+  );
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  border-radius: ${({ theme }) => theme.radius.md};
-  border: 1px solid
+  border-radius: 0.5rem;
+  border: 0.0625rem solid
     ${({ theme, $hasError }) =>
       $hasError
-        ? theme.colors.errorBorder
-        : theme.colors.border1};
-  box-shadow: ${({ theme, $hasError }) =>
-    $hasError
-      ? theme.shadows.inputErrorFocus
-      : theme.shadows.inputDefault};
+        ? theme.color.input.borderError
+        : theme.color.input.border};
+  box-shadow: ${({ theme, $hasError }) => {
+    const inset = `inset 0 0.0625rem 0 ${theme.color.surface.overlayMuted}`;
+    return $hasError
+      ? `${inset}, 0 0 0.75rem ${theme.color.feedback.errorGlow}`
+      : `${inset}, 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.16)`;
+  }};
   transition:
-    border-color ${({ theme }) => theme.transitions.normal},
-    box-shadow ${({ theme }) => theme.transitions.normal};
-  opacity: ${({ theme, $disabled }) =>
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  opacity: ${({ $disabled }) =>
     $disabled
-      ? theme.opacity.disabledField
-      : theme.opacity.full};
+      ? 0.55
+      : 1};
 
   &:hover:not(:focus-within) {
     ${({ $hasError, $disabled, theme }) =>
       !$hasError &&
       !$disabled &&
       css`
-        border-color: ${theme.colors.border2};
-        box-shadow: ${theme.shadows.inputHover};
+        border-color: ${theme.color.input.borderHover};
+        box-shadow:
+          inset 0 0.0625rem 0 ${theme.color.surface.overlayHover},
+          0 0.125rem 0.375rem rgba(0, 0, 0, 0.2);
       `}
   }
 
@@ -63,12 +75,16 @@ export const InputWrapper = styled.div<InputWrapperStyledProps>`
     ${({ $hasError, theme }) =>
       $hasError
         ? css`
-            border-color: ${theme.colors.errorFocusBorder};
-            box-shadow: ${theme.shadows.inputErrorFocus};
+            border-color: ${theme.color.input.borderErrorFocus};
+            box-shadow:
+              inset 0 0.0625rem 0 ${theme.color.surface.overlayMuted},
+              0 0 0.75rem ${theme.color.feedback.errorGlow};
           `
         : css`
-            border-color: ${theme.colors.bloodBorderFocus};
-            box-shadow: ${theme.shadows.inputFocus};
+            border-color: ${theme.color.input.borderFocus};
+            box-shadow:
+              inset 0 0.0625rem 0 ${theme.color.surface.overlayInset},
+              0 0 0.75rem rgba(210, 38, 56, 0.07);
           `}
   }
 `;
@@ -78,37 +94,34 @@ export const StyledInput = styled.input<StyledInputStyledProps>`
   background: transparent;
   border: none;
   outline: none;
-  padding: ${({ theme }) => theme.spacing.md}
-    ${({ theme }) => theme.spacing.lg};
-  font-family: ${({ theme, $mono }) =>
+  padding: 0.75rem 1rem;
+  font-family: ${({ $mono }) =>
     $mono
-      ? theme.fonts.mono
-      : theme.fonts.ui};
-  font-size: ${({ theme }) => theme.fontSizes.input};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  color: ${({ theme }) => theme.colors.textHi};
+      ? defaultFonts.family.mono
+      : defaultFonts.family.ui};
+  font-size: 1rem;
+  font-weight: ${({ theme }) => theme.font.medium};
+  color: ${({ theme }) => theme.color.input.text};
   width: 100%;
-  min-height: ${({ theme }) => theme.layout.touchTarget};
+  min-height: 2.75rem;
 
-  ${({ theme }) => theme.media.up.lg} {
-    font-size: ${({ theme }) => theme.fontSizes.inputDesktop};
+  ${media.up.lg} {
+    font-size: 0.9375rem;
     min-height: auto;
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.textDim};
+    color: ${({ theme }) => theme.color.input.placeholder};
   }
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-text-fill-color: ${({ theme }) => theme.colors.textHi};
-    caret-color: ${({ theme }) => theme.colors.textHi};
-    -webkit-box-shadow: 0 0 0 ${({ theme }) => theme.sizes.autofillInset}
-      ${({ theme }) => theme.colors.surf3} inset;
-    transition: background-color ${({ theme }) => theme.motion.durations.autofill}
-      ease-in-out 0s;
+    -webkit-text-fill-color: ${({ theme }) => theme.color.input.text};
+    caret-color: ${({ theme }) => theme.color.input.text};
+    -webkit-box-shadow: 0 0 0 62.5rem ${({ theme }) => theme.color.input.background} inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 `;
 
@@ -117,60 +130,58 @@ export const TrailingSlot = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: ${({ theme }) => theme.layout.touchTarget};
-  min-height: ${({ theme }) => theme.layout.touchTarget};
-  padding: 0 ${({ theme }) => theme.spacing.ten} 0 0;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 0.625rem 0 0;
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.textLow};
+  color: ${({ theme }) => theme.color.input.trailingIcon};
   flex-shrink: 0;
-  border-radius: ${({ theme }) => theme.radius.sm};
+  border-radius: 0.375rem;
   transition:
-    color ${({ theme }) => theme.transitions.normal},
-    background ${({ theme }) => theme.transitions.fast};
+    color 0.2s ease,
+    background 0.15s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textHi};
-    background: ${({ theme }) => theme.colors.overlayMuted};
+    color: ${({ theme }) => theme.color.input.trailingIconHover};
+    background: ${({ theme }) => theme.color.input.trailingBackgroundHover};
   }
 
   &:focus-visible {
-    outline: ${({ theme }) => theme.shadows.focusOutline};
-    outline-offset: ${({ theme }) => theme.spacing.hairline};
+    outline: 0.125rem solid rgba(210, 38, 56, 0.45);
+    outline-offset: 0.0625rem;
   }
 `;
 
-const createFieldErrorIn = (theme: Theme): Keyframes => keyframes`
+const fieldErrorIn = keyframes`
   from {
-    opacity: ${theme.opacity.none};
-    transform: translateY(-${theme.motion.offset.xs});
+    opacity: 0;
+    transform: translateY(-0.25rem);
   }
   to {
-    opacity: ${theme.opacity.full};
+    opacity: 1;
     transform: translateY(0);
   }
 `;
 
 export const ErrorMessage = styled.span`
   display: block;
-  margin-top: ${({ theme }) => theme.spacing.six};
-  padding-left: ${({ theme }) => theme.spacing.xxs};
-  font-family: ${({ theme }) => theme.fonts.ui};
-  font-size: ${({ theme }) => theme.fontSizes.error};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  line-height: ${({ theme }) => theme.lineHeights.ui};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.micro};
-  color: ${({ theme }) => theme.colors.errorSoft};
-  animation: ${({ theme }) => createFieldErrorIn(theme)}
-    ${({ theme }) => theme.motion.durations.fieldError}
-    ${({ theme }) => theme.transitions.premium} both;
+  margin-top: 0.375rem;
+  padding-left: 0.125rem;
+  font-family: ${defaultFonts.family.ui};
+  font-size: 0.6875rem;
+  font-weight: ${({ theme }) => theme.font.medium};
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: ${({ theme }) => theme.color.input.errorText};
+  animation: ${fieldErrorIn} 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 `;
 
 export const HintText = styled.span`
   display: block;
-  margin-top: ${({ theme }) => theme.spacing.xs};
-  font-family: ${({ theme }) => theme.fonts.ui};
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.textLow};
+  margin-top: 0.25rem;
+  font-family: ${defaultFonts.family.ui};
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.color.input.hintText};
 `;

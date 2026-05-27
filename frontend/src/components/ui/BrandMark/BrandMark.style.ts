@@ -1,10 +1,13 @@
+// Config
+import { defaultFonts } from '@/config/theme';
+
 // Libraries
 import styled from 'styled-components';
 
 export const BrandMarkWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.ten};
+  gap: 0.625rem;
 `;
 
 interface IconBoxProps {
@@ -12,11 +15,17 @@ interface IconBoxProps {
 }
 
 export const IconBox = styled.div<IconBoxProps>`
-  width: ${({ $size }) => $size}px;
-  height: ${({ $size }) => $size}px;
-  border-radius: ${({ theme }) => theme.radius.brand};
-  background: ${({ theme }) => theme.gradients.brandIcon};
-  box-shadow: ${({ theme }) => theme.shadows.brandMark};
+  width: ${({ $size }) => $size / 16}rem;
+  height: ${({ $size }) => $size / 16}rem;
+  border-radius: 0.625rem;
+  background: linear-gradient(
+    145deg,
+    ${({ theme }) => theme.color.brand.primary} 0%,
+    ${({ theme }) => theme.color.brand.primaryDeep} 100%
+  );
+  box-shadow:
+    0 0 0 0.0625rem ${({ theme }) => theme.color.surface.overlayRing} inset,
+    0 0.125rem 0.375rem rgba(210, 38, 56, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,23 +35,23 @@ export const IconBox = styled.div<IconBoxProps>`
 export const Wordmark = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: ${({ theme }) => theme.lineHeights.tight};
-  gap: ${({ theme }) => theme.spacing.xxs};
+  line-height: 1.05;
+  gap: 0.125rem;
 `;
 
 export const WordmarkArena = styled.span`
-  font-family: ${({ theme }) => theme.fonts.display};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  font-size: ${({ theme }) => theme.fontSizes.lg};
-  color: ${({ theme }) => theme.colors.textHi};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.display};
+  font-family: ${defaultFonts.family.display};
+  font-weight: ${({ theme }) => theme.font.bold};
+  font-size: 0.9375rem;
+  color: ${({ theme }) => theme.color.text.high};
+  letter-spacing: 0.02em;
 `;
 
 export const WordmarkSub = styled.span`
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: ${({ theme }) => theme.fontSizes.xxs};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.wordmarkSub};
-  color: ${({ theme }) => theme.colors.copper};
+  font-family: ${defaultFonts.family.mono};
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  color: ${({ theme }) => theme.color.brand.copper};
   text-transform: uppercase;
-  opacity: ${({ theme }) => theme.opacity.wordmarkSub};
+  opacity: 0.85;
 `;

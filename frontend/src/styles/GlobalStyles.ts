@@ -1,3 +1,6 @@
+// Config
+import { defaultFonts } from '@/config/theme';
+
 // Libraries
 import { createGlobalStyle } from 'styled-components';
 
@@ -16,11 +19,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.colors.bgApp};
-    color: ${({ theme }) => theme.colors.textHi};
-    font-family: ${({ theme }) => theme.fonts.ui};
-    font-size: ${({ theme }) => theme.fontSizes.lg};
-    line-height: ${({ theme }) => theme.lineHeights.body};
+    background-color: ${({ theme }) => theme.color.surface.app};
+    color: ${({ theme }) => theme.color.text.high};
+    font-family: ${defaultFonts.family.ui};
+    font-size: 0.9375rem;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
@@ -32,31 +35,34 @@ export const GlobalStyles = createGlobalStyle`
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: ${({ theme }) => theme.zIndex.base};
-    opacity: ${({ theme }) => theme.opacity.grid};
+    z-index: 0;
+    opacity: 0.35;
     background-image:
-      ${({ theme }) => theme.gradients.gridLineH},
-      ${({ theme }) => theme.gradients.gridLineV};
-    background-size: ${({ theme }) => theme.effects.gridSize}
-      ${({ theme }) => theme.effects.gridSize};
-    mask-image: ${({ theme }) => theme.gradients.gridMask};
+      linear-gradient(rgba(255, 255, 255, 0.014) 0.0625rem, transparent 0.0625rem),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.014) 0.0625rem,
+        transparent 0.0625rem
+      );
+    background-size: 2.5rem 2.5rem;
+    mask-image: radial-gradient(ellipse 75% 65% at 42% 0%, black 18%, transparent 70%);
   }
 
   #root {
     position: relative;
-    z-index: ${({ theme }) => theme.zIndex.base};
+    z-index: 0;
     height: 100%;
     overflow: hidden;
   }
 
   ::selection {
-    background: ${({ theme }) => theme.colors.bloodSelection};
-    color: ${({ theme }) => theme.colors.textHi};
+    background: rgba(210, 38, 56, 0.28);
+    color: ${({ theme }) => theme.color.text.high};
   }
 
   :focus-visible {
-    outline: ${({ theme }) => theme.shadows.focusOutlineSoft};
-    outline-offset: ${({ theme }) => theme.spacing.xs};
+    outline: 0.125rem solid rgba(210, 38, 56, 0.45);
+    outline-offset: 0.25rem;
   }
 
   :focus:not(:focus-visible) {
@@ -82,8 +88,8 @@ export const GlobalStyles = createGlobalStyle`
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
-      transition-duration: ${({ theme }) => theme.motion.durations.reduced} !important;
-      animation-duration: ${({ theme }) => theme.motion.durations.reduced} !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
     }
   }

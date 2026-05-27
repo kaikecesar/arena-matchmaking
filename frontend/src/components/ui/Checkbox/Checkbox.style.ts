@@ -1,23 +1,24 @@
 // Libraries
 import type { VisualBoxStyledProps } from '@/components/ui/Checkbox/Checkbox.types';
+import { defaultFonts } from '@/config/theme';
 import styled, { css } from 'styled-components';
 
 export const CheckboxWrapper = styled.label`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.ten};
+  gap: 0.625rem;
   cursor: pointer;
   user-select: none;
-  min-height: ${({ theme }) => theme.layout.touchTarget};
-  padding: ${({ theme }) => theme.spacing.xs} 0;
+  min-height: 2.75rem;
+  padding: 0.25rem 0;
 `;
 
 export const HiddenInput = styled.input`
   position: absolute;
-  width: ${({ theme }) => theme.borders.hairline};
-  height: ${({ theme }) => theme.borders.hairline};
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
-  margin: -${({ theme }) => theme.borders.hairline};
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -25,53 +26,55 @@ export const HiddenInput = styled.input`
 `;
 
 export const VisualBox = styled.div<VisualBoxStyledProps>`
-  width: ${({ theme }) => theme.sizes.checkbox};
-  height: ${({ theme }) => theme.sizes.checkbox};
-  border-radius: ${({ theme }) => theme.radius.sm};
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 0.375rem;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   transition:
-    background ${({ theme }) => theme.transitions.normal},
-    border-color ${({ theme }) => theme.transitions.normal},
-    box-shadow ${({ theme }) => theme.transitions.normal},
-    transform ${({ theme }) => theme.transitions.fast};
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
 
   ${({ $checked, theme }) =>
     $checked
       ? css`
-          background: ${theme.colors.surf3};
-          border: ${theme.borders.hairline} solid ${theme.colors.blood};
+          background: ${theme.color.checkbox.backgroundChecked};
+          border: 0.0625rem solid ${theme.color.checkbox.borderChecked};
           box-shadow: none;
         `
       : css`
-          background: ${theme.gradients.checkboxUnchecked}, ${theme.colors.surf3};
-          border: ${theme.borders.hairline} solid ${theme.colors.border2};
-          box-shadow: ${theme.shadows.checkboxUnchecked};
+          background:
+            linear-gradient(180deg, ${theme.color.surface.overlayMuted} 0%, transparent 100%),
+            ${theme.color.checkbox.background};
+          border: 0.0625rem solid ${theme.color.checkbox.border};
+          box-shadow: inset 0 0.0625rem 0 ${theme.color.surface.overlayMuted};
         `}
 
   ${CheckboxWrapper}:hover & {
     border-color: ${({ theme, $checked }) =>
       $checked
-        ? theme.colors.blood
-        : theme.colors.border2};
-    transform: scale(${({ theme }) => theme.motion.scale.hoverUp});
+        ? theme.color.checkbox.borderChecked
+        : theme.color.checkbox.border};
+    transform: scale(1.02);
   }
 
   ${CheckboxWrapper}:active & {
-    transform: scale(${({ theme }) => theme.motion.scale.activeDown});
+    transform: scale(0.98);
   }
 
   ${CheckboxWrapper}:focus-within & {
-    box-shadow: ${({ theme }) => theme.shadows.focus};
+    box-shadow: 0 0 0 0.1875rem rgba(210, 38, 56, 0.11);
   }
 `;
 
 export const CheckboxLabel = styled.span`
-  font-family: ${({ theme }) => theme.fonts.ui};
-  font-size: ${({ theme }) => theme.fontSizes.caption};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  color: ${({ theme }) => theme.colors.textMid};
-  line-height: ${({ theme }) => theme.lineHeights.compact};
+  font-family: ${defaultFonts.family.ui};
+  font-size: 0.8125rem;
+  font-weight: ${({ theme }) => theme.font.medium};
+  color: ${({ theme }) => theme.color.checkbox.label};
+  line-height: 1.3;
 `;

@@ -1,37 +1,38 @@
 // Libraries
 import type { TextVariant } from '@/components/system/Text/Text.types';
+import { defaultFonts } from '@/config/theme';
 import styled, { css } from 'styled-components';
 
 const textVariants: Record<TextVariant, ReturnType<typeof css>> = {
   body: css`
-    font-family: ${({ theme }) => theme.fonts.ui};
-    font-size: ${({ theme }) => theme.fontSizes.lg};
-    line-height: ${({ theme }) => theme.lineHeights.body};
-    color: ${({ theme }) => theme.colors.textHi};
+    font-family: ${defaultFonts.family.ui};
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: ${({ theme }) => theme.color.text.high};
   `,
   label: css`
-    font-family: ${({ theme }) => theme.fonts.ui};
-    font-size: ${({ theme }) => theme.fontSizes.sm};
-    line-height: ${({ theme }) => theme.lineHeights.body};
-    color: ${({ theme }) => theme.colors.textMid};
+    font-family: ${defaultFonts.family.ui};
+    font-size: 0.75rem;
+    line-height: 1.55;
+    color: ${({ theme }) => theme.color.text.medium};
   `,
   eyebrow: css`
-    font-family: ${({ theme }) => theme.fonts.mono};
-    font-size: ${({ theme }) => theme.fontSizes.xs};
-    letter-spacing: ${({ theme }) => theme.letterSpacing.label};
+    font-family: ${defaultFonts.family.mono};
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: ${({ theme }) => theme.colors.textLow};
+    color: ${({ theme }) => theme.color.text.low};
   `,
   heading: css`
-    font-family: ${({ theme }) => theme.fonts.display};
-    font-size: ${({ theme }) => theme.fontSizesFluid.display};
-    line-height: ${({ theme }) => theme.lineHeights.tight};
-    color: ${({ theme }) => theme.colors.textHi};
+    font-family: ${defaultFonts.family.display};
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    line-height: 1.05;
+    color: ${({ theme }) => theme.color.text.high};
   `,
   subheading: css`
-    font-family: ${({ theme }) => theme.fonts.ui};
-    font-size: ${({ theme }) => theme.fontSizes.md};
-    color: ${({ theme }) => theme.colors.textMid};
+    font-family: ${defaultFonts.family.ui};
+    font-size: 0.875rem;
+    color: ${({ theme }) => theme.color.text.medium};
   `,
 };
 
