@@ -27,9 +27,10 @@ function EyeOpenIcon({
     >
       {title
         ? (
-            <title>{title}</title>
-          )
-        : null}
+          <title>{title}</title>
+        )
+        : null
+      }
       <path
         d={[
           'M1.5 9C1.5 9 4 3.75 9 3.75C14 3.75 16.5 9 16.5 9',

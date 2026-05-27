@@ -27,9 +27,10 @@ function ArrowRightIcon({
     >
       {title
         ? (
-            <title>{title}</title>
-          )
-        : null}
+          <title>{title}</title>
+        )
+        : null
+      }
       <path
         d="M3.75 9H14.25M14.25 9L9.75 4.5M14.25 9L9.75 13.5"
         stroke="currentColor"

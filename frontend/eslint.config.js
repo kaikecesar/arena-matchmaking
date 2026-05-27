@@ -58,7 +58,7 @@ export default defineConfig([
           ignorePattern: '^\\s*import\\s.+\\sfrom\\s.+$',
         },
       ],
-      'multiline-ternary': ['error', 'always'],
+      'multiline-ternary': ['error', 'always-multiline'],
       'object-curly-newline': [
         'error',
         {

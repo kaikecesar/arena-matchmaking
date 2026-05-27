@@ -27,9 +27,10 @@ function EyeOffIcon({
     >
       {title
         ? (
-            <title>{title}</title>
-          )
-        : null}
+          <title>{title}</title>
+        )
+        : null
+      }
       <path
         d="M2.25 2.25L15.75 15.75"
         stroke="currentColor"

@@ -27,8 +27,8 @@ function WarningIcon({
     >
       {title
         ? (
-            <title>{title}</title>
-          )
+          <title>{title}</title>
+        )
         : null}
       <path
         d="M8 1.5L14.5 13H1.5L8 1.5Z"

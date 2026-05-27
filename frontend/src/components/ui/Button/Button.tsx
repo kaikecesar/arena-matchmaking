@@ -41,24 +41,20 @@ function Button({
       $size={size}
       $fullWidth={fullWidth}
       $loading={loading}
-      aria-label={
-        loading
-          ? undefined
-          : ariaLabel
-      }
+      aria-label={loading ? undefined : ariaLabel}
       aria-busy={loading}
     >
       {loading
         ? (
-            <Spinner />
-          )
+          <Spinner />
+        )
         : (
-            <>
-              {leadingIcon}
-              {label}
-              {trailingIcon}
-            </>
-          )}
+          <>
+            {leadingIcon}
+            {label}
+            {trailingIcon}
+          </>
+      )}
     </StyledButton>
   );
 }
