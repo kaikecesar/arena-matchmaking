@@ -1,6 +1,6 @@
 // Style
-import { breakpoints } from '@/styles/tokens/breakpoints';
 import { borders } from '@/styles/tokens/borders';
+import { breakpoints } from '@/styles/tokens/breakpoints';
 import { colors } from '@/styles/tokens/colors';
 import { effects } from '@/styles/tokens/effects';
 import { gradients } from '@/styles/tokens/gradients';

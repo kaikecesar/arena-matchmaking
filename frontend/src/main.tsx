@@ -1,11 +1,8 @@
 // React
+import './index.css';
+import { App } from '@/App';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-
-// Components
-import { App } from '@/App';
-
-import './index.css';
 
 const rootElement = document.getElementById('root');
 if (rootElement === null) {

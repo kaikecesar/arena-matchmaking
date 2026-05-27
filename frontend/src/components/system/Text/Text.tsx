@@ -1,11 +1,7 @@
 // Core
-import type { JSX } from 'react';
-
-// Types
-import { TextVariant, type TextProps } from '@/components/system/Text/Text.types';
-
-// Style
 import { StyledText } from '@/components/system/Text/Text.style';
+import { TextVariant, type TextProps } from '@/components/system/Text/Text.types';
+import type { JSX } from 'react';
 
 function Text({
   variant = TextVariant.body,

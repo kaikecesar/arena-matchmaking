@@ -1,8 +1,6 @@
 // Libraries
-import styled, { css } from 'styled-components';
-
-// Types
 import type { TextVariant } from '@/components/system/Text/Text.types';
+import styled, { css } from 'styled-components';
 
 const textVariants: Record<TextVariant, ReturnType<typeof css>> = {
   body: css`

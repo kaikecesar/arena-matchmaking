@@ -1,10 +1,6 @@
 // React
-import type { ReactElement } from 'react';
-
-// Style
 import { GlobalStyles, theme } from '@/styles';
-
-// Libraries
+import type { ReactElement } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 function App(): ReactElement {

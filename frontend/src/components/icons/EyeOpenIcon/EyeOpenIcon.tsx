@@ -1,11 +1,7 @@
 // Core
-import type { JSX } from 'react';
-
-// Types
-import type { IconProps } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.types';
-
-// Style
 import { StyledIcon } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.style';
+import type { IconProps } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.types';
+import type { JSX } from 'react';
 
 function EyeOpenIcon({
   size = 18,

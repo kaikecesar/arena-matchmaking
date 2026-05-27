@@ -1,11 +1,7 @@
 // Core
-import type { JSX } from 'react';
-
-// Types
-import type { IconProps } from '@/components/icons/WarningIcon/WarningIcon.types';
-
-// Style
 import { StyledIcon } from '@/components/icons/WarningIcon/WarningIcon.style';
+import type { IconProps } from '@/components/icons/WarningIcon/WarningIcon.types';
+import type { JSX } from 'react';
 
 function WarningIcon({
   size = 16,

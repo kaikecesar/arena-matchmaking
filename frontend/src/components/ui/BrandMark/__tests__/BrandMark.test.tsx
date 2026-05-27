@@ -1,5 +1,11 @@
 // Core
+import { BrandMark } from '@/components/ui/BrandMark';
+import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types';
+import { theme } from '@/styles';
 import { render, screen } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
+import type { JSX } from 'react';
+import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
   beforeEach,
@@ -8,21 +14,6 @@ import {
   it,
   vi,
 } from 'vitest';
-import type { JSX } from 'react';
-import type { RenderResult } from '@testing-library/react';
-
-// Libraries
-import { ThemeProvider } from 'styled-components';
-
-// Components
-import { BrandMark } from '@/components/ui/BrandMark';
-
-// Config
-import { theme } from '@/styles';
-
-// Types
-import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types';
-
 /* *************** TEST SUPPORT VARS *************** */
 
 const renderBrandMark = (

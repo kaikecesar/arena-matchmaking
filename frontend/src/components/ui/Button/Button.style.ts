@@ -1,9 +1,6 @@
 // Libraries
-import styled, { css, keyframes } from 'styled-components';
-
-// Types
 import type { ButtonSize, StyledButtonProps } from '@/components/ui/Button/Button.types';
-
+import styled, { css, keyframes } from 'styled-components';
 /* ************** KEYFRAMES ******************* */
 const spin = keyframes`
   to { transform: rotate(360deg); }

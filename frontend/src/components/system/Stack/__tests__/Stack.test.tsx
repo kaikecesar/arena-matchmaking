@@ -1,5 +1,17 @@
 // Core
+import { Stack } from '@/components/system/Stack';
+import {
+  StackAlign,
+  StackDirection,
+  StackGap,
+  StackJustify,
+} from '@/components/system/Stack/Stack.types';
+import type { StackProps } from '@/components/system/Stack/Stack.types';
+import { theme } from '@/styles';
 import { render, screen } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
+import type { JSX } from 'react';
+import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
   beforeEach,
@@ -8,27 +20,6 @@ import {
   it,
   vi,
 } from 'vitest';
-import type { JSX } from 'react';
-import type { RenderResult } from '@testing-library/react';
-
-// Libraries
-import { ThemeProvider } from 'styled-components';
-
-// Components
-import { Stack } from '@/components/system/Stack';
-
-// Config
-import { theme } from '@/styles';
-
-// Types
-import {
-  StackAlign,
-  StackDirection,
-  StackGap,
-  StackJustify,
-} from '@/components/system/Stack/Stack.types';
-import type { StackProps } from '@/components/system/Stack/Stack.types';
-
 /* *************** TEST SUPPORT VARS *************** */
 
 const renderStack = (

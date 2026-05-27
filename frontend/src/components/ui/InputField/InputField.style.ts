@@ -1,10 +1,7 @@
 // Libraries
-import styled, { css, keyframes, type Keyframes } from 'styled-components';
-
-// Types
 import type { InputWrapperStyledProps, StyledInputStyledProps } from '@/components/ui/InputField/InputField.types';
 import type { Theme } from '@/styles/theme';
-
+import styled, { css, keyframes, type Keyframes } from 'styled-components';
 /* ************** LAYOUT ******************* */
 export const FieldWrapper = styled.div`
   display: flex;

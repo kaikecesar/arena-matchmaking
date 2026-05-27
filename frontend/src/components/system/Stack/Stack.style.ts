@@ -1,13 +1,11 @@
 // Libraries
-import styled from 'styled-components';
-
-// Types
 import type {
   StackAlign,
   StackDirection,
   StackGap,
   StackJustify,
 } from '@/components/system/Stack/Stack.types';
+import styled from 'styled-components';
 
 interface StyledStackProps {
   $direction: StackDirection

@@ -1,16 +1,12 @@
 // Core
-import type { JSX } from 'react';
-
-// Style
 import { SpinnerSvg, StyledButton } from './Button.style';
-
-// Types
 import {
   ButtonSize,
   ButtonType,
   ButtonVariant,
   type ButtonProps,
 } from './Button.types';
+import type { JSX } from 'react';
 
 function Spinner(): JSX.Element {
   return (

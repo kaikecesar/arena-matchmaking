@@ -1,8 +1,6 @@
 // Libraries
-import styled from 'styled-components';
-
-// Types
 import type { StyledEyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types';
+import styled from 'styled-components';
 
 export const StyledEyebrow = styled.span<StyledEyebrowProps>`
   display: block;
