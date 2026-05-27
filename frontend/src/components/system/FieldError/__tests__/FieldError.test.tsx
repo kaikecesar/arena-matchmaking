@@ -1,6 +1,13 @@
 // Core
 import { render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -18,7 +25,9 @@ import type { FieldErrorProps } from '@/components/system/FieldError/FieldError.
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const renderFieldError = (overrides: Partial<FieldErrorProps> = {}): RenderResult => {
+const renderFieldError = (
+  overrides: Partial<FieldErrorProps> = {},
+): RenderResult => {
   const props: FieldErrorProps = {
     message: 'Campo obrigatorio',
     ...overrides,

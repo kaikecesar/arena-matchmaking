@@ -1,6 +1,13 @@
 // Core
 import { render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -24,7 +31,9 @@ import type { StackProps } from '@/components/system/Stack/Stack.types';
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const renderStack = (overrides: Partial<StackProps> = {}): RenderResult => {
+const renderStack = (
+  overrides: Partial<StackProps> = {},
+): RenderResult => {
   const props: StackProps = {
     children: <span data-testid="stack-child">Conteudo</span>,
     ...overrides,

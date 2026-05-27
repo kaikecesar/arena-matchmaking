@@ -5,7 +5,12 @@ import type { JSX } from 'react'
 import { SpinnerSvg, StyledButton } from './Button.style'
 
 // Types
-import { ButtonSize, ButtonType, ButtonVariant, type ButtonProps } from './Button.types'
+import {
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  type ButtonProps,
+} from './Button.types'
 
 function Spinner(): JSX.Element {
   return (

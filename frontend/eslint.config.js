@@ -136,6 +136,22 @@ export default defineConfig([
     },
   },
 
+  // React components: destructured props with 2+ keys must break across lines
+  {
+    files: ['**/*.tsx'],
+    rules: {
+      'object-curly-newline': [
+        'error',
+        {
+          ObjectExpression: { multiline: true, consistent: true },
+          ObjectPattern: { multiline: true, minProperties: 2, consistent: true },
+          ImportDeclaration: { multiline: true, minProperties: 4, consistent: true },
+          ExportDeclaration: { multiline: true, consistent: true },
+        },
+      ],
+    },
+  },
+
   // Icon components: allow intact SVG path strings; max-len still applies everywhere else
   {
     files: [

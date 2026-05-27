@@ -7,7 +7,10 @@ import type { IconProps } from '@/components/icons/WarningIcon/WarningIcon.types
 // Style
 import { StyledIcon } from '@/components/icons/WarningIcon/WarningIcon.style'
 
-function WarningIcon({ size = 16, title = 'Warning' }: IconProps): JSX.Element {
+function WarningIcon({
+  size = 16,
+  title = 'Warning',
+}: IconProps): JSX.Element {
   return (
     <StyledIcon
       width={size}

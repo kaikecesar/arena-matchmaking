@@ -1,6 +1,13 @@
 // Core
 import { render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -24,7 +31,9 @@ const defaultProps: FormFieldProps = {
   children: <input id="identifier" />,
 };
 
-const renderFormField = (overrides: Partial<FormFieldProps> = {}): RenderResult => {
+const renderFormField = (
+  overrides: Partial<FormFieldProps> = {},
+): RenderResult => {
   const props: FormFieldProps = {
     ...defaultProps,
     ...overrides,

@@ -1,6 +1,13 @@
 // Core
 import { fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -22,7 +29,9 @@ const defaultProps: ButtonProps = {
   label: 'Acessar painel',
 };
 
-const renderButton = (overrides: Partial<ButtonProps> = {}): RenderResult => {
+const renderButton = (
+  overrides: Partial<ButtonProps> = {},
+): RenderResult => {
   const props: ButtonProps = {
     ...defaultProps,
     ...overrides,

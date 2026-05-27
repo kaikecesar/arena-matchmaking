@@ -5,7 +5,13 @@ import type { JSX } from 'react'
 import { StyledStack } from './Stack.style'
 
 // Types
-import { StackAlign, StackDirection, StackGap, StackJustify, type StackProps } from './Stack.types'
+import {
+  StackAlign,
+  StackDirection,
+  StackGap,
+  StackJustify,
+  type StackProps,
+} from './Stack.types'
 
 function Stack({
   direction = StackDirection.column,

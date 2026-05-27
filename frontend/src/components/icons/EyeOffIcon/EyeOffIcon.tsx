@@ -7,7 +7,10 @@ import type { IconProps } from '@/components/icons/EyeOffIcon/EyeOffIcon.types'
 // Style
 import { StyledIcon } from '@/components/icons/EyeOffIcon/EyeOffIcon.style'
 
-function EyeOffIcon({ size = 18, title = 'Hide password' }: IconProps): JSX.Element {
+function EyeOffIcon({
+  size = 18,
+  title = 'Hide password',
+}: IconProps): JSX.Element {
   return (
     <StyledIcon
       width={size}

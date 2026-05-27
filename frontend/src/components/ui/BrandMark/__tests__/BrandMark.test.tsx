@@ -1,6 +1,13 @@
 // Core
 import { render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -18,7 +25,9 @@ import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types';
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const renderBrandMark = (overrides: Partial<BrandMarkProps> = {}): RenderResult => {
+const renderBrandMark = (
+  overrides: Partial<BrandMarkProps> = {},
+): RenderResult => {
   const props: BrandMarkProps = {
     ...overrides,
   };

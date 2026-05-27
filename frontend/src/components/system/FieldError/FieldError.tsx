@@ -7,7 +7,9 @@ import type { FieldErrorProps } from './FieldError.types'
 // Style
 import { ErrorText } from './FieldError.style'
 
-function FieldError({ message = null }: FieldErrorProps): JSX.Element | null {
+function FieldError({
+  message = null,
+}: FieldErrorProps): JSX.Element | null {
   if (!message) {
     return null
   }
@@ -19,4 +21,4 @@ function FieldError({ message = null }: FieldErrorProps): JSX.Element | null {
   )
 }
 
-export { FieldError }
+export { FieldError }; 

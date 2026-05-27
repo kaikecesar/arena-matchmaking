@@ -7,7 +7,10 @@ import type { FormFieldProps } from '@/components/system/FormField/FormField.typ
 // Style
 import { FieldContainer, HelpText, Label } from '@/components/system/FormField/FormField.style'
 
-function renderHelpText(error?: string, hint?: string): ReactNode {
+function renderHelpText(
+  error?: string,
+  hint?: string,
+): ReactNode {
   if (error) {
     return <HelpText $error>{error}</HelpText>
   }
@@ -19,7 +22,13 @@ function renderHelpText(error?: string, hint?: string): ReactNode {
   return null
 }
 
-function FormField({ label, htmlFor, error, hint, children }: FormFieldProps): JSX.Element {
+function FormField({
+  label,
+  htmlFor,
+  error,
+  hint,
+  children,
+}: FormFieldProps): JSX.Element {
   return (
     <FieldContainer>
       <Label htmlFor={htmlFor}>{label}</Label>

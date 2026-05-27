@@ -7,7 +7,10 @@ import type { EyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types'
 // Style
 import { StyledEyebrow } from '@/components/ui/Eyebrow/Eyebrow.style'
 
-function Eyebrow({ children, $color }: EyebrowProps): JSX.Element {
+function Eyebrow({
+  children,
+  $color,
+}: EyebrowProps): JSX.Element {
   return (
     <StyledEyebrow
       {...($color !== undefined

@@ -13,7 +13,9 @@ import {
   WordmarkSub,
 } from '@/components/ui/BrandMark/BrandMark.style'
 
-function BrandMark({ size = 28 }: BrandMarkProps): JSX.Element {
+function BrandMark({
+  size = 28,
+}: BrandMarkProps): JSX.Element {
   const iconSize = Math.round(size * 0.57) // ~16px at default 28
 
   return (

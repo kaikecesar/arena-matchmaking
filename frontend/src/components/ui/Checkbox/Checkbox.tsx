@@ -12,7 +12,13 @@ import {
 // Types
 import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types'
 
-function Checkbox({ checked, onChange, label, name, id }: CheckboxProps): JSX.Element {
+function Checkbox({
+  checked,
+  onChange,
+  label,
+  name,
+  id,
+}: CheckboxProps): JSX.Element {
   const inputId = id ?? name
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {

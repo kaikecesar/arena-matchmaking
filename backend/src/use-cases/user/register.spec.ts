@@ -1,6 +1,11 @@
 // Libraries
 import { faker } from '@faker-js/faker';
-import { describe, it, beforeEach, expect } from 'vitest';
+import {
+  describe,
+  it,
+  beforeEach,
+  expect,
+} from 'vitest';
 
 // Application
 import { InMemoryUserRepository } from '../../repositories/in-memory/user.ts';

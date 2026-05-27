@@ -1,6 +1,13 @@
 // Core
 import { fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -25,7 +32,9 @@ const defaultProps: CheckboxProps = {
   name: 'keepSession',
 };
 
-const renderCheckbox = (overrides: Partial<CheckboxProps> = {}): RenderResult => {
+const renderCheckbox = (
+  overrides: Partial<CheckboxProps> = {},
+): RenderResult => {
   const props: CheckboxProps = {
     ...defaultProps,
     ...overrides,

@@ -1,6 +1,13 @@
 // Core
 import { render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -22,7 +29,9 @@ const defaultProps: EyebrowProps = {
   children: 'SYSTEM TAGLINE',
 };
 
-const renderEyebrow = (overrides: Partial<EyebrowProps> = {}): RenderResult => {
+const renderEyebrow = (
+  overrides: Partial<EyebrowProps> = {},
+): RenderResult => {
   const props: EyebrowProps = {
     ...defaultProps,
     ...overrides,

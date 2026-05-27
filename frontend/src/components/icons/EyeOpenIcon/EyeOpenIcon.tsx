@@ -7,7 +7,10 @@ import type { IconProps } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.types
 // Style
 import { StyledIcon } from '@/components/icons/EyeOpenIcon/EyeOpenIcon.style'
 
-function EyeOpenIcon({ size = 18, title = 'Show password' }: IconProps): JSX.Element {
+function EyeOpenIcon({
+  size = 18,
+  title = 'Show password',
+}: IconProps): JSX.Element {
   return (
     <StyledIcon
       width={size}

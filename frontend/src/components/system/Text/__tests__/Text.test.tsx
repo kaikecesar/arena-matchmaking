@@ -1,6 +1,13 @@
 // Core
 import { render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import type { JSX } from 'react';
 import type { RenderResult } from '@testing-library/react';
 
@@ -19,7 +26,9 @@ import type { TextProps } from '@/components/system/Text/Text.types';
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const renderText = (overrides: Partial<TextProps> = {}): RenderResult => {
+const renderText = (
+  overrides: Partial<TextProps> = {},
+): RenderResult => {
   const props: TextProps = {
     children: 'Texto de exemplo',
     ...overrides,

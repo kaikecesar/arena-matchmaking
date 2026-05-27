@@ -8,7 +8,14 @@ import {
   screen,
   type RenderResult,
 } from '@testing-library/react'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest'
 
 // Libraries
 import { ThemeProvider } from 'styled-components'
@@ -39,7 +46,7 @@ const TrailingIcon = (): JSX.Element => (
 )
 
 const renderInputField = (
-  overrides: Partial<InputFieldProps> = {}
+  overrides: Partial<InputFieldProps> = {},
 ): RenderResult => {
   const props: InputFieldProps = {
     ...defaultProps,
