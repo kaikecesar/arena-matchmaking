@@ -1,6 +1,9 @@
 // Core
 import { JSX } from 'react';
 
+// Types
+import { BrandMarkProps } from './BrandMark.types';
+
 // Component
 import {
   BrandMarkWrapper,
@@ -9,7 +12,6 @@ import {
   WordmarkArena,
   WordmarkSub,
 } from './BrandMark.style';
-import { BrandMarkProps } from './BrandMark.types';
 
 function BrandMark({
   size = 28,

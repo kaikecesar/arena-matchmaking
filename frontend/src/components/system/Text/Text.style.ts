@@ -1,11 +1,11 @@
-// Libraries
-import styled, { css } from 'styled-components';
-
 // Config
 import { defaultFonts } from '../../../config/theme';
 
-// Component
+// Types
 import { TextVariant } from './Text.types';
+
+// Libraries
+import styled, { css } from 'styled-components';
 
 const textVariants: Record<TextVariant, ReturnType<typeof css>> = {
   body: css`

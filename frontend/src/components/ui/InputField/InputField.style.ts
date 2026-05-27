@@ -1,16 +1,17 @@
-// Libraries
-import styled, { css, keyframes } from 'styled-components';
-
-import { media } from '../../../utils/media';
-
 // Config
 import { defaultFonts } from '../../../config/theme';
 
-// Component
+// Types
 import {
   InputWrapperStyledProps,
   StyledInputStyledProps,
 } from './InputField.types';
+
+// Libraries
+import styled, { css, keyframes } from 'styled-components';
+
+// Component
+import { media } from '../../../utils/media';
 
 /* ************** LAYOUT ******************* */
 export const FieldWrapper = styled.div`

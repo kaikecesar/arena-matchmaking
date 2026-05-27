@@ -1,6 +1,9 @@
 // Core
 import { ChangeEvent, JSX } from 'react';
 
+// Types
+import { CheckboxProps } from './Checkbox.types';
+
 // Component
 import {
   CheckboxLabel,
@@ -8,7 +11,6 @@ import {
   HiddenInput,
   VisualBox,
 } from './Checkbox.style';
-import { CheckboxProps } from './Checkbox.types';
 
 function Checkbox({
   checked,

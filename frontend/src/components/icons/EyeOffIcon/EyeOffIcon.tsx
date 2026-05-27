@@ -1,9 +1,11 @@
 // Core
 import { JSX } from 'react';
 
+// Types
+import { IconProps } from './EyeOffIcon.types';
+
 // Component
 import { StyledIcon } from './EyeOffIcon.style';
-import { IconProps } from './EyeOffIcon.types';
 
 function EyeOffIcon({
   size = 18,

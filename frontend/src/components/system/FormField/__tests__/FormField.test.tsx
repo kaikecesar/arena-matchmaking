@@ -1,9 +1,11 @@
 // Core
+import { JSX } from 'react';
+
+// Config
 import { theme } from '@/styles';
 
 // Libraries
 import { render, RenderResult, screen } from '@testing-library/react';
-import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -67,7 +69,7 @@ describe('FormField', (): void => {
   it('should associate the label with the field through htmlFor', (): void => {
     renderFormField({ label: 'E-mail', htmlFor: 'identifier' });
 
-    const input: HTMLInputElement = screen.getByLabelText('E-mail') as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>('E-mail');
 
     expect(input.id).toBe('identifier');
   });

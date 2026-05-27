@@ -1,9 +1,11 @@
 // Core
+import { JSX } from 'react';
+
+// Config
 import { theme } from '@/styles';
 
 // Libraries
 import { render, RenderResult, screen } from '@testing-library/react';
-import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -19,6 +21,7 @@ import {
   Eyebrow,
   EyebrowProps,
 } from '../../Eyebrow';
+
 /* *************** TEST SUPPORT VARS *************** */
 
 const defaultProps: EyebrowProps = {

@@ -1,13 +1,13 @@
-// Libraries
-import styled from 'styled-components';
-
-// Component
+// Types
 import {
   StackAlign,
   StackDirection,
   StackGap,
   StackJustify,
 } from './Stack.types';
+
+// Libraries
+import styled from 'styled-components';
 
 const stackGapRem: Record<StackGap, string> = {
   [StackGap.xxs]: '0.125rem',

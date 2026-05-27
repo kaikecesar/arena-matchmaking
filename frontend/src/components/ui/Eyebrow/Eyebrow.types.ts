@@ -1,5 +1,4 @@
 // Core
-// Core
 import { ReactNode } from 'react';
 
 // Types

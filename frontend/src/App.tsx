@@ -1,8 +1,8 @@
-// Config
-import { theme } from '@/config/theme';
-
 // Core
 import { ReactElement } from 'react';
+
+// Config
+import { theme } from '@/config/theme';
 
 // Libraries
 import { ThemeProvider } from 'styled-components';

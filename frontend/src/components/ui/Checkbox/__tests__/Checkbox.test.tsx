@@ -1,4 +1,7 @@
 // Core
+import { JSX } from 'react';
+
+// Config
 import { theme } from '@/styles';
 
 // Libraries
@@ -8,7 +11,6 @@ import {
   RenderResult,
   screen,
 } from '@testing-library/react';
-import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -16,6 +18,7 @@ import {
   describe,
   expect,
   it,
+  Mock,
   vi,
 } from 'vitest';
 
@@ -24,11 +27,12 @@ import {
   Checkbox,
   CheckboxProps,
 } from '../../Checkbox';
+
 /* *************** TEST SUPPORT VARS *************** */
 
 const defaultProps: CheckboxProps = {
   checked: false,
-  onChange: vi.fn(),
+  onChange: vi.fn<CheckboxProps['onChange']>(),
   label: 'Manter conectado',
   name: 'keepSession',
 };
@@ -74,9 +78,7 @@ describe('Checkbox', (): void => {
   it('should derive the input id from the name when no id is provided', (): void => {
     renderCheckbox({ name: 'keepSession' });
 
-    const input: HTMLInputElement = screen.getByLabelText(
-      defaultProps.label
-    ) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.id).toBe('keepSession');
   });
@@ -84,9 +86,7 @@ describe('Checkbox', (): void => {
   it('should use a custom id when one is provided', (): void => {
     renderCheckbox({ id: 'custom-keep-session' });
 
-    const input: HTMLInputElement = screen.getByLabelText(
-      defaultProps.label
-    ) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.id).toBe('custom-keep-session');
   });
@@ -94,9 +94,7 @@ describe('Checkbox', (): void => {
   it('should propagate the name attribute to the input', (): void => {
     renderCheckbox({ name: 'rememberMe' });
 
-    const input: HTMLInputElement = screen.getByLabelText(
-      defaultProps.label
-    ) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.name).toBe('rememberMe');
   });
@@ -106,9 +104,7 @@ describe('Checkbox', (): void => {
   it('should render unchecked when checked is false', (): void => {
     renderCheckbox({ checked: false });
 
-    const input: HTMLInputElement = screen.getByLabelText(
-      defaultProps.label
-    ) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.checked).toBe(false);
   });
@@ -116,9 +112,7 @@ describe('Checkbox', (): void => {
   it('should render checked when checked is true', (): void => {
     renderCheckbox({ checked: true });
 
-    const input: HTMLInputElement = screen.getByLabelText(
-      defaultProps.label
-    ) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.checked).toBe(true);
   });
@@ -126,21 +120,21 @@ describe('Checkbox', (): void => {
   // ON CHANGE *******************************
 
   it('should call onChange with true when toggled on', (): void => {
-    const onChange = vi.fn();
+    const onChange: Mock<CheckboxProps['onChange']> = vi.fn();
 
     renderCheckbox({ checked: false, onChange });
 
-    fireEvent.click(screen.getByLabelText(defaultProps.label));
+    fireEvent.click(screen.getByLabelText<HTMLInputElement>(defaultProps.label));
 
     expect(onChange).toHaveBeenCalledWith(true);
   });
 
   it('should call onChange with false when toggled off', (): void => {
-    const onChange = vi.fn();
+    const onChange: Mock<CheckboxProps['onChange']> = vi.fn();
 
     renderCheckbox({ checked: true, onChange });
 
-    fireEvent.click(screen.getByLabelText(defaultProps.label));
+    fireEvent.click(screen.getByLabelText<HTMLInputElement>(defaultProps.label));
 
     expect(onChange).toHaveBeenCalledWith(false);
   });

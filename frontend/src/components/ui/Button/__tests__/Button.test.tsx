@@ -1,4 +1,7 @@
 // Core
+import { JSX } from 'react';
+
+// Config
 import { theme } from '@/styles';
 
 // Libraries
@@ -8,7 +11,6 @@ import {
   RenderResult,
   screen,
 } from '@testing-library/react';
-import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -16,6 +18,7 @@ import {
   describe,
   expect,
   it,
+  Mock,
   vi,
 } from 'vitest';
 
@@ -26,6 +29,7 @@ import {
   ButtonType,
   ButtonVariant,
 } from '../../Button';
+
 /* *************** TEST SUPPORT VARS *************** */
 
 const defaultProps: ButtonProps = {
@@ -73,7 +77,7 @@ describe('Button', (): void => {
   it('should default the button type to button', (): void => {
     renderButton();
 
-    const button: HTMLButtonElement = screen.getByRole('button') as HTMLButtonElement;
+    const button: HTMLButtonElement = screen.getByRole<HTMLButtonElement>('button');
 
     expect(button.type).toBe('button');
   });
@@ -81,7 +85,7 @@ describe('Button', (): void => {
   it('should respect an explicit submit type', (): void => {
     renderButton({ type: ButtonType.submit });
 
-    const button: HTMLButtonElement = screen.getByRole('button') as HTMLButtonElement;
+    const button: HTMLButtonElement = screen.getByRole<HTMLButtonElement>('button');
 
     expect(button.type).toBe('submit');
   });
@@ -89,7 +93,7 @@ describe('Button', (): void => {
   // CLICK *******************************
 
   it('should call onClick when clicked', (): void => {
-    const onClick = vi.fn();
+    const onClick: Mock<NonNullable<ButtonProps['onClick']>> = vi.fn();
 
     renderButton({ onClick });
 
@@ -103,7 +107,7 @@ describe('Button', (): void => {
   it('should be enabled by default', (): void => {
     renderButton();
 
-    const button: HTMLButtonElement = screen.getByRole('button') as HTMLButtonElement;
+    const button: HTMLButtonElement = screen.getByRole<HTMLButtonElement>('button');
 
     expect(button.disabled).toBe(false);
   });
@@ -111,13 +115,13 @@ describe('Button', (): void => {
   it('should be disabled when the disabled prop is true', (): void => {
     renderButton({ disabled: true });
 
-    const button: HTMLButtonElement = screen.getByRole('button') as HTMLButtonElement;
+    const button: HTMLButtonElement = screen.getByRole<HTMLButtonElement>('button');
 
     expect(button.disabled).toBe(true);
   });
 
   it('should not call onClick when disabled', (): void => {
-    const onClick = vi.fn();
+    const onClick: Mock<NonNullable<ButtonProps['onClick']>> = vi.fn();
 
     renderButton({ disabled: true, onClick });
 
@@ -131,7 +135,7 @@ describe('Button', (): void => {
   it('should be disabled while loading', (): void => {
     renderButton({ loading: true });
 
-    const button: HTMLButtonElement = screen.getByRole('button') as HTMLButtonElement;
+    const button: HTMLButtonElement = screen.getByRole<HTMLButtonElement>('button');
 
     expect(button.disabled).toBe(true);
   });

@@ -1,4 +1,7 @@
 // Core
+import { createRef, JSX, RefObject } from 'react';
+
+// Config
 import { theme } from '@/styles';
 
 // Libraries
@@ -8,7 +11,6 @@ import {
   RenderResult,
   screen,
 } from '@testing-library/react';
-import { createRef, JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -16,6 +18,7 @@ import {
   describe,
   expect,
   it,
+  Mock,
   vi,
 } from 'vitest';
 
@@ -25,14 +28,15 @@ import {
   InputFieldProps,
   InputFieldType,
 } from '../../InputField';
+
 /* *************** TEST SUPPORT VARS *************** */
 const defaultProps: InputFieldProps = {
   label: 'E-mail',
   name: 'identifier',
   type: InputFieldType.text,
   value: 'fighter@example.com',
-  onChange: vi.fn(),
-  onBlur: vi.fn(),
+  onChange: vi.fn<InputFieldProps['onChange']>(),
+  onBlur: vi.fn<NonNullable<InputFieldProps['onBlur']>>(),
   placeholder: 'Digite seu e-mail',
   autoComplete: 'username',
 };
@@ -77,7 +81,7 @@ describe('InputField', (): void => {
   it('associates the label with the input id derived from name', (): void => {
     renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.id).toBe(defaultProps.name);
   });
@@ -85,7 +89,7 @@ describe('InputField', (): void => {
   it('uses a custom id when one is provided', (): void => {
     renderInputField({ id: 'custom-identifier' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.id).toBe('custom-identifier');
   });
@@ -93,7 +97,7 @@ describe('InputField', (): void => {
   it('defaults the input type to text', (): void => {
     renderInputField({ type: undefined });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.type).toBe('text');
   });
@@ -101,7 +105,7 @@ describe('InputField', (): void => {
   it('respects an explicit password type', (): void => {
     renderInputField({ type: InputFieldType.password });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.type).toBe('password');
   });
@@ -109,7 +113,7 @@ describe('InputField', (): void => {
   it('respects an explicit email type', (): void => {
     renderInputField({ type: InputFieldType.email });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.type).toBe('email');
   });
@@ -117,7 +121,7 @@ describe('InputField', (): void => {
   it('propagates the input name attribute', (): void => {
     renderInputField({ name: 'loginIdentifier' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.name).toBe('loginIdentifier');
   });
@@ -125,7 +129,7 @@ describe('InputField', (): void => {
   it('renders the controlled value', (): void => {
     renderInputField({ value: 'coach@example.com' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.value).toBe('coach@example.com');
   });
@@ -133,9 +137,9 @@ describe('InputField', (): void => {
   it('renders the provided placeholder', (): void => {
     renderInputField({ placeholder: 'Informe seu e-mail' });
 
-    const input = screen.getByPlaceholderText(
+    const input: HTMLInputElement = screen.getByPlaceholderText<HTMLInputElement>(
       'Informe seu e-mail'
-    ) as HTMLInputElement;
+    );
 
     expect(input).toBeInTheDocument();
   });
@@ -143,7 +147,7 @@ describe('InputField', (): void => {
   it('renders the provided autocomplete attribute', (): void => {
     renderInputField({ autoComplete: 'current-password' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.autocomplete).toBe('current-password');
   });
@@ -151,7 +155,7 @@ describe('InputField', (): void => {
   it('keeps the input enabled by default', (): void => {
     renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.disabled).toBe(false);
   });
@@ -159,7 +163,7 @@ describe('InputField', (): void => {
   it('applies the disabled attribute when requested', (): void => {
     renderInputField({ disabled: true });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.disabled).toBe(true);
   });
@@ -167,7 +171,7 @@ describe('InputField', (): void => {
   it('sets aria-invalid to false when there is no error', (): void => {
     renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input).toHaveAttribute('aria-invalid', 'false');
   });
@@ -175,7 +179,7 @@ describe('InputField', (): void => {
   it('sets aria-invalid to true when there is an error', (): void => {
     renderInputField({ error: 'Campo obrigatorio' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input).toHaveAttribute('aria-invalid', 'true');
   });
@@ -183,7 +187,7 @@ describe('InputField', (): void => {
   it('omits aria-describedby when there is no error', (): void => {
     renderInputField();
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input).not.toHaveAttribute('aria-describedby');
   });
@@ -191,7 +195,7 @@ describe('InputField', (): void => {
   it('links aria-describedby to the default error id when an error exists', (): void => {
     renderInputField({ error: 'Campo obrigatorio' });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input).toHaveAttribute('aria-describedby', 'identifier-error');
   });
@@ -202,7 +206,7 @@ describe('InputField', (): void => {
       error: 'Campo obrigatorio',
     });
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input).toHaveAttribute('aria-describedby', 'email-field-error');
   });
@@ -259,7 +263,8 @@ describe('InputField', (): void => {
   });
 
   it('calls onTrailingIconClick when the trailing icon button is clicked', (): void => {
-    const onTrailingIconClick = vi.fn();
+    const onTrailingIconClick: Mock<NonNullable<InputFieldProps['onTrailingIconClick']>> =
+      vi.fn();
 
     renderInputField({
       trailingIcon: <TrailingIcon />,
@@ -287,7 +292,7 @@ describe('InputField', (): void => {
   );
 
   it('forwards the ref to the underlying input element', (): void => {
-    const ref = createRef<HTMLInputElement>();
+    const ref: RefObject<HTMLInputElement | null> = createRef<HTMLInputElement>();
 
     const element: JSX.Element = (
       <ThemeProvider theme={theme}>
@@ -302,11 +307,11 @@ describe('InputField', (): void => {
   });
 
   it('calls onChange when the input value changes', (): void => {
-    const onChange = vi.fn();
+    const onChange: Mock<InputFieldProps['onChange']> = vi.fn();
 
     renderInputField({ onChange });
 
-    fireEvent.change(screen.getByLabelText(defaultProps.label), {
+    fireEvent.change(screen.getByLabelText<HTMLInputElement>(defaultProps.label), {
       target: { value: 'updated@example.com' },
     });
 
@@ -314,11 +319,11 @@ describe('InputField', (): void => {
   });
 
   it('calls onBlur when the input loses focus', (): void => {
-    const onBlur = vi.fn();
+    const onBlur: Mock<NonNullable<InputFieldProps['onBlur']>> = vi.fn();
 
     renderInputField({ onBlur });
 
-    fireEvent.blur(screen.getByLabelText(defaultProps.label));
+    fireEvent.blur(screen.getByLabelText<HTMLInputElement>(defaultProps.label));
 
     expect(onBlur).toHaveBeenCalledTimes(1);
   });
@@ -336,7 +341,7 @@ describe('InputField', (): void => {
   });
 
   it('updates the rendered value when the controlled prop changes', (): void => {
-    const { rerender } = renderInputField({ value: 'first@example.com' });
+    const { rerender }: RenderResult = renderInputField({ value: 'first@example.com' });
 
     const rerenderedElement: JSX.Element = (
       <ThemeProvider theme={theme}>
@@ -346,7 +351,7 @@ describe('InputField', (): void => {
 
     rerender(rerenderedElement);
 
-    const input = screen.getByLabelText(defaultProps.label) as HTMLInputElement;
+    const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
     expect(input.value).toBe('second@example.com');
   });

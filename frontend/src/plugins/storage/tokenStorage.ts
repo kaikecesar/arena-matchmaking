@@ -1,4 +1,4 @@
-// Component
+// Types
 import { TokenStorage } from './tokenStorage.types';
 
 const ACCESS_TOKEN_KEY: string = 'arena_access_token';

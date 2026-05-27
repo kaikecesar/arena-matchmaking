@@ -15,7 +15,7 @@
     "typecheck:noEmit": "tsc -p tsconfig.app.json --noEmit",
     "validate": "npm run lint && npm run typecheck && npm run build",
     "mcp:install-browsers": "playwright install chromium && npx -y @playwright/mcp@0.0.75 install-browser chromium",
-    "validate:comments": "node scripts/fix-section-comments.mjs",
+    "validate:imports": "node scripts/fix-import-sections.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

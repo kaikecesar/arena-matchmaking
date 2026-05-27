@@ -1,11 +1,11 @@
-// Libraries
-import styled from 'styled-components';
-
 // Config
 import { defaultFonts } from '../../../config/theme';
 
-// Component
+// Types
 import { StyledEyebrowProps } from './Eyebrow.types';
+
+// Libraries
+import styled from 'styled-components';
 
 const accentColor = (
   theme: { color: { brand: { copper: string; primary: string; }; text: { low: string } } },

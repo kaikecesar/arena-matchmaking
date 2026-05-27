@@ -1,4 +1,4 @@
-// Utils
+// Plugins
 import { initAuthZodErrorMap } from '@/plugins/schemas/zodErrorMap';
 
 initAuthZodErrorMap();

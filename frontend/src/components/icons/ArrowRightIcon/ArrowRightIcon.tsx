@@ -1,9 +1,11 @@
 // Core
 import { JSX } from 'react';
 
+// Types
+import { IconProps } from './ArrowRightIcon.types';
+
 // Component
 import { StyledIcon } from './ArrowRightIcon.style';
-import { IconProps } from './ArrowRightIcon.types';
 
 function ArrowRightIcon({
   size = 18,

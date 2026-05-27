@@ -1,8 +1,8 @@
-// Libraries
-import styled from 'styled-components';
-
 // Config
 import { defaultFonts } from '../../../config/theme';
+
+// Libraries
+import styled from 'styled-components';
 
 export const BrandMarkWrapper = styled.div`
   display: flex;

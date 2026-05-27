@@ -1,9 +1,11 @@
 // Core
 import { JSX, ReactNode } from 'react';
 
+// Types
+import { FormFieldProps } from './FormField.types';
+
 // Component
 import { FieldContainer, HelpText, Label } from './FormField.style';
-import { FormFieldProps } from './FormField.types';
 
 function renderHelpText(
   error?: string,
