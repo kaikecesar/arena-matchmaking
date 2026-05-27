@@ -33,9 +33,11 @@ function Button({
   trailingIcon,
   leadingIcon,
   'aria-label': ariaLabel,
+  testId,
 }: ButtonProps): JSX.Element {
   return (
     <StyledButton
+      data-testid={testId}
       type={type}
       onClick={onClick}
       disabled={disabled || loading}

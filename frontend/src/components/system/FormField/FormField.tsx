@@ -28,9 +28,10 @@ function FormField({
   error,
   hint,
   children,
+  testId,
 }: FormFieldProps): JSX.Element {
   return (
-    <FieldContainer>
+    <FieldContainer data-testid={testId}>
       <Label htmlFor={htmlFor}>{label}</Label>
       {children}
       {renderHelpText(error, hint)}

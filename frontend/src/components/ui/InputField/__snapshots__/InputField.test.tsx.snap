@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InputField > should match snapshot when [defaultProps] is passed 1`] = `
+<div
+  class="hYUtre"
+  data-testid="input-field-test"
+>
+  <label
+    class="gRvlDh"
+    for="identifier"
+  >
+    E-mail
+  </label>
+  <div
+    class="eluKge"
+  >
+    <input
+      aria-invalid="false"
+      autocomplete="username"
+      class="fwVYsi"
+      id="identifier"
+      name="identifier"
+      placeholder="Digite seu e-mail"
+      type="text"
+      value="fighter@example.com"
+    />
+  </div>
+</div>
+`;

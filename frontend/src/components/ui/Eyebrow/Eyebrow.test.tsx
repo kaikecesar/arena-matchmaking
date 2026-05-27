@@ -20,13 +20,20 @@ import {
 import {
   Eyebrow,
   EyebrowProps,
-} from '../../Eyebrow';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const defaultProps: EyebrowProps = {
+const defaultProps = {
+  testId: 'eyebrow-test',
   children: 'SYSTEM TAGLINE',
-};
+} satisfies EyebrowProps;
+
+const EyebrowElement = (props: EyebrowProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <Eyebrow {...props} />
+  </ThemeProvider>
+);
 
 const renderEyebrow = (
   overrides: Partial<EyebrowProps> = {},
@@ -36,13 +43,7 @@ const renderEyebrow = (
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <Eyebrow {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<EyebrowElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -54,6 +55,14 @@ describe('Eyebrow', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<EyebrowElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // CHILDREN *******************************

@@ -20,24 +20,29 @@ import {
 import {
   BrandMark,
   BrandMarkProps,
-} from '../../BrandMark';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
+
+const defaultProps = {
+  testId: 'brand-mark-test',
+} satisfies BrandMarkProps;
+
+const BrandMarkElement = (props: BrandMarkProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <BrandMark {...props} />
+  </ThemeProvider>
+);
 
 const renderBrandMark = (
   overrides: Partial<BrandMarkProps> = {},
 ): RenderResult => {
   const props: BrandMarkProps = {
+    ...defaultProps,
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <BrandMark {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<BrandMarkElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -49,6 +54,14 @@ describe('BrandMark', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<BrandMarkElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // WORDMARK *******************************

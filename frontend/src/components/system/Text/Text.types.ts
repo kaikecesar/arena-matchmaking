@@ -11,5 +11,6 @@ export enum TextVariant {
 
 export interface TextProps {
   children: ReactNode;
+  testId?: string | undefined;
   variant?: TextVariant;
 }

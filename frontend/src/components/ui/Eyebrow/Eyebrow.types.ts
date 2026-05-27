@@ -11,4 +11,5 @@ export interface StyledEyebrowProps {
 export interface EyebrowProps {
   $color?: ThemeAccentColorKey | undefined;
   children: ReactNode;
+  testId?: string | undefined;
 }

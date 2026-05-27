@@ -27,10 +27,11 @@ import {
   InputField,
   InputFieldProps,
   InputFieldType,
-} from '../../InputField';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
-const defaultProps: InputFieldProps = {
+const defaultProps = {
+  testId: 'input-field-test',
   label: 'E-mail',
   name: 'identifier',
   type: InputFieldType.text,
@@ -39,10 +40,16 @@ const defaultProps: InputFieldProps = {
   onBlur: vi.fn<NonNullable<InputFieldProps['onBlur']>>(),
   placeholder: 'Digite seu e-mail',
   autoComplete: 'username',
-};
+} satisfies InputFieldProps;
 
 const TrailingIcon = (): JSX.Element => (
   <svg data-testid="trailing-icon" aria-hidden="true" />
+);
+
+const InputFieldElement = (props: InputFieldProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <InputField {...props} />
+  </ThemeProvider>
 );
 
 const renderInputField = (
@@ -53,13 +60,7 @@ const renderInputField = (
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <InputField {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<InputFieldElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -70,6 +71,14 @@ describe('InputField', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<InputFieldElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   it('renders the field label', (): void => {
@@ -294,13 +303,11 @@ describe('InputField', (): void => {
   it('forwards the ref to the underlying input element', (): void => {
     const ref: RefObject<HTMLInputElement | null> = createRef<HTMLInputElement>();
 
-    const element: JSX.Element = (
+    render(
       <ThemeProvider theme={theme}>
         <InputField {...defaultProps} ref={ref} />
       </ThemeProvider>
     );
-
-    render(element);
 
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
     expect(ref.current?.name).toBe(defaultProps.name);
@@ -343,13 +350,9 @@ describe('InputField', (): void => {
   it('updates the rendered value when the controlled prop changes', (): void => {
     const { rerender }: RenderResult = renderInputField({ value: 'first@example.com' });
 
-    const rerenderedElement: JSX.Element = (
-      <ThemeProvider theme={theme}>
-        <InputField {...defaultProps} value="second@example.com" />
-      </ThemeProvider>
+    rerender(
+      <InputFieldElement {...defaultProps} value="second@example.com" />
     );
-
-    rerender(rerenderedElement);
 
     const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 

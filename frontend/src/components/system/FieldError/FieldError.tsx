@@ -9,13 +9,14 @@ import { ErrorText } from './FieldError.style';
 
 function FieldError({
   message = null,
+  testId,
 }: FieldErrorProps): JSX.Element | null {
   if (!message) {
     return null;
   }
 
   return (
-    <ErrorText role="alert">
+    <ErrorText role="alert" data-testid={testId}>
       {message}
     </ErrorText>
   );

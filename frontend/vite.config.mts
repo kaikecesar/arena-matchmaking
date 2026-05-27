@@ -24,6 +24,11 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.ts'],
+    server: {
+      deps: {
+        inline: ['styled-components'],
+      },
+    },
     css: true,
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
     exclude: ['src/tests/e2e/**', 'node_modules/**'],

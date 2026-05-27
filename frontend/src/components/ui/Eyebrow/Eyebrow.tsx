@@ -10,9 +10,11 @@ import { StyledEyebrow } from './Eyebrow.style';
 function Eyebrow({
   children,
   $color,
+  testId,
 }: EyebrowProps): JSX.Element {
   return (
     <StyledEyebrow
+      data-testid={testId}
       {...($color !== undefined
         ? { $color }
         : {})}

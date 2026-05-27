@@ -20,25 +20,30 @@ import {
 import {
   FieldError,
   FieldErrorProps,
-} from '../../FieldError';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
+
+const defaultProps = {
+  testId: 'field-error-test',
+  message: 'Campo obrigatorio',
+} satisfies FieldErrorProps;
+
+const FieldErrorElement = (props: FieldErrorProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <FieldError {...props} />
+  </ThemeProvider>
+);
 
 const renderFieldError = (
   overrides: Partial<FieldErrorProps> = {},
 ): RenderResult => {
   const props: FieldErrorProps = {
-    message: 'Campo obrigatorio',
+    ...defaultProps,
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <FieldError {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<FieldErrorElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -50,6 +55,14 @@ describe('FieldError', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<FieldErrorElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // RENDERING *******************************
@@ -81,13 +94,9 @@ describe('FieldError', (): void => {
   });
 
   it('should render nothing when the message prop is omitted', (): void => {
-    const element: JSX.Element = (
-      <ThemeProvider theme={theme}>
-        <FieldError />
-      </ThemeProvider>
+    const { container }: RenderResult = render(
+      <FieldErrorElement testId={defaultProps.testId} />
     );
-
-    const { container }: RenderResult = render(element);
 
     expect(container).toBeEmptyDOMElement();
   });

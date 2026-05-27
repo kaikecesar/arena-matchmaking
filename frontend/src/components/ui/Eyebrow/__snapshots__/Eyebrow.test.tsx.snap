@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Eyebrow > should match snapshot when [defaultProps] is passed 1`] = `
+<span
+  class="gOtXcR"
+  data-testid="eyebrow-test"
+>
+  SYSTEM TAGLINE
+</span>
+`;

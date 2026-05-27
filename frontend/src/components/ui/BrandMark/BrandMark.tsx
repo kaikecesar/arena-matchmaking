@@ -15,11 +15,12 @@ import {
 
 function BrandMark({
   size = 28,
+  testId,
 }: BrandMarkProps): JSX.Element {
   const iconSize = Math.round(size * 0.57); // ~16px at default 28
 
   return (
-    <BrandMarkWrapper>
+    <BrandMarkWrapper data-testid={testId}>
       <IconBox $size={size}>
         {/* Stylised "A" arrow mark — points up like a fighting stance */}
         <svg width={iconSize} height={iconSize} viewBox="0 0 16 16" fill="none" aria-hidden="true">

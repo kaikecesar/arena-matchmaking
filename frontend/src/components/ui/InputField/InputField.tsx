@@ -34,6 +34,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       autoComplete,
       placeholder,
       id,
+      testId,
     },
     ref
   ): JSX.Element => {
@@ -48,7 +49,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     ******************************************** RENDER ********************************************
     ********************************************************************************************* */
     return (
-      <FieldWrapper>
+      <FieldWrapper data-testid={testId}>
         <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
         <InputWrapper $hasError={hasError} $disabled={disabled}>
           <StyledInput

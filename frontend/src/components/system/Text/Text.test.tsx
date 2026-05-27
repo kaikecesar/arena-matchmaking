@@ -21,25 +21,30 @@ import {
   Text,
   TextProps,
   TextVariant,
-} from '../../Text';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
+
+const defaultProps = {
+  testId: 'text-test',
+  children: 'Texto de exemplo',
+} satisfies TextProps;
+
+const TextElement = (props: TextProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <Text {...props} />
+  </ThemeProvider>
+);
 
 const renderText = (
   overrides: Partial<TextProps> = {},
 ): RenderResult => {
   const props: TextProps = {
-    children: 'Texto de exemplo',
+    ...defaultProps,
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <Text {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<TextElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -51,6 +56,14 @@ describe('Text', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<TextElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // CHILDREN *******************************

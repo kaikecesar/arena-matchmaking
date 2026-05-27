@@ -18,6 +18,7 @@ function Checkbox({
   label,
   name,
   onChange,
+  testId,
 }: CheckboxProps): JSX.Element {
   const inputId: string = id ?? name;
 
@@ -26,7 +27,7 @@ function Checkbox({
   };
 
   return (
-    <CheckboxWrapper htmlFor={inputId}>
+    <CheckboxWrapper htmlFor={inputId} data-testid={testId}>
       <HiddenInput
         type="checkbox"
         id={inputId}

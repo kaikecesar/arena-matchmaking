@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Stack > should match snapshot when [defaultProps] is passed 1`] = `
+<div
+  class="iYaVxx"
+  data-testid="stack-test"
+>
+  <span
+    data-testid="stack-child"
+  >
+    Conteudo
+  </span>
+</div>
+`;

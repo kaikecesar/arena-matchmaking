@@ -35,6 +35,7 @@ export interface ButtonProps {
   loading?: boolean | undefined;
   onClick?: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
   size?: ButtonSize | undefined;
+  testId?: string | undefined;
   trailingIcon?: ReactNode | undefined;
   type?: ButtonType | undefined;
   variant?: ButtonVariant | undefined;

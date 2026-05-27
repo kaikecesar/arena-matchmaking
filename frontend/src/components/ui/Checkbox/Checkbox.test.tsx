@@ -26,16 +26,23 @@ import {
 import {
   Checkbox,
   CheckboxProps,
-} from '../../Checkbox';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const defaultProps: CheckboxProps = {
+const defaultProps = {
+  testId: 'checkbox-test',
   checked: false,
   onChange: vi.fn<CheckboxProps['onChange']>(),
   label: 'Manter conectado',
   name: 'keepSession',
-};
+} satisfies CheckboxProps;
+
+const CheckboxElement = (props: CheckboxProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <Checkbox {...props} />
+  </ThemeProvider>
+);
 
 const renderCheckbox = (
   overrides: Partial<CheckboxProps> = {},
@@ -45,13 +52,7 @@ const renderCheckbox = (
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <Checkbox {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<CheckboxElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -63,6 +64,14 @@ describe('Checkbox', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<CheckboxElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // LABEL *******************************

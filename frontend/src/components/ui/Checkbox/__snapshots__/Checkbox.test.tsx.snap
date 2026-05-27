@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Checkbox > should match snapshot when [defaultProps] is passed 1`] = `
+<label
+  class="gOUpfy"
+  data-testid="checkbox-test"
+  for="keepSession"
+>
+  <input
+    class="dIOYUY"
+    id="keepSession"
+    name="keepSession"
+    type="checkbox"
+  />
+  <div
+    aria-hidden="true"
+    class="cNbEHB"
+  />
+  <span
+    class="hlStru"
+  >
+    Manter conectado
+  </span>
+</label>
+`;

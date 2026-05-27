@@ -24,25 +24,30 @@ import {
   StackGap,
   StackJustify,
   StackProps,
-} from '../../Stack';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
+
+const defaultProps = {
+  testId: 'stack-test',
+  children: <span data-testid="stack-child">Conteudo</span>,
+} satisfies StackProps;
+
+const StackElement = (props: StackProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <Stack {...props} />
+  </ThemeProvider>
+);
 
 const renderStack = (
   overrides: Partial<StackProps> = {},
 ): RenderResult => {
   const props: StackProps = {
-    children: <span data-testid="stack-child">Conteudo</span>,
+    ...defaultProps,
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <Stack {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<StackElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -54,6 +59,14 @@ describe('Stack', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<StackElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // CHILDREN *******************************

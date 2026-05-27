@@ -29,6 +29,7 @@ export interface InputFieldProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onTrailingIconClick?: (() => void) | undefined;
   placeholder?: string | undefined;
+  testId?: string | undefined;
   trailingIcon?: ReactNode | undefined;
   trailingIconAriaLabel?: string | undefined;
   type?: InputFieldType | undefined;

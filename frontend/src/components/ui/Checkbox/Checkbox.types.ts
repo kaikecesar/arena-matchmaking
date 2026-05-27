@@ -8,4 +8,5 @@ export interface CheckboxProps {
   label: string;
   name: string;
   onChange: (checked: boolean) => void;
+  testId?: string | undefined;
 }

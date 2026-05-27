@@ -49,7 +49,7 @@ Para um arquivo, pasta ou nome específico, use o `vitest` diretamente:
 
 ```bash
 # por arquivo
-npx vitest run src/components/ui/Button/__tests__/Button.test.tsx
+npx vitest run src/components/ui/Button/Button.test.tsx
 
 # por pasta (todos os testes abaixo dela)
 npx vitest run src/components/system
@@ -58,7 +58,7 @@ npx vitest run src/components/system
 npx vitest run -t "should be disabled while loading"
 
 # watch focado em um arquivo
-npx vitest src/components/ui/Checkbox/__tests__/Checkbox.test.tsx
+npx vitest src/components/ui/Checkbox/Checkbox.test.tsx
 
 # com relatório de cobertura
 npx vitest run --coverage
@@ -115,8 +115,20 @@ Os testes de interface seguem um padrão consistente:
 - Nomes de teste no estilo `should ...`.
 - Tipagens explícitas em variáveis locais e callbacks (`(): void`, `async (): Promise<void>`).
 - Helper de render envolvendo o componente no `ThemeProvider`.
+- Snapshots com `jest-styled-components` (via Vitest — não é necessário rodar Jest em paralelo).
+- Primeiro teste de cada componente: snapshot com `defaultProps.testId`.
 - Limite de 100 colunas por linha (`max-len`): assinaturas longas de `it()`/`test()`
   são quebradas com o título numa linha e o callback na seguinte.
 
-Os arquivos de teste ficam em `__tests__/` ao lado do componente, exceto o e2e,
-que fica em `src/tests/e2e/`.
+Os arquivos de teste ficam na pasta do componente (`Component.test.tsx`), com snapshots
+em `__snapshots__/`. O e2e fica em `src/tests/e2e/`.
+
+Exemplo:
+
+```
+Button/
+  Button.tsx
+  Button.test.tsx
+  __snapshots__/
+    Button.test.tsx.snap
+```

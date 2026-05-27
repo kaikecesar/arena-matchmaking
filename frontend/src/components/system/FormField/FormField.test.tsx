@@ -20,15 +20,22 @@ import {
 import {
   FormField,
   FormFieldProps,
-} from '../../FormField';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const defaultProps: FormFieldProps = {
+const defaultProps = {
+  testId: 'form-field-test',
   label: 'E-mail',
   htmlFor: 'identifier',
   children: <input id="identifier" />,
-};
+} satisfies FormFieldProps;
+
+const FormFieldElement = (props: FormFieldProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <FormField {...props} />
+  </ThemeProvider>
+);
 
 const renderFormField = (
   overrides: Partial<FormFieldProps> = {},
@@ -38,13 +45,7 @@ const renderFormField = (
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <FormField {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<FormFieldElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -56,6 +57,14 @@ describe('FormField', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<FormFieldElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // LABEL *******************************

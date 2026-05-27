@@ -4,4 +4,5 @@ export interface IconBoxStyledProps {
 
 export interface BrandMarkProps {
   size?: number;
+  testId?: string | undefined;
 }

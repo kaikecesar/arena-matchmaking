@@ -28,13 +28,20 @@ import {
   ButtonProps,
   ButtonType,
   ButtonVariant,
-} from '../../Button';
+} from '.';
 
 /* *************** TEST SUPPORT VARS *************** */
 
-const defaultProps: ButtonProps = {
+const defaultProps = {
+  testId: 'button-test',
   label: 'Acessar painel',
-};
+} satisfies ButtonProps;
+
+const ButtonElement = (props: ButtonProps): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <Button {...props} />
+  </ThemeProvider>
+);
 
 const renderButton = (
   overrides: Partial<ButtonProps> = {},
@@ -44,13 +51,7 @@ const renderButton = (
     ...overrides,
   };
 
-  const element: JSX.Element = (
-    <ThemeProvider theme={theme}>
-      <Button {...props} />
-    </ThemeProvider>
-  );
-
-  return render(element);
+  return render(<ButtonElement {...props} />);
 };
 
 /* *************** TEST EXECUTION *************** */
@@ -62,6 +63,14 @@ describe('Button', (): void => {
 
   afterEach((): void => {
     vi.resetAllMocks();
+  });
+
+  // DEFAULT PROPS *******************************
+
+  it('should match snapshot when [defaultProps] is passed', (): void => {
+    render(<ButtonElement {...defaultProps} />);
+
+    expect(screen.getByTestId(defaultProps.testId)).toMatchSnapshot();
   });
 
   // LABEL *******************************

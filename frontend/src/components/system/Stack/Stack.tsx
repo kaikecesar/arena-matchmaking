@@ -19,6 +19,7 @@ function Stack({
   align = StackAlign.stretch,
   justify = StackJustify.flexStart,
   children,
+  testId,
 }: StackProps): JSX.Element {
   return (
     <StyledStack
@@ -26,6 +27,7 @@ function Stack({
         $gap={gap}
         $align={align}
         $justify={justify}
+        data-testid={testId}
     >
       {children}
     </StyledStack>

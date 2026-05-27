@@ -37,4 +37,5 @@ export interface StackProps {
   direction?: StackDirection;
   gap?: StackGap;
   justify?: StackJustify;
+  testId?: string | undefined;
 }

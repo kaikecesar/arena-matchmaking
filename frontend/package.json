@@ -50,6 +50,7 @@
     "eslint-plugin-typescript-sort-keys": "3.3.0",
     "eslint-plugin-unused-imports": "4.4.1",
     "globals": "17.6.0",
+    "jest-styled-components": "7.2.0",
     "jsdom": "29.1.1",
     "playwright": "1.55.0",
     "typescript": "6.0.2",
