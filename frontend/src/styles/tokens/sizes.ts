@@ -1,0 +1,17 @@
+export const sizes = {
+  checkbox: '20px',
+  statusDot: '5px',
+  bootDot: '6px',
+  strengthBar: '4px',
+  roleAccent: '2px',
+  atmosphereBlood: '360px',
+  atmosphereBloodMd: '280px',
+  atmosphereCopper: '260px',
+  atmosphereOffsetLg: '120px',
+  atmosphereOffsetMd: '80px',
+  atmosphereOffsetSm: '60px',
+  atmosphereTopLg: '80px',
+  buttonMd: '48px',
+  buttonLg: '52px',
+  autofillInset: '1000px',
+} as const
