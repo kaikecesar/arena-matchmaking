@@ -1,10 +1,16 @@
-// Config
-import { defaultFonts } from '@/config/theme';
-
 // Libraries
-import type { InputWrapperStyledProps, StyledInputStyledProps } from '@/components/ui/InputField/InputField.types';
-import { media } from '@/utils/media';
 import styled, { css, keyframes } from 'styled-components';
+
+import { media } from '../../../utils/media';
+
+// Config
+import { defaultFonts } from '../../../config/theme';
+
+// Component
+import {
+  InputWrapperStyledProps,
+  StyledInputStyledProps,
+} from './InputField.types';
 
 /* ************** LAYOUT ******************* */
 export const FieldWrapper = styled.div`

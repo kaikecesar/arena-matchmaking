@@ -13,8 +13,8 @@ export const breakpoints = {
 type BreakpointKey = keyof typeof breakpoints;
 
 type MediaQueries = {
-  up: Record<BreakpointKey, string>
   down: Record<BreakpointKey, string>
+  up: Record<BreakpointKey, string>
 };
 
 const createMedia = (): MediaQueries => ({

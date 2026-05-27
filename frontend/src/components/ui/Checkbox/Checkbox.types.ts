@@ -4,8 +4,8 @@ export interface VisualBoxStyledProps {
 
 export interface CheckboxProps {
   checked: boolean;
-  onChange: (checked: boolean) => void;
+  id?: string | undefined;
   label: string;
   name: string;
-  id?: string | undefined;
+  onChange: (checked: boolean) => void;
 }

@@ -1,7 +1,11 @@
 // Libraries
-import type { ButtonSize, StyledButtonProps } from '@/components/ui/Button/Button.types';
-import { defaultFonts } from '@/config/theme';
 import styled, { css, keyframes } from 'styled-components';
+
+// Config
+import { defaultFonts } from '../../../config/theme';
+
+// Component
+import { ButtonSize, StyledButtonProps } from './Button.types';
 
 /* ************** KEYFRAMES ******************* */
 const spin = keyframes`

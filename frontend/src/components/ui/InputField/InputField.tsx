@@ -1,4 +1,7 @@
 // Core
+import { forwardRef, JSX } from 'react';
+
+// Component
 import {
   ErrorMessage,
   FieldLabel,
@@ -7,9 +10,8 @@ import {
   InputWrapper,
   StyledInput,
   TrailingSlot,
-} from '@/components/ui/InputField/InputField.style';
-import { InputFieldType, type InputFieldProps } from '@/components/ui/InputField/InputField.types';
-import { forwardRef, type JSX } from 'react';
+} from './InputField.style';
+import { InputFieldProps, InputFieldType } from './InputField.types';
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   (

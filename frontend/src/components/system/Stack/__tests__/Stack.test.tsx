@@ -1,16 +1,9 @@
 // Core
-import { Stack } from '@/components/system/Stack';
-import {
-  StackAlign,
-  StackDirection,
-  StackGap,
-  StackJustify,
-} from '@/components/system/Stack/Stack.types';
-import type { StackProps } from '@/components/system/Stack/Stack.types';
 import { theme } from '@/styles';
-import { render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { JSX } from 'react';
+
+// Libraries
+import { render, RenderResult, screen } from '@testing-library/react';
+import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -20,6 +13,16 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  Stack,
+  StackAlign,
+  StackDirection,
+  StackGap,
+  StackJustify,
+  StackProps,
+} from '../../Stack';
 /* *************** TEST SUPPORT VARS *************** */
 
 const renderStack = (

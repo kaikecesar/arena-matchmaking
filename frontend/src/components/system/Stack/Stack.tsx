@@ -1,13 +1,15 @@
 // Core
+import { JSX } from 'react';
+
+// Component
 import { StyledStack } from './Stack.style';
 import {
   StackAlign,
   StackDirection,
   StackGap,
   StackJustify,
-  type StackProps,
+  StackProps,
 } from './Stack.types';
-import type { JSX } from 'react';
 
 function Stack({
   direction = StackDirection.column,

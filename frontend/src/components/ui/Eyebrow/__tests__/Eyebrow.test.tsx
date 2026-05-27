@@ -1,10 +1,9 @@
 // Core
-import { Eyebrow } from '@/components/ui/Eyebrow';
-import type { EyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types';
 import { theme } from '@/styles';
-import { render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { JSX } from 'react';
+
+// Libraries
+import { render, RenderResult, screen } from '@testing-library/react';
+import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -14,6 +13,12 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  Eyebrow,
+  EyebrowProps,
+} from '../../Eyebrow';
 /* *************** TEST SUPPORT VARS *************** */
 
 const defaultProps: EyebrowProps = {

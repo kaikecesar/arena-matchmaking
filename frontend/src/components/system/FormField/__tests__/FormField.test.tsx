@@ -1,10 +1,9 @@
 // Core
-import { FormField } from '@/components/system/FormField';
-import type { FormFieldProps } from '@/components/system/FormField/FormField.types';
 import { theme } from '@/styles';
-import { render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { JSX } from 'react';
+
+// Libraries
+import { render, RenderResult, screen } from '@testing-library/react';
+import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -14,6 +13,13 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  FormField,
+  FormFieldProps,
+} from '../../FormField';
+
 /* *************** TEST SUPPORT VARS *************** */
 
 const defaultProps: FormFieldProps = {

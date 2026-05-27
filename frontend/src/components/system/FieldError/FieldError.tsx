@@ -1,7 +1,9 @@
 // Core
+import { JSX } from 'react';
+
+// Component
 import { ErrorText } from './FieldError.style';
-import type { FieldErrorProps } from './FieldError.types';
-import type { JSX } from 'react';
+import { FieldErrorProps } from './FieldError.types';
 
 function FieldError({
   message = null,

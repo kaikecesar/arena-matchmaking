@@ -1,8 +1,8 @@
-// Config
-import { defaultFonts } from '@/config/theme';
-
 // Libraries
 import styled from 'styled-components';
+
+// Config
+import { defaultFonts } from '../../../config/theme';
 
 export const FieldContainer = styled.div`
   display: flex;

@@ -1,7 +1,11 @@
 // Libraries
-import type { VisualBoxStyledProps } from '@/components/ui/Checkbox/Checkbox.types';
-import { defaultFonts } from '@/config/theme';
 import styled, { css } from 'styled-components';
+
+// Config
+import { defaultFonts } from '../../../config/theme';
+
+// Component
+import { VisualBoxStyledProps } from './Checkbox.types';
 
 export const CheckboxWrapper = styled.label`
   display: flex;

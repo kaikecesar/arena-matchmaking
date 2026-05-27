@@ -1,5 +1,5 @@
 // Core
-import type { MouseEvent, ReactNode } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 
 export enum ButtonVariant {
   blood = 'blood',
@@ -8,9 +8,9 @@ export enum ButtonVariant {
 }
 
 export enum ButtonSize {
-  small = 'sm',
-  medium = 'md',
   large = 'lg',
+  medium = 'md',
+  small = 'sm',
 }
 
 export enum ButtonType {
@@ -20,22 +20,22 @@ export enum ButtonType {
 }
 
 export interface StyledButtonProps {
-  $variant: ButtonVariant;
-  $size: ButtonSize;
   $fullWidth: boolean;
   $loading: boolean;
+  $size: ButtonSize;
+  $variant: ButtonVariant;
 }
 
 export interface ButtonProps {
-  label: string;
-  onClick?: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
-  type?: ButtonType | undefined;
-  variant?: ButtonVariant | undefined;
-  size?: ButtonSize | undefined;
-  loading?: boolean | undefined;
+  'aria-label'?: string | undefined;
   disabled?: boolean | undefined;
   fullWidth?: boolean | undefined;
-  trailingIcon?: ReactNode | undefined;
+  label: string;
   leadingIcon?: ReactNode | undefined;
-  'aria-label'?: string | undefined;
+  loading?: boolean | undefined;
+  onClick?: ((e: MouseEvent<HTMLButtonElement>) => void) | undefined;
+  size?: ButtonSize | undefined;
+  trailingIcon?: ReactNode | undefined;
+  type?: ButtonType | undefined;
+  variant?: ButtonVariant | undefined;
 }

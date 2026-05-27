@@ -3,17 +3,16 @@
  * ============================================================================= */
 
 export interface ThemeFont {
-  regular: number;
-  medium: number;
   bold: number;
+  medium: number;
+  regular: number;
 }
 
 export interface ThemeBaseColor {
-  colorPrimary10: string;
-  colorPrimary20: string;
-  colorPrimary30: string;
-  colorPrimary40: string;
-  colorPrimary50: string;
+  colorAccentCopper: string;
+  colorAccentCopperDeep: string;
+  colorAlert: string;
+  colorError: string;
   colorNeutral10: string;
   colorNeutral20: string;
   colorNeutral30: string;
@@ -23,117 +22,118 @@ export interface ThemeBaseColor {
   colorNeutral70: string;
   colorNeutral80: string;
   colorNeutral90: string;
-  colorError: string;
-  colorSuccess: string;
-  colorAlert: string;
-  colorAccentCopper: string;
-  colorAccentCopperDeep: string;
   colorOnPrimary: string;
   colorOnSurface: string;
+  colorPrimary10: string;
+  colorPrimary20: string;
+  colorPrimary30: string;
+  colorPrimary40: string;
+  colorPrimary50: string;
+  colorSuccess: string;
   colorTransparent: string;
 }
 
 export interface TextColors {
-  high: string;
-  medium: string;
-  low: string;
   dim: string;
-  onPrimary: string;
+  high: string;
+  low: string;
+  medium: string;
   onBone: string;
+  onPrimary: string;
 }
 
 export interface SurfaceColors {
   app: string;
+  headerScrim: string;
   layer1: string;
   layer2: string;
   layer3: string;
-  overlaySubtle: string;
-  overlayMuted: string;
   overlayHover: string;
   overlayInset: string;
   overlayLine: string;
+  overlayMuted: string;
   overlayRing: string;
-  headerScrim: string;
+  overlaySubtle: string;
 }
 
 export interface BorderColors {
-  subtle: string;
+  bone: string;
   default: string;
-  primarySubtle: string;
-  primaryMedium: string;
-  primarySelected: string;
-  primaryFocus: string;
-  primaryFocusStrong: string;
   error: string;
   errorFocus: string;
+  primaryFocus: string;
+  primaryFocusStrong: string;
+  primaryMedium: string;
+  primarySelected: string;
+  primarySubtle: string;
+  subtle: string;
   success: string;
-  bone: string;
 }
 
 export interface BrandColors {
-  primary: string;
-  primarySoft: string;
-  primaryDeep: string;
-  primaryGlow: string;
-  primaryTint: string;
   copper: string;
   copperDeep: string;
   copperTint: string;
+  primary: string;
+  primaryDeep: string;
+  primaryGlow: string;
+  primarySoft: string;
+  primaryTint: string;
 }
 
 export interface FeedbackColors {
   error: string;
-  errorSoft: string;
   errorGlow: string;
+  errorSoft: string;
   success: string;
-  successTint: string;
   successGlow: string;
+  successTint: string;
   warning: string;
 }
 
 export interface ButtonColors {
-  primaryGradientStart: string;
-  primaryGradientEnd: string;
-  primaryText: string;
-  secondaryGradientStart: string;
-  secondaryGradientEnd: string;
-  secondaryText: string;
-  ghostText: string;
+  ghostBackgroundHover: string;
   ghostBorder: string;
   ghostBorderHover: string;
-  ghostBackgroundHover: string;
+  ghostText: string;
+  primaryGradientEnd: string;
+  primaryGradientStart: string;
+  primaryText: string;
+  secondaryGradientEnd: string;
+  secondaryGradientStart: string;
+  secondaryText: string;
 }
 
 export interface InputColors {
   background: string;
-  text: string;
-  placeholder: string;
-  label: string;
   border: string;
-  borderHover: string;
-  borderFocus: string;
   borderError: string;
   borderErrorFocus: string;
-  trailingIcon: string;
-  trailingIconHover: string;
-  trailingBackgroundHover: string;
+  borderFocus: string;
+  borderHover: string;
   errorText: string;
   hintText: string;
+  label: string;
+  placeholder: string;
+  text: string;
+  trailingBackgroundHover: string;
+  trailingIcon: string;
+  trailingIconHover: string;
 }
 
 export interface HeaderColors {
   background: string;
-  text: string;
   border: string;
+  text: string;
 }
 
 export interface SidebarColors {
   background: string;
+  border: string;
+  itemActive: string;
+  itemHover: string;
   text: string;
   textMuted: string;
-  border: string;
-  itemHover: string;
-  itemActive: string;
 }
 
 export interface CheckboxColors {
@@ -146,26 +146,26 @@ export interface CheckboxColors {
 
 export interface ThemeColor {
   base: ThemeBaseColor;
-  text: TextColors;
-  surface: SurfaceColors;
   border: BorderColors;
   brand: BrandColors;
-  feedback: FeedbackColors;
   button: ButtonColors;
-  input: InputColors;
-  header: HeaderColors;
-  sidebar: SidebarColors;
   checkbox: CheckboxColors;
+  feedback: FeedbackColors;
+  header: HeaderColors;
+  input: InputColors;
+  sidebar: SidebarColors;
+  surface: SurfaceColors;
+  text: TextColors;
 }
 
 export interface Theme {
-  font: ThemeFont;
   color: ThemeColor;
+  font: ThemeFont;
 }
 
 export type ApplicationThemes = {
-  default: Theme;
   dark?: Theme;
+  default: Theme;
 };
 
 export type ThemeAccentColorKey = 'primary' | 'copper' | 'blood';

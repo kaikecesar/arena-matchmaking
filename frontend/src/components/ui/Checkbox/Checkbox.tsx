@@ -1,21 +1,23 @@
 // Core
+import { ChangeEvent, JSX } from 'react';
+
+// Component
 import {
   CheckboxLabel,
   CheckboxWrapper,
   HiddenInput,
   VisualBox,
-} from '@/components/ui/Checkbox/Checkbox.style';
-import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types';
-import type { ChangeEvent, JSX } from 'react';
+} from './Checkbox.style';
+import { CheckboxProps } from './Checkbox.types';
 
 function Checkbox({
   checked,
-  onChange,
+  id,
   label,
   name,
-  id,
+  onChange,
 }: CheckboxProps): JSX.Element {
-  const inputId = id ?? name;
+  const inputId: string = id ?? name;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     onChange(e.target.checked);

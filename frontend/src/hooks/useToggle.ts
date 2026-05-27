@@ -1,17 +1,14 @@
 // Core
-import { useCallback, useState } from 'react';
-
-// Types
-import type { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 
 export interface ToggleState {
   value: boolean
 }
 
 export interface UseToggleReturn {
+  setValue: Dispatch<SetStateAction<boolean>>
   state: ToggleState
   toggle: () => void
-  setValue: Dispatch<SetStateAction<boolean>>
 }
 
 const createToggleInitialState = (value = false): ToggleState => ({ value });

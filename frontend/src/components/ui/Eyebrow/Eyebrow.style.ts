@@ -1,10 +1,14 @@
 // Libraries
-import type { StyledEyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types';
-import { defaultFonts } from '@/config/theme';
 import styled from 'styled-components';
 
+// Config
+import { defaultFonts } from '../../../config/theme';
+
+// Component
+import { StyledEyebrowProps } from './Eyebrow.types';
+
 const accentColor = (
-  theme: { color: { brand: { primary: string; copper: string }; text: { low: string } } },
+  theme: { color: { brand: { copper: string; primary: string; }; text: { low: string } } },
   color: StyledEyebrowProps['$color'],
 ): string => {
   if (color === 'primary' || color === 'blood') {

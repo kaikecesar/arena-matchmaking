@@ -1,7 +1,7 @@
 export interface FormFieldProps {
-  label: string;
-  htmlFor: string;
+  children: React.ReactNode;
   error?: string;
   hint?: string;
-  children: React.ReactNode;
+  htmlFor: string;
+  label: string;
 }

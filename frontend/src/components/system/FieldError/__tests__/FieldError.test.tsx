@@ -1,10 +1,9 @@
 // Core
-import { FieldError } from '@/components/system/FieldError';
-import type { FieldErrorProps } from '@/components/system/FieldError/FieldError.types';
 import { theme } from '@/styles';
-import { render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { JSX } from 'react';
+
+// Libraries
+import { render, RenderResult, screen } from '@testing-library/react';
+import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -14,6 +13,12 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  FieldError,
+  FieldErrorProps,
+} from '../../FieldError';
 /* *************** TEST SUPPORT VARS *************** */
 
 const renderFieldError = (

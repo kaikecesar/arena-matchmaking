@@ -1,14 +1,14 @@
 // Core
-import { InputField, InputFieldType } from '@/components/ui/InputField';
-import type { InputFieldProps } from '@/components/ui/InputField';
 import { theme } from '@/styles';
+
+// Libraries
 import {
   fireEvent,
   render,
+  RenderResult,
   screen,
-  type RenderResult,
 } from '@testing-library/react';
-import { createRef, type JSX } from 'react';
+import { createRef, JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -18,6 +18,13 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  InputField,
+  InputFieldProps,
+  InputFieldType,
+} from '../../InputField';
 /* *************** TEST SUPPORT VARS *************** */
 const defaultProps: InputFieldProps = {
   label: 'E-mail',

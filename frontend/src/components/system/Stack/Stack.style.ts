@@ -1,11 +1,13 @@
 // Libraries
-import { StackGap } from '@/components/system/Stack/Stack.types';
-import type {
+import styled from 'styled-components';
+
+// Component
+import {
   StackAlign,
   StackDirection,
+  StackGap,
   StackJustify,
-} from '@/components/system/Stack/Stack.types';
-import styled from 'styled-components';
+} from './Stack.types';
 
 const stackGapRem: Record<StackGap, string> = {
   [StackGap.xxs]: '0.125rem',
@@ -19,9 +21,9 @@ const stackGapRem: Record<StackGap, string> = {
 };
 
 interface StyledStackProps {
+  $align: StackAlign
   $direction: StackDirection
   $gap: StackGap
-  $align: StackAlign
   $justify: StackJustify
 }
 

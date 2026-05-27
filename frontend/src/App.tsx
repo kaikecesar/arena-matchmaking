@@ -1,10 +1,14 @@
 // Config
 import { theme } from '@/config/theme';
 
-// React
-import { GlobalStyles } from '@/styles';
-import type { ReactElement } from 'react';
+// Core
+import { ReactElement } from 'react';
+
+// Libraries
 import { ThemeProvider } from 'styled-components';
+
+// Style
+import { GlobalStyles } from '@/styles';
 
 function App(): ReactElement {
   return (

@@ -1,5 +1,5 @@
-// Types
-import type { FieldErrors, FieldValues, Path } from 'react-hook-form';
+// Libraries
+import { FieldErrors, FieldValues, Path } from 'react-hook-form';
 
 /* *************************************************************************************************
 *************************************** MESSAGE SANITIZATION ***************************************
@@ -38,8 +38,8 @@ const sanitizeValidationMessage = (
 ************************************************************************************************* */
 type FieldVisibilityInput = {
   errors: FieldErrors<FieldValues>
-  touchedFields: Partial<Readonly<Record<string, boolean | boolean[]>>>
   isSubmitted: boolean
+  touchedFields: Partial<Readonly<Record<string, boolean | boolean[]>>>
 }
 
 const shouldShowFieldError = (

@@ -1,5 +1,7 @@
-// Style
-import type { Theme } from '@/types/theme';
+// Types
+import { Theme } from '../types/theme';
+
+// Libraries
 import 'styled-components';
 
 declare module 'styled-components' {

@@ -1,7 +1,9 @@
 // Core
-import { StyledEyebrow } from '@/components/ui/Eyebrow/Eyebrow.style';
-import type { EyebrowProps } from '@/components/ui/Eyebrow/Eyebrow.types';
-import type { JSX } from 'react';
+import { JSX } from 'react';
+
+// Component
+import { StyledEyebrow } from './Eyebrow.style';
+import { EyebrowProps } from './Eyebrow.types';
 
 function Eyebrow({
   children,

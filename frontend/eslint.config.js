@@ -1,12 +1,16 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import importPlugin from 'eslint-plugin-import'
-import unusedImports from 'eslint-plugin-unused-imports'
-import { defineConfig, globalIgnores } from 'eslint/config'
+// Core
+import js from '@eslint/js';
+import { defineConfig, globalIgnores } from 'eslint/config';
+
+// Libraries
+import importPlugin from 'eslint-plugin-import';
+import perfectionist from 'eslint-plugin-perfectionist';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import unusedImports from 'eslint-plugin-unused-imports';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig([
   globalIgnores(['dist', 'node_modules']),
@@ -21,6 +25,7 @@ export default defineConfig([
       importPlugin.flatConfigs.errors,
     ],
     plugins: {
+      perfectionist,
       react,
       'unused-imports': unusedImports,
     },
@@ -97,11 +102,36 @@ export default defineConfig([
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
-          prefer: 'type-imports',
-          fixStyle: 'separate-type-imports',
+          prefer: 'no-type-imports',
+          disallowTypeAnnotations: false,
+          fixStyle: 'inline-type-imports',
         },
       ],
       'semi': ['error', 'always'],
+      'sort-imports': [
+        'error',
+        {
+          allowSeparatedGroups: true,
+          ignoreCase: true,
+          ignoreDeclarationSort: true,
+          ignoreMemberSort: false,
+          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        },
+      ],
+      'perfectionist/sort-interfaces': [
+        'error',
+        {
+          order: 'asc',
+          type: 'alphabetical',
+        },
+      ],
+      'perfectionist/sort-object-types': [
+        'error',
+        {
+          order: 'asc',
+          type: 'alphabetical',
+        },
+      ],
 
       // import/order disabled — eslint-plugin-import is not compatible with ESLint 10 APIs yet
       'import/first': 'error',

@@ -1,13 +1,15 @@
 // Core
+import { JSX } from 'react';
+
+// Component
 import {
   BrandMarkWrapper,
   IconBox,
   Wordmark,
   WordmarkArena,
   WordmarkSub,
-} from '@/components/ui/BrandMark/BrandMark.style';
-import type { BrandMarkProps } from '@/components/ui/BrandMark/BrandMark.types';
-import type { JSX } from 'react';
+} from './BrandMark.style';
+import { BrandMarkProps } from './BrandMark.types';
 
 function BrandMark({
   size = 28,

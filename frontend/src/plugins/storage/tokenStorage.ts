@@ -1,9 +1,9 @@
-// Types
-import type { TokenStorage } from './tokenStorage.types';
+// Component
+import { TokenStorage } from './tokenStorage.types';
 
-const ACCESS_TOKEN_KEY = 'arena_access_token';
-const REFRESH_TOKEN_KEY = 'arena_refresh_token';
-const REMEMBER_ME_KEY = 'arena_remember_me';
+const ACCESS_TOKEN_KEY: string = 'arena_access_token';
+const REFRESH_TOKEN_KEY: string = 'arena_refresh_token';
+const REMEMBER_ME_KEY: string = 'arena_remember_me';
 
 const getStorage = (persistent: boolean): Storage =>
   persistent

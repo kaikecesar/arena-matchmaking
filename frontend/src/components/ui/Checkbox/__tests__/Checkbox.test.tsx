@@ -1,10 +1,14 @@
 // Core
-import { Checkbox } from '@/components/ui/Checkbox';
-import type { CheckboxProps } from '@/components/ui/Checkbox/Checkbox.types';
 import { theme } from '@/styles';
-import { fireEvent, render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { JSX } from 'react';
+
+// Libraries
+import {
+  fireEvent,
+  render,
+  RenderResult,
+  screen,
+} from '@testing-library/react';
+import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -14,6 +18,12 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  Checkbox,
+  CheckboxProps,
+} from '../../Checkbox';
 /* *************** TEST SUPPORT VARS *************** */
 
 const defaultProps: CheckboxProps = {

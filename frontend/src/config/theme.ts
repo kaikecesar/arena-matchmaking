@@ -2,13 +2,14 @@
  * Theme Configuration — Three-layer composition with strict token contracts
  * ============================================================================= */
 
-import type {
+// Types
+import {
   ApplicationThemes,
   Theme,
   ThemeBaseColor,
   ThemeColor,
   ThemeFont,
-} from '@/types/theme';
+} from '../types/theme';
 
 /* =============================================================================
  * Layer 1 — Font Abstraction with immutable dictionaries and pure composition

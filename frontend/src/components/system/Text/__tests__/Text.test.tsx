@@ -1,11 +1,9 @@
 // Core
-import { Text } from '@/components/system/Text';
-import { TextVariant } from '@/components/system/Text/Text.types';
-import type { TextProps } from '@/components/system/Text/Text.types';
 import { theme } from '@/styles';
-import { render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { JSX } from 'react';
+
+// Libraries
+import { render, RenderResult, screen } from '@testing-library/react';
+import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -15,6 +13,13 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  Text,
+  TextProps,
+  TextVariant,
+} from '../../Text';
 /* *************** TEST SUPPORT VARS *************** */
 
 const renderText = (

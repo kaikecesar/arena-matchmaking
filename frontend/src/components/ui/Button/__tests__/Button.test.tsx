@@ -1,10 +1,14 @@
 // Core
-import { Button, ButtonType, ButtonVariant } from '@/components/ui/Button';
-import type { ButtonProps } from '@/components/ui/Button/Button.types';
 import { theme } from '@/styles';
-import { fireEvent, render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { JSX } from 'react';
+
+// Libraries
+import {
+  fireEvent,
+  render,
+  RenderResult,
+  screen,
+} from '@testing-library/react';
+import { JSX } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   afterEach,
@@ -14,6 +18,14 @@ import {
   it,
   vi,
 } from 'vitest';
+
+// Component
+import {
+  Button,
+  ButtonProps,
+  ButtonType,
+  ButtonVariant,
+} from '../../Button';
 /* *************** TEST SUPPORT VARS *************** */
 
 const defaultProps: ButtonProps = {

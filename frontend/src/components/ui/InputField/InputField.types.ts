@@ -1,5 +1,5 @@
 // Core
-import type { ChangeEvent, FocusEvent, ReactNode } from 'react';
+import { ChangeEvent, FocusEvent, ReactNode } from 'react';
 
 export enum InputFieldType {
   text = 'text',
@@ -8,8 +8,8 @@ export enum InputFieldType {
 }
 
 export interface InputWrapperStyledProps {
-  $hasError: boolean;
   $disabled: boolean;
+  $hasError: boolean;
 }
 
 export interface StyledInputStyledProps {
@@ -17,20 +17,20 @@ export interface StyledInputStyledProps {
 }
 
 export interface InputFieldProps {
-  label: string;
-  name: string;
-  type?: InputFieldType | undefined;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: ((e: FocusEvent<HTMLInputElement>) => void) | undefined;
+  autoComplete?: string | undefined;
+  disabled?: boolean | undefined;
   error?: string | undefined;
   hint?: string | undefined;
-  trailingIcon?: ReactNode | undefined;
-  onTrailingIconClick?: (() => void) | undefined;
-  trailingIconAriaLabel?: string | undefined;
-  mono?: boolean | undefined;
-  disabled?: boolean | undefined;
-  autoComplete?: string | undefined;
-  placeholder?: string | undefined;
   id?: string | undefined;
+  label: string;
+  mono?: boolean | undefined;
+  name: string;
+  onBlur?: ((e: FocusEvent<HTMLInputElement>) => void) | undefined;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onTrailingIconClick?: (() => void) | undefined;
+  placeholder?: string | undefined;
+  trailingIcon?: ReactNode | undefined;
+  trailingIconAriaLabel?: string | undefined;
+  type?: InputFieldType | undefined;
+  value: string;
 }
