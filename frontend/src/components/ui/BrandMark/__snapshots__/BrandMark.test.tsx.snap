@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BrandMark > should match snapshot when [defaultProps] is passed 1`] = `
+<div
+  class="sc-bdDsCe cckgsv"
+  data-testid="brand-mark-test"
+>
+  <div
+    class="sc-gtcBCx wjBnt"
+  >
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      viewBox="0 0 16 16"
+      width="16"
+    >
+      <path
+        d="M8 2L13 12H3L8 2Z"
+        stroke="white"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+      />
+      <path
+        d="M5.5 8.5H10.5"
+        stroke="white"
+        stroke-linecap="round"
+        stroke-width="1.8"
+      />
+    </svg>
+  </div>
+  <div
+    class="sc-dkXsAU lhnHzq"
+  >
+    <span
+      class="sc-hKVpXn hVbWUY"
+    >
+      ARENA
+    </span>
+    <span
+      class="sc-eCQgVK bxfDah"
+    >
+      MATCHMAKING
+    </span>
+  </div>
+</div>
+`;

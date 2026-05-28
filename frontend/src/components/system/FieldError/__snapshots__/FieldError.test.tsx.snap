@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldError > should match snapshot when [defaultProps] is passed 1`] = `
+<span
+  class="sc-bdDsCe UDPwN"
+  data-testid="field-error-test"
+  role="alert"
+>
+  Campo obrigatório
+</span>
+`;

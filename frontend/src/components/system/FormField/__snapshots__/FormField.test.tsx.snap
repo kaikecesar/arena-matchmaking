@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FormField > should match snapshot when [defaultProps] is passed 1`] = `
+<div
+  class="sc-bdDsCe iawcoE"
+  data-testid="form-field-test"
+>
+  <label
+    class="sc-gtcBCx hDemhd"
+    for="identifier"
+  >
+    E-mail
+  </label>
+  <input
+    id="identifier"
+  />
+</div>
+`;
