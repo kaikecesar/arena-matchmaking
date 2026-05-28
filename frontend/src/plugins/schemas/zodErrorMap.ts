@@ -2,9 +2,11 @@
 import { z } from 'zod';
 
 const fallbackField = 'Verifique este campo';
-const fallbackEmail = 'Digite um e-mail v�lido';
+const fallbackEmail = 'Digite um e-mail válido';
 
-const ptBrZodErrorMap = (issue: { code: string }): { message: string } | undefined => {
+type ZodIssueLike = Pick<z.core.$ZodIssue, 'code'>;
+
+const ptBrZodErrorMap = (issue: ZodIssueLike): { message: string } | undefined => {
   if (issue.code === 'invalid_type' || issue.code === 'too_small') {
     return { message: fallbackField };
   }
