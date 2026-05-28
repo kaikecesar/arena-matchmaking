@@ -22,7 +22,7 @@ function buildTestDatabaseUrl(databaseName: string): string {
 
 export default <Environment>{
   name: 'drizzle',
-  transformMode: 'ssr',
+  viteEnvironment: 'ssr',
   async setup() {
     const baseDatabaseUrl = process.env.DATABASE_URL;
     const databaseName = `test_${randomUUID().replace(/-/g, '_')}`;

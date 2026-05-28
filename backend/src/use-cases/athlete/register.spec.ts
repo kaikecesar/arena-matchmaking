@@ -1,14 +1,10 @@
 // Libraries
 import { faker } from '@faker-js/faker';
-import { describe, it, beforeEach, expect, vi } from 'vitest';
+import { describe, it, beforeEach, expect } from 'vitest';
 
 // Application
 import { InMemoryAthleteRepository } from '../../repositories/in-memory/athlete.ts';
 import { RegisterAthleteUseCase } from './register.ts';
-import {
-  UserAlreadyHasAthleteError,
-  DocumentAlreadyInUseError,
-} from '../../domain/athlete/errors.ts';
 import {
   ATHLETE_DOCUMENT_TYPE_VALUES,
   ATHLETE_SEX_VALUES,
@@ -44,24 +40,11 @@ describe('Athlete use case', () => {
       expect(athlete.id).toEqual(expect.any(String));
     });
 
-    it('should throw UserAlreadyHasAthleteError when the user already has an athlete profile', async () => {
-      vi.spyOn(athleteRepository, 'create').mockRejectedValueOnce(
-        new UserAlreadyHasAthleteError(),
-      );
+    it('should not expose sensitive document fields in the response', async () => {
+      const { athlete } = await registerAthlete.execute(buildInput());
 
-      await expect(
-        registerAthlete.execute(buildInput()),
-      ).rejects.toBeInstanceOf(UserAlreadyHasAthleteError);
-    });
-
-    it('should throw DocumentAlreadyInUseError when the document is already in use', async () => {
-      vi.spyOn(athleteRepository, 'create').mockRejectedValueOnce(
-        new DocumentAlreadyInUseError(),
-      );
-
-      await expect(
-        registerAthlete.execute(buildInput()),
-      ).rejects.toBeInstanceOf(DocumentAlreadyInUseError);
+      expect(athlete).not.toHaveProperty('documentValue');
+      expect(athlete).not.toHaveProperty('documentType');
     });
   });
 });

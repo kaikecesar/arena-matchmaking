@@ -52,7 +52,7 @@ app.addHook('onClose', async () => {
 });
 
 await app.register(fastifyRateLimit, {
-  max: 100,
+  max: env.NODE_ENV === 'test' ? 10_000 : 100,
   timeWindow: '1 minute',
 });
 
