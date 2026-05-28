@@ -2,11 +2,11 @@
 import { eq } from 'drizzle-orm';
 
 // Application
-import { database } from '../database/index.ts';
-import { usersTable } from '../database/schema/users.ts';
-import { UserAlreadyExistsError } from '../domain/user/errors.ts';
-import { isPgUniqueViolation } from '../shared/db/postgres-errors.ts';
-import type { IUserRepository, NewUser, User } from './types/user.ts';
+import { database } from '../../database/index.ts';
+import { usersTable } from '../../database/schema/users.ts';
+import { UserAlreadyExistsError } from '../../domain/user/errors.ts';
+import { isPgUniqueViolation } from '../../shared/db/postgres-errors.ts';
+import type { IUserRepository, NewUser, User } from '../types/user.ts';
 
 export class UserRepository implements IUserRepository {
   async findByEmail(email: string): Promise<User | null> {
