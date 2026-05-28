@@ -2,7 +2,7 @@
 
 exports[`Stack > should match snapshot when [defaultProps] is passed 1`] = `
 <div
-  class="iYaVxx"
+  class="sc-bdDsCe iYaVxx"
   data-testid="stack-test"
 >
   <span

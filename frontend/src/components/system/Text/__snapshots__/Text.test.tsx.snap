@@ -2,7 +2,7 @@
 
 exports[`Text > should match snapshot when [defaultProps] is passed 1`] = `
 <span
-  class="eOCdui"
+  class="sc-bdDsCe eOCdui"
   data-testid="text-test"
 >
   Texto de exemplo

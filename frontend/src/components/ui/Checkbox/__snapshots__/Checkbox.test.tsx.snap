@@ -2,22 +2,22 @@
 
 exports[`Checkbox > should match snapshot when [defaultProps] is passed 1`] = `
 <label
-  class="gOUpfy"
+  class="sc-bdDsCe gOUpfy"
   data-testid="checkbox-test"
   for="keepSession"
 >
   <input
-    class="dIOYUY"
+    class="sc-gtcBCx dIOYUY"
     id="keepSession"
     name="keepSession"
     type="checkbox"
   />
   <div
     aria-hidden="true"
-    class="cNbEHB"
+    class="sc-dkXsAU cNbEHB"
   />
   <span
-    class="hlStru"
+    class="sc-hKVpXn hlStru"
   >
     Manter conectado
   </span>

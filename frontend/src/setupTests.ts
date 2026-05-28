@@ -1,17 +1,11 @@
-// Testing
-import '@testing-library/jest-dom/vitest';
-
 // Libraries
 import { cleanup } from '@testing-library/react';
 import { afterEach, beforeEach, vi } from 'vitest';
 
 // Test utils
-import {
-  registerStyledComponentsMatchers,
-  resetStyleSheet,
-} from '@/testing/styledComponentsMatchers';
+import { registerDomMatchers } from '@/testing/domMatchers';
 
-registerStyledComponentsMatchers();
+registerDomMatchers();
 
 /* *************** GLOBAL MOCKS *************** */
 const createMatchMedia = (query: string): MediaQueryList => ({
@@ -69,7 +63,6 @@ Object.defineProperty(globalThis, 'IntersectionObserver', {
 
 /* *************** TEST LIFECYCLE *************** */
 beforeEach((): void => {
-  resetStyleSheet();
   vi.clearAllMocks();
   window.localStorage.clear();
   window.sessionStorage.clear();

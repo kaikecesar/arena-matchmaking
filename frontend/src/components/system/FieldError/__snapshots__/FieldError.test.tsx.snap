@@ -2,10 +2,10 @@
 
 exports[`FieldError > should match snapshot when [defaultProps] is passed 1`] = `
 <span
-  class="UDPwN"
+  class="sc-bdDsCe UDPwN"
   data-testid="field-error-test"
   role="alert"
 >
-  Campo obrigatorio
+  Campo obrigatório
 </span>
 `;

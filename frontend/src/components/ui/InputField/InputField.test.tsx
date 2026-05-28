@@ -186,7 +186,7 @@ describe('InputField', (): void => {
   });
 
   it('sets aria-invalid to true when there is an error', (): void => {
-    renderInputField({ error: 'Campo obrigatorio' });
+    renderInputField({ error: 'Campo obrigatório' });
 
     const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
@@ -202,7 +202,7 @@ describe('InputField', (): void => {
   });
 
   it('links aria-describedby to the default error id when an error exists', (): void => {
-    renderInputField({ error: 'Campo obrigatorio' });
+    renderInputField({ error: 'Campo obrigatório' });
 
     const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
 
@@ -212,7 +212,7 @@ describe('InputField', (): void => {
   it('links aria-describedby to the custom error id when a custom id exists', (): void => {
     renderInputField({
       id: 'email-field',
-      error: 'Campo obrigatorio',
+      error: 'Campo obrigatório',
     });
 
     const input: HTMLInputElement = screen.getByLabelText<HTMLInputElement>(defaultProps.label);
@@ -221,18 +221,18 @@ describe('InputField', (): void => {
   });
 
   it('renders the error message as an alert', (): void => {
-    renderInputField({ error: 'Campo obrigatorio' });
+    renderInputField({ error: 'Campo obrigatório' });
 
-    expect(screen.getByRole('alert')).toHaveTextContent('Campo obrigatorio');
+    expect(screen.getByRole('alert')).toHaveTextContent('Campo obrigatório');
   });
 
   it('hides the hint when an error is present', (): void => {
     renderInputField({
-      error: 'Campo obrigatorio',
-      hint: 'Esse hint nao deve aparecer',
+      error: 'Campo obrigatório',
+      hint: 'Esse hint não deve aparecer',
     });
 
-    expect(screen.queryByText('Esse hint nao deve aparecer')).not.toBeInTheDocument();
+    expect(screen.queryByText('Esse hint não deve aparecer')).not.toBeInTheDocument();
   });
 
   it('renders the hint when there is no error', (): void => {

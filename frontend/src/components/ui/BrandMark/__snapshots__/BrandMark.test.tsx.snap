@@ -2,11 +2,11 @@
 
 exports[`BrandMark > should match snapshot when [defaultProps] is passed 1`] = `
 <div
-  class="cckgsv"
+  class="sc-bdDsCe cckgsv"
   data-testid="brand-mark-test"
 >
   <div
-    class="wjBnt"
+    class="sc-gtcBCx wjBnt"
   >
     <svg
       aria-hidden="true"
@@ -31,15 +31,15 @@ exports[`BrandMark > should match snapshot when [defaultProps] is passed 1`] = `
     </svg>
   </div>
   <div
-    class="lhnHzq"
+    class="sc-dkXsAU lhnHzq"
   >
     <span
-      class="hVbWUY"
+      class="sc-hKVpXn hVbWUY"
     >
       ARENA
     </span>
     <span
-      class="bxfDah"
+      class="sc-eCQgVK bxfDah"
     >
       MATCHMAKING
     </span>

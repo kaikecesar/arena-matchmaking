@@ -2,11 +2,11 @@
 
 exports[`FormField > should match snapshot when [defaultProps] is passed 1`] = `
 <div
-  class="iawcoE"
+  class="sc-bdDsCe iawcoE"
   data-testid="form-field-test"
 >
   <label
-    class="hDemhd"
+    class="sc-gtcBCx hDemhd"
     for="identifier"
   >
     E-mail

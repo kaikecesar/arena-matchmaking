@@ -3,7 +3,7 @@
 exports[`Button > should match snapshot when [defaultProps] is passed 1`] = `
 <button
   aria-busy="false"
-  class="kgKlcD"
+  class="sc-bdDsCe kgKlcD"
   data-testid="button-test"
   type="button"
 >

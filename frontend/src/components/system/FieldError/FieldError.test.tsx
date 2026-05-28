@@ -26,7 +26,7 @@ import {
 
 const defaultProps = {
   testId: 'field-error-test',
-  message: 'Campo obrigatorio',
+  message: 'Campo obrigatório',
 } satisfies FieldErrorProps;
 
 const FieldErrorElement = (props: FieldErrorProps): JSX.Element => (
@@ -68,15 +68,15 @@ describe('FieldError', (): void => {
   // RENDERING *******************************
 
   it('should render the error message when a message is provided', (): void => {
-    renderFieldError({ message: 'Credenciais invalidas' });
+    renderFieldError({ message: 'Credenciais inválidas' });
 
-    expect(screen.getByText('Credenciais invalidas')).toBeInTheDocument();
+    expect(screen.getByText('Credenciais inválidas')).toBeInTheDocument();
   });
 
   it('should render the message inside an alert role', (): void => {
-    renderFieldError({ message: 'Campo obrigatorio' });
+    renderFieldError({ message: 'Campo obrigatório' });
 
-    expect(screen.getByRole('alert')).toHaveTextContent('Campo obrigatorio');
+    expect(screen.getByRole('alert')).toHaveTextContent('Campo obrigatório');
   });
 
   // EMPTY STATES *******************************

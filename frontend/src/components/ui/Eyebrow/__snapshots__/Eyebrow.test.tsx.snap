@@ -2,7 +2,7 @@
 
 exports[`Eyebrow > should match snapshot when [defaultProps] is passed 1`] = `
 <span
-  class="gOtXcR"
+  class="sc-bdDsCe gOtXcR"
   data-testid="eyebrow-test"
 >
   SYSTEM TAGLINE

@@ -110,18 +110,18 @@ describe('FormField', (): void => {
   // HELP TEXT: ERROR *******************************
 
   it('should render the error message when an error is present', (): void => {
-    renderFormField({ error: 'Campo obrigatorio' });
+    renderFormField({ error: 'Campo obrigatório' });
 
-    expect(screen.getByText('Campo obrigatorio')).toBeInTheDocument();
+    expect(screen.getByText('Campo obrigatório')).toBeInTheDocument();
   });
 
   it('should prioritize the error over the hint when both are present', (): void => {
     renderFormField({
-      error: 'Campo obrigatorio',
-      hint: 'Esse hint nao deve aparecer',
+      error: 'Campo obrigatório',
+      hint: 'Esse hint não deve aparecer',
     });
 
-    expect(screen.getByText('Campo obrigatorio')).toBeInTheDocument();
-    expect(screen.queryByText('Esse hint nao deve aparecer')).not.toBeInTheDocument();
+    expect(screen.getByText('Campo obrigatório')).toBeInTheDocument();
+    expect(screen.queryByText('Esse hint não deve aparecer')).not.toBeInTheDocument();
   });
 });

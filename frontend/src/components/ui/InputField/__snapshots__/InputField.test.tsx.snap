@@ -2,22 +2,22 @@
 
 exports[`InputField > should match snapshot when [defaultProps] is passed 1`] = `
 <div
-  class="hYUtre"
+  class="sc-bdDsCe hYUtre"
   data-testid="input-field-test"
 >
   <label
-    class="gRvlDh"
+    class="sc-gtcBCx gRvlDh"
     for="identifier"
   >
     E-mail
   </label>
   <div
-    class="eluKge"
+    class="sc-dkXsAU eluKge"
   >
     <input
       aria-invalid="false"
       autocomplete="username"
-      class="fwVYsi"
+      class="sc-hKVpXn fwVYsi"
       id="identifier"
       name="identifier"
       placeholder="Digite seu e-mail"
