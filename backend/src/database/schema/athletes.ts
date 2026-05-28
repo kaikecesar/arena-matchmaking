@@ -12,9 +12,16 @@ import {
 
 // Application
 import { usersTable } from './users.ts';
+import {
+  ATHLETE_SEX_VALUES,
+  ATHLETE_DOCUMENT_TYPE_VALUES,
+} from '../../shared/enums/athlete.ts';
 
-export const sexEnum = pgEnum('sex', ['male', 'female']);
-export const documentTypeEnum = pgEnum('document_type', ['cpf']);
+export const sexEnum = pgEnum('sex', ATHLETE_SEX_VALUES);
+export const documentTypeEnum = pgEnum(
+  'document_type',
+  ATHLETE_DOCUMENT_TYPE_VALUES,
+);
 
 export const athletesTable = pgTable(
   'athletes',

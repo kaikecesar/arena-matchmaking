@@ -20,6 +20,6 @@ export class DocumentAlreadyInUseError extends AppError {
   readonly statusCode = 409;
 
   constructor() {
-    super('Invalid user name.');
+    super('Document already in use.');
   }
 }
