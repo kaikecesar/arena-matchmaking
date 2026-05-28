@@ -1,129 +1,129 @@
 # Arena Matchmaking — Frontend
 
-Guia rápido para rodar a aplicação e os testes localmente.
+Quick guide to run the application and tests locally.
 
-## Pré-requisitos
+## Prerequisites
 
-- Node.js (versão compatível com Vite 8 / React 19)
-- Dependências instaladas:
+- Node.js (version compatible with Vite 8 / React 19)
+- Dependencies installed:
 
 ```bash
 npm install
 ```
 
-Para os testes e2e, instale o navegador do Playwright uma única vez:
+For e2e tests, install the Playwright browser once:
 
 ```bash
 npx playwright install chromium
 ```
 
-## Rodar a aplicação
+## Run the application
 
 ```bash
 npm run dev
 ```
 
-O Vite sobe o dev server em `http://localhost:5173`.
+Vite starts the dev server at `http://localhost:5173`.
 
-Outros comandos de build:
+Other build commands:
 
-| Comando | O que faz |
+| Command | What it does |
 |---|---|
-| `npm run dev` | Inicia o dev server (`http://localhost:5173`) |
-| `npm run build` | Type-check + build de produção |
-| `npm run preview` | Servir o build de produção localmente |
+| `npm run dev` | Starts the dev server (`http://localhost:5173`) |
+| `npm run build` | Type-check + production build |
+| `npm run preview` | Serve the production build locally |
 
-## Testes unitários e de componente (Vitest)
+## Unit and component tests (Vitest)
 
 ```bash
-# roda toda a suíte uma vez
+# run the full suite once
 npm run test
 
-# modo watch (re-roda ao salvar — ideal para desenvolver)
+# watch mode (re-runs on save — ideal for development)
 npm run test:watch
 ```
 
-### Rodar de forma individual
+### Run individually
 
-Para um arquivo, pasta ou nome específico, use o `vitest` diretamente:
+For a specific file, folder, or test name, use `vitest` directly:
 
 ```bash
-# por arquivo
+# by file
 npx vitest run src/components/ui/Button/Button.test.tsx
 
-# por pasta (todos os testes abaixo dela)
+# by folder (all tests under it)
 npx vitest run src/components/system
 
-# por nome do teste (-t casa com describe/it)
+# by test name (-t matches describe/it)
 npx vitest run -t "should be disabled while loading"
 
-# watch focado em um arquivo
+# watch focused on one file
 npx vitest src/components/ui/Checkbox/Checkbox.test.tsx
 
-# com relatório de cobertura
+# with coverage report
 npx vitest run --coverage
 ```
 
-## Testes end-to-end (Playwright)
+## End-to-end tests (Playwright)
 
-O e2e aponta para `http://localhost:5173`, então o dev server precisa estar rodando
-em outro terminal (`npm run dev`) antes de executar.
+E2e targets `http://localhost:5173`, so the dev server must be running
+in another terminal (`npm run dev`) before you execute tests.
 
 ```bash
-# roda o fluxo de login e2e
+# run the login e2e flow
 npm run test:e2e
 ```
 
-### Rodar de forma individual
+### Run individually
 
 ```bash
-# por arquivo
+# by file
 npx playwright test src/tests/e2e/login.e2e.ts
 
-# por nome do teste
+# by test name
 npx playwright test -g "should toggle password visibility"
 
-# com navegador visível (debug)
+# with visible browser (debug)
 npx playwright test src/tests/e2e/login.e2e.ts --headed
 ```
 
-## Lint e type-check
+## Lint and type-check
 
 ```bash
-# lint (zero warnings permitidos)
+# lint (zero warnings allowed)
 npm run lint
 
-# corrige automaticamente o que for possível
+# auto-fix what is possible
 npm run lint:fix
 
-# type-check sem emitir build
+# type-check without emitting build
 npm run typecheck:noEmit
 
-# pipeline completo: lint + typecheck + build
+# full pipeline: lint + typecheck + build
 npm run validate
 ```
 
-## Convenções de teste
+## Test conventions
 
-Os testes de interface seguem um padrão consistente:
+UI tests follow a consistent pattern:
 
-- Organização interna com os divisores `/* *************** TEST SUPPORT VARS *************** */`
-  e `/* *************** TEST EXECUTION *************** */`, e agrupadores em caixa alta
-  por tema (`// ELEMENTS *****`, `// VALIDATION *****`, etc.).
-- Comentários de import por domínio (`// Core`, `// Libraries`, `// Components`,
+- Internal organization with dividers `/* *************** TEST SUPPORT VARS *************** */`
+  and `/* *************** TEST EXECUTION *************** */`, and uppercase theme groupers
+  (`// ELEMENTS *****`, `// VALIDATION *****`, etc.).
+- Import comments by domain (`// Core`, `// Libraries`, `// Components`,
   `// Config`, `// Types`, `// Mock Dependencies`).
-- Nomes de teste no estilo `should ...`.
-- Tipagens explícitas em variáveis locais e callbacks (`(): void`, `async (): Promise<void>`).
-- Helper de render envolvendo o componente no `ThemeProvider`.
-- Snapshots com `jest-styled-components` (via Vitest — não é necessário rodar Jest em paralelo).
-- Primeiro teste de cada componente: snapshot com `defaultProps.testId`.
-- Limite de 100 colunas por linha (`max-len`): assinaturas longas de `it()`/`test()`
-  são quebradas com o título numa linha e o callback na seguinte.
+- Test names in `should ...` style.
+- Explicit typings on local variables and callbacks (`(): void`, `async (): Promise<void>`).
+- Render helper wrapping the component in `ThemeProvider`.
+- Snapshots with Vitest (`toMatchSnapshot`); DOM matchers in `src/testing/domMatchers.ts`.
+- First test in each component: snapshot with `defaultProps.testId`.
+- 100-column line limit (`max-len`): long `it()`/`test()` signatures
+  break the title onto one line and the callback onto the next.
 
-Os arquivos de teste ficam na pasta do componente (`Component.test.tsx`), com snapshots
-em `__snapshots__/`. O e2e fica em `src/tests/e2e/`.
+Test files live next to the component (`Component.test.tsx`), with snapshots
+in `__snapshots__/`. E2e lives in `src/tests/e2e/`.
 
-Exemplo:
+Example:
 
 ```
 Button/
