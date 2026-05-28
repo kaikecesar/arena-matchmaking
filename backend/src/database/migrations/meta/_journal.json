@@ -15,6 +15,13 @@
       "when": 1779496698144,
       "tag": "0001_add_email_verified_at",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1779974917558,
+      "tag": "0002_create_athlete_identity",
+      "breakpoints": true
     }
   ]
 }
