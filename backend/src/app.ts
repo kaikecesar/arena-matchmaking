@@ -18,6 +18,7 @@ import { pool } from './database/index.ts';
 import { AppError } from './shared/errors/app-error.ts';
 import { userRoutes } from './http/controllers/user/routes.ts';
 import { authRoutes } from './http/controllers/auth/routes.ts';
+import { athleteRoutes } from './http/controllers/athlete/routes.ts';
 
 const isProd = env.NODE_ENV === 'production';
 
@@ -71,6 +72,7 @@ await app.register(scalarPlugin, {
 
 app.register(userRoutes, { prefix: '/api/v1' });
 app.register(authRoutes, { prefix: '/api/v1' });
+app.register(athleteRoutes, { prefix: '/api/v1' });
 
 app.setErrorHandler((error, request, reply) => {
   if (hasZodFastifySchemaValidationErrors(error)) {

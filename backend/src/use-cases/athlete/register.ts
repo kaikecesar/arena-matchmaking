@@ -15,7 +15,7 @@ interface RegisterAthleteUseCaseRequest {
   sex: AthleteSex;
   documentType: AthleteDocumentType;
   documentValue: string;
-  photoUrl?: string;
+  photoUrl: string | null;
 }
 
 interface RegisterAthleteUseCaseResponse {

@@ -23,6 +23,7 @@ function buildInput(overrides: Partial<RegisterInput> = {}): RegisterInput {
     sex: ATHLETE_SEX_VALUES[0],
     documentType: ATHLETE_DOCUMENT_TYPE_VALUES[0],
     documentValue: faker.string.numeric(11),
+    photoUrl: null,
     ...overrides,
   };
 }

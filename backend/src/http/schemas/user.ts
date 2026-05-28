@@ -2,17 +2,16 @@
 import z from 'zod';
 
 // Application
-import { USER_ERROR_CODES } from '../../domain/user/errors.ts';
 import { phoneSchema } from '../../shared/validators/phone.ts';
 
-export const registerBodySchema = z.object({
-  name: z.string().min(2, USER_ERROR_CODES.INVALID_NAME).trim(),
-  email: z.string().email(USER_ERROR_CODES.INVALID_EMAIL).toLowerCase().trim(),
+export const registerUserBodySchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters.').trim(),
+  email: z.email('Email must be a valid email address.').toLowerCase().trim(),
   password: z
     .string()
-    .min(8, USER_ERROR_CODES.PASSWORD_TOO_SHORT)
-    .max(72, USER_ERROR_CODES.PASSWORD_TOO_LONG),
+    .min(8, 'Password must be at least 8 characters.')
+    .max(72, 'Password must be at most 72 characters.'),
   phone: phoneSchema,
 });
 
-export type RegisterBody = z.infer<typeof registerBodySchema>;
+export type RegisterUserBody = z.infer<typeof registerUserBodySchema>;

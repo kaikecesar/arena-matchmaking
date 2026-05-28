@@ -9,7 +9,10 @@ interface PgError {
 
 function asPgError(err: unknown): PgError | null {
   if (typeof err !== 'object' || err === null) return null;
-  return err as PgError;
+  // Drizzle 0.45+ wraps pg errors in DrizzleQueryError; the original error is in `cause`.
+  const candidate = (err as { cause?: unknown }).cause ?? err;
+  if (typeof candidate !== 'object' || candidate === null) return null;
+  return candidate as PgError;
 }
 
 export function isPgUniqueViolation(

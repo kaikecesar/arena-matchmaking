@@ -15,7 +15,7 @@ export async function login(
   const auth = makeAuthUseCase();
   const { user } = await auth.execute({ email, password });
 
-  const token = await reply.jwtSign({ user: { sub: user.id } });
+  const token = await reply.jwtSign({ sub: user.id });
 
   reply.setCookie('token', token, {
     httpOnly: true,
