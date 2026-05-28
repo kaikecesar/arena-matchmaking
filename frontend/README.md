@@ -97,7 +97,7 @@ npm run lint
 npm run lint:fix
 
 # type-check without emitting build
-npm run typecheck:noEmit
+npm run typecheck
 
 # full pipeline: lint + typecheck + build
 npm run validate

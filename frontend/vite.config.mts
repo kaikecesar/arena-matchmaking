@@ -18,16 +18,16 @@ export default defineConfig(({ mode, command }) => {
 
   return {
     plugins: [react()],
-    server: {
-      proxy: !apiProxyTarget
-        ? undefined
-        : {
+    server: apiProxyTarget
+      ? {
+          proxy: {
             '/api': {
               target: apiProxyTarget,
               changeOrigin: true,
             },
           },
-    },
+        }
+      : {},
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
