@@ -1,9 +1,16 @@
 # ─────────────────────────────────────────
 # Status checks shared by main/develop/hotfix
-# Job name comes from .github/workflows/code-quality.yml (`backend-lint-test`)
+# Job names come from .github/workflows/code-quality.yml.
+# backend/frontend jobs são condicionais (if:) e reportam "skipped" quando o
+# path correspondente não muda — o GitHub trata skipped como sucesso, então
+# não travam o merge de PRs que tocam só um dos lados.
 # ─────────────────────────────────────────
 locals {
-  ci_status_checks = ["backend-lint-test"]
+  ci_status_checks = [
+    "changes",
+    "backend-code-quality",
+    "frontend-code-quality",
+  ]
 }
 
 # ─────────────────────────────────────────
@@ -19,7 +26,7 @@ resource "github_branch_protection" "main" {
   allows_deletions                = false
   require_signed_commits          = false # muda pra true se quiser GPG
   require_conversation_resolution = true
-  required_linear_history         = true  # sem merge commits, só squash/rebase
+  required_linear_history         = true # sem merge commits, só squash/rebase
 
   required_pull_request_reviews {
     required_approving_review_count = 1
