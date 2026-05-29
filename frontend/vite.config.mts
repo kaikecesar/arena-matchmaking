@@ -10,7 +10,7 @@ export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const apiProxyTarget = env.VITE_API_PROXY_TARGET?.trim()
 
-  if (command === 'serve' && !apiProxyTarget) {
+  if (command === 'serve' && !process.env.VITEST && !apiProxyTarget) {
     throw new Error(
       'Defina VITE_API_PROXY_TARGET no .env (URL do backend para o proxy /api).',
     )
