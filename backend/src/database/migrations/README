@@ -1,0 +1,76 @@
+# Database Migrations
+
+This project uses [Drizzle ORM](https://orm.drizzle.team/) with PostgreSQL (via `pg`). The database runs locally via Docker.
+
+---
+
+## Prerequisites
+
+- Docker running with the PostgreSQL container active
+- Dependencies installed (`npm install`)
+- `.env` file configured with the database connection string
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+```
+
+---
+
+## Commands
+
+### Generate a new migration
+
+Creates SQL migration files based on changes made to the Drizzle schemas.
+
+```bash
+npm run db:generate -- <migration-name>
+```
+
+**Example:**
+
+```bash
+npm run db:generate -- create_users_table
+```
+
+Generated files are placed in the migrations folder (usually `drizzle/` or `src/db/migrations/`, as configured in `drizzle.config.ts`).
+
+> **Important:** always review the generated SQL before applying it to production environments.
+
+---
+
+### Apply pending migrations
+
+Runs all migrations that have not yet been applied to the database.
+
+```bash
+npm run db:migrate
+```
+
+---
+
+### Open Drizzle Studio
+
+Visual interface to inspect and manipulate database data directly in the browser.
+
+```bash
+npm run db:studio
+```
+
+---
+
+## Recommended workflow
+
+```
+1. Update the schema in src/db/schema.ts (or equivalent)
+2. npm run db:generate -- <descriptive-name>
+3. Review the generated SQL in drizzle/
+4. npm run db:migrate
+```
+
+---
+
+## Notes
+
+- Docker must be running before executing any command that accesses the database (`db:migrate`, `db:studio`).
+- Do not manually edit migration files that have already been applied.
+- Drizzle keeps an internal record of applied migrations in the `__drizzle_migrations` table in the database.

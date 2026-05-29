@@ -1,0 +1,20 @@
+# Depenencies
+node_modules/
+
+# Build
+build/
+
+# Test artifacts
+coverage/
+
+# Variables
+.env
+.env.test
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+*.tfvars
+crash.log
