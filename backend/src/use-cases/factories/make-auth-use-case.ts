@@ -1,5 +1,5 @@
 // Application
-import { UserRepository } from '../../repositories/user.ts';
+import { UserRepository } from '../../repositories/drizzle/user.ts';
 import { AuthUseCase } from '../auth/auth.ts';
 
 export function makeAuthUseCase() {
