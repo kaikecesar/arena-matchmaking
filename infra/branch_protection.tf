@@ -1,4 +1,12 @@
 # ─────────────────────────────────────────
+# Status checks shared by main/develop/hotfix
+# Job name comes from .github/workflows/code-quality.yml (`backend-lint-test`)
+# ─────────────────────────────────────────
+locals {
+  ci_status_checks = ["backend-lint-test"]
+}
+
+# ─────────────────────────────────────────
 # MAIN — proteção máxima
 # Apenas develop e hotfix/* podem abrir PR
 # ─────────────────────────────────────────
@@ -16,23 +24,19 @@ resource "github_branch_protection" "main" {
   required_pull_request_reviews {
     required_approving_review_count = 1
     dismiss_stale_reviews           = true
-    require_last_push_approval      = true  # quem fez o último push não pode aprovar
+    require_last_push_approval      = true # quem fez o último push não pode aprovar
   }
 
-  # Descomenta quando tiver GitHub Actions configurado
-  # required_status_checks {
-  #   strict   = true
-  #   contexts = [
-  #     "ci / tests",
-  #     "ci / lint",
-  #     "ci / build",
-  #   ]
-  # }
+  required_status_checks {
+    strict   = true
+    contexts = local.ci_status_checks
+  }
 }
 
 # ─────────────────────────────────────────
-# DEVELOP — proteção média
-# Recebe feat/*, bugfix/*, shared/*, shared/feat/*
+# DEVELOP — PR obrigatório, sem aprovação obrigatória
+# Time de 2 pessoas — exigir aprovação trava o pipeline.
+# Qualidade é garantida pelos status checks do CI.
 # ─────────────────────────────────────────
 resource "github_branch_protection" "develop" {
   repository_id = var.repo_name
@@ -44,20 +48,16 @@ resource "github_branch_protection" "develop" {
   require_conversation_resolution = true
   required_linear_history         = true
 
+  # Bloco vazio força "PR obrigatório" sem exigir aprovação (count = 0).
+  # Removê-lo permitiria push direto na develop.
   required_pull_request_reviews {
-    required_approving_review_count = 1
-    dismiss_stale_reviews           = true
-    require_last_push_approval      = true
+    required_approving_review_count = 0
   }
 
-  # required_status_checks {
-  #   strict   = true
-  #   contexts = [
-  #     "ci / tests",
-  #     "ci / lint",
-  #     "ci / build",
-  #   ]
-  # }
+  required_status_checks {
+    strict   = true
+    contexts = local.ci_status_checks
+  }
 }
 
 # ─────────────────────────────────────────
@@ -70,20 +70,16 @@ resource "github_branch_protection" "hotfix" {
   pattern       = "hotfix/*"
 
   allows_force_pushes = false
-  allows_deletions    = true  # pode deletar após merge
+  allows_deletions    = true # pode deletar após merge
 
   required_pull_request_reviews {
-    required_approving_review_count = 1
-    dismiss_stale_reviews           = true
+    required_approving_review_count = 0
   }
 
-  # required_status_checks {
-  #   strict   = true
-  #   contexts = [
-  #     "ci / tests",
-  #     "ci / lint",
-  #   ]
-  # }
+  required_status_checks {
+    strict   = true
+    contexts = local.ci_status_checks
+  }
 }
 
 # ─────────────────────────────────────────
@@ -93,7 +89,7 @@ resource "github_branch_protection" "feat" {
   repository_id = var.repo_name
   pattern       = "feat/*"
 
-  allows_force_pushes = true  # dev pode reescrever antes do PR
+  allows_force_pushes = true # dev pode reescrever antes do PR
   allows_deletions    = true
 }
 
@@ -116,7 +112,7 @@ resource "github_branch_protection" "shared" {
   repository_id = var.repo_name
   pattern       = "shared/*"
 
-  allows_force_pushes = false  # não pode reescrever, outros dependem dela
+  allows_force_pushes = false # não pode reescrever, outros dependem dela
   allows_deletions    = false
 
   required_pull_request_reviews {
